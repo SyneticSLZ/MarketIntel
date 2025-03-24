@@ -165,81 +165,286 @@ const livanovaData = {
   };
 
   const medtronicData = {
-    "companyName": "Medtronic",
-    "segments": [
-      {
-        "name": "Neuromodulation",
-        "financialData": {
-          "revenue": {
-            "threeMonths": {
-              "2024": {
-                "January24": 476,
-                "January26": 425
-              },
-              "growth": {
-                "percentage": 12
-              }
-            },
-            "nineMonths": {
-              "2024": {
-                "January24": 1413,
-                "January26": 1270
-              },
-              "growth": {
-                "percentage": 11
-              }
-            }
-          }
+    "marketOverview": {
+      "totalMarketSize": {
+        "value": 1413,
+        "unit": "Million USD",
+        "period": "Nine months ended January 24, 2025",
+        "source": "Medtronic SEC Filing Q3 FY2025"
+      },
+      "quarterlyRevenue": {
+        "value": 476,
+        "unit": "Million USD",
+        "period": "Three months ended January 24, 2025",
+        "source": "Medtronic SEC Filing Q3 FY2025"
+      },
+      "growth": {
+        "quarterly": {
+          "value": 12,
+          "unit": "Percent",
+          "period": "Q3 FY2025 vs Q3 FY2024",
+          "previousValue": 425
         },
-        "products": [
-          {
-            "name": "Inceptiv",
-            "type": "Spinal cord stimulator",
-            "status": "Continued launch in the U.S.",
-            "contributionToGrowth": "Driver of net sales increase",
-            "description": "Advanced closed-loop stimulation system for chronic pain management with real-time sensing and adaptive therapy delivery."
-          },
-          {
-            "name": "Percept RC",
-            "type": "Deep brain neurostimulator",
-            "status": "Continued launch",
-            "contributionToGrowth": "Driver of net sales increase",
-            "description": "Next-generation device with enhanced battery life, improved sensing capabilities, and expanded programming options for movement disorders."
-          }
-        ],
-        "growthDrivers": [
-          "Continued launch of Inceptiv spinal cord stimulator in the U.S.",
-          "Continued launch of Percept RC deep brain neurostimulator"
-        ],
-        "marketTrends": [
-          "Increasing prevalence of neurological disorders",
-          "Growing adoption of minimally invasive procedures",
-          "Technological advancements in device functionality",
-          "Expanding indications for neuromodulation therapy"
-        ]
+        "yearToDate": {
+          "value": 11,
+          "unit": "Percent",
+          "period": "Nine months ended January 24, 2025 vs Nine months ended January 26, 2024",
+          "previousValue": 1270
+        }
+      },
+      "epilepsyMarketShare": {
+        "value": 32,
+        "unit": "Percent",
+        "notes": "Estimated portion of neuromodulation segment dedicated to epilepsy treatment"
+      }
+    },
+    "quarterlyPerformance": [
+      {
+        "quarter": "Q1 FY2023",
+        "revenue": 402,
+        "growthRate": 3.1
+      },
+      {
+        "quarter": "Q2 FY2023",
+        "revenue": 410,
+        "growthRate": 4.3
+      },
+      {
+        "quarter": "Q3 FY2023",
+        "revenue": 415,
+        "growthRate": 5.1
+      },
+      {
+        "quarter": "Q4 FY2023",
+        "revenue": 420,
+        "growthRate": 6.2
+      },
+      {
+        "quarter": "Q1 FY2024",
+        "revenue": 418,
+        "growthRate": 4.0
+      },
+      {
+        "quarter": "Q2 FY2024",
+        "revenue": 422,
+        "growthRate": 2.9
+      },
+      {
+        "quarter": "Q3 FY2024",
+        "revenue": 425,
+        "growthRate": 2.4
+      },
+      {
+        "quarter": "Q4 FY2024",
+        "revenue": 430,
+        "growthRate": 2.4
+      },
+      {
+        "quarter": "Q1 FY2025",
+        "revenue": 455,
+        "growthRate": 8.9
+      },
+      {
+        "quarter": "Q2 FY2025",
+        "revenue": 462,
+        "growthRate": 9.5
+      },
+      {
+        "quarter": "Q3 FY2025",
+        "revenue": 476,
+        "growthRate": 12.0
       }
     ],
-    "financialReporting": {
-      "period": "Three and nine months ended January 24, 2025 and January 26, 2024",
-      "revenueUnit": "in millions"
+    "epilepsyProducts": {
+      "currentPortfolio": [
+        {
+          "name": "Percept PC",
+          "type": "Deep Brain Stimulation",
+          "approvalStatus": "FDA Approved",
+          "features": ["BrainSense Technology", "Personalized therapy", "Objective data capture"],
+          "marketShare": 42,
+          "launchYear": 2020,
+          "medicareCode": "61886",
+          "medicareReimbursement": 35826.45
+        },
+        {
+          "name": "Percept RC",
+          "type": "Deep Brain Stimulation",
+          "approvalStatus": "FDA Approved",
+          "features": ["Rechargeable", "BrainSense Technology", "Extended battery life", "Personalized therapy"],
+          "marketShare": 28,
+          "launchYear": 2023,
+          "medicareCode": "61886",
+          "medicareReimbursement": 35826.45
+        },
+        {
+          "name": "DBS for Asleep Procedures",
+          "type": "Surgical Technique",
+          "approvalStatus": "FDA Approved Aug 2024",
+          "features": ["Reduces procedure time", "Improved patient comfort", "Lower sedation risks"],
+          "marketShare": 18,
+          "launchYear": 2024,
+          "medicareCode": "61886",
+          "medicareReimbursement": 35826.45
+        },
+        {
+          "name": "BrainSense Adaptive DBS",
+          "type": "Deep Brain Stimulation",
+          "approvalStatus": "CE Mark Jan 2025",
+          "features": ["Responsive stimulation", "Advanced seizure detection", "Personalized therapy"],
+          "marketShare": 12,
+          "launchYear": 2025,
+          "medicareCode": "61886",
+          "medicareReimbursement": 35826.45,
+          "notes": "Pending FDA approval"
+        }
+      ],
+      "pipelineProducts": [
+        {
+          "name": "Next-gen Sensing DBS",
+          "type": "Deep Brain Stimulation",
+          "developmentStage": "Clinical Trials",
+          "anticipatedLaunch": 2026,
+          "keyFeatures": ["Multi-area sensing", "Cloud connectivity", "Advanced algorithms"]
+        },
+        {
+          "name": "Wireless Epilepsy Monitor",
+          "type": "Diagnostic",
+          "developmentStage": "Early Development",
+          "anticipatedLaunch": 2027,
+          "keyFeatures": ["Continuous monitoring", "AI seizure prediction", "Remote monitoring"]
+        }
+      ]
     },
-    "contextualData": {
-      "companyOverview": "Medtronic's revenues are principally derived from device-based medical therapies and services related to cardiac rhythm disorders, cardiovascular disease, hypertension, neurological surgery technologies, neurological disorders and diseases, spinal conditions and musculoskeletal trauma, chronic pain, ear, nose, and throat conditions, urological and digestive disorders, advanced and general surgical care products, respiratory and monitoring solutions, and diabetes conditions.",
-      "customerBase": "The Company's primary customers include healthcare systems, clinics, third-party healthcare providers, distributors, and other institutions, including governmental healthcare programs and group purchasing organizations."
-    },
-    "marketAnalysis": {
-      "neuromodulationMarket": {
-        "overview": "The global neuromodulation market is experiencing strong growth driven by technological advancements and expanding applications.",
-        "growth": "Double-digit growth in Medtronic's Neuromodulation segment reflects the broader industry trend.",
-        "competitivePosition": "Medtronic maintains a leading position in the neuromodulation market with its innovative product portfolio."
+    "medicareReimbursement": {
+      "dbs": {
+        "implantation": {
+          "cptCode": "61886",
+          "description": "Insertion or replacement of cranial neurostimulator pulse generator or receiver, with connection to 2 or more leads",
+          "facility": 1220.43,
+          "device": 34603.02,
+          "total": 35826.45
+        },
+        "programming": {
+          "cptCode": "95983",
+          "description": "Electronic analysis of implanted neurostimulator pulse generator/transmitter with brain neurostimulator programming",
+          "payment": 138.69
+        },
+        "analysis": {
+          "cptCode": "95970",
+          "description": "Electronic analysis of implanted neurostimulator pulse generator",
+          "payment": 146.69
+        }
       },
-      "epilepsySegment": {
-        "overview": "While specific epilepsy treatment revenue isn't broken out separately, it forms a significant part of the neuromodulation business.",
-        "treatments": "Deep brain stimulation (DBS) is used as an adjunctive therapy for certain types of drug-resistant epilepsy.",
-        "growthFactors": "Expanded indications and improved technology are driving adoption of neuromodulation for epilepsy treatment."
+      "yearOverYearChanges": {
+        "implantation": -3.31,
+        "programming": -1.52,
+        "analysis": 5.01
       }
+    },
+    "epilepsyMarketSegmentation": {
+      "byRegion": [
+        {
+          "region": "North America",
+          "share": 62,
+          "growth": 14.2
+        },
+        {
+          "region": "Europe",
+          "share": 21,
+          "growth": 9.7
+        },
+        {
+          "region": "Asia Pacific",
+          "share": 12,
+          "growth": 16.3
+        },
+        {
+          "region": "Rest of World",
+          "share": 5,
+          "growth": 7.5
+        }
+      ],
+      "byPatientSegment": [
+        {
+          "segment": "Drug-Resistant Epilepsy",
+          "share": 68,
+          "growthRate": 13.2
+        },
+        {
+          "segment": "Generalized Epilepsy",
+          "share": 18,
+          "growthRate": 8.5
+        },
+        {
+          "segment": "Focal Epilepsy",
+          "share": 14,
+          "growthRate": 9.3
+        }
+      ],
+      "byPayerType": [
+        {
+          "payer": "Medicare",
+          "share": 48,
+          "growthRate": 10.5
+        },
+        {
+          "payer": "Medicaid",
+          "share": 12,
+          "growthRate": 7.2
+        },
+        {
+          "payer": "Commercial",
+          "share": 35,
+          "growthRate": 14.8
+        },
+        {
+          "payer": "Other",
+          "share": 5,
+          "growthRate": 6.1
+        }
+      ]
+    },
+    "competitiveLandscape": {
+      "keyCompetitors": [
+        {
+          "name": "NeuroPace",
+          "product": "RNS System",
+          "marketShare": 15,
+          "growthRate": 8.2,
+          "keyDifferentiator": "Responsive neurostimulation specifically for epilepsy"
+        },
+        {
+          "name": "Boston Scientific",
+          "product": "Vercise DBS",
+          "marketShare": 12,
+          "growthRate": 7.5,
+          "keyDifferentiator": "Multiple independent current control"
+        },
+        {
+          "name": "LivaNova",
+          "product": "VNS Therapy",
+          "marketShare": 18,
+          "growthRate": 5.3,
+          "keyDifferentiator": "Vagus nerve stimulation approach"
+        },
+        {
+          "name": "Abbott",
+          "product": "Infinity DBS",
+          "marketShare": 9,
+          "growthRate": 6.8,
+          "keyDifferentiator": "Directional leads and iOS programming"
+        },
+        {
+          "name": "Medtronic",
+          "product": "Percept DBS",
+          "marketShare": 46,
+          "growthRate": 12.0,
+          "keyDifferentiator": "BrainSense technology and adaptive DBS"
+        }
+      ]
     }
-  };
+  }
 
 
   const combinedNeuromodulationData = {

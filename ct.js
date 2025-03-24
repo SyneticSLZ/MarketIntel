@@ -58,7 +58,7 @@ export function renderStrategicAnalysis(companyName) {
     try {
       console.log(`Fetching trials for company: ${companyName}`);
       
-      const response = await fetch('http://localhost:3000/fetch-trials', {
+      const response = await fetch('https://medicare-n1bu.onrender.com/fetch-trials', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

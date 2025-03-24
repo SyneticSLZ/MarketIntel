@@ -239,36 +239,24 @@ const mockCompetitors = {
     competitors: [
         {
             id: 1,
-            name: 'LivaNova',
-            industry: 'Vagus Nerve Stimulation',
+            name: "LivaNova",
+            industry: "Vagus Nerve Stimulation",
             keyMetrics: {
-                revenue: 1833.2,
-                marketShare: 50.13,
+                revenue: 1215.0,
+                marketShare: 35.0,
                 recentPatents: 46,
-                filings: 11185
+                filings: 13541
             },
             marketPosition: {
                 rank: 1,
-                type: 'Market Leader',
-                strength: 'High',
-                trend: 'up'
+                type: "Market Leader",
+                strength: "High",
+                trend: "up"
             },
             recentActivities: [
-                {
-                    type: 'patent',
-                    title: 'AI-Powered Hearing Aid Algorithm',
-                    date: 'January 15, 2025'
-                },
-                {
-                    type: 'product',
-                    title: 'Launch of Phonak Lumity Pro',
-                    date: 'January 8, 2025'
-                },
-                {
-                    type: 'acquisition',
-                    title: 'Acquisition of AudioTech Solutions',
-                    date: 'December 20, 2024'
-                }
+                {type: "product", title: "SenTiva Duo IPG Launch", date: "February 2023"},
+                {type: "expansion", title: "Expanded VNS Therapy Indications", date: "January 15, 2025"},
+                {type: "partnership", title: "Collaboration with epilepsy research consortium", date: "December 20, 2024"}
             ],
             quickMetrics: {
                 roi: 28.4,
@@ -279,31 +267,23 @@ const mockCompetitors = {
         },
         {
             id: 2,
-            name: 'Medtronic',
-            industry: 'Deep Brain Stimulation',
+            name: "Medtronic",
+            industry: "Deep Brain Stimulation",
             keyMetrics: {
-                revenue: 4164.0,
-                marketShare: 10.07,
+                revenue: 32400.0,
+                marketShare: 15.0,
                 recentPatents: 8,
-                filings: 22963
+                filings: 29829
             },
             marketPosition: {
-                rank: 3,
-                type: 'Challenger',
-                strength: 'High',
-                trend: 'up'
+                rank: 2,
+                type: "Market Leader",
+                strength: "High",
+                trend: "up"
             },
             recentActivities: [
-                {
-                    type: 'product',
-                    title: 'ReSound OMNIA Launch',
-                    date: 'January 18, 2025'
-                },
-                {
-                    type: 'partnership',
-                    title: 'Google Health Partnership',
-                    date: 'January 5, 2025'
-                }
+                {type: "product", title: "Next-Gen DBS System Update", date: "January 18, 2025"},
+                {type: "partnership", title: "Collaboration with NIH for epilepsy trials", date: "January 5, 2025"}
             ],
             quickMetrics: {
                 roi: 25.6,
@@ -314,36 +294,24 @@ const mockCompetitors = {
         },
         {
             id: 3,
-            name: 'NeuroPace',
-            industry: 'Responsive Neurostimulation',
+            name: "NeuroPace",
+            industry: "Responsive Neurostimulation",
             keyMetrics: {
-                revenue: 2637.0,
+                revenue: 65.0,
                 marketShare: 6.9,
                 recentPatents: 329,
-                filings: 26565
+                filings: 34527
             },
             marketPosition: {
-                rank: 4,
-                type: 'Challenger',
-                strength: 'High',
-                trend: 'stable'
+                rank: 3,
+                type: "Challenger",
+                strength: "High",
+                trend: "stable"
             },
             recentActivities: [
-                {
-                    type: 'product',
-                    title: 'Signia Silk X Launch',
-                    date: 'January 20, 2025'
-                },
-                {
-                    type: 'expansion',
-                    title: 'New R&D Center in Singapore',
-                    date: 'January 10, 2025'
-                },
-                {
-                    type: 'partnership',
-                    title: 'Microsoft AI Partnership',
-                    date: 'December 15, 2024'
-                }
+                {type: "expansion", title: "New R&D Center in Singapore", date: "January 10, 2025"},
+                {type: "partnership", title: "Microsoft AI Partnership for RNS", date: "December 15, 2024"},
+                {type: "regulatory", title: "FDA Breakthrough Designation Expansion", date: "February 19, 2022"}
             ],
             quickMetrics: {
                 roi: 22.8,
@@ -354,47 +322,276 @@ const mockCompetitors = {
         },
         {
             id: 4,
-            name: 'XCOPRI',
-            industry: 'Cenobamate',
+            name: "XCOPRI (SK Biopharmaceuticals)",
+            industry: "Cenobamate (Pharmaceutical)",
             keyMetrics: {
-                revenue: 11087, // DKK million, as of Q3 2024
-                marketShare: 18.34, // Estimated global market share percentage
-                recentPatents: 107, // Number of recent patents filed
-                filings: 26565 // Approximate number of regulatory filings
+                revenue: 405.6,
+                marketShare: 6.5,
+                recentPatents: 107,
+                filings: 34103
             },
             marketPosition: {
-                rank: 2,
-                type: 'Challenger',
-                strength: 'High',
-                trend: 'up'
+                rank: 4,
+                type: "Challenger",
+                strength: "High",
+                trend: "up"
             },
             recentActivities: [
-                {
-                    type: 'product',
-                    title: 'Oticon Intent Launch',
-                    date: 'February 2025'
-                },
-                {
-                    type: 'partnership',
-                    title: 'EPOS and Lenovo Strategic Partnership',
-                    date: 'November 7, 2024'
-                },
-                {
-                    type: 'sustainability',
-                    title: 'Joined Net-Zero Future Network',
-                    date: 'December 4, 2024'
-                }
+                {type: "expansion", title: "NDA Filing in Korea and Japan", date: "February 2025"},
+                {type: "clinical", title: "Phase 3 Northeast Asia Results", date: "December 9, 2024"},
+                {type: "partnership", title: "Paladin Labs Canada Approval", date: "June 2023"}
             ],
             quickMetrics: {
-                roi: 22.5, // Return on Investment percentage
-                nps: 70, // Net Promoter Score
-                marketGrowth: 10.0, // Market growth percentage
-                innovationScore: 8.5 // Innovation score out of 10
+                roi: 22.5,
+                nps: 70,
+                marketGrowth: 10.0,
+                innovationScore: 8.5
+            }
+        },
+        {
+            id: 5,
+            name: "Precisis AG",
+            industry: "Minimally Invasive Neurostimulation",
+            keyMetrics: {
+                revenue: 0,
+                marketShare: 0.1,
+                recentPatents: 5,
+                filings: 15
+            },
+            marketPosition: {
+                rank: 5,
+                type: "Emerging",
+                strength: "Moderate",
+                trend: "up"
+            },
+            recentActivities: [
+                {type: "regulatory", title: "CE Certification for EASEE", date: "September 15, 2022"},
+                {type: "funding", title: "€20M Financing from Cochlear", date: "October 2021"}
+            ],
+            quickMetrics: {
+                roi: 10.0,
+                nps: 60,
+                marketGrowth: 20.0,
+                innovationScore: 7.5
+            }
+        },
+        {
+            id: 6,
+            name: "Epi-Minder",
+            industry: "Seizure Monitoring",
+            keyMetrics: {
+                revenue: 0,
+                marketShare: 0.1,
+                recentPatents: 3,
+                filings: 12
+            },
+            marketPosition: {
+                rank: 6,
+                type: "Emerging",
+                strength: "Moderate",
+                trend: "up"
+            },
+            recentActivities: [
+                {type: "funding", title: "AUD 40M Series A Funding", date: "August 2022"},
+                {type: "clinical", title: "Phase III Trials Ongoing", date: "2024"}
+            ],
+            quickMetrics: {
+                roi: 8.0,
+                nps: 65,
+                marketGrowth: 25.0,
+                innovationScore: 7.0
+            }
+        },
+        {
+            id: 7,
+            name: "Flow Medical",
+            industry: "tDCS (Depression/Epilepsy Crossover)",
+            keyMetrics: {
+                revenue: 5.0,
+                marketShare: 0.5,
+                recentPatents: 2,
+                filings: 7
+            },
+            marketPosition: {
+                rank: 7,
+                type: "Emerging",
+                strength: "Low",
+                trend: "stable"
+            },
+            recentActivities: [
+                {type: "funding", title: "$9M Series A from Gilde Healthcare", date: "May 2023"},
+                {type: "regulatory", title: "CE Mark for Depression", date: "2019"}
+            ],
+            quickMetrics: {
+                roi: 12.0,
+                nps: 55,
+                marketGrowth: 15.0,
+                innovationScore: 6.5
             }
         }
-        
     ]
-};
+}
+//  {
+//     competitors: [
+//         {
+//             id: 1,
+//             name: 'LivaNova',
+//             industry: 'Vagus Nerve Stimulation',
+//             keyMetrics: {
+//                 revenue: 1833.2,
+//                 marketShare: 50.13,
+//                 recentPatents: 46,
+//                 filings: 11185
+//             },
+//             marketPosition: {
+//                 rank: 1,
+//                 type: 'Market Leader',
+//                 strength: 'High',
+//                 trend: 'up'
+//             },
+//             recentActivities: [
+//                 {
+//                     type: 'patent',
+//                     title: 'AI-Powered Hearing Aid Algorithm',
+//                     date: 'January 15, 2025'
+//                 },
+//                 {
+//                     type: 'product',
+//                     title: 'Launch of Phonak Lumity Pro',
+//                     date: 'January 8, 2025'
+//                 },
+//                 {
+//                     type: 'acquisition',
+//                     title: 'Acquisition of AudioTech Solutions',
+//                     date: 'December 20, 2024'
+//                 }
+//             ],
+//             quickMetrics: {
+//                 roi: 28.4,
+//                 nps: 72,
+//                 marketGrowth: 15.2,
+//                 innovationScore: 8.5
+//             }
+//         },
+//         {
+//             id: 2,
+//             name: 'Medtronic',
+//             industry: 'Deep Brain Stimulation',
+//             keyMetrics: {
+//                 revenue: 4164.0,
+//                 marketShare: 10.07,
+//                 recentPatents: 8,
+//                 filings: 22963
+//             },
+//             marketPosition: {
+//                 rank: 3,
+//                 type: 'Challenger',
+//                 strength: 'High',
+//                 trend: 'up'
+//             },
+//             recentActivities: [
+//                 {
+//                     type: 'product',
+//                     title: 'ReSound OMNIA Launch',
+//                     date: 'January 18, 2025'
+//                 },
+//                 {
+//                     type: 'partnership',
+//                     title: 'Google Health Partnership',
+//                     date: 'January 5, 2025'
+//                 }
+//             ],
+//             quickMetrics: {
+//                 roi: 25.6,
+//                 nps: 68,
+//                 marketGrowth: 12.4,
+//                 innovationScore: 8.2
+//             }
+//         },
+//         {
+//             id: 3,
+//             name: 'NeuroPace',
+//             industry: 'Responsive Neurostimulation',
+//             keyMetrics: {
+//                 revenue: 2637.0,
+//                 marketShare: 6.9,
+//                 recentPatents: 329,
+//                 filings: 26565
+//             },
+//             marketPosition: {
+//                 rank: 4,
+//                 type: 'Challenger',
+//                 strength: 'High',
+//                 trend: 'stable'
+//             },
+//             recentActivities: [
+//                 {
+//                     type: 'product',
+//                     title: 'Signia Silk X Launch',
+//                     date: 'January 20, 2025'
+//                 },
+//                 {
+//                     type: 'expansion',
+//                     title: 'New R&D Center in Singapore',
+//                     date: 'January 10, 2025'
+//                 },
+//                 {
+//                     type: 'partnership',
+//                     title: 'Microsoft AI Partnership',
+//                     date: 'December 15, 2024'
+//                 }
+//             ],
+//             quickMetrics: {
+//                 roi: 22.8,
+//                 nps: 70,
+//                 marketGrowth: 11.6,
+//                 innovationScore: 7.8
+//             }
+//         },
+//         {
+//             id: 4,
+//             name: 'XCOPRI',
+//             industry: 'Cenobamate',
+//             keyMetrics: {
+//                 revenue: 11087, // DKK million, as of Q3 2024
+//                 marketShare: 18.34, // Estimated global market share percentage
+//                 recentPatents: 107, // Number of recent patents filed
+//                 filings: 26565 // Approximate number of regulatory filings
+//             },
+//             marketPosition: {
+//                 rank: 2,
+//                 type: 'Challenger',
+//                 strength: 'High',
+//                 trend: 'up'
+//             },
+//             recentActivities: [
+//                 {
+//                     type: 'product',
+//                     title: 'Oticon Intent Launch',
+//                     date: 'February 2025'
+//                 },
+//                 {
+//                     type: 'partnership',
+//                     title: 'EPOS and Lenovo Strategic Partnership',
+//                     date: 'November 7, 2024'
+//                 },
+//                 {
+//                     type: 'sustainability',
+//                     title: 'Joined Net-Zero Future Network',
+//                     date: 'December 4, 2024'
+//                 }
+//             ],
+//             quickMetrics: {
+//                 roi: 22.5, // Return on Investment percentage
+//                 nps: 70, // Net Promoter Score
+//                 marketGrowth: 10.0, // Market growth percentage
+//                 innovationScore: 8.5 // Innovation score out of 10
+//             }
+//         }
+        
+//     ]
+    
+// };
 // State Management
 const state = {
     competitors: [...mockCompetitors.competitors],
@@ -624,7 +821,7 @@ const app = {
         const tableBody = document.getElementById('competitor-table-body');
         const filteredCompetitors = this.getFilteredCompetitors();
         
-        tableBody.innerHTML = filteredCompetitors.map(competitor => 
+        tableBody.innerHTML = state.competitors.map(competitor => 
             components.competitorRow.render(competitor)
         ).join('');
     },
