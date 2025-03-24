@@ -533,7 +533,7 @@ const app = {
         this.renderCharts();
         this.setupTabNavigation();
         await this.loadCompetitorData();
-        this.renderTechnologyAnalysis()
+        this.renderFinancialAnalysis()
     },
 
     setupEventListeners() {
@@ -748,9 +748,191 @@ const app = {
         console.log('Rendering strategic initiatives...');
     },
 
-    renderFinancialAnalysis() {
-        // Implementation for financial analysis tab
-        console.log('Rendering financial analysis...');
+    async renderFinancialAnalysis() {
+        initializeCompanyDashboard()
+
+//         const formatCurrency = (value) => `$${(value / 1e9).toFixed(1)}B`;
+//         const formatPercentage = (value) => `${(value * 100).toFixed(1)}%`;
+    
+//         // Mock data for testing - replace with actual API call in production
+//         const companyData = await getCompanyData();
+//         const companycik = companyData.cik
+//         console.log(companycik)
+// const metrics = await (getCompetitorMetrics(companycik))
+// console.log(metrics)
+
+// const data = metrics.metrics
+
+//         // const data = {
+//         //     revenue: 265595000000,
+//         //     marketCap: {
+//         //         marketCap: 3678586685280,
+//         //         sharesOutstanding: 15115823000,
+//         //         stockPrice: 243.36,
+//         //         lastUpdated: '2025-01-04T11:27:28.077Z'
+//         //     },
+//         //     rdExpense: 31370000000,
+//         //     operatingMetrics: {
+//         //         operatingIncome: 123216000000,
+//         //         operatingMargin: 0.4639243961670965,
+//         //         grossProfit: 180683000000,
+//         //     },
+//         //     financialHealth: {
+//         //         currentAssets: 152987000000,
+//         //         currentLiabilities: 176392000000,
+//         //         totalDebt: 97341000000,
+//         //         cashAndEquivalents: 29943000000,
+//         //         freeCashFlow: 108807000000
+//         //     }
+//         // };
+    
+//         // Update top metric cards
+//         document.getElementById('revenueTTM').textContent = formatCurrency(data.revenue);
+//         document.getElementById('revenueGrowth').textContent = 
+//             `Operating Income: ${formatCurrency(data.operatingMetrics.operatingIncome)}`;
+    
+//         document.getElementById('marketCap').textContent = formatCurrency(data.marketCap.marketCap);
+//         document.getElementById('stockPrice').textContent = `Stock Price: $${data.marketCap.stockPrice}`;
+    
+//         document.getElementById('operatingMargin').textContent = 
+//             formatPercentage(data.operatingMetrics.operatingMargin);
+//         document.getElementById('grossProfit').textContent = 
+//             `Gross Profit: ${formatCurrency(data.operatingMetrics.grossProfit)}`;
+    
+//         document.getElementById('rdExpense').textContent = formatCurrency(data.rdExpense);
+//         document.getElementById('fcf').textContent = 
+//             `Free Cash Flow: ${formatCurrency(data.financialHealth.freeCashFlow)}`;
+    
+//         // Update financial metrics tables
+//         document.getElementById('operatingIncomeMetric').textContent = 
+//             formatCurrency(data.operatingMetrics.operatingIncome);
+//         document.getElementById('grossProfitMetric').textContent = 
+//             formatCurrency(data.operatingMetrics.grossProfit);
+//         document.getElementById('operatingMarginMetric').textContent = 
+//             formatPercentage(data.operatingMetrics.operatingMargin);
+//         document.getElementById('sharesOutstandingMetric').textContent = 
+//             (data.marketCap.sharesOutstanding / 1e6).toFixed(1) + 'M';
+//         document.getElementById('rdExpenseMetric').textContent = 
+//             formatCurrency(data.rdExpense);
+    
+//         // Update balance sheet metrics
+//         document.getElementById('currentAssetsMetric').textContent = 
+//             formatCurrency(data.financialHealth.currentAssets);
+//         document.getElementById('currentLiabilitiesMetric').textContent = 
+//             formatCurrency(data.financialHealth.currentLiabilities);
+//         document.getElementById('totalDebtMetric').textContent = 
+//             formatCurrency(data.financialHealth.totalDebt);
+//         document.getElementById('cashEquivalentsMetric').textContent = 
+//             formatCurrency(data.financialHealth.cashAndEquivalents);
+//         document.getElementById('freeCashFlowMetric').textContent = 
+//             formatCurrency(data.financialHealth.freeCashFlow);
+    
+//         // Create/update operating metrics chart
+//         const operatingCtx = document.getElementById('operatingMetricsChart');
+//         if (operatingCtx) {
+//             if (this.charts.operatingMetrics) {
+//                 this.charts.operatingMetrics.destroy();
+//             }
+    
+//             this.charts.operatingMetrics = new Chart(operatingCtx, {
+//                 type: 'bar',
+//                 data: {
+//                     labels: ['Revenue', 'Operating Income', 'Gross Profit', 'R&D Expense'],
+//                     datasets: [{
+//                         label: 'Operating Metrics (Billions USD)',
+//                         data: [
+//                             data.revenue / 1e9,
+//                             data.operatingMetrics.operatingIncome / 1e9,
+//                             data.operatingMetrics.grossProfit / 1e9,
+//                             data.rdExpense / 1e9
+//                         ],
+//                         backgroundColor: ['#60A5FA', '#34D399', '#A78BFA', '#F87171']
+//                     }]
+//                 },
+//                 options: {
+//                     responsive: true,
+//                     scales: {
+//                         y: {
+//                             beginAtZero: true,
+//                             ticks: {
+//                                 callback: function(value) {
+//                                     return '$' + value + 'B';
+//                                 }
+//                             }
+//                         }
+//                     },
+//                     plugins: {
+//                         legend: {
+//                             position: 'top'
+//                         },
+//                         tooltip: {
+//                             callbacks: {
+//                                 label: function(context) {
+//                                     return context.dataset.label + ': $' + context.parsed.y.toFixed(1) + 'B';
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             });
+//         }
+    
+//         // Create/update financial health chart
+//         const healthCtx = document.getElementById('financialHealthChart');
+//         if (healthCtx) {
+//             if (this.charts.financialHealth) {
+//                 this.charts.financialHealth.destroy();
+//             }
+    
+//             this.charts.financialHealth = new Chart(healthCtx, {
+//                 type: 'bar',
+//                 data: {
+//                     labels: ['Current Assets', 'Current Liabilities', 'Total Debt', 'Cash', 'Free Cash Flow'],
+//                     datasets: [{
+//                         label: 'Financial Health (Billions USD)',
+//                         data: [
+//                             data.financialHealth.currentAssets / 1e9,
+//                             data.financialHealth.currentLiabilities / 1e9,
+//                             data.financialHealth.totalDebt / 1e9,
+//                             data.financialHealth.cashAndEquivalents / 1e9,
+//                             data.financialHealth.freeCashFlow / 1e9
+//                         ],
+//                         backgroundColor: [
+//                             '#60A5FA', // Blue for assets
+//                             '#F87171', // Red for liabilities
+//                             '#F87171', // Red for debt
+//                             '#34D399', // Green for cash
+//                             '#34D399'  // Green for FCF
+//                         ]
+//                     }]
+//                 },
+//                 options: {
+//                     responsive: true,
+//                     scales: {
+//                         y: {
+//                             beginAtZero: true,
+//                             ticks: {
+//                                 callback: function(value) {
+//                                     return '$' + value + 'B';
+//                                 }
+//                             }
+//                         }
+//                     },
+//                     plugins: {
+//                         legend: {
+//                             position: 'top'
+//                         },
+//                         tooltip: {
+//                             callbacks: {
+//                                 label: function(context) {
+//                                     return context.dataset.label + ': $' + context.parsed.y.toFixed(1) + 'B';
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             });
+//         }
     },
 
     exportAnalysis() {
