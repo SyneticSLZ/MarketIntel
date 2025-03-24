@@ -533,7 +533,7 @@ const app = {
         this.renderCharts();
         this.setupTabNavigation();
         await this.loadCompetitorData();
-        this.renderProductPortfolio()
+        this.renderTechnologyAnalysis()
     },
 
     setupEventListeners() {
@@ -657,9 +657,85 @@ const app = {
         console.log('Rendering product portfolio...');
     },
 
-    renderTechnologyAnalysis() {
-        // Implementation for technology analysis tab
-        console.log('Rendering technology analysis...');
+    async renderTechnologyAnalysis() {
+        const companyData = await getCompanyData();
+        const companyName = companyData.name
+        
+        renderPatentAnalysis(companyName);
+        // const data = mockData.technologyPatents;
+        
+        // // Update stats
+        // document.getElementById('totalPatents').textContent = data.stats.totalPatents;
+        // document.getElementById('pendingPatents').textContent = data.stats.pendingApplications;
+        // document.getElementById('expiringPatents').textContent = data.stats.expiringPatents;
+
+        // // Create/update patent categories chart
+        // const patentCategoriesCtx = document.getElementById('patentCategoriesChart');
+        // if (patentCategoriesCtx) {
+        //     new Chart(patentCategoriesCtx, {
+        //         type: 'doughnut',
+        //         data: {
+        //             labels: Object.keys(data.categories),
+        //             datasets: [{
+        //                 data: Object.values(data.categories),
+        //                 backgroundColor: [
+        //                     '#4299E1',
+        //                     '#48BB78',
+        //                     '#ECC94B',
+        //                     '#F56565',
+        //                     '#A0AEC0'
+        //                 ]
+        //             }]
+        //         },
+        //         options: {
+        //             responsive: true,
+        //             plugins: {
+        //                 legend: {
+        //                     position: 'right'
+        //                 }
+        //             }
+        //         }
+        //     });
+        // }
+
+        // // Create/update patent trends chart
+        // const patentTrendsCtx = document.getElementById('patentTrendsChart');
+        // if (patentTrendsCtx) {
+        //     new Chart(patentTrendsCtx, {
+        //         type: 'line',
+        //         data: {
+        //             labels: data.trends.map(t => t.month),
+        //             datasets: [{
+        //                 label: 'Patent Filings',
+        //                 data: data.trends.map(t => t.filings),
+        //                 borderColor: '#4299E1',
+        //                 tension: 0.4
+        //             }]
+        //         },
+        //         options: {
+        //             responsive: true,
+        //             scales: {
+        //                 y: {
+        //                     beginAtZero: true
+        //                 }
+        //             }
+        //         }
+        //     });
+        // }
+
+        // // Update recent patents table
+        // const tableBody = document.getElementById('patentTableBody');
+        // if (tableBody) {
+        //     tableBody.innerHTML = data.recentPatents.map(patent => `
+        //         <tr>
+        //             <td class="px-6 py-4 whitespace-nowrap">${patent.number}</td>
+        //             <td class="px-6 py-4">${patent.title}</td>
+        //             <td class="px-6 py-4">${patent.date}</td>
+        //             <td class="px-6 py-4">${patent.status}</td>
+        //             <td class="px-6 py-4">${patent.type}</td>
+        //         </tr>
+        //     `).join('');
+        // }
     },
 
     renderDigitalPresence() {
