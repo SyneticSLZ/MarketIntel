@@ -1,12 +1,14 @@
 // Enhanced competitor analysis data with detailed metrics
 import UserenderProductvPortfolio from './portfolio-visualization.js';
 import renderFDADashboard from './fda.js';
-import { renderStrategicAnalysis } from './vadata.js';
+// import { renderStrategicAnalysis } from './vadata.js';
+import { renderStrategicAnalysis } from './ct.js';
 
 // import { renderFDAIntelligence, initDashboard } from './portfolio-visualization.js';
 import { renderPatentAnalysis } from './patent-dashboard.js';
 import { VetrenderStrategicInitiatives } from './strategic-analysis.js';
 import {  initializeFinancialDashboard } from './company-detail.js';
+
 // import {initializeMarketDashboard} from './Va.js';
 
 const analysisData = {
@@ -467,27 +469,37 @@ function getCompanyData() {
     // };
     const companyMap = {
         1: { 
-            name: 'Sonova', 
+            name: 'Livanova', 
             cik: '0000066740', 
             industry: 'Hearing Aids'
         },
         2: { 
-            name: 'Gn', 
+            name: 'Medtronic', 
             cik: '0000854341', 
             industry: 'Hearing Aids'
         },
         3: { 
-            name: 'Ws', 
+            name: 'NeuroPace', 
             cik: '0000020569', 
             industry: 'Hearing Aids'
         },
         4: { 
-            name: 'Demant', 
+            name: 'XCORPRI', 
             cik: '0001535929', 
             industry: 'Hearing Aids'
         },
         5: { 
-            name: 'Starkey', 
+            name: 'EpiMinder', 
+            cik: '0000313119', 
+            industry: 'Hearing Aids'
+        },
+        6: { 
+            name: 'FlowMedical', 
+            cik: '0000313119', 
+            industry: 'Hearing Aids'
+        },
+        7: { 
+            name: 'PrecisisAG', 
             cik: '0000313119', 
             industry: 'Hearing Aids'
         }
@@ -555,7 +567,7 @@ const app = {
             'FDA Product Portfolio': this.renderProductPortfolio.bind(this),
             'Technology & Patents': this.renderTechnologyAnalysis.bind(this),
             'Digital Presence': this.renderDigitalPresence.bind(this),
-            'VA Affairs': this.renderStrategicInitiatives.bind(this),
+            'Clinical Trials': this.renderStrategicInitiatives.bind(this),
             'Financial Analysis': this.renderFinancialAnalysis.bind(this)
         };
 
@@ -1052,7 +1064,9 @@ Object.assign(app, {
         renderFDADashboard(companyName);
     },
     async renderStrategicInitiatives() {
-        renderStrategicAnalysis();
+        const companyData = await getCompanyData();
+        const companyName = companyData.name
+        renderStrategicAnalysis(companyName);
         // const dashboard = await initializeMarketDashboard('strategic-initiatives-content');
         // VetrenderStrategicInitiatives()
     },

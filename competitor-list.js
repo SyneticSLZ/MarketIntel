@@ -239,8 +239,8 @@ const mockCompetitors = {
     competitors: [
         {
             id: 1,
-            name: 'Sonova',
-            industry: 'Healthcare',
+            name: 'LivaNova',
+            industry: 'Vagus Nerve Stimulation',
             keyMetrics: {
                 revenue: 1833.2,
                 marketShare: 50.13,
@@ -279,8 +279,8 @@ const mockCompetitors = {
         },
         {
             id: 2,
-            name: 'GN ReSound',
-            industry: 'Healthcare',
+            name: 'Medtronic',
+            industry: 'Deep Brain Stimulation',
             keyMetrics: {
                 revenue: 4164.0,
                 marketShare: 10.07,
@@ -314,8 +314,8 @@ const mockCompetitors = {
         },
         {
             id: 3,
-            name: 'WS Audiology',
-            industry: 'Healthcare',
+            name: 'NeuroPace',
+            industry: 'Responsive Neurostimulation',
             keyMetrics: {
                 revenue: 2637.0,
                 marketShare: 6.9,
@@ -354,8 +354,8 @@ const mockCompetitors = {
         },
         {
             id: 4,
-            name: 'Demant',
-            industry: 'Healthcare',
+            name: 'XCOPRI',
+            industry: 'Cenobamate',
             keyMetrics: {
                 revenue: 11087, // DKK million, as of Q3 2024
                 marketShare: 18.34, // Estimated global market share percentage
@@ -423,7 +423,7 @@ const components = {
                         </div>
                     </div>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">
+                <td class="px-6 py-4 whitespace-nowrap" style="display: none;">
                     <div class="flex items-center">
                         ${this.renderMarketPosition(competitor.marketPosition)}
                     </div>

@@ -925,102 +925,256 @@ groupPatentsByTitle(patents) {
     // }
     initializeCharts(num) {
         const data = {
-            Sonova: {
+            Livanova: {
                 applicants: {
-                    labels: ['Phonak Ag', 'Sonova Ag', 'Sennheiser', 'Others'],
-                    data: [753, 716, 28, 151]
+                    labels: ['Livanova Usa Inc', 'East Tennessee State Uni', 'Cyberonics INC', 'Others'],
+                    data: [102,15,3,3]
                 },
                 publications: {
-                    years: Array.from({ length: 28 }, (_, i) => 1997 + i),
-                    data: [1, 1, 1, 6, 29, 44, 56, 45, 70, 68, 53, 51, 90, 74, 52, 83, 69, 88, 84, 83, 60, 76, 104, 134, 111, 65, 49]
+                    years:[2019,2020,2021,2022,2023,2024,2025],
+                    data: [23,11,21,11,13,20,3]
                 },
                 legalStatus: {
-                    labels: ['Active', 'Expired', 'Inactive', 'Discontinued', 'Pending'],
-                    data: [1025, 249, 197, 106, 71]
+                    labels: ['Active', 'Discontinued', 'Pending'],
+                    data: [80,3,19]
                 },
                 jurisdictions: {
-                    labels: ['US', 'Germany', 'Australia'],
-                    data: [1315, 35, 8]
+                    labels: ['US'],
+                    data: [94]
                 },
                 documentType: {
-                    labels: ['Patent Application', 'Granted Patents', 'Search Report', 'Design Report'],
-                    data: [838, 751, 24, 31]
+                    labels: ['Patent Application', 'Granted Patents'],
+                    data: [47,55]
                 }
             },
-            Starkey: {
-                applicants: {
-                    labels: ['Starkey Labs Inc', 'Higgins Sidney A', 'Solum Jeffrey Paul', 'Zhang Tao', 'Giri Ritwik', 'Mustiere Fred', 'Tourtelotte Davi', 'Kroenke Randall A'],
-                    data: [1594, 7, 5, 5, 4, 4, 4, 3]
-                },
+            Medtronic: {
                 
-                publications: {
-                    years: [1980, 1992, 1994, 1996, 1998, 2000, 2002, 2004, 2007, 2011, 2012, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
-                    data: [1, 1, 4, 4, 9, 1, 1, 1, 1, 5, 3, 54, 135, 166, 191, 221, 183, 226, 210, 175],
-                    thisYear: [5]
-                },
-                legalStatus: {
-                    labels: ['Active', 'Pending', 'Discontinued', 'Inactive', 'Expired'],
-                    data: [1078, 417, 65, 19, 15]
-                },
-                jurisdictions: {
-                    labels: ['US', 'Canada', 'Germany', 'China', 'Australia'],
-                    data: [950, 4, 1, 13, 11]
-                },
-                documentType: {
-                    labels: ['Patent Application', 'Granted Patent', 'Design Right', 'Amended Patent', 'Search Report'],
-                    data: [850, 692, 7, 9, 23]
-                }
-            },
-            Ws: {
-                applicants: {
-                    labels: ['Widex As', 'Sivantos Pte Ltd', 'Kidmose Preben', 'Rank Mike Lind', 'Kilsgaard Soren', 'Ungstrup Michael', 'Widex as Vaerloese', 'Klinkby Kristian Tjalfe'],
-                    data: [2489, 2292, 46, 39, 22, 22, 17, 16]
-                },
-                publications: {
-                    years: [1991, 1992, 1994, 1995, 1996, 1998, 1999, 2000, 2001, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
-                    data: [1, 1, 2, 1, 2, 4, 1, 6, 10, 41, 64, 57, 94, 130, 165, 105, 243, 182, 206, 177, 138, 150, 322, 309, 406, 419, 328, 353, 318, 263, 341],
-                    thisYear: [8]
-                },
+                    applicants: {
+                      labels: [
+                        "Medtronic Inc",
+                        "Goetz Steven M",
+                        "Davis Jon P",
+                        "Skelton Dennis M",
+                        "Denison Timothy J",
+                        "Giftakis Jonathon E",
+                        "Miesel Keith A",
+                        "Gerber Martin T"
+                      ],
+                      data: [
+                        3194,
+                        115,
+                        72,
+                        67,
+                        62,
+                        62,
+                        60,
+                        59
+                      ]
+                    },
+                  
+                  
+                
+                    
+                    publications: {
+                          years: [1977, 1980, 1992, 1994, 1996, 1998, 2000, 2002, 2004, 2007, 2011, 2012, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+                          data: [2, 0, 0, 0, 1, 3, 3, 4, 3, 35, 78, 105, 79, 90, 58, 63, 51, 54, 53, 57, 90, 14],
+                          thisYear: [14]
+                        },
+                      
+                      
                 legalStatus: {
                     labels: ['Active', 'Pending', 'Discontinued', 'Expired', 'Inactive', 'Patented'],
-                    data: [2657, 824, 527, 424, 338, 20]
+                    data: [1869, 834, 166,356, 106,13]
                 },
-                jurisdictions: {
-                    labels: ['US', 'Canada', 'Germany', 'China', 'Australia', 'Japan'],
-                    data: [1210, 255, 487, 476, 319, 40]
-                },
+                
+                    jurisdictions: {
+                      labels: ["US", "WO", "European Patents", "Australia", "Germany", "Ireland"],
+                      data: [2293, 659, 391, 1, 1, 1]
+                    },
+                  
+                  
                 documentType: {
-                    labels: ['Patent Application', 'Granted Patent', 'Limited Patent', 'Design Right', 'Amended Patent', 'Search Report', 'Unknown'],
-                    data: [2641, 1923, 41, 50, 14, 52, 63]
+                    labels: ['Active','Granted'],
+                    data: [1954,1381]
                 }
             },
-            Gn:  {
-                applicants: {
-                    labels: ['Gn Resound As', 'Gn Hearing As', 'Nielsen Henrik', 'Gn Resound as Taastrup', 'Pedersen Brian Dam', 'Resound Corp', 'Gn Resound North America Corp', 'Bisgaard Nikolai'],
-                    data:  [1269, 31, 22, 20, 16, 16, 14, 12]
-                },
-                publications: {
-                    years: [1988, 1991, 1993, 1995, 1996,1997,1998,1999, 2000, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
-                    data: [1, 2, 2, 5, 2, 4, 9, 8, 16, 17, 33, 45, 45, 34, 48, 46, 41, 50, 72, 76, 60, 125, 164, 218, 164, 142, 25, 16, 8, 11, 4, 9, 10]
-                },
+
+
+
+
+
+            NeuroPace: {
+                    applicants: {
+                      labels: [
+                        "Neuropace Inc",
+                        "Pless Benjamin D",
+                        "Tcheng Thomas K",
+                        "Wingeier Brett",
+                        "Wingeier Brett M",
+                        "Gibb Barbara",
+                        "Morrell Martha J",
+                        "Pless Benjamin"
+                      ],
+                      data: [
+                        354,
+                        20,
+                        8,
+                        7,
+                        7,
+                        6,
+                        6,
+                        6
+                      ]
+                    },
+                                    
+                    publications: {
+                        years: [1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+                        data: [1, 5, 0, 8, 8, 2, 1, 3, 3, 2, 2, 9, 7, 12, 10, 10, 18, 23, 12, 6, 10, 6, 5, 4, 6, 3],
+                        thisYear: [3]
+                    },
+                    
                 legalStatus: {
-                    labels: ['Active', 'Expired', 'Inactive', 'Discontinued', 'Pending', 'Patented'],
-                    data: [773, 322, 168, 143, 96, 8]
+                    labels: ['Active', 'Pending', 'Discontinued', 'Expired', 'Inactive', 'Patented'],
+                    data: [160,16,26,104,46,2]
                 },
                 jurisdictions: {
-                    labels: ['US', 'Germany', 'China', 'Japan', 'Australia'],
-                    data: [529, 58, 176, 111, 5]
+                    labels: ['US', 'Canada', 'Australia'],
+                    data: [4,327,5]
                 },
                 documentType: {
-                    labels: ['Patent Application', 'Granted Patents', 'Search Report', 'Design Report', 'Amended Patent'],
-                    data: [817, 566, 48, 32, 6]
+                    labels: ['Patent Application', 'Granted Patent',  'Amended Patent', 'Search Report'],
+                    data: [174,176,1,3]
+                }
+            },
+            XCORPRI:  {
+                
+                    applicants: {
+                      labels: [
+                        "Sk Biopharmaceuticals Co Ltd",
+                        "Cha Su Bong",
+                        "Chung Jin Yong",
+                        "Jang Young Koo",
+                        "Joung Chan Mi",
+                        "Lee Ji Won",
+                        "Lim Mi Jung",
+                        "Maeng Cheol Young"
+                      ],
+                      data: [
+                        125,
+                        3,
+                        3,
+                        3,
+                        3,
+                        3,
+                        3,
+                        3
+                      ]
+                    },
+                                    
+                publications: {
+                    years: [ 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024,2025],
+                    data: [2,2,8,7,8,11,6,6,10,11,16,8,15,13,2],
+                    thisYear: [2]
+                },
+                legalStatus: {
+                    labels: ['Active', 'Expired','Discontinued', 'Pending'],
+                    data: [76,1,6,42]
+                },
+                jurisdictions: {
+                    labels: ['US', 'Portugal', 'Canada', 'Finland', 'Poland','China','Japan','Malaysia', 'Australia'],
+                    data: [65,1,2,1,1,2,1,1, 5]
+                },
+                documentType: {
+                    labels: ['Patent Application', 'Granted Patents', 'Search Report', 'Patent of Addition', 'Unknown'],
+                    data: [70, 49, 1, 2, 3]
+                }
+            },
+            EpiMinder:  {
+                applicants: {
+                    labels: [
+                        "Epi Minder Pty Ltd",
+                        "Cochlear Ltd"
+                      ],
+                    data:  [10,5]
+                },
+                publications: {
+                    years: [ 2021, 2022, 2023, 2024],
+                    data: [1,3,4,2]
+                },
+                legalStatus: {
+                    labels: ['Active', 'Pending'],
+                    data: [7,3]
+                },
+                jurisdictions: {
+                    labels: ['US', 'Australia'],
+                    data: [4,1]
+                },
+                documentType: {
+                    labels: ['Patent Application', 'Granted Patents'],
+                    data: [7,3]
+                }
+            },
+            FlowMedical:  { /// afnjaohusa hfushfuiash fui ahufi haduifh uaidh fiasu hfiash ufias 
+                applicants: {
+                    labels: [],
+                    data:  []
+                },
+                publications: {
+                    years: [ ],
+                    data: []
+                },
+                legalStatus: {
+                    labels: [],
+                    data: []
+                },
+                jurisdictions: {
+                    labels: [],
+                    data: []
+                },
+                documentType: {
+                    labels: [],
+                    data: []
+                }
+            },
+            PrecisisAG:  {
+                applicants: {
+                    labels: [
+                        "Precisis Ag",
+                        "Precisis Gmbh"
+                      ],
+                      data: [
+                        15,
+                        2
+                      ]
+                },
+                publications: {
+                    years: [ 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+                    data: [6,1,3,1,1,2,1]
+                },
+                legalStatus: {
+                    labels: ['Active', 'Pending'],
+                    data: [13,2]
+                },
+                jurisdictions: {
+                    labels: ['US'],
+                    data: [9]
+                },
+                documentType: {
+                    labels: ['Patent Application', 'Granted Patents'],
+                    data: [8,7]
                 }
             }
         };
     
         // const selectedData = data.num
-        const selectedData = num === "Sonova" ? data.Sonova : num === "Starkey" ? data.Starkey : num === "Ws" ? data.Ws : data.Gn;
-    
+        const selectedData = num === "Livanova" ? data.Livanova 
+                   : num === "Medtronic" ? data.Medtronic 
+                   : num === "NeuroPace" ? data.NeuroPace 
+                   : num === "XCORPRI" ? data.XCORPRI 
+                   : num === "EpiMinder" ? data.EpiMinder 
+                   : num === "FlowMedical" ? data.FlowMedical 
+                   : data.PrecisisAG;
+               
         const applicantCtx = document.getElementById('applicantsChart');
         const publicationsCtx = document.getElementById('publicationsChart');
         const legalStatusCtx = document.getElementById('legalStatusChart');
