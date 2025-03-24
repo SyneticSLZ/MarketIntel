@@ -2440,7 +2440,7 @@ break
                 break;
 
                 case 'Livanova':
-                  initLivaNovaDashboardCharts(data);
+                  // initLivaNovaCharts(data);
                     // initializeNeuromodulationEpilepsyCharts(
                     //     combinedNeuromodulationData.medtronic,
                     //     combinedNeuromodulationData.livanova
@@ -3139,7 +3139,7 @@ function formatCurrency(value, decimals = 0) {
   }
   
   // LivaNova Dashboard Function
-  function generateLivaNovaDashboard(data) {
+  function generateLivaNovaDashboard() {
     return `
       <div class="container mx-auto px-4 py-8 dark:text-white">
         <!-- Company Header -->
@@ -3190,100 +3190,56 @@ function formatCurrency(value, decimals = 0) {
           </div>
         </div>
   
-        <!-- Charts and Financial Analysis -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow lg:col-span-2">
-            <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-              <h2 class="text-lg font-medium">Revenue by Region (2022-2024)</h2>
-            </div>
-            <div class="p-4 h-80 flex justify-center items-center bg-gray-100 dark:bg-gray-700">
-              <p class="text-gray-500 dark:text-gray-400">Revenue by Region Chart Placeholder</p>
-            </div>
-          </div>
-          
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
-            <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-              <h2 class="text-lg font-medium">Expense Breakdown (2024)</h2>
-            </div>
-            <div class="p-4 h-80 flex justify-center items-center bg-gray-100 dark:bg-gray-700">
-              <p class="text-gray-500 dark:text-gray-400">Expenses Chart Placeholder</p>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Products and Growth Drivers -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
-            <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-              <h2 class="text-lg font-medium">VNS Therapy Products</h2>
-            </div>
-            <div class="p-4">
-              <ul class="space-y-3">
-                <li class="flex items-start">
-                  <span class="flex-shrink-0 h-5 w-5 text-blue-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                    </svg>
-                  </span>
-                  <div class="ml-3">
-                    <p class="font-medium">Demipulse (Model 103)</p>
-                  </div>
-                </li>
-                <li class="flex items-start">
-                  <span class="flex-shrink-0 h-5 w-5 text-blue-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                    </svg>
-                  </span>
-                  <div class="ml-3">
-                    <p class="font-medium">AspireSR (Model 106)</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Closed loop stimulation (AutoStim), Expanded MRI access</p>
-                  </div>
-                </li>
-                <li class="flex items-start">
-                  <span class="flex-shrink-0 h-5 w-5 text-blue-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                    </svg>
-                  </span>
-                  <div class="ml-3">
-                    <p class="font-medium">SenTiva (Model 1000)</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Smallest and lightest VNS device, Responsive therapy, Scheduled Programming, Day & Night Programming, Expanded MRI access</p>
-                  </div>
-                </li>
-                <li class="flex items-start">
-                  <span class="flex-shrink-0 h-5 w-5 text-blue-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                    </svg>
-                  </span>
-                  <div class="ml-3">
-                    <p class="font-medium">SenTiva Duo (Model 1000D)</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-  
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
-            <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-              <h2 class="text-lg font-medium">Performance Trends</h2>
-            </div>
-            <div class="p-4 h-80 flex justify-center items-center bg-gray-100 dark:bg-gray-700">
-              <p class="text-gray-500 dark:text-gray-400">Performance Trend Chart Placeholder</p>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Revenue & Income Analysis -->
-        <div class="grid grid-cols-1 mb-8">
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
-            <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-              <h2 class="text-lg font-medium">Revenue & Income Analysis (2022-2024)</h2>
-            </div>
-            <div class="p-4 h-80 flex justify-center items-center bg-gray-100 dark:bg-gray-700">
-              <p class="text-gray-500 dark:text-gray-400">Revenue & Income Chart Placeholder</p>
-            </div>
+        <!-- Products Section -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+          <h2 class="text-lg font-medium mb-4">VNS Therapy Products</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <span class="flex-shrink-0 h-5 w-5 text-blue-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <div class="ml-3">
+                  <p class="font-medium">Demipulse (Model 103)</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="flex-shrink-0 h-5 w-5 text-blue-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <div class="ml-3">
+                  <p class="font-medium">AspireSR (Model 106)</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">Closed loop stimulation (AutoStim), Expanded MRI access</p>
+                </div>
+              </li>
+            </ul>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <span class="flex-shrink-0 h-5 w-5 text-blue-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <div class="ml-3">
+                  <p class="font-medium">SenTiva (Model 1000)</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">Smallest and lightest VNS device, Responsive therapy, Scheduled Programming, Day & Night Programming, Expanded MRI access</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="flex-shrink-0 h-5 w-5 text-blue-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <div class="ml-3">
+                  <p class="font-medium">SenTiva Duo (Model 1000D)</p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
   
