@@ -166,10 +166,12 @@
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-colors duration-200">
             <div class="border-b border-gray-200 dark:border-gray-700">
                 <nav class="-mb-px flex space-x-8" aria-label="Tabs">
-                    <button class="tab-button text-starkey-blue dark:text-blue-400 whitespace-nowrap py-4 px-1 border-b-2 border-starkey-blue font-medium text-sm transition-colors duration-200">
+                    <button style="display: none;
+                        
+                        " class="tab-button text-starkey-blue dark:text-blue-400 whitespace-nowrap py-4 px-1 border-b-2 border-starkey-blue font-medium text-sm transition-colors duration-200">
                         Market Analysis
                     </button>
-                    <button class="tab-button text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm transition-colors duration-200">
+                    <button style="display: none;" class="tab-button text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm transition-colors duration-200">
                         FDA Product Portfolio
                     </button>
                     <button class="tab-button text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm transition-colors duration-200">
@@ -195,7 +197,7 @@
 
                 <!-- Market Analysis Section -->
 <!-- Market Analysis Content -->
-<div id="market-analysis-content" class="space-y-6">
+<div id="market-analysis-content"  class="hidden space-y-6">
     <!-- Recent Activity Timeline -->
      <!-- Strategic Focus Areas -->
       <!-- Quick Metrics Component -->
@@ -3213,7 +3215,7 @@ class TabSystem {
         });
 
         // Set initial active tab
-        this.switchTab(this.tabs[1]);
+        this.switchTab(this.tabs[3]);
     }
 
     switchTab(selectedTab) {

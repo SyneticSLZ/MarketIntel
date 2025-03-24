@@ -2394,12 +2394,12 @@ async function initializeFinancialDashboard(companyName) {
         let dashboardHTML;
         switch(normalizedName) {
             case 'Livanova':
-                dashboardHTML =  generateNeuromodulationEpilepsyDashboard(
-                    combinedNeuromodulationData.medtronic,
-                    combinedNeuromodulationData.livanova
-                  );
+                // dashboardHTML =  generateNeuromodulationEpilepsyDashboard(
+                //     combinedNeuromodulationData.medtronic,
+                //     combinedNeuromodulationData.livanova
+                //   );
                 
-                // generateLivaNovaDashboard(data);
+                dashboardHTML = generateLivaNovaDashboard(data);
                 break;
             case 'Medtronic':
                 dashboardHTML = generateMedtronicDashboard(data);
@@ -2440,14 +2440,14 @@ break
                 break;
 
                 case 'Livanova':
-                    //  initializeLivaNovacharts(data);
-                    initializeNeuromodulationEpilepsyCharts(
-                        combinedNeuromodulationData.medtronic,
-                        combinedNeuromodulationData.livanova
-                      );
+                  initLivaNovaDashboardCharts(data);
+                    // initializeNeuromodulationEpilepsyCharts(
+                    //     combinedNeuromodulationData.medtronic,
+                    //     combinedNeuromodulationData.livanova
+                    //   );
                     break;
                 case 'Medtronic':
-                    initializeMedtronicCharts(data);
+                  initMedtronicCharts(data);
                     break;
 
                 case 'NeuroPace':
@@ -3148,7 +3148,7 @@ function formatCurrency(value, decimals = 0) {
             <div>
               <h1 class="text-3xl font-bold mb-2">LivaNova PLC</h1>
               <p class="text-gray-600 dark:text-gray-400">Neuromodulation Segment Analysis</p>
-              <p class="text-sm text-gray-600 dark:text-gray-400">Data as of ${new Date().toISOString().split('T')[0]}</p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Data as of March 24, 2025</p>
             </div>
             <div class="text-right">
               <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
@@ -3162,30 +3162,30 @@ function formatCurrency(value, decimals = 0) {
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
             <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Neuromodulation Revenue (2024)</h3>
-            <p class="mt-2 text-3xl font-semibold">${formatCurrency(data.segments[0].financialData.revenue.total["2024"])}</p>
-            <p class="text-sm ${getGrowthColor(data.segments[0].financialData.revenue.growth["2024vs2023"])}">
-              ${formatPercentage(data.segments[0].financialData.revenue.growth["2024vs2023"])} vs 2023
+            <p class="mt-2 text-3xl font-semibold">$554,223,000</p>
+            <p class="text-sm text-green-600 dark:text-green-400">
+              +6.6% vs 2023
             </p>
           </div>
           <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
             <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Segment Income (2024)</h3>
-            <p class="mt-2 text-3xl font-semibold">${formatCurrency(data.segments[0].financialData.segmentIncome["2024"])}</p>
-            <p class="text-sm ${getGrowthColor(data.segments[0].financialData.segmentIncome.growth["2024vs2023"])}">
-              ${formatPercentage(data.segments[0].financialData.segmentIncome.growth["2024vs2023"])} vs 2023
+            <p class="mt-2 text-3xl font-semibold">$195,309,000</p>
+            <p class="text-sm text-green-600 dark:text-green-400">
+              +27.3% vs 2023
             </p>
           </div>
           <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
             <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">U.S. Revenue (2024)</h3>
-            <p class="mt-2 text-3xl font-semibold">${formatCurrency(data.segments[0].financialData.revenue.byRegion.UnitedStates["2024"])}</p>
-            <p class="text-sm ${getGrowthColor(data.segments[0].financialData.revenue.byRegion.UnitedStates.growth["2024vs2023"])}">
-              ${formatPercentage(data.segments[0].financialData.revenue.byRegion.UnitedStates.growth["2024vs2023"])} vs 2023
+            <p class="mt-2 text-3xl font-semibold">$441,022,000</p>
+            <p class="text-sm text-green-600 dark:text-green-400">
+              +8.2% vs 2023
             </p>
           </div>
           <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
             <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">R&D Expenses (2024)</h3>
-            <p class="mt-2 text-3xl font-semibold">${formatCurrency(data.segments[0].financialData.expenses["2024"].researchAndDevelopment)}</p>
-            <p class="text-sm ${getGrowthColor(data.segments[0].financialData.expenses["2023"].researchAndDevelopment - data.segments[0].financialData.expenses["2024"].researchAndDevelopment)}">
-              ${formatPercentage((data.segments[0].financialData.expenses["2024"].researchAndDevelopment / data.segments[0].financialData.expenses["2023"].researchAndDevelopment - 1) * 100)} vs 2023
+            <p class="mt-2 text-3xl font-semibold">$121,029,000</p>
+            <p class="text-sm text-red-600 dark:text-red-400">
+              -14.1% vs 2023
             </p>
           </div>
         </div>
@@ -3196,8 +3196,8 @@ function formatCurrency(value, decimals = 0) {
             <div class="p-4 border-b border-gray-200 dark:border-gray-700">
               <h2 class="text-lg font-medium">Revenue by Region (2022-2024)</h2>
             </div>
-            <div class="p-4 h-80">
-              <canvas id="livanova-revenue-by-region"></canvas>
+            <div class="p-4 h-80 flex justify-center items-center bg-gray-100 dark:bg-gray-700">
+              <p class="text-gray-500 dark:text-gray-400">Revenue by Region Chart Placeholder</p>
             </div>
           </div>
           
@@ -3205,8 +3205,8 @@ function formatCurrency(value, decimals = 0) {
             <div class="p-4 border-b border-gray-200 dark:border-gray-700">
               <h2 class="text-lg font-medium">Expense Breakdown (2024)</h2>
             </div>
-            <div class="p-4 h-80">
-              <canvas id="livanova-expenses"></canvas>
+            <div class="p-4 h-80 flex justify-center items-center bg-gray-100 dark:bg-gray-700">
+              <p class="text-gray-500 dark:text-gray-400">Expenses Chart Placeholder</p>
             </div>
           </div>
         </div>
@@ -3219,19 +3219,48 @@ function formatCurrency(value, decimals = 0) {
             </div>
             <div class="p-4">
               <ul class="space-y-3">
-                ${data.segments[0].products[0].models.map(model => `
-                  <li class="flex items-start">
-                    <span class="flex-shrink-0 h-5 w-5 text-blue-500">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                      </svg>
-                    </span>
-                    <div class="ml-3">
-                      <p class="font-medium">${model.name} (${model.model})</p>
-                      ${model.features ? `<p class="text-sm text-gray-600 dark:text-gray-400">${model.features.join(', ')}</p>` : ''}
-                    </div>
-                  </li>
-                `).join('')}
+                <li class="flex items-start">
+                  <span class="flex-shrink-0 h-5 w-5 text-blue-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <div class="ml-3">
+                    <p class="font-medium">Demipulse (Model 103)</p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="flex-shrink-0 h-5 w-5 text-blue-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <div class="ml-3">
+                    <p class="font-medium">AspireSR (Model 106)</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Closed loop stimulation (AutoStim), Expanded MRI access</p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="flex-shrink-0 h-5 w-5 text-blue-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <div class="ml-3">
+                    <p class="font-medium">SenTiva (Model 1000)</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Smallest and lightest VNS device, Responsive therapy, Scheduled Programming, Day & Night Programming, Expanded MRI access</p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <span class="flex-shrink-0 h-5 w-5 text-blue-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <div class="ml-3">
+                    <p class="font-medium">SenTiva Duo (Model 1000D)</p>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -3240,8 +3269,8 @@ function formatCurrency(value, decimals = 0) {
             <div class="p-4 border-b border-gray-200 dark:border-gray-700">
               <h2 class="text-lg font-medium">Performance Trends</h2>
             </div>
-            <div class="p-4 h-80">
-              <canvas id="livanova-performance-trend"></canvas>
+            <div class="p-4 h-80 flex justify-center items-center bg-gray-100 dark:bg-gray-700">
+              <p class="text-gray-500 dark:text-gray-400">Performance Trend Chart Placeholder</p>
             </div>
           </div>
         </div>
@@ -3252,8 +3281,8 @@ function formatCurrency(value, decimals = 0) {
             <div class="p-4 border-b border-gray-200 dark:border-gray-700">
               <h2 class="text-lg font-medium">Revenue & Income Analysis (2022-2024)</h2>
             </div>
-            <div class="p-4 h-80">
-              <canvas id="livanova-revenue-income"></canvas>
+            <div class="p-4 h-80 flex justify-center items-center bg-gray-100 dark:bg-gray-700">
+              <p class="text-gray-500 dark:text-gray-400">Revenue & Income Chart Placeholder</p>
             </div>
           </div>
         </div>
@@ -3266,16 +3295,30 @@ function formatCurrency(value, decimals = 0) {
             </div>
             <div class="p-4">
               <ul class="space-y-2">
-                ${data.epilepsyTreatment.availableOptions.map(option => `
-                  <li class="flex items-center">
-                    <span class="mr-2 text-blue-500">●</span>
-                    <span>${option}</span>
-                  </li>
-                `).join('')}
+                <li class="flex items-center">
+                  <span class="mr-2 text-blue-500">●</span>
+                  <span>Multiple ASMs (Anti-Seizure Medications)</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="mr-2 text-blue-500">●</span>
+                  <span>Various forms of ketogenic diet</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="mr-2 text-blue-500">●</span>
+                  <span>VNS (Vagus Nerve Stimulation)</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="mr-2 text-blue-500">●</span>
+                  <span>Resective and ablative brain surgery</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="mr-2 text-blue-500">●</span>
+                  <span>Intracranial neurostimulation</span>
+                </li>
               </ul>
               
               <div class="mt-4 p-4 bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 rounded">
-                <p class="text-sm text-gray-800 dark:text-gray-200">${data.epilepsyTreatment.treatmentPath}</p>
+                <p class="text-sm text-gray-800 dark:text-gray-200">ASMs typically serve as first-line treatment for all epilepsy patients. After two ASMs fail to deliver seizure control, the epilepsy is characterized as drug-resistant and adjunctive non-drug options are considered.</p>
               </div>
             </div>
           </div>
@@ -3286,16 +3329,46 @@ function formatCurrency(value, decimals = 0) {
             </div>
             <div class="p-4">
               <ul class="space-y-2">
-                ${data.epilepsyTreatment.vnsTherapyAdvantages.map(advantage => `
-                  <li class="flex items-start">
-                    <span class="inline-flex items-center justify-center h-5 w-5 rounded-full bg-green-100 text-green-500 mr-3 flex-shrink-0">
-                      <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                      </svg>
-                    </span>
-                    <span class="text-sm">${advantage}</span>
-                  </li>
-                `).join('')}
+                <li class="flex items-start">
+                  <span class="inline-flex items-center justify-center h-5 w-5 rounded-full bg-green-100 text-green-500 mr-3 flex-shrink-0">
+                    <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </span>
+                  <span class="text-sm">First medical device treatment approved by FDA for DRE in 1997</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-flex items-center justify-center h-5 w-5 rounded-full bg-green-100 text-green-500 mr-3 flex-shrink-0">
+                    <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </span>
+                  <span class="text-sm">Only neuromodulation device approved in US for DRE patients as young as four years</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-flex items-center justify-center h-5 w-5 rounded-full bg-green-100 text-green-500 mr-3 flex-shrink-0">
+                    <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </span>
+                  <span class="text-sm">Many worldwide regulatory bodies approved without age or seizure-type restrictions</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-flex items-center justify-center h-5 w-5 rounded-full bg-green-100 text-green-500 mr-3 flex-shrink-0">
+                    <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </span>
+                  <span class="text-sm">Journal of Neurology (January 2022) meta-analysis demonstrated VNS Therapy benefits in adults with DRE</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-flex items-center justify-center h-5 w-5 rounded-full bg-green-100 text-green-500 mr-3 flex-shrink-0">
+                    <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </span>
+                  <span class="text-sm">Improved seizure frequency without increased serious adverse events or discontinuations</span>
+                </li>
               </ul>
             </div>
           </div>
@@ -3354,50 +3427,50 @@ function formatCurrency(value, decimals = 0) {
               <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                 <tr>
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">United States</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">${formatCurrency(data.segments[0].financialData.revenue.byRegion.UnitedStates["2022"])}</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">${formatCurrency(data.segments[0].financialData.revenue.byRegion.UnitedStates["2023"])}</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">${formatCurrency(data.segments[0].financialData.revenue.byRegion.UnitedStates["2024"])}</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right ${getGrowthColor(data.segments[0].financialData.revenue.byRegion.UnitedStates.growth["2024vs2023"])}">
-                    ${formatPercentage(data.segments[0].financialData.revenue.byRegion.UnitedStates.growth["2024vs2023"])}
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">$374,542,000</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">$407,493,000</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">$441,022,000</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right text-green-600">
+                    +8.2%
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right ${getGrowthColor(data.segments[0].financialData.revenue.byRegion.UnitedStates.growth["2023vs2022"])}">
-                    ${formatPercentage(data.segments[0].financialData.revenue.byRegion.UnitedStates.growth["2023vs2022"])}
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right text-green-600">
+                    +8.8%
                   </td>
                 </tr>
                 <tr>
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Europe</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">${formatCurrency(data.segments[0].financialData.revenue.byRegion.Europe["2022"])}</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">${formatCurrency(data.segments[0].financialData.revenue.byRegion.Europe["2023"])}</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">${formatCurrency(data.segments[0].financialData.revenue.byRegion.Europe["2024"])}</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right ${getGrowthColor(data.segments[0].financialData.revenue.byRegion.Europe.growth["2024vs2023"])}">
-                    ${formatPercentage(data.segments[0].financialData.revenue.byRegion.Europe.growth["2024vs2023"])}
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">$50,291,000</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">$57,435,000</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">$54,899,000</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right text-red-600">
+                    -4.4%
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right ${getGrowthColor(data.segments[0].financialData.revenue.byRegion.Europe.growth["2023vs2022"])}">
-                    ${formatPercentage(data.segments[0].financialData.revenue.byRegion.Europe.growth["2023vs2022"])}
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right text-green-600">
+                    +14.2%
                   </td>
                 </tr>
                 <tr>
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Rest of World</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">${formatCurrency(data.segments[0].financialData.revenue.byRegion.RestOfWorld["2022"])}</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">${formatCurrency(data.segments[0].financialData.revenue.byRegion.RestOfWorld["2023"])}</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">${formatCurrency(data.segments[0].financialData.revenue.byRegion.RestOfWorld["2024"])}</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right ${getGrowthColor(data.segments[0].financialData.revenue.byRegion.RestOfWorld.growth["2024vs2023"])}">
-                    ${formatPercentage(data.segments[0].financialData.revenue.byRegion.RestOfWorld.growth["2024vs2023"])}
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">$52,160,000</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">$54,782,000</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right">$58,302,000</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right text-green-600">
+                    +6.4%
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right ${getGrowthColor(data.segments[0].financialData.revenue.byRegion.RestOfWorld.growth["2023vs2022"])}">
-                    ${formatPercentage(data.segments[0].financialData.revenue.byRegion.RestOfWorld.growth["2023vs2022"])}
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-right text-green-600">
+                    +5.0%
                   </td>
                 </tr>
                 <tr class="bg-gray-50 dark:bg-gray-700">
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Total</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-right">${formatCurrency(data.segments[0].financialData.revenue.total["2022"])}</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-right">${formatCurrency(data.segments[0].financialData.revenue.total["2023"])}</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-right">${formatCurrency(data.segments[0].financialData.revenue.total["2024"])}</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-right ${getGrowthColor(data.segments[0].financialData.revenue.growth["2024vs2023"])}">
-                    ${formatPercentage(data.segments[0].financialData.revenue.growth["2024vs2023"])}
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-right">$476,993,000</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-right">$519,710,000</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-right">$554,223,000</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-right text-green-600">
+                    +6.6%
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-right ${getGrowthColor(data.segments[0].financialData.revenue.growth["2023vs2022"])}">
-                    ${formatPercentage(data.segments[0].financialData.revenue.growth["2023vs2022"])}
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-right text-green-600">
+                    +9.0%
                   </td>
                 </tr>
               </tbody>
@@ -3409,534 +3482,621 @@ function formatCurrency(value, decimals = 0) {
   }
   
   // Medtronic Dashboard Function
-  function generateMedtronicDashboard(data) {
-    return `
-      <div class="container mx-auto px-4 py-8 dark:text-white">
-        <!-- Company Header -->
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6">
-          <div class="flex justify-between items-start">
-            <div>
-              <h1 class="text-3xl font-bold mb-2">Medtronic PLC</h1>
-              <p class="text-gray-600 dark:text-gray-400">Neuromodulation Segment Analysis</p>
-              <p class="text-sm text-gray-600 dark:text-gray-400">Period: ${data.financialReporting.period}</p>
-            </div>
-            <div class="text-right">
-              <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
-                Medical Technology
-              </span>
-            </div>
-          </div>
-        </div>
+//   function generateMedtronicDashboard(data) {
+//     return `
+//       <div class="container mx-auto px-4 py-8 dark:text-white">
+//         <!-- Company Header -->
+//         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6">
+//           <div class="flex justify-between items-start">
+//             <div>
+//               <h1 class="text-3xl font-bold mb-2">Medtronic PLC</h1>
+//               <p class="text-gray-600 dark:text-gray-400">Neuromodulation Segment Analysis</p>
+//               <p class="text-sm text-gray-600 dark:text-gray-400">Period: ${data.financialReporting.period}</p>
+//             </div>
+//             <div class="text-right">
+//               <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+//                 Medical Technology
+//               </span>
+//             </div>
+//           </div>
+//         </div>
   
-        <!-- Primary KPIs -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">3-Month Revenue (Jan 24, 2025)</h3>
-            <p class="mt-2 text-3xl font-semibold">${formatCurrency(data.segments[0].financialData.revenue.threeMonths["2024"].January24)}</p>
-            <p class="text-sm ${getGrowthColor(data.segments[0].financialData.revenue.threeMonths.growth.percentage)}">
-              ${formatPercentage(data.segments[0].financialData.revenue.threeMonths.growth.percentage)} vs Prior Year
-            </p>
-          </div>
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">3-Month Revenue (Jan 26, 2024)</h3>
-            <p class="mt-2 text-3xl font-semibold">${formatCurrency(data.segments[0].financialData.revenue.threeMonths["2024"].January26)}</p>
-            <p class="text-sm text-gray-600 dark:text-gray-400">Comparative Period</p>
-          </div>
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">9-Month Revenue (Jan 24, 2025)</h3>
-            <p class="mt-2 text-3xl font-semibold">${formatCurrency(data.segments[0].financialData.revenue.nineMonths["2024"].January24)}</p>
-            <p class="text-sm ${getGrowthColor(data.segments[0].financialData.revenue.nineMonths.growth.percentage)}">
-              ${formatPercentage(data.segments[0].financialData.revenue.nineMonths.growth.percentage)} vs Prior Year
-            </p>
-          </div>
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">9-Month Revenue (Jan 26, 2024)</h3>
-            <p class="mt-2 text-3xl font-semibold">${formatCurrency(data.segments[0].financialData.revenue.nineMonths["2024"].January26)}</p>
-            <p class="text-sm text-gray-600 dark:text-gray-400">Comparative Period</p>
-          </div>
-        </div>
+//         <!-- Primary KPIs -->
+//         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+//           <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+//             <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">3-Month Revenue (Jan 24, 2025)</h3>
+//             <p class="mt-2 text-3xl font-semibold">${formatCurrency(data.segments[0].financialData.revenue.threeMonths["2024"].January24)}</p>
+//             <p class="text-sm ${getGrowthColor(data.segments[0].financialData.revenue.threeMonths.growth.percentage)}">
+//               ${formatPercentage(data.segments[0].financialData.revenue.threeMonths.growth.percentage)} vs Prior Year
+//             </p>
+//           </div>
+//           <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+//             <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">3-Month Revenue (Jan 26, 2024)</h3>
+//             <p class="mt-2 text-3xl font-semibold">${formatCurrency(data.segments[0].financialData.revenue.threeMonths["2024"].January26)}</p>
+//             <p class="text-sm text-gray-600 dark:text-gray-400">Comparative Period</p>
+//           </div>
+//           <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+//             <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">9-Month Revenue (Jan 24, 2025)</h3>
+//             <p class="mt-2 text-3xl font-semibold">${formatCurrency(data.segments[0].financialData.revenue.nineMonths["2024"].January24)}</p>
+//             <p class="text-sm ${getGrowthColor(data.segments[0].financialData.revenue.nineMonths.growth.percentage)}">
+//               ${formatPercentage(data.segments[0].financialData.revenue.nineMonths.growth.percentage)} vs Prior Year
+//             </p>
+//           </div>
+//           <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+//             <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">9-Month Revenue (Jan 26, 2024)</h3>
+//             <p class="mt-2 text-3xl font-semibold">${formatCurrency(data.segments[0].financialData.revenue.nineMonths["2024"].January26)}</p>
+//             <p class="text-sm text-gray-600 dark:text-gray-400">Comparative Period</p>
+//           </div>
+//         </div>
   
-        <!-- Growth Analysis Chart -->
-        <div class="grid grid-cols-1 gap-6 mb-8">
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
-            <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-              <h2 class="text-lg font-medium">Growth Analysis</h2>
-            </div>
-            <div class="p-4 h-80">
-              <canvas id="medtronic-growth-analysis"></canvas>
-            </div>
-          </div>
-        </div>
+//         <!-- Growth Analysis Chart -->
+//         <div class="grid grid-cols-1 gap-6 mb-8">
+//           <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+//             <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+//               <h2 class="text-lg font-medium">Growth Analysis</h2>
+//             </div>
+//             <div class="p-4 h-80">
+//               <canvas id="medtronic-growth-analysis"></canvas>
+//             </div>
+//           </div>
+//         </div>
   
-        <!-- Products and Quarterly Performance -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
-            <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-              <h2 class="text-lg font-medium">Key Products</h2>
-            </div>
-            <div class="p-4">
-              <div class="space-y-6">
-                ${data.segments[0].products.map(product => `
-                  <div class="flex">
-                    <div class="flex-shrink-0">
-                      <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div class="ml-4">
-                      <h3 class="text-lg font-medium">${product.name}</h3>
-                      <p class="mt-2 text-gray-600 dark:text-gray-400">${product.type}</p>
-                      <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Status: ${product.status}</p>
-                      <div class="mt-3">
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                          Growth Driver
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          </div>
+//         <!-- Products and Quarterly Performance -->
+//         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+//           <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+//             <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+//               <h2 class="text-lg font-medium">Key Products</h2>
+//             </div>
+//             <div class="p-4">
+//               <div class="space-y-6">
+//                 ${data.segments[0].products.map(product => `
+//                   <div class="flex">
+//                     <div class="flex-shrink-0">
+//                       <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
+//                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+//                         </svg>
+//                       </div>
+//                     </div>
+//                     <div class="ml-4">
+//                       <h3 class="text-lg font-medium">${product.name}</h3>
+//                       <p class="mt-2 text-gray-600 dark:text-gray-400">${product.type}</p>
+//                       <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Status: ${product.status}</p>
+//                       <div class="mt-3">
+//                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+//                           Growth Driver
+//                         </span>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 `).join('')}
+//               </div>
+//             </div>
+//           </div>
   
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
-            <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-              <h2 class="text-lg font-medium">Quarterly Performance</h2>
-          </div>
-          <div class="p-4 h-80">
-            <canvas id="medtronic-quarterly-performance"></canvas>
-          </div>
-        </div>
-      </div>
+//           <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+//             <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+//               <h2 class="text-lg font-medium">Quarterly Performance</h2>
+//           </div>
+//           <div class="p-4 h-80">
+//             <canvas id="medtronic-quarterly-performance"></canvas>
+//           </div>
+//         </div>
+//       </div>
 
-      <!-- Market Context and Business Overview -->
-      <div class="grid grid-cols-1 gap-6 mb-8">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
-          <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-            <h2 class="text-lg font-medium">Business Overview & Market Context</h2>
-          </div>
-          <div class="p-4">
-            <div class="prose dark:prose-invert max-w-none">
-              <p>${data.contextualData.companyOverview}</p>
-              <p class="mt-4"><strong>Primary Customers:</strong> ${data.contextualData.customerBase}</p>
+//       <!-- Market Context and Business Overview -->
+//       <div class="grid grid-cols-1 gap-6 mb-8">
+//         <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+//           <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+//             <h2 class="text-lg font-medium">Business Overview & Market Context</h2>
+//           </div>
+//           <div class="p-4">
+//             <div class="prose dark:prose-invert max-w-none">
+//               <p>${data.contextualData.companyOverview}</p>
+//               <p class="mt-4"><strong>Primary Customers:</strong> ${data.contextualData.customerBase}</p>
               
-              <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-purple-50 dark:bg-purple-900 dark:bg-opacity-20 p-4 rounded-lg">
-                  <h3 class="font-medium text-purple-800 dark:text-purple-300 mb-2">Growth Drivers</h3>
-                  <ul class="list-disc pl-5 space-y-1 text-sm">
-                    ${data.segments[0].growthDrivers.map(driver => `<li>${driver}</li>`).join('')}
-                  </ul>
-                </div>
+//               <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+//                 <div class="bg-purple-50 dark:bg-purple-900 dark:bg-opacity-20 p-4 rounded-lg">
+//                   <h3 class="font-medium text-purple-800 dark:text-purple-300 mb-2">Growth Drivers</h3>
+//                   <ul class="list-disc pl-5 space-y-1 text-sm">
+//                     ${data.segments[0].growthDrivers.map(driver => `<li>${driver}</li>`).join('')}
+//                   </ul>
+//                 </div>
                 
-                <div class="bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 p-4 rounded-lg">
-                  <h3 class="font-medium text-blue-800 dark:text-blue-300 mb-2">Neuromodulation Market Trends</h3>
-                  <ul class="list-disc pl-5 space-y-1 text-sm">
-                    <li>Increasing prevalence of neurological disorders</li>
-                    <li>Growing adoption of minimally invasive procedures</li>
-                    <li>Technological advancements in device functionality</li>
-                    <li>Expanding indications for neuromodulation therapy</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+//                 <div class="bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 p-4 rounded-lg">
+//                   <h3 class="font-medium text-blue-800 dark:text-blue-300 mb-2">Neuromodulation Market Trends</h3>
+//                   <ul class="list-disc pl-5 space-y-1 text-sm">
+//                     <li>Increasing prevalence of neurological disorders</li>
+//                     <li>Growing adoption of minimally invasive procedures</li>
+//                     <li>Technological advancements in device functionality</li>
+//                     <li>Expanding indications for neuromodulation therapy</li>
+//                   </ul>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+//       <!-- Revenue Comparison -->
+//       <div class="bg-white dark:bg-gray-800 rounded-lg shadow mb-8">
+//         <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+//           <h2 class="text-lg font-medium">Revenue Performance</h2>
+//         </div>
+//         <div class="p-4 overflow-x-auto">
+//           <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+//             <thead>
+//               <tr>
+//                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Period</th>
+//                 <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Revenue</th>
+//                 <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Change</th>
+//                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Growth Drivers</th>
+//               </tr>
+//             </thead>
+//             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+//               <tr>
+//                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Jan 24, 2025 (3 Months)</td>
+//                 <td class="px-6 py-4 whitespace-nowrap text-sm text-right">${formatCurrency(data.segments[0].financialData.revenue.threeMonths["2024"].January24)}</td>
+//                 <td class="px-6 py-4 whitespace-nowrap text-sm text-right ${getGrowthColor(data.segments[0].financialData.revenue.threeMonths.growth.percentage)}">
+//                   ${formatPercentage(data.segments[0].financialData.revenue.threeMonths.growth.percentage)}
+//                 </td>
+//                 <td class="px-6 py-4 text-sm">Inceptiv SCS, Percept RC</td>
+//               </tr>
+//               <tr>
+//                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Jan 26, 2024 (3 Months)</td>
+//                 <td class="px-6 py-4 whitespace-nowrap text-sm text-right">${formatCurrency(data.segments[0].financialData.revenue.threeMonths["2024"].January26)}</td>
+//                 <td class="px-6 py-4 whitespace-nowrap text-sm text-right">-</td>
+//                 <td class="px-6 py-4 text-sm">-</td>
+//               </tr>
+//               <tr>
+//                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Jan 24, 2025 (9 Months)</td>
+//                 <td class="px-6 py-4 whitespace-nowrap text-sm text-right">${formatCurrency(data.segments[0].financialData.revenue.nineMonths["2024"].January24)}</td>
+//                 <td class="px-6 py-4 whitespace-nowrap text-sm text-right ${getGrowthColor(data.segments[0].financialData.revenue.nineMonths.growth.percentage)}">
+//                   ${formatPercentage(data.segments[0].financialData.revenue.nineMonths.growth.percentage)}
+//                 </td>
+//                 <td class="px-6 py-4 text-sm">Inceptiv SCS, Percept RC</td>
+//               </tr>
+//               <tr>
+//                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Jan 26, 2024 (9 Months)</td>
+//                 <td class="px-6 py-4 whitespace-nowrap text-sm text-right">${formatCurrency(data.segments[0].financialData.revenue.nineMonths["2024"].January26)}</td>
+//                 <td class="px-6 py-4 whitespace-nowrap text-sm text-right">-</td>
+//                 <td class="px-6 py-4 text-sm">-</td>
+//               </tr>
+//             </tbody>
+//           </table>
+//         </div>
+//       </div>
+
+//       <!-- Market Outlook -->
+//       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+//         <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+//           <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+//             <h2 class="text-lg font-medium">Market Outlook</h2>
+//           </div>
+//           <div class="p-4">
+//             <div class="prose dark:prose-invert max-w-none">
+//               <div class="space-y-4">
+//                 <div>
+//                   <h3 class="text-md font-medium text-purple-800 dark:text-purple-300">Market Highlights</h3>
+//                   <ul class="mt-2 list-disc pl-5 space-y-1 text-sm">
+//                     <li>Double-digit growth in the Neuromodulation segment (12% over three months)</li>
+//                     <li>Successful product launches driving revenue increase</li>
+//                     <li>Continued investment in innovative therapies</li>
+//                     <li>Spinal cord stimulation and deep brain stimulation as core focus areas</li>
+//                   </ul>
+//                 </div>
+                
+//                 <div class="mt-4">
+//                   <h3 class="text-md font-medium text-purple-800 dark:text-purple-300">Future Outlook</h3>
+//                   <ul class="mt-2 list-disc pl-5 space-y-1 text-sm">
+//                     <li>Expected continuation of strong growth trajectory</li>
+//                     <li>Expanding indications for neuromodulation therapy</li>
+//                     <li>Increasing market penetration in key geographies</li>
+//                     <li>Development of next-generation devices with enhanced capabilities</li>
+//                   </ul>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+
+//         <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+//           <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+//             <h2 class="text-lg font-medium">Key Technology Advancements</h2>
+//           </div>
+//           <div class="p-4">
+//             <div class="space-y-4">
+//               <div class="flex">
+//                 <div class="flex-shrink-0">
+//                   <div class="flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white">
+//                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+//                     </svg>
+//                   </div>
+//                 </div>
+//                 <div class="ml-4">
+//                   <h3 class="text-lg font-medium text-gray-900 dark:text-white">Inceptiv™ Spinal Cord Stimulator</h3>
+//                   <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Advanced closed-loop stimulation system for chronic pain management with real-time sensing and adaptive therapy delivery.</p>
+//                 </div>
+//               </div>
+              
+//               <div class="flex">
+//                 <div class="flex-shrink-0">
+//                   <div class="flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white">
+//                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+//                     </svg>
+//                   </div>
+//                 </div>
+//                 <div class="ml-4">
+//                   <h3 class="text-lg font-medium text-gray-900 dark:text-white">Percept™ RC Deep Brain Neurostimulator</h3>
+//                   <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Next-generation device with enhanced battery life, improved sensing capabilities, and expanded programming options for movement disorders.</p>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   `;
+// }
+
+
+
+
+/**
+ * Generates a complete Medtronic Epilepsy Neuromodulation dashboard
+ * @param {string} containerId - The ID of the container element where the dashboard will be rendered
+ * @param {Object} data - The Medtronic epilepsy market data object
+ * @return {void} - Renders the dashboard in the specified container
+ */
+function generateMedtronicDashboard(data) {
+
+  // Create dashboard HTML structure
+  return `
+    <div class="medtronic-dashboard">
+      <header class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-800">Epilepsy Neuromodulation Medicare Dashboard</h1>
+        <p class="text-gray-600">Based on Medtronic SEC Filing Q3 FY2025 - Data as of January 24, 2025</p>
+      </header>
+
+      <!-- Key Stats Row -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white rounded-lg shadow-md p-4">
+          <p class="text-sm text-gray-600">Neuromodulation Revenue (Q3)</p>
+          <p class="text-2xl font-bold text-blue-700">$${data.marketOverview.quarterlyRevenue.value}M</p>
+          <p class="text-sm font-medium text-green-600">↑ ${data.marketOverview.growth.quarterly.value}% YoY</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4">
+          <p class="text-sm text-gray-600">Nine-Month Revenue</p>
+          <p class="text-2xl font-bold text-blue-700">$${(data.marketOverview.totalMarketSize.value/1000).toFixed(2)}B</p>
+          <p class="text-sm font-medium text-green-600">↑ ${data.marketOverview.growth.yearToDate.value}% YoY</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4">
+          <p class="text-sm text-gray-600">Epilepsy Market Share</p>
+          <p class="text-2xl font-bold text-blue-700">${data.marketOverview.epilepsyMarketShare.value}%</p>
+          <p class="text-sm text-gray-600">of Neuromodulation Segment</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4">
+          <p class="text-sm text-gray-600">Medicare Reimbursement (DBS)</p>
+          <p class="text-2xl font-bold text-blue-700">$${Math.round(data.medicareReimbursement.dbs.implantation.total).toLocaleString()}</p>
+          <p class="text-sm font-medium text-red-600">↓ ${data.medicareReimbursement.yearOverYearChanges.implantation}% YoY</p>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h2 class="text-lg font-semibold text-gray-800 mb-4">Quarterly Revenue Trend</h2>
+          <div style="position: relative; height: 300px; width: 100%;">
+            <canvas id="revenueChart"></canvas>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h2 class="text-lg font-semibold text-gray-800 mb-4">Growth Rate Trend</h2>
+          <div style="position: relative; height: 300px; width: 100%;">
+            <canvas id="growthChart"></canvas>
           </div>
         </div>
       </div>
 
-      <!-- Revenue Comparison -->
-      <div class="bg-white dark:bg-gray-800 rounded-lg shadow mb-8">
-        <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-          <h2 class="text-lg font-medium">Revenue Performance</h2>
+      <!-- Second Charts Row -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h2 class="text-lg font-semibold text-gray-800 mb-4">Epilepsy Market by Patient Segment</h2>
+          <div style="position: relative; height: 300px; width: 100%;">
+            <canvas id="patientSegmentChart"></canvas>
+          </div>
         </div>
-        <div class="p-4 overflow-x-auto">
-          <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h2 class="text-lg font-semibold text-gray-800 mb-4">Competitive Landscape</h2>
+          <div style="position: relative; height: 300px; width: 100%;">
+            <canvas id="competitiveChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Third Charts Row -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h2 class="text-lg font-semibold text-gray-800 mb-4">Epilepsy Market by Payer</h2>
+          <div style="position: relative; height: 300px; width: 100%;">
+            <canvas id="payerChart"></canvas>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h2 class="text-lg font-semibold text-gray-800 mb-4">Regional Market Distribution</h2>
+          <div style="position: relative; height: 300px; width: 100%;">
+            <canvas id="regionChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Medicare Reimbursement Table -->
+      <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">Medicare Reimbursement Details for Epilepsy Neuromodulation</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full">
             <thead>
               <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Period</th>
-                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Revenue</th>
-                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Change</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Growth Drivers</th>
+                <th class="px-4 py-2 text-left bg-gray-100 text-gray-600 text-sm font-medium">Procedure</th>
+                <th class="px-4 py-2 text-left bg-gray-100 text-gray-600 text-sm font-medium">CPT Code</th>
+                <th class="px-4 py-2 text-left bg-gray-100 text-gray-600 text-sm font-medium">Description</th>
+                <th class="px-4 py-2 text-left bg-gray-100 text-gray-600 text-sm font-medium">Professional Fee</th>
+                <th class="px-4 py-2 text-left bg-gray-100 text-gray-600 text-sm font-medium">Device Payment</th>
+                <th class="px-4 py-2 text-left bg-gray-100 text-gray-600 text-sm font-medium">Total Payment</th>
+                <th class="px-4 py-2 text-left bg-gray-100 text-gray-600 text-sm font-medium">YoY Change</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+            <tbody>
               <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Jan 24, 2025 (3 Months)</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-right">${formatCurrency(data.segments[0].financialData.revenue.threeMonths["2024"].January24)}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-right ${getGrowthColor(data.segments[0].financialData.revenue.threeMonths.growth.percentage)}">
-                  ${formatPercentage(data.segments[0].financialData.revenue.threeMonths.growth.percentage)}
-                </td>
-                <td class="px-6 py-4 text-sm">Inceptiv SCS, Percept RC</td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700">DBS Implantation</td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700"><span class="px-2 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800">${data.medicareReimbursement.dbs.implantation.cptCode}</span></td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700">${data.medicareReimbursement.dbs.implantation.description}</td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700">$${data.medicareReimbursement.dbs.implantation.facility.toFixed(2)}</td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700">$${data.medicareReimbursement.dbs.implantation.device.toFixed(2)}</td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700">$${data.medicareReimbursement.dbs.implantation.total.toFixed(2)}</td>
+                <td class="px-4 py-2 border-t text-sm text-red-600">${data.medicareReimbursement.yearOverYearChanges.implantation}%</td>
               </tr>
               <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Jan 26, 2024 (3 Months)</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-right">${formatCurrency(data.segments[0].financialData.revenue.threeMonths["2024"].January26)}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-right">-</td>
-                <td class="px-6 py-4 text-sm">-</td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700">Brain Neurostimulator Programming</td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700"><span class="px-2 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800">${data.medicareReimbursement.dbs.programming.cptCode}</span></td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700">${data.medicareReimbursement.dbs.programming.description}</td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700">$${data.medicareReimbursement.dbs.programming.payment.toFixed(2)}</td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700">N/A</td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700">$${data.medicareReimbursement.dbs.programming.payment.toFixed(2)}</td>
+                <td class="px-4 py-2 border-t text-sm text-red-600">${data.medicareReimbursement.yearOverYearChanges.programming}%</td>
               </tr>
               <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Jan 24, 2025 (9 Months)</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-right">${formatCurrency(data.segments[0].financialData.revenue.nineMonths["2024"].January24)}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-right ${getGrowthColor(data.segments[0].financialData.revenue.nineMonths.growth.percentage)}">
-                  ${formatPercentage(data.segments[0].financialData.revenue.nineMonths.growth.percentage)}
-                </td>
-                <td class="px-6 py-4 text-sm">Inceptiv SCS, Percept RC</td>
-              </tr>
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Jan 26, 2024 (9 Months)</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-right">${formatCurrency(data.segments[0].financialData.revenue.nineMonths["2024"].January26)}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-right">-</td>
-                <td class="px-6 py-4 text-sm">-</td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700">Electronic Analysis</td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700"><span class="px-2 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800">${data.medicareReimbursement.dbs.analysis.cptCode}</span></td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700">${data.medicareReimbursement.dbs.analysis.description}</td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700">$${data.medicareReimbursement.dbs.analysis.payment.toFixed(2)}</td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700">N/A</td>
+                <td class="px-4 py-2 border-t text-sm text-gray-700">$${data.medicareReimbursement.dbs.analysis.payment.toFixed(2)}</td>
+                <td class="px-4 py-2 border-t text-sm text-green-600">+${data.medicareReimbursement.yearOverYearChanges.analysis}%</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- Market Outlook -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
-          <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-            <h2 class="text-lg font-medium">Market Outlook</h2>
-          </div>
-          <div class="p-4">
-            <div class="prose dark:prose-invert max-w-none">
-              <div class="space-y-4">
-                <div>
-                  <h3 class="text-md font-medium text-purple-800 dark:text-purple-300">Market Highlights</h3>
-                  <ul class="mt-2 list-disc pl-5 space-y-1 text-sm">
-                    <li>Double-digit growth in the Neuromodulation segment (12% over three months)</li>
-                    <li>Successful product launches driving revenue increase</li>
-                    <li>Continued investment in innovative therapies</li>
-                    <li>Spinal cord stimulation and deep brain stimulation as core focus areas</li>
-                  </ul>
-                </div>
-                
-                <div class="mt-4">
-                  <h3 class="text-md font-medium text-purple-800 dark:text-purple-300">Future Outlook</h3>
-                  <ul class="mt-2 list-disc pl-5 space-y-1 text-sm">
-                    <li>Expected continuation of strong growth trajectory</li>
-                    <li>Expanding indications for neuromodulation therapy</li>
-                    <li>Increasing market penetration in key geographies</li>
-                    <li>Development of next-generation devices with enhanced capabilities</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+      <!-- Epilepsy Products Portfolio -->
+      <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">Epilepsy Neuromodulation Product Portfolio</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full">
+            <thead>
+              <tr>
+                <th class="px-4 py-2 text-left bg-gray-100 text-gray-600 text-sm font-medium">Product</th>
+                <th class="px-4 py-2 text-left bg-gray-100 text-gray-600 text-sm font-medium">Type</th>
+                <th class="px-4 py-2 text-left bg-gray-100 text-gray-600 text-sm font-medium">Approval Status</th>
+                <th class="px-4 py-2 text-left bg-gray-100 text-gray-600 text-sm font-medium">Key Features</th>
+                <th class="px-4 py-2 text-left bg-gray-100 text-gray-600 text-sm font-medium">Market Share</th>
+                <th class="px-4 py-2 text-left bg-gray-100 text-gray-600 text-sm font-medium">Launch Year</th>
+                <th class="px-4 py-2 text-left bg-gray-100 text-gray-600 text-sm font-medium">Medicare Code</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${data.epilepsyProducts.currentPortfolio.map(product => `
+                <tr>
+                  <td class="px-4 py-2 border-t text-sm text-gray-700">${product.name}</td>
+                  <td class="px-4 py-2 border-t text-sm text-gray-700">${product.type}</td>
+                  <td class="px-4 py-2 border-t text-sm text-gray-700">
+                    <span class="px-2 py-1 rounded-full text-xs font-semibold 
+                      ${product.approvalStatus.includes('FDA') ? 'bg-green-100 text-green-800' : 'bg-purple-100 text-purple-800'}">
+                      ${product.approvalStatus}
+                    </span>
+                  </td>
+                  <td class="px-4 py-2 border-t text-sm text-gray-700">${product.features.slice(0, 2).join(", ")}</td>
+                  <td class="px-4 py-2 border-t text-sm text-gray-700">${product.marketShare}%</td>
+                  <td class="px-4 py-2 border-t text-sm text-gray-700">${product.launchYear}</td>
+                  <td class="px-4 py-2 border-t text-sm text-gray-700">${product.medicareCode}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
         </div>
-
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
-          <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-            <h2 class="text-lg font-medium">Key Technology Advancements</h2>
-          </div>
-          <div class="p-4">
-            <div class="space-y-4">
-              <div class="flex">
-                <div class="flex-shrink-0">
-                  <div class="flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="ml-4">
-                  <h3 class="text-lg font-medium text-gray-900 dark:text-white">Inceptiv™ Spinal Cord Stimulator</h3>
-                  <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Advanced closed-loop stimulation system for chronic pain management with real-time sensing and adaptive therapy delivery.</p>
-                </div>
-              </div>
-              
-              <div class="flex">
-                <div class="flex-shrink-0">
-                  <div class="flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="ml-4">
-                  <h3 class="text-lg font-medium text-gray-900 dark:text-white">Percept™ RC Deep Brain Neurostimulator</h3>
-                  <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Next-generation device with enhanced battery life, improved sensing capabilities, and expanded programming options for movement disorders.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        ${data.epilepsyProducts.currentPortfolio.some(p => p.notes) ? 
+          `<p class="mt-4 text-sm text-gray-600 italic">Note: BrainSense Adaptive DBS received CE Mark in January 2025, FDA approval pending</p>` : 
+          ''}
       </div>
     </div>
   `;
+
+  // Initialize the charts
+ 
 }
 
-// Function to initialize charts for LivaNova
-function initializeLivaNovacharts(data) {
-  // Set up chart options based on dark/light mode
-  const isDarkMode = document.documentElement.classList.contains('dark');
-  const textColor = isDarkMode ? '#e5e7eb' : '#374151';
-  const gridColor = isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
-  
-  // Common chart options
-  const chartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        labels: {
-          color: textColor
-        }
-      }
-    },
-    scales: {
-      x: {
-        grid: {
-          color: gridColor
-        },
-        ticks: {
-          color: textColor
-        }
-      },
-      y: {
-        grid: {
-          color: gridColor
-        },
-        ticks: {
-          color: textColor
-        },
-        beginAtZero: true
-      }
-    }
-  };
-
-  // 1. Revenue by Region Chart
-  new Chart(document.getElementById('livanova-revenue-by-region').getContext('2d'), {
-    type: 'bar',
+/**
+ * Initializes all charts for the Medtronic dashboard using Chart.js
+ * @param {Object} data - The Medtronic epilepsy market data object
+ * @return {void} - Creates and renders all charts
+ */
+function initMedtronicCharts(data) {
+  // Chart 1: Revenue Trend
+  const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+  new Chart(revenueCtx, {
+    type: 'line',
     data: {
-      labels: ['2022', '2023', '2024'],
-      datasets: [
-        {
-          label: 'United States',
-          data: [
-            data.segments[0].financialData.revenue.byRegion.UnitedStates['2022'],
-            data.segments[0].financialData.revenue.byRegion.UnitedStates['2023'],
-            data.segments[0].financialData.revenue.byRegion.UnitedStates['2024']
-          ],
-          backgroundColor: '#60a5fa' // blue-400
-        },
-        {
-          label: 'Europe',
-          data: [
-            data.segments[0].financialData.revenue.byRegion.Europe['2022'],
-            data.segments[0].financialData.revenue.byRegion.Europe['2023'],
-            data.segments[0].financialData.revenue.byRegion.Europe['2024']
-          ],
-          backgroundColor: '#34d399' // green-400
-        },
-        {
-          label: 'Rest of World',
-          data: [
-            data.segments[0].financialData.revenue.byRegion.RestOfWorld['2022'],
-            data.segments[0].financialData.revenue.byRegion.RestOfWorld['2023'],
-            data.segments[0].financialData.revenue.byRegion.RestOfWorld['2024']
-          ],
-          backgroundColor: '#f59e0b' // amber-500
-        }
-      ]
+      labels: data.quarterlyPerformance.map(q => q.quarter),
+      datasets: [{
+        label: 'Quarterly Revenue ($M)',
+        data: data.quarterlyPerformance.map(q => q.revenue),
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 2,
+        tension: 0.4,
+        pointRadius: 4,
+        pointBackgroundColor: 'rgba(54, 162, 235, 1)'
+      }]
     },
     options: {
-      ...chartOptions,
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: false,
+          title: {
+            display: true,
+            text: 'Revenue (Million USD)'
+          }
+        }
+      },
       plugins: {
-        ...chartOptions.plugins,
-        title: {
-          display: true,
-          text: 'Revenue by Region (in thousands)',
-          color: textColor
-        },
         tooltip: {
           callbacks: {
             label: function(context) {
-              return context.dataset.label + ': ' + formatCurrency(context.raw);
+              return `Revenue: $${context.raw}M`;
             }
           }
-        }
-      },
-      scales: {
-        ...chartOptions.scales,
-        x: {
-          ...chartOptions.scales.x,
-          stacked: true
         },
-        y: {
-          ...chartOptions.scales.y,
-          stacked: true,
-          ticks: {
-            color: textColor,
-            callback: function(value) {
-              return formatCurrency(value);
-            }
-          }
+        legend: {
+          position: 'top'
+        },
+        title: {
+          display: false
         }
       }
     }
   });
 
-  // 2. Expense Breakdown Chart
-  new Chart(document.getElementById('livanova-expenses').getContext('2d'), {
+  // Chart 2: Growth Rate Trend
+  const growthCtx = document.getElementById('growthChart').getContext('2d');
+  new Chart(growthCtx, {
+    type: 'bar',
+    data: {
+      labels: data.quarterlyPerformance.map(q => q.quarter),
+      datasets: [{
+        label: 'Growth Rate (%)',
+        data: data.quarterlyPerformance.map(q => q.growthRate),
+        backgroundColor: data.quarterlyPerformance.map(q => 
+          q.growthRate >= 8 ? 'rgba(52, 211, 153, 0.7)' : 
+          q.growthRate >= 5 ? 'rgba(96, 165, 250, 0.7)' : 
+          'rgba(251, 191, 36, 0.7)'
+        ),
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Growth Rate (%)'
+          }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return `Growth Rate: ${context.raw}%`;
+            }
+          }
+        },
+        legend: {
+          position: 'top'
+        },
+        title: {
+          display: false
+        }
+      }
+    }
+  });
+
+  // Chart 3: Patient Segment
+  const patientSegmentCtx = document.getElementById('patientSegmentChart').getContext('2d');
+  new Chart(patientSegmentCtx, {
     type: 'pie',
     data: {
-      labels: ['Cost of Sales', 'SG&A', 'R&D'],
+      labels: data.epilepsyMarketSegmentation.byPatientSegment.map(s => s.segment),
       datasets: [{
-        data: [
-          data.segments[0].financialData.expenses['2024'].costOfSales,
-          data.segments[0].financialData.expenses['2024'].sellingGeneralAdministrative,
-          data.segments[0].financialData.expenses['2024'].researchAndDevelopment
+        data: data.epilepsyMarketSegmentation.byPatientSegment.map(s => s.share),
+        backgroundColor: [
+          'rgba(52, 211, 153, 0.7)', 
+          'rgba(96, 165, 250, 0.7)',
+          'rgba(249, 115, 22, 0.7)'
         ],
-        backgroundColor: ['#60a5fa', '#f59e0b', '#ec4899']
+        borderColor: [
+          'rgba(52, 211, 153, 1)',
+          'rgba(96, 165, 250, 1)',
+          'rgba(249, 115, 22, 1)'
+        ],
+        borderWidth: 1
       }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: {
-          position: 'right',
-          labels: {
-            color: textColor
-          }
-        },
         tooltip: {
           callbacks: {
             label: function(context) {
-              const total = context.dataset.data.reduce((a, b) => a + b, 0);
-              const percentage = ((context.raw / total) * 100).toFixed(1);
-              return context.label + ': ' + formatCurrency(context.raw) + ' (' + percentage + '%)';
+              const segment = data.epilepsyMarketSegmentation.byPatientSegment[context.dataIndex];
+              return [
+                `${segment.segment}: ${segment.share}%`,
+                `Growth Rate: ${segment.growthRate}%`
+              ];
             }
           }
-        }
-      }
-    }
-  });
-
-  // 3. Performance Trend Chart
-  new Chart(document.getElementById('livanova-performance-trend').getContext('2d'), {
-    type: 'line',
-    data: {
-      labels: ['2022', '2023', '2024'],
-      datasets: [
-        {
-          label: 'US Growth (%)',
-          data: [
-            8.8, // 2022-2023 placeholder
-            data.segments[0].financialData.revenue.byRegion.UnitedStates.growth['2023vs2022'],
-            data.segments[0].financialData.revenue.byRegion.UnitedStates.growth['2024vs2023']
-          ],
-          borderColor: '#60a5fa',
-          backgroundColor: 'rgba(96, 165, 250, 0.2)',
-          tension: 0.4,
-          yAxisID: 'y'
         },
-        {
-          label: 'Europe Growth (%)',
-          data: [
-            14.0, // 2022-2023 placeholder
-            data.segments[0].financialData.revenue.byRegion.Europe.growth['2023vs2022'],
-            data.segments[0].financialData.revenue.byRegion.Europe.growth['2024vs2023']
-          ],
-          borderColor: '#34d399',
-          backgroundColor: 'rgba(52, 211, 153, 0.2)',
-          tension: 0.4,
-          yAxisID: 'y'
+        legend: {
+          position: 'right'
         },
-        {
-          label: 'ROW Growth (%)',
-          data: [
-            5.0, // 2022-2023 placeholder
-            data.segments[0].financialData.revenue.byRegion.RestOfWorld.growth['2023vs2022'],
-            data.segments[0].financialData.revenue.byRegion.RestOfWorld.growth['2024vs2023']
-          ],
-          borderColor: '#f59e0b',
-          backgroundColor: 'rgba(245, 158, 11, 0.2)',
-          tension: 0.4,
-          yAxisID: 'y'
-        }
-      ]
-    },
-    options: {
-      ...chartOptions,
-      plugins: {
-        ...chartOptions.plugins,
         title: {
-          display: true,
-          text: 'Growth Trends by Region',
-          color: textColor
-        }
-      },
-      scales: {
-        x: {
-          grid: {
-            color: gridColor
-          },
-          ticks: {
-            color: textColor
-          }
-        },
-        y: {
-          grid: {
-            color: gridColor
-          },
-          ticks: {
-            color: textColor,
-            callback: function(value) {
-              return value + '%';
-            }
-          },
-          suggestedMin: -10,
-          suggestedMax: 20
+          display: false
         }
       }
     }
   });
 
-  // 4. Revenue & Income Analysis Chart
-  new Chart(document.getElementById('livanova-revenue-income').getContext('2d'), {
+  // Chart 4: Competitive Landscape
+  const competitiveCtx = document.getElementById('competitiveChart').getContext('2d');
+  new Chart(competitiveCtx, {
     type: 'bar',
     data: {
-      labels: ['2022', '2023', '2024'],
+      labels: data.competitiveLandscape.keyCompetitors.map(c => c.name),
       datasets: [
         {
-          label: 'Revenue',
-          type: 'bar',
-          data: [
-            data.segments[0].financialData.revenue.total['2022'],
-            data.segments[0].financialData.revenue.total['2023'],
-            data.segments[0].financialData.revenue.total['2024']
-          ],
-          backgroundColor: '#60a5fa',
-          yAxisID: 'y'
+          label: 'Market Share (%)',
+          data: data.competitiveLandscape.keyCompetitors.map(c => c.marketShare),
+          backgroundColor: 'rgba(59, 130, 246, 0.7)',
+          borderColor: 'rgba(59, 130, 246, 1)',
+          borderWidth: 1,
+          order: 1
         },
         {
-          label: 'Segment Income',
-          type: 'bar',
-          data: [
-            data.segments[0].financialData.segmentIncome['2022'],
-            data.segments[0].financialData.segmentIncome['2023'],
-            data.segments[0].financialData.segmentIncome['2024']
-          ],
-          backgroundColor: '#34d399',
-          yAxisID: 'y'
-        },
-        {
-          label: 'Income Margin (%)',
+          label: 'Growth Rate (%)',
+          data: data.competitiveLandscape.keyCompetitors.map(c => c.growthRate),
+          backgroundColor: 'rgba(251, 191, 36, 0.7)',
+          borderColor: 'rgba(251, 191, 36, 1)',
+          borderWidth: 1,
           type: 'line',
-          data: [
-            (data.segments[0].financialData.segmentIncome['2022'] / data.segments[0].financialData.revenue.total['2022'] * 100).toFixed(1),
-            (data.segments[0].financialData.segmentIncome['2023'] / data.segments[0].financialData.revenue.total['2023'] * 100).toFixed(1),
-            (data.segments[0].financialData.segmentIncome['2024'] / data.segments[0].financialData.revenue.total['2024'] * 100).toFixed(1)
-          ],
-          borderColor: '#f59e0b',
-          backgroundColor: 'rgba(245, 158, 11, 0.2)',
-          borderWidth: 2,
-          pointBackgroundColor: '#f59e0b',
-          pointRadius: 4,
+          order: 0,
           yAxisID: 'y1'
         }
       ]
@@ -3944,71 +4104,395 @@ function initializeLivaNovacharts(data) {
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          labels: {
-            color: textColor
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Market Share (%)'
           }
         },
+        y1: {
+          position: 'right',
+          beginAtZero: true,
+          grid: {
+            drawOnChartArea: false
+          },
+          title: {
+            display: true,
+            text: 'Growth Rate (%)'
+          }
+        }
+      },
+      plugins: {
         tooltip: {
           callbacks: {
             label: function(context) {
-              if (context.dataset.yAxisID === 'y1') {
-                return context.dataset.label + ': ' + context.raw + '%';
-              }
-              return context.dataset.label + ': ' + formatCurrency(context.raw);
+              const metric = context.dataset.label;
+              return `${metric}: ${context.raw}%`;
+            }
+          }
+        },
+        legend: {
+          position: 'top'
+        },
+        title: {
+          display: false
+        }
+      }
+    }
+  });
+
+  // Chart 5: Payer Distribution
+  const payerCtx = document.getElementById('payerChart').getContext('2d');
+  new Chart(payerCtx, {
+    type: 'doughnut',
+    data: {
+      labels: data.epilepsyMarketSegmentation.byPayerType.map(p => p.payer),
+      datasets: [{
+        data: data.epilepsyMarketSegmentation.byPayerType.map(p => p.share),
+        backgroundColor: [
+          'rgba(59, 130, 246, 0.7)',
+          'rgba(16, 185, 129, 0.7)',
+          'rgba(249, 115, 22, 0.7)',
+          'rgba(107, 114, 128, 0.7)'
+        ],
+        borderColor: [
+          'rgba(59, 130, 246, 1)',
+          'rgba(16, 185, 129, 1)',
+          'rgba(249, 115, 22, 1)',
+          'rgba(107, 114, 128, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const payer = data.epilepsyMarketSegmentation.byPayerType[context.dataIndex];
+              return [
+                `${payer.payer}: ${payer.share}%`,
+                `Growth Rate: ${payer.growthRate}%`
+              ];
+            }
+          }
+        },
+        legend: {
+          position: 'right'
+        },
+        title: {
+          display: false
+        }
+      }
+    }
+  });
+
+  // Chart 6: Regional Distribution
+  const regionCtx = document.getElementById('regionChart').getContext('2d');
+  new Chart(regionCtx, {
+    type: 'bar',
+    data: {
+      labels: data.epilepsyMarketSegmentation.byRegion.map(r => r.region),
+      datasets: [
+        {
+          label: 'Market Share (%)',
+          data: data.epilepsyMarketSegmentation.byRegion.map(r => r.share),
+          backgroundColor: 'rgba(139, 92, 246, 0.7)',
+          borderColor: 'rgba(139, 92, 246, 1)',
+          borderWidth: 1
+        },
+        {
+          label: 'Growth Rate (%)',
+          data: data.epilepsyMarketSegmentation.byRegion.map(r => r.growth),
+          backgroundColor: 'rgba(236, 72, 153, 0.7)',
+          borderColor: 'rgba(236, 72, 153, 1)',
+          borderWidth: 1,
+          type: 'line',
+          yAxisID: 'y1'
+        }
+      ]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Market Share (%)'
+          }
+        },
+        y1: {
+          position: 'right',
+          beginAtZero: true,
+          grid: {
+            drawOnChartArea: false
+          },
+          title: {
+            display: true,
+            text: 'Growth Rate (%)'
+          }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const metric = context.dataset.label;
+              return `${metric}: ${context.raw}%`;
+            }
+          }
+        },
+        legend: {
+          position: 'top'
+        },
+        title: {
+          display: false
+        }
+      }
+    }
+  });
+}
+
+// Function to initialize charts for LivaNova
+function initLivaNovaDashboardCharts(data) {
+  // Revenue by Region Chart
+  const revenueByRegionCtx = document.getElementById('livanova-revenue-by-region').getContext('2d');
+  new Chart(revenueByRegionCtx, {
+    type: 'bar',
+    data: {
+      labels: ['2022', '2023', '2024'],
+      datasets: [
+        {
+          label: 'United States',
+          data: [374542, 407493, 441022],
+          backgroundColor: 'rgba(59, 130, 246, 0.8)',
+          borderColor: 'rgba(59, 130, 246, 1)',
+          borderWidth: 1
+        },
+        {
+          label: 'Europe',
+          data: [50291, 57435, 54899],
+          backgroundColor: 'rgba(16, 185, 129, 0.8)',
+          borderColor: 'rgba(16, 185, 129, 1)',
+          borderWidth: 1
+        },
+        {
+          label: 'Rest of World',
+          data: [52160, 54782, 58302],
+          backgroundColor: 'rgba(249, 115, 22, 0.8)',
+          borderColor: 'rgba(249, 115, 22, 1)',
+          borderWidth: 1
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          stacked: false,
+        },
+        y: {
+          stacked: false,
+          beginAtZero: true,
+          ticks: {
+            callback: function(value) {
+              return '$' + (value / 1000) + 'k';
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // Expenses Chart
+  const expensesCtx = document.getElementById('livanova-expenses').getContext('2d');
+  new Chart(expensesCtx, {
+    type: 'pie',
+    data: {
+      labels: ['Cost of Sales', 'SG&A', 'R&D'],
+      datasets: [{
+        data: [50236, 187649, 121029],
+        backgroundColor: [
+          'rgba(59, 130, 246, 0.8)',
+          'rgba(16, 185, 129, 0.8)',
+          'rgba(249, 115, 22, 0.8)'
+        ],
+        borderColor: [
+          'rgba(59, 130, 246, 1)',
+          'rgba(16, 185, 129, 1)',
+          'rgba(249, 115, 22, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const value = context.raw;
+              const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
+              const percentage = ((value / total) * 100).toFixed(1);
+              return `$${(value / 1000).toFixed(0)}k (${percentage}%)`;
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // Performance Trend Chart
+  const performanceTrendCtx = document.getElementById('livanova-performance-trend').getContext('2d');
+  new Chart(performanceTrendCtx, {
+    type: 'line',
+    data: {
+      labels: ['2022', '2023', '2024'],
+      datasets: [
+        {
+          label: 'Revenue Growth (%)',
+          data: [null, 9.0, 6.6],
+          borderColor: 'rgba(59, 130, 246, 1)',
+          backgroundColor: 'rgba(59, 130, 246, 0.1)',
+          yAxisID: 'y',
+          tension: 0.3,
+          fill: false
+        },
+        {
+          label: 'Segment Income Growth (%)',
+          data: [null, -11.2, 27.3],
+          borderColor: 'rgba(16, 185, 129, 1)',
+          backgroundColor: 'rgba(16, 185, 129, 0.1)',
+          yAxisID: 'y',
+          tension: 0.3,
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: false,
+          ticks: {
+            callback: function(value) {
+              return value + '%';
             }
           }
         }
       },
-      scales: {
-        x: {
-          grid: {
-            color: gridColor
-          },
-          ticks: {
-            color: textColor
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return `${context.dataset.label}: ${context.raw}%`;
+            }
           }
+        }
+      }
+    }
+  });
+
+  // Revenue & Income Analysis Chart
+  const revenueIncomeCtx = document.getElementById('livanova-revenue-income').getContext('2d');
+  new Chart(revenueIncomeCtx, {
+    type: 'bar',
+    data: {
+      labels: ['2022', '2023', '2024'],
+      datasets: [
+        {
+          label: 'Total Revenue',
+          data: [476993, 519710, 554223],
+          backgroundColor: 'rgba(59, 130, 246, 0.8)',
+          borderColor: 'rgba(59, 130, 246, 1)',
+          borderWidth: 1,
+          yAxisID: 'y',
+          order: 2
         },
+        {
+          label: 'Segment Income',
+          data: [172775, 153384, 195309],
+          backgroundColor: 'rgba(16, 185, 129, 0.8)',
+          borderColor: 'rgba(16, 185, 129, 1)',
+          borderWidth: 1,
+          yAxisID: 'y',
+          order: 1
+        },
+        {
+          label: 'Profit Margin (%)',
+          data: [36.2, 29.5, 35.2],
+          type: 'line',
+          fill: false,
+          borderColor: 'rgba(249, 115, 22, 1)',
+          backgroundColor: 'rgba(249, 115, 22, 0.1)',
+          borderWidth: 2,
+          tension: 0.4,
+          pointStyle: 'circle',
+          pointRadius: 5,
+          pointHoverRadius: 8,
+          yAxisID: 'y1',
+          order: 0
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
         y: {
           type: 'linear',
-          display: true,
           position: 'left',
-          grid: {
-            color: gridColor
-          },
-          ticks: {
-            color: textColor,
-            callback: function(value) {
-              return formatCurrency(value);
-            }
-          },
+          beginAtZero: true,
           title: {
             display: true,
-            text: 'Revenue & Income (in thousands)',
-            color: textColor
+            text: 'USD ($)'
+          },
+          ticks: {
+            callback: function(value) {
+              return '$' + (value / 1000) + 'k';
+            }
           }
         },
         y1: {
           type: 'linear',
-          display: true,
           position: 'right',
-          grid: {
-            drawOnChartArea: false
+          beginAtZero: true,
+          max: 50,
+          title: {
+            display: true,
+            text: 'Profit Margin (%)'
           },
           ticks: {
-            color: textColor,
             callback: function(value) {
               return value + '%';
             }
           },
-          title: {
-            display: true,
-            text: 'Margin Percentage',
-            color: textColor
-          },
-          min: 0,
-          max: 50
+          grid: {
+            drawOnChartArea: false
+          }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              if (context.dataset.label === 'Profit Margin (%)') {
+                return `${context.dataset.label}: ${context.raw}%`;
+              } else {
+                return `${context.dataset.label}: $${context.raw.toLocaleString()}`;
+              }
+            }
+          }
         }
       }
     }

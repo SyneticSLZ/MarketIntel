@@ -349,7 +349,7 @@ const mockCompetitors = {
             }
         },
         {
-            id: 5,
+            id: 7,
             name: "Precisis AG",
             industry: "Minimally Invasive Neurostimulation",
             keyMetrics: {
@@ -376,7 +376,7 @@ const mockCompetitors = {
             }
         },
         {
-            id: 6,
+            id: 5,
             name: "Epi-Minder",
             industry: "Seizure Monitoring",
             keyMetrics: {
@@ -403,7 +403,7 @@ const mockCompetitors = {
             }
         },
         {
-            id: 7,
+            id: 6,
             name: "Flow Medical",
             industry: "tDCS (Depression/Epilepsy Crossover)",
             keyMetrics: {
