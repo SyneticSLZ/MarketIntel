@@ -533,7 +533,7 @@ const app = {
         this.renderCharts();
         this.setupTabNavigation();
         await this.loadCompetitorData();
-        await this.renderTechnologyAnalysis()
+        await this.a()
     },
 
     setupEventListeners() {
@@ -651,6 +651,11 @@ const app = {
         // Implementation for market analysis tab
         console.log('Rendering market analysis...');
     },
+    a(){
+        initializeCompanyDashboard()
+    },
+    
+
 
     // renderProductPortfolio() {
     //     // Implementation for product portfolio tab
