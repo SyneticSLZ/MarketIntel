@@ -533,7 +533,7 @@ const app = {
         this.renderCharts();
         this.setupTabNavigation();
         await this.loadCompetitorData();
-        this.renderFinancialAnalysis()
+        this.renderTechnologyAnalysis()
     },
 
     setupEventListeners() {
