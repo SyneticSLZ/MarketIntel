@@ -21,12 +21,15 @@ export function renderStrategicAnalysis(companyName) {
       </div>
     `;
     
-    if (companyName === 'PrecisisAG' || companyName === 'EpiMinder') {
+    if (companyName === 'PrecisisAG' || companyName === 'EpiMinder' || companyName === 'FlowMedical') {
         if (companyName === 'PrecisisAG') {
             renderHardcodedTrialsViewP(container, 'PrecisisAG');
         }
-        else {
+        else if (companyName === 'EpiMinder'){
             renderHardcodedTrialsViewE(container, 'EpiMinder');
+        }
+        else {
+            renderHardcodedTrialsViewF(container, 'FlowMedical');
         }
       
     } else {
@@ -90,6 +93,128 @@ export function renderStrategicAnalysis(companyName) {
    * @param {HTMLElement} container - Container element
    * @param {string} companyName - Name of the company
    */
+
+
+
+
+  function renderHardcodedTrialsViewF(container, companyName) {
+    let headerContent = `
+      <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Clinical Trials for Epilepsy: Flow Medical</h2>
+          <div class="flex gap-2">
+            <button id="export-csv" class="flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded hover:bg-gray-200 dark:hover:bg-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Export
+            </button>
+            <button id="refresh-data" class="flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded hover:bg-gray-200 dark:hover:bg-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              Refresh
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  
+    let trialsData = [];
+    console.log(companyName , 'ahfisuahfas')
+
+    trialsData = [
+        {
+          id: 'NCT05202119',
+          title: 'Home-Based tDCS for Major Depressive Disorder (EMPOWER Trial)',
+          status: 'Completed',
+          intervention: 'Transcranial Direct Current Stimulation (tDCS) with Flow headset',
+          locations: 'Multiple sites in U.S. and U.K. (e.g., University of Texas Health Science Center, University of East London)',
+          lastUpdate: 'January 24, 2024',
+          details: 'Multisite, double-blind, placebo-controlled trial evaluating 10 weeks of home-based tDCS for moderate to severe unipolar depression in 173 participants aged 18+. Primary endpoint: change in Montgomery-Åsberg Depression Rating Scale (MADRS) score. Secondary: remission rates (57.5% in treatment group vs. 22% placebo), safety, and tolerability. Published in Nature Medicine (2024). FDA Breakthrough Device Designation in 2022.',
+          link: 'https://clinicaltrials.gov/study/NCT05202119'
+        },
+        {
+          id: 'NCT04880525',
+          title: 'Feasibility of Home-Based tDCS for Depression',
+          status: 'Completed',
+          intervention: 'Transcranial Direct Current Stimulation (tDCS) with Flow headset',
+          locations: 'London, United Kingdom (Flow Neuroscience facilities)',
+          lastUpdate: 'May 10, 2022',
+          details: 'Pilot study to assess feasibility and safety of home-based tDCS in 30 participants with major depressive disorder. Conducted over 4 weeks with 2 mA stimulation sessions (30 min, 5 times/week). Primary endpoint: usability and adherence. Secondary: preliminary efficacy via HAM-D scores. Precursor to larger trials like NCT05202119.',
+          link: 'https://clinicaltrials.gov/study/NCT04880525'
+        },
+        {
+          id: 'NCT05662956',
+          title: 'tDCS Combined with Cognitive Behavioral Therapy for Depression',
+          status: 'Recruiting',
+          intervention: 'tDCS with Flow headset + Cognitive Behavioral Therapy (CBT)',
+          locations: 'London, United Kingdom; Houston, Texas, USA',
+          lastUpdate: 'December 15, 2022 (registration)',
+          details: 'Ongoing study combining tDCS (Flow headset) with CBT in 60 participants with major depression. 12-week intervention comparing tDCS+CBT vs. CBT alone. Primary endpoint: change in Beck Depression Inventory (BDI-II) score. Secondary: response rates, quality of life, and neurophysiological changes via EEG. Aims to enhance treatment efficacy.',
+          link: 'https://clinicaltrials.gov/study/NCT05662956'
+        }
+      ];
+    
+  
+    const trialsContent = `
+      <div class="overflow-x-auto p-6">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+          <thead class="bg-gray-100 dark:bg-gray-800">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">ID / Title</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">Status</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">Intervention</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">Location</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">Last Update</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">Details</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-800">
+            ${trialsData.map(trial => `
+              <tr>
+                <td class="px-6 py-4">
+                  <div class="flex flex-col">
+                    <div class="text-sm font-medium text-gray-700 dark:text-gray-300">${trial.id}</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">${trial.title}</div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColorClass(trial.status)}">
+                    ${trial.status}
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">${trial.intervention}</td>
+                <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">${trial.locations}</td>
+                <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">${trial.lastUpdate}</td>
+                <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">${trial.details}</td>
+                <td class="px-6 py-4 text-sm font-medium">
+                  <a href="${trial.link}" target="_blank" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 inline-flex items-center">
+                    View Live
+                    <svg class="inline-block w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                  </a>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  
+    container.innerHTML = headerContent + trialsContent;
+  
+    document.getElementById('refresh-data')?.addEventListener('click', () => {
+      renderStrategicAnalysis(companyName);
+    });
+  
+    document.getElementById('export-csv')?.addEventListener('click', () => {
+      exportToCSV(trialsData, `${companyName}-epilepsy-trials.csv`);
+    });
+  }
+
   function renderHardcodedTrialsViewP(container, companyName) {
     let headerContent = `
       <div class="p-6 border-b border-gray-200 dark:border-gray-700">
