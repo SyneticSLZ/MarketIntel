@@ -131,7 +131,7 @@ export function renderStrategicAnalysis(companyName) {
           intervention: 'Transcranial Direct Current Stimulation (tDCS) with Flow headset',
           locations: 'Multiple sites in U.S. and U.K. (e.g., University of Texas Health Science Center, University of East London)',
           lastUpdate: 'January 24, 2024',
-          details: 'Multisite, double-blind, placebo-controlled trial evaluating 10 weeks of home-based tDCS for moderate to severe unipolar depression in 173 participants aged 18+. Primary endpoint: change in Montgomery-Åsberg Depression Rating Scale (MADRS) score. Secondary: remission rates (57.5% in treatment group vs. 22% placebo), safety, and tolerability. Published in Nature Medicine (2024). FDA Breakthrough Device Designation in 2022.',
+          details: 'Multisite, double-blind, placebo-controlled trial evaluating 10 weeks of home-based tDCS for moderate to severe unipolar depression in 173 participants aged 18+. Primary endpoint: change in Montgomery-Åsberg Depression Rating Scale (MADRS) score. Secondary: remission rates (57.5% in treatment group vs. 22% placebo), safety, and tolerability. Published in Nature Medicine (2024).',
           link: 'https://clinicaltrials.gov/study/NCT05202119'
         },
         {
@@ -141,7 +141,7 @@ export function renderStrategicAnalysis(companyName) {
           intervention: 'Transcranial Direct Current Stimulation (tDCS) with Flow headset',
           locations: 'London, United Kingdom (Flow Neuroscience facilities)',
           lastUpdate: 'May 10, 2022',
-          details: 'Pilot study to assess feasibility and safety of home-based tDCS in 30 participants with major depressive disorder. Conducted over 4 weeks with 2 mA stimulation sessions (30 min, 5 times/week). Primary endpoint: usability and adherence. Secondary: preliminary efficacy via HAM-D scores. Precursor to larger trials like NCT05202119.',
+          details: 'Pilot study to assess feasibility and safety of home-based tDCS in 30 participants with major depressive disorder. Conducted over 4 weeks with 2 mA stimulation sessions (30 min, 5 times/week). Primary endpoint: usability and adherence. Secondary: preliminary efficacy via HAM-D scores.',
           link: 'https://clinicaltrials.gov/study/NCT04880525'
         },
         {
@@ -151,8 +151,28 @@ export function renderStrategicAnalysis(companyName) {
           intervention: 'tDCS with Flow headset + Cognitive Behavioral Therapy (CBT)',
           locations: 'London, United Kingdom; Houston, Texas, USA',
           lastUpdate: 'December 15, 2022 (registration)',
-          details: 'Ongoing study combining tDCS (Flow headset) with CBT in 60 participants with major depression. 12-week intervention comparing tDCS+CBT vs. CBT alone. Primary endpoint: change in Beck Depression Inventory (BDI-II) score. Secondary: response rates, quality of life, and neurophysiological changes via EEG. Aims to enhance treatment efficacy.',
+          details: 'Ongoing study combining tDCS (Flow headset) with CBT in 60 participants with major depression. 12-week intervention comparing tDCS+CBT vs. CBT alone. Primary endpoint: change in Beck Depression Inventory (BDI-II) score. Secondary: response rates, quality of life, and neurophysiological changes via EEG.',
           link: 'https://clinicaltrials.gov/study/NCT05662956'
+        },
+        {
+          id: 'NCT03538275',
+          title: 'tDCS for Depression: Open-Label Pilot',
+          status: 'Completed',
+          intervention: 'Transcranial Direct Current Stimulation (tDCS) with Flow headset',
+          locations: 'London, United Kingdom',
+          lastUpdate: 'June 12, 2019',
+          details: 'Open-label pilot in 20 participants with major depression, testing tDCS (2 mA, 30 min, 5x/week) over 3 weeks. Primary endpoint: safety and tolerability. Secondary: MADRS score reduction. Early validation study for Flow’s tDCS device.',
+          link: 'https://clinicaltrials.gov/study/NCT03538275'
+        },
+        {
+          id: 'NCT04933929',
+          title: 'tDCS for Postpartum Depression',
+          status: 'Completed',
+          intervention: 'Transcranial Direct Current Stimulation (tDCS) with Flow headset',
+          locations: 'London, United Kingdom',
+          lastUpdate: 'August 3, 2022',
+          details: 'Pilot study in 25 postpartum women with depression, using tDCS over 6 weeks. Primary endpoint: Edinburgh Postnatal Depression Scale (EPDS) score change. Secondary: safety, maternal-infant bonding. Explores tDCS in a specific depression population.',
+          link: 'https://clinicaltrials.gov/study/NCT04933929'
         }
       ];
     
