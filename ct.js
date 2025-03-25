@@ -21,7 +21,7 @@ export function renderStrategicAnalysis(companyName) {
       </div>
     `;
     
-    if (companyName === 'Precisis AG' || companyName === 'EpiMinder') {
+    if (companyName === 'PrecisisAG' || companyName === 'EpiMinder') {
       renderHardcodedTrialsView(container, companyName);
     } else {
       fetchTrials(companyName)
@@ -109,42 +109,62 @@ export function renderStrategicAnalysis(companyName) {
   
     let trialsData = [];
     if (companyName === 'Precisis AG') {
-      trialsData = [
-        {
-          id: 'DRKS00015918',
-          title: 'EASEE II: Epicranial Application of Stimulation Electrodes for Epilepsy',
-          status: 'Completed',
-          intervention: 'Neurostimulation with EASEE System',
-          locations: 'Multiple centers in Germany (e.g., Freiburg, Berlin)',
-          lastUpdate: 'July 25, 2023',
-          details: 'Pilot study to assess feasibility, safety, and efficacy in drug-resistant focal epilepsy. Ages 18-75, 33 participants.',
-          link: 'https://drks.de/search/en/trial/DRKS00015918'
-        },
-        {
-          id: 'DRKS00017833',
-          title: 'PIMIDES I: Patient-Controlled Neurostimulation with EASEE',
-          status: 'Continuing',
-          intervention: 'Patient-controlled neurostimulation with EASEE System',
-          locations: 'Multiple centers in Germany and Europe',
-          lastUpdate: 'July 27, 2023',
-          details: 'Pilot study for safety and efficacy, 16-month phase, targeting focal epilepsy patients.',
-          link: 'https://drks.de/search/en/trial/DRKS00017833'
-        }
-      ];
-    } else if (companyName === 'EpiMinder') {
-      trialsData = [
-        {
-          id: 'ACTRN12619001587190',
-          title: 'Safety Assessment of Sub-Scalp EEG Monitor (Minder System)',
-          status: 'Completed',
-          intervention: 'Continuous EEG monitoring with Minder implant',
-          locations: 'Melbourne, Australia',
-          lastUpdate: 'November 24, 2024 (milestone reported)',
-          details: '6-month safety study with 3-year follow-up, 25 participants, ages 18-75, focal/generalized epilepsy, 2+ seizures/month.',
-          link: 'https://www.anzctr.org.au/Trial/Registration/TrialReview.aspx?ID=378244'
-        }
-      ];
-    }
+        trialsData = [
+          {
+            id: 'DRKS00015918',
+            title: 'EASEE II: Epicranial Application of Stimulation Electrodes for Epilepsy',
+            status: 'Completed',
+            intervention: 'Neurostimulation with EASEE System',
+            locations: 'Multiple centers in Germany (e.g., Freiburg, Berlin, Bonn)',
+            lastUpdate: 'July 25, 2023',
+            details: 'Pilot study to assess feasibility, safety, and efficacy of the EASEE System in drug-resistant focal epilepsy. Multicenter, unblinded trial with 33 participants aged 18-75, experiencing 3-300 partial-onset seizures during baseline. Primary endpoint: safety at 4 months post-implant. Secondary endpoints: seizure frequency, severity, EEG activity, quality of life, mood, and neurocognition over 16 months. Published in JAMA Neurology (2023).',
+            link: 'https://drks.de/search/en/trial/DRKS00015918'
+          },
+          {
+            id: 'DRKS00017833',
+            title: 'PIMIDES I: Patient-Controlled Neurostimulation with EASEE',
+            status: 'Continuing',
+            intervention: 'Patient-controlled neurostimulation with EASEE System',
+            locations: 'Multiple centers in Germany and Europe (e.g., Freiburg, Ghent, Tübingen)',
+            lastUpdate: 'July 27, 2023',
+            details: 'Pilot study evaluating safety and efficacy of patient-controlled neurostimulation with the EASEE System in medically refractory focal epilepsy. Includes 18-75 year-olds with 3-200 partial-onset seizures during baseline. Features a 16-month study phase with individualized stimulation parameters and bolus-stimulation option. Assesses seizure frequency, EEG changes, and patient outcomes. Multicenter trial with ongoing data collection.',
+            link: 'https://drks.de/search/en/trial/DRKS00017833'
+          },
+          {
+            id: 'Not yet registered (Planned U.S. Trial)',
+            title: 'EASEE U.S. Study (Planned)',
+            status: 'Planned',
+            intervention: 'Neurostimulation with EASEE System',
+            locations: 'United States (specific centers TBD, e.g., Massachusetts General Hospital)',
+            lastUpdate: 'February 2022 (FDA Breakthrough Designation announced)',
+            details: 'Planned U.S. clinical trial following FDA Breakthrough Device Designation in February 2022. Aimed at validating EASEE for drug-resistant focal epilepsy in the U.S. market. Expected to start in 2023, as per Precisis announcements, focusing on safety and efficacy with a larger cohort. Specific protocol details pending registration.',
+            link: 'https://precisis.de/en/minimally-invasive-epilepsy-treatment-easee-receives-fda-breakthrough-device-designation/'
+          }
+        ];
+      } else if (companyName === 'EpiMinder') {
+        trialsData = [
+          {
+            id: 'ACTRN12619001587190',
+            title: 'Safety Assessment of Sub-Scalp EEG Monitor (Minder System)',
+            status: 'Completed',
+            intervention: 'Continuous EEG monitoring with Minder implant',
+            locations: 'Melbourne, Australia (St Vincent’s Hospital, Royal Melbourne Hospital)',
+            lastUpdate: 'November 24, 2024 (5-year milestone reported)',
+            details: 'Prospective safety study of the Minder sub-scalp EEG monitoring system in 25 participants aged 18-75 with focal or generalized epilepsy, experiencing 2+ seizures/month. 6-month primary phase with up to 3-year follow-up, extended to 5 years as reported in November 2024. Evaluates device safety, tolerability, and long-term EEG recording accuracy. Primary endpoint: adverse events at 6 months. Secondary: seizure detection reliability.',
+            link: 'https://www.anzctr.org.au/Trial/Registration/TrialReview.aspx?ID=378244'
+          },
+          {
+            id: 'ACTRN12623000958640',
+            title: 'Long-Term Performance of Minder Sub-Scalp EEG System',
+            status: 'Recruiting',
+            intervention: 'Continuous EEG monitoring with Minder implant',
+            locations: 'Melbourne, Australia (multiple sites)',
+            lastUpdate: 'September 11, 2023 (registration)',
+            details: 'Follow-on study to assess long-term performance and safety of the Minder system in epilepsy patients. Targets adults with drug-resistant epilepsy for continuous monitoring over an extended period (up to 5+ years). Focuses on device longevity, data quality, and patient outcomes. Registered in 2023, building on ACTRN12619001587190 findings.',
+            link: 'https://www.anzctr.org.au/Trial/Registration/TrialReview.aspx?id=385641'
+          }
+        ];
+      }
   
     const trialsContent = `
       <div class="overflow-x-auto p-6">
@@ -249,7 +269,7 @@ export function renderStrategicAnalysis(companyName) {
     const headerContent = `
       <div class="p-6 border-b border-gray-200 dark:border-gray-700">
         <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
-          < h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Clinical Trials for Epilepsy: ${companyName}</h2>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Clinical Trials for Epilepsy: ${companyName}</h2>
           <div class="flex gap-2">
             <button id="export-csv" class="flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded hover:bg-gray-200 dark:hover:bg-gray-700">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">

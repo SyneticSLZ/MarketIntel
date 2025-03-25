@@ -2688,7 +2688,28 @@ const maincodeData = {
       }
     });
   });
+
+  if (localStorage.getItem('darkMode') === 'true' || 
+      (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && 
+       localStorage.getItem('darkMode') !== 'false')) {
+    // Enable dark mode
+    document.documentElement.classList.add('dark');
+    document.body.classList.add('bg-gray-900', 'text-gray-100');
+    chartColors = darkModeColors;
+
+    document.querySelectorAll('select').forEach(el => {
+    el.classList.add('bg-gray-800', 'text-white', 'border-gray-700');
+  });
   
+  // Add dark mode styling to select labels
+  document.querySelectorAll('label[for="codeSelect"]').forEach(el => {
+    el.classList.remove('text-gray-700');
+    el.classList.add('text-gray-300');
+  });
+    // Apply dark mode classes
+    applyDarkModeClasses();
+  }
+
   // Set up dark mode toggle
   document.getElementById('darkModeToggle').addEventListener('click', function() {
     const html = document.documentElement;

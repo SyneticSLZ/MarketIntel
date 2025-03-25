@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicare Code Analysis Dashboard</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+  <script>
+    // Configure Tailwind with colors
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                colors: {
+                    starkey: {
+                        blue: '#0072CE',
+                        dark: '#1a1a1a',
+                        gray: '#4A5568'
+                    }
+                }
+            }
+        }
+    }
+  </script>
+  <style>
+    /* Improved dark mode transitions */
+    * {
+      transition-property: color, background-color, border-color, box-shadow;
+      transition-duration: 200ms;
+      transition-timing-function: ease-in-out;
+    }
+    
+    .dark {
+      --tw-bg-opacity: 1;
+      background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
+      color: white;
+    }
+    
+    .chart-container {
+      position: relative;
+      height: 300px;
+      width: 100%;
+    }
+    
+    .collapsed {
+      display: none;
+    }
+    
+    .expanded {
+      display: table-row;
+    }
+
+    /* Custom scrollbar - improved for dark mode */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+    
+    .dark ::-webkit-scrollbar-track {
+      background: #2D3748;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    
+    .dark ::-webkit-scrollbar-thumb {
+      background: #4B5563;
+    }
+    
+    .dark ::-webkit-scrollbar-thumb:hover {
+      background: #6B7280;
+    }
+    
+    /* Dark mode compatibility for cards and sections */
+    .dark .bg-white {
+      background-color: #1F2937;
+    }
+    
+    .dark .bg-gray-50 {
+      background-color: #374151;
+    }
+    
+    .dark .bg-gray-100 {
+      background-color: #4B5563;
+    }
+    
+    .dark .text-gray-500,
+    .dark .text-gray-600,
+    .dark .text-gray-700 {
+      color: #E5E7EB;
+    }
+    
+    .dark .text-gray-800,
+    .dark .text-gray-900 {
+      color: #F9FAFB;
+    }
+    
+    .dark .border-gray-200 {
+      border-color: #4B5563;
+    }
+    
+    .dark .border-gray-300 {
+      border-color: #6B7280;
+    }
+    
+    .dark .shadow {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Improved colored sections for dark mode */
+    .dark .bg-blue-50 {
+      background-color: rgba(59, 130, 246, 0.15);
+      border-color: rgba(59, 130, 246, 0.7);
+    }
+    
+    .dark .bg-green-50 {
+      background-color: rgba(16, 185, 129, 0.15);
+      border-color: rgba(16, 185, 129, 0.7);
+    }
+    
+    .dark .bg-purple-50 {
+      background-color: rgba(139, 92, 246, 0.15);
+      border-color: rgba(139, 92, 246, 0.7);
+    }
+    
+    .dark .bg-yellow-50 {
+      background-color: rgba(245, 158, 11, 0.15);
+      border-color: rgba(245, 158, 11, 0.7);
+    }
+    
+    .dark .bg-red-50 {
+      background-color: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.7);
+    }
+    
+    .dark .bg-indigo-50 {
+      background-color: rgba(99, 102, 241, 0.15);
+      border-color: rgba(99, 102, 241, 0.7);
+    }
+    
+    /* Color adjustments for colored text in dark mode */
+    .dark .text-blue-800 {
+      color: #93C5FD;
+    }
+    
+    .dark .text-green-800 {
+      color: #6EE7B7;
+    }
+    
+    .dark .text-purple-800 {
+      color: #C4B5FD;
+    }
+    
+    .dark .text-yellow-800 {
+      color: #FDE68A;
+    }
+    
+    .dark .text-red-800 {
+      color: #FCA5A5;
+    }
+    
+    .dark .text-indigo-800 {
+      color: #A5B4FC;
+    }
+    
+    /* Form controls for dark mode */
+    .dark select,
+    .dark input {
+      background-color: #374151;
+      border-color: #4B5563;
+      color: #F9FAFB;
+    }
+    
+    .dark select:focus,
+    .dark input:focus {
+      border-color: #60A5FA;
+      ring-color: #60A5FA;
+    }
+    
+    /* Tab styling for dark mode */
+    .tab {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s;
+    }
+    
+    .tab.active {
+      border-bottom: 2px solid #3B82F6;
+      color: #3B82F6;
+      font-weight: 600;
+    }
+    
+    .dark .tab.active {
+      border-bottom: 2px solid #60A5FA;
+      color: #60A5FA;
+    }
+    
+    .tab:hover {
+      background-color: rgba(59, 130, 246, 0.1);
+    }
+    
+    .dark .tab:hover {
+      background-color: rgba(96, 165, 250, 0.1);
+    }
+    
+    /* Toggle button for details */
+    .toggle-details {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.375rem 0.75rem;
+      border-radius: 0.375rem;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+    
+    .dark .toggle-details {
+      color: #60A5FA;
+    }
+    
+    .toggle-details:hover {
+      background-color: rgba(59, 130, 246, 0.1);
+    }
+    
+    .dark .toggle-details:hover {
+      background-color: rgba(96, 165, 250, 0.1);
+    }
+    
+    .toggle-details i {
+      margin-right: 0.375rem;
+      transition: transform 0.2s;
+    }
+    
+    .toggle-details.active i {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 transition-colors duration-200">
+  
+  <!-- Navbar -->
+  <nav class="bg-white dark:bg-gray-800 shadow-lg transition-colors duration-200">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex items-center">
+                <div class="flex-shrink-0">
+                    <svg id="logo-86" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="ccustom" fill-rule="evenodd" clip-rule="evenodd" d="M25.5557 11.6853C23.9112 10.5865 21.9778 10 20 10V0C23.9556 0 27.8224 1.17298 31.1114 3.37061C34.4004 5.56823 36.9638 8.69181 38.4776 12.3463C39.9913 16.0008 40.3874 20.0222 39.6157 23.9018C38.844 27.7814 36.9392 31.3451 34.1421 34.1421C31.3451 36.9392 27.7814 38.844 23.9018 39.6157C20.0222 40.3874 16.0008 39.9913 12.3463 38.4776C8.69181 36.9638 5.56823 34.4004 3.37061 31.1114C1.17298 27.8224 0 23.9556 0 20H10C10 21.9778 10.5865 23.9112 11.6853 25.5557C12.7841 27.2002 14.3459 28.4819 16.1732 29.2388C18.0004 29.9957 20.0111 30.1937 21.9509 29.8078C23.8907 29.422 25.6725 28.4696 27.0711 27.0711C28.4696 25.6725 29.422 23.8907 29.8078 21.9509C30.1937 20.0111 29.9957 18.0004 29.2388 16.1732C28.4819 14.3459 27.2002 12.7841 25.5557 11.6853Z" fill="#007DFC"></path><path class="ccustom" fill-rule="evenodd" clip-rule="evenodd" d="M10 5.16562e-07C10 1.31322 9.74135 2.61358 9.2388 3.82683C8.73625 5.04009 7.99966 6.14248 7.07107 7.07107C6.14249 7.99966 5.0401 8.73625 3.82684 9.2388C2.61358 9.74134 1.31322 10 5.4439e-06 10L5.00679e-06 20C2.62644 20 5.22716 19.4827 7.65368 18.4776C10.0802 17.4725 12.285 15.9993 14.1421 14.1421C15.9993 12.285 17.4725 10.0802 18.4776 7.65367C19.4827 5.22715 20 2.62643 20 -3.81469e-06L10 5.16562e-07Z" fill="#007DFC"></path></svg>
+                </div>
+                <div class="md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a class="text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                            Device Intelligence
+                        </a>
+                        <a href="https://syneticslz.github.io/MarketIntel/" 
+                           class="text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                            Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toggle dark mode button - more visible in both modes -->
+            <div class="flex items-center">
+                <button id="darkModeToggle" class="p-2 rounded-full focus:outline-none bg-gray-200 dark:bg-gray-700 transition-colors duration-300">
+                    <i class="fas fa-moon text-gray-700 dark:hidden"></i>
+                    <i class="fas fa-sun text-yellow-300 hidden dark:inline"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Dashboard Header -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Medicare Code Analysis Dashboard</h1>
+      <p class="mt-2 text-gray-600 dark:text-gray-300">Detailed analysis of reimbursement rates, payments, and market trends for each specific code.</p>
+    </div>
+    
+    <!-- Code Selection -->
+    <div class="mb-8 bg-white dark:bg-gray-800 rounded-lg shadow p-6 transition-colors duration-200">
+      <div class="flex flex-col md:flex-row justify-between items-center mb-4">
+        <h2 class="text-2xl font-bold dark:text-white">Code Analysis</h2>
+        <div class="flex items-center mt-4 md:mt-0">
+          <label for="codeSelect" class="mr-3 text-gray-700 dark:text-gray-300 font-medium">Select Code:</label>
+          <select id="codeSelect" class="border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 dark:bg-gray-700 dark:text-white">
+            <!-- Brain Neurostimulation Market Directory 618 -->
+            <option value="61885">61885 - Brain neurostimulator pulse device</option>
+            <option value="61888">61888 - Brain neurostimulator removal</option>
+            <option value="61889">61889 - Neurostimulator analysis/programming</option>
+            <option value="61891">61891 - Implant brain electrode</option>
+            <option value="61892">61892 - Revision brain electrode</option>
+            
+            <!-- Cranial Nerve Stimulation Market Directory 645 -->
+            <option value="64568">64568 - Cranial nerve neurostimulator</option>
+            <option value="64569">64569 - Revision of cranial nerve stimulator</option>
+            <option value="64570">64570 - Remove cranial nerve stimulator</option>
+            
+            <!-- Programming Market Directory 959 -->
+            <option value="95970">95970 - Electronic analysis of neurostimulator</option>
+            <option value="95976">95976 - Simple cranial nerve programming</option>
+            <option value="95977">95977 - Complex cranial nerve programming</option>
+            <option value="95983">95983 - Brain neurostimulator programming</option>
+          </select>
+        </div>
+      </div>
+      
+      <!-- Code Info Section - Improved for dark mode -->
+      <div id="codeInfoSection" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <h3 id="codeTitle" class="text-xl font-semibold mb-3 dark:text-white">Code 61885 - Brain neurostimulator pulse device</h3>
+          <div class="bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 border-l-4 border-blue-500 p-3 mb-4">
+            <p id="codeDescription" class="text-sm mt-1 dark:text-gray-300">Insertion or replacement of cranial neurostimulator pulse generator or receiver</p>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 transition-colors duration-200">
+              <p class="text-sm font-medium text-gray-500 dark:text-gray-300">2025 Reimbursement</p>
+              <p id="reimbursementValue" class="text-lg font-semibold dark:text-white">$527.57</p>
+              <p id="reimbursementChange" class="text-xs text-red-500 dark:text-red-400">-2.17% from 2024B</p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 transition-colors duration-200">
+              <p class="text-sm font-medium text-gray-500 dark:text-gray-300">2025 Device Payment</p>
+              <p id="paymentValue" class="text-lg font-semibold dark:text-white">$21,444.39</p>
+              <p id="paymentChange" class="text-xs text-green-500 dark:text-green-400">+2.89% from 2024B</p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 transition-colors duration-200">
+              <p class="text-sm font-medium text-gray-500 dark:text-gray-300">2025 Combined</p>
+              <p id="combinedValue" class="text-lg font-semibold dark:text-white">$21,971.96</p>
+              <p id="combinedChange" class="text-xs text-green-500 dark:text-green-400">+2.76% from 2024B</p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 transition-colors duration-200">
+              <p class="text-sm font-medium text-gray-500 dark:text-gray-300">Total Services - 2022 </p>
+              <p id="servicesValue" class="text-lg font-semibold dark:text-white">946</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400" id="beneficiariesValue">908 beneficiaries</p>
+            </div>
+          </div>
+          <!-- AI Summary with dark mode compatibility -->
+          <div class="mt-4 bg-gray-100 dark:bg-gray-700 p-3 rounded-lg transition-colors duration-200">
+            <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300">AI Summary</h4>
+            <p id="aiSummaryPreview" class="text-sm text-gray-600 dark:text-gray-400"></p>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-3 dark:text-white">2025 Value Breakdown</h3>
+          <div class="chart-container">
+            <canvas id="valueBreakdownChart"></canvas>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Chart Tabs - Dark mode compatible -->
+      <div class="border-b border-gray-200 dark:border-gray-700 mb-4">
+        <div class="flex overflow-x-auto space-x-4">
+          <div class="tab active" data-tab="historical">Historical Trend</div>
+          <div class="tab" data-tab="yearOverYear">Year-over-Year Change</div>
+          <div class="tab" data-tab="marketShare" style="display: none;">Market Share</div>
+        </div>
+      </div>
+      
+      <!-- Chart Containers -->
+      <div class="tab-content">
+        <div id="historical-tab" class="chart-container">
+          <canvas id="historicalChart"></canvas>
+        </div>
+        <div id="yearOverYear-tab" class="chart-container hidden">
+          <canvas id="yearOverYearChart"></canvas>
+        </div>
+        <div id="marketShare-tab" class="chart-container hidden">
+          <canvas id="marketShareChart"></canvas>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Code Details Tables - improved for dark mode -->
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold mb-4 dark:text-white">Code Categories</h2>
+      
+      <!-- Directory 618 Section -->
+      <div class="mb-6 bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden transition-colors duration-200">
+        <div class="p-4 bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 border-l-4 border-blue-500">
+          <h3 class="text-lg font-semibold dark:text-white">Directory 618 - Brain Neurostimulation</h3>
+        </div>
+        
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead class="bg-gray-50 dark:bg-gray-700">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Code</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Description</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Reimbursement</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Payment</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Combined</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">% Change</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+              <!-- 61885 -->
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white">61885</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300">Insertion of brain neurostimulator pulse device</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300">$527.57</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300">$21,444.39</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300">$21,971.96</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-red-500 dark:text-red-400">-2.17%</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                  <button class="toggle-details text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300" data-code="61885">
+                    <i class="fas fa-chevron-down"></i> Details
+                  </button>
+                </td>
+              </tr>
+              <tr class="details-row bg-gray-50 dark:bg-gray-700 collapsed" id="details-61885">
+                <td colspan="7" class="px-6 py-4">
+                  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 border-l-4 border-blue-500 hover:shadow-lg transition-shadow">
+                      <div class="flex items-center mb-3">
+                        <i class="fas fa-chart-line text-blue-500 dark:text-blue-400 mr-2"></i>
+                        <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Historical Data</h4>
+                      </div>
+                      <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+                          <thead class="bg-gray-100 dark:bg-gray-600">
+                            <tr>
+                              <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300">Year</th>
+                              <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300">Reimb.</th>
+                              <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300">Payment</th>
+                              <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300">Combined</th>
+                            </tr>
+                          </thead>
+                          <tbody class="divide-y divide-gray-200 dark:divide-gray-600" id="historicalTable-61885"></tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 border-l-4 border-blue-500 hover:shadow-lg transition-shadow">
+                      <div class="flex items-center mb-3">
+                        <i class="fas fa-info-circle text-blue-500 dark:text-blue-400 mr-2"></i>
+                        <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Market Information</h4>
+                      </div>
+                      <div class="space-y-2 text-sm text-gray-600 dark:text-gray-300" id="marketInfo-61885"></div>
+                      <div class="mt-4">
+                        <div class="flex items-center mb-2">
+                          <i class="fas fa-percentage text-blue-500 dark:text-blue-400 mr-2"></i>
+                          <h4 class="text-md font-semibold text-gray-800 dark:text-gray-100">YoY Change</h4>
+                        </div>
+                        <div class="space-y-1 text-sm" id="yoyChange-61885"></div>
+                      </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 border-l-4 border-blue-500 hover:shadow-lg transition-shadow">
+                      <div class="flex items-center mb-3">
+                        <i class="fas fa-robot text-blue-500 dark:text-blue-400 mr-2"></i>
+                        <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-100">AI Summary</h4>
+                      </div>
+                      <p class="text-sm text-gray-600 dark:text-gray-300" id="aiSummary-61885"></p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- More table rows would continue here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Directory 645 Section (showing format updates needed for other sections) -->
+      <div class="mb-6 bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden transition-colors duration-200">
+        <div class="p-4 bg-green-50 dark:bg-green-900 dark:bg-opacity-20 border-l-4 border-green-500">
+          <h3 class="text-lg font-semibold dark:text-white">Directory 645 - Cranial Nerve Stimulation</h3>
+        </div>
+        
+        <!-- Table content would go here with dark mode classes added -->
+      </div>
