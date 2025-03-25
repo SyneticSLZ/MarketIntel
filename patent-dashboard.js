@@ -1114,26 +1114,33 @@ groupPatentsByTitle(patents) {
                     data: [7,3]
                 }
             },
-            FlowMedical:  { /// afnjaohusa hfushfuiash fui ahufi haduifh uaidh fiasu hfiash ufias 
+            FlowMedical:  { 
                 applicants: {
-                    labels: [],
-                    data:  []
+                    labels: ['Flow Neuroscience Ab',
+                      
+                        
+                        'Flow Neuroscience Inc',
+                       
+                        
+                       ' Halo Neuro Inc'],
+                     
+                    data:  [  26,   19, 4]
                 },
                 publications: {
-                    years: [ ],
-                    data: []
+                    years: [ 2018,2019,2020,2021, 2022, 2023, 2024],
+                    data: [2,4,3,11,4,6,10,5]
                 },
                 legalStatus: {
-                    labels: [],
-                    data: []
+                    labels: ['Active', 'Pending'],
+                    data: [30,15]
                 },
                 jurisdictions: {
-                    labels: [],
-                    data: []
+                    labels: ['US', 'WIPO', 'EU','CHINA'],
+                    data: [27,4,9,5]
                 },
                 documentType: {
-                    labels: [],
-                    data: []
+                    labels: ['Patent Application', 'Granted Patents', 'Search Report'],
+                    data: [27,17,1]
                 }
             },
             PrecisisAG:  {
