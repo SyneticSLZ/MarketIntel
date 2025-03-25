@@ -108,7 +108,8 @@ export function renderStrategicAnalysis(companyName) {
     `;
   
     let trialsData = [];
-    if (companyName === 'Precisis AG') {
+    console.log(companyName , 'ahfisuahfas')
+    if (companyName === 'PrecisisAG') {
         trialsData = [
           {
             id: 'DRKS00015918',
