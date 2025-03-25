@@ -1334,6 +1334,7 @@ break
                     //     combinedNeuromodulationData.medtronic,
                     //     combinedNeuromodulationData.livanova
                     //   );
+                    initializeLivanovaCharts(data)
                     break;
                 case 'Medtronic':
                   initMedtronicCharts(data);
@@ -5231,6 +5232,488 @@ function generateFlowMedicalDashboard(data) {
     `;
 }
 
+function generateNeuroPaceDashboard() {
+  return `
+    <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white">
+      <!-- Header -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 mb-8">
+        <div class="flex flex-col md:flex-row justify-between items-start">
+          <div>
+            <h1 class="text-3xl font-bold mb-2">NeuroPace, Inc.</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300">RNS® System - Responsive Neurostimulation for Epilepsy</p>
+          </div>
+          <div class="text-right mt-4 md:mt-0">
+            <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Sources: Company Reports, SEC Filings</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Total Revenue (2024)</h3>
+          <p class="mt-2 text-3xl font-bold">$76.0M</p>
+          <p class="text-sm text-green-600 dark:text-green-400">+16.2% YoY</p>
+          <p class="text-xs text-gray-500 mt-2">Source: NeuroPace Annual Report</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Q4 Revenue (2024)</h3>
+          <p class="mt-2 text-3xl font-bold">$20.0M</p>
+          <p class="text-sm text-green-600 dark:text-green-400">+14.3% YoY</p>
+          <p class="text-xs text-gray-500 mt-2">Source: NeuroPace Q4 Report</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Gross Margin (2024)</h3>
+          <p class="mt-2 text-3xl font-bold">73.6%</p>
+          <p class="text-sm text-gray-600 dark:text-gray-300">vs 73.8% in 2023</p>
+          <p class="text-xs text-gray-500 mt-2">Source: NeuroPace Annual Report</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">2025 Revenue Guidance</h3>
+          <p class="mt-2 text-3xl font-bold">$87-91M</p>
+          <p class="text-sm text-green-600 dark:text-green-400">+14.5% to +19.7% YoY</p>
+          <p class="text-xs text-gray-500 mt-2">Source: NeuroPace Guidance</p>
+        </div>
+      </div>
+
+      <!-- RNS System Technology -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-6">RNS® System Technology</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <div class="flex items-center mb-4">
+              <div class="bg-purple-100 dark:bg-purple-900 rounded-lg p-3 mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600 dark:text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold">Responsive Neurostimulation</h3>
+            </div>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Target Population:</strong> Approximately 1 million U.S. patients with drug-resistant epilepsy, focusing on focal onset seizures</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Mechanism:</strong> Detects abnormal electrical patterns and delivers stimulation to normalize brain activity before seizures occur</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Distribution:</strong> Level 4 Comprehensive Epilepsy Centers (CECs)</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div class="flex items-center mb-4">
+              <div class="bg-blue-100 dark:bg-blue-900 rounded-lg p-3 mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 dark:text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold">Clinical Evidence</h3>
+            </div>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Post-Approval Study:</strong> 82% median reduction in seizure frequency over 3 years</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Recent Research:</strong> To be presented at American Academy of Neurology (AAN) meeting on April 7, 2025</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Device Longevity:</strong> Average battery life of RNS System ~11 years</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Section -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Revenue Trends</h2>
+          <div class="h-80">
+            <canvas id="neuropace-revenue-trends"></canvas>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">Source: NeuroPace Annual Reports 2021-2024</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Q4 2024 Implant Breakdown</h2>
+          <div class="h-80">
+            <canvas id="neuropace-implant-breakdown"></canvas>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">Source: NeuroPace Q4 2024 Report</p>
+        </div>
+      </div>
+
+      <!-- Second Charts Row -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Annual Growth Rates</h2>
+          <div class="h-80">
+            <canvas id="neuropace-growth-metrics"></canvas>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">Source: NeuroPace Annual Reports</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Financial Metrics</h2>
+          <div class="h-80">
+            <canvas id="neuropace-financial-metrics"></canvas>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">Source: NeuroPace Annual Reports 2022-2024</p>
+        </div>
+      </div>
+
+      <!-- Business Details -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Sales Growth Drivers</h2>
+          <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+            <li class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>Increased adoption at Level 4 CECs</span>
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>Expansion of commercial sales team in 2024</span>
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>Enhanced clinician education and patient referral programs</span>
+            </li>
+          </ul>
+          
+          <div class="mt-6">
+            <h3 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Market Opportunity:</h3>
+            <p class="text-gray-600 dark:text-gray-400">Approximately 575,000 U.S. patients with drug-resistant focal epilepsy</p>
+          </div>
+          
+          <div class="mt-4">
+            <h3 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Quarterly Performance:</h3>
+            <div class="text-sm text-gray-600 dark:text-gray-400">
+              <p>Q3 2024 Revenue: $19.4M (+13.5% YoY)</p>
+              <p>Q1-Q3 2024 Revenue: $56.0M (+16.9% YoY)</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Financial Health</h2>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Net Loss</h3>
+              <p class="mt-1 text-xl font-semibold">$27.6M</p>
+              <p class="text-xs text-green-600">Improved from $33.0M in 2023</p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Cash Position</h3>
+              <p class="mt-1 text-xl font-semibold">$141.9M</p>
+              <p class="text-xs text-gray-500">As of Dec 31, 2024</p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Operating Expenses</h3>
+              <p class="mt-1 text-xl font-semibold">$80.8M</p>
+              <p class="text-xs text-gray-500">2024 Total</p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">R&D Expenses</h3>
+              <p class="mt-1 text-xl font-semibold">$34.8M</p>
+              <p class="text-xs text-gray-500">43% of operating expenses</p>
+            </div>
+          </div>
+          
+          <div class="mt-4">
+            <h3 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Cash Runway:</h3>
+            <div class="bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 p-3 rounded-lg">
+              <p class="text-sm text-gray-600 dark:text-gray-300">With $141.9M cash on hand and improving cash burn, NeuroPace has runway into 2027 at current operating levels.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sources and Citations -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+        <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
+        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc pl-4">
+          <li>NeuroPace Q4 and Full-Year 2024 Financial Results</li>
+          <li>NeuroPace Annual Report 2024</li>
+          <li>NeuroPace Investor Presentation, Q4 2024</li>
+          <li>American Academy of Neurology (AAN) Meeting Abstract, 2025</li>
+          <li>Post-approval study data on RNS System efficacy</li>
+          <li>NeuroPace Revenue Guidance for 2025</li>
+          <li>Custom Market Insights, "Epilepsy Treatment Devices Market" (2024-2032)</li>
+          <li>NeuroPace Clinical Data Repository</li>
+        </ul>
+      </div>
+    </div>
+  `;
+}
+
+
+function generateXCOPRIDashboard() {
+  return `
+    <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white">
+      <!-- Header -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 mb-8">
+        <div class="flex flex-col md:flex-row justify-between items-start">
+          <div>
+            <h1 class="text-3xl font-bold mb-2">SK Biopharmaceuticals / SK Life Science</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300">XCOPRI® (cenobamate) Epilepsy Treatment</p>
+          </div>
+          <div class="text-right mt-4 md:mt-0">
+            <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Sources: Company Reports, Clinical Data</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Total Revenue (2024)</h3>
+          <p class="mt-2 text-3xl font-bold">$405.6M</p>
+          <p class="text-sm text-green-600 dark:text-green-400">+54.3% YoY</p>
+          <p class="text-xs text-gray-500 mt-2">Source: Korea Biomedical Review, Feb 5, 2025</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">U.S. XCOPRI Sales (2024)</h3>
+          <p class="mt-2 text-3xl font-bold">$325.0M</p>
+          <p class="text-sm text-green-600 dark:text-green-400">+62% YoY</p>
+          <p class="text-xs text-gray-500 mt-2">Source: Korea Biomedical Review, Feb 5, 2025</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Operating Profit (2024)</h3>
+          <p class="mt-2 text-3xl font-bold">$71.3M</p>
+          <p class="text-sm text-gray-600 dark:text-gray-300">First profitable year</p>
+          <p class="text-xs text-gray-500 mt-2">Source: Korea Biomedical Review, Feb 5, 2025</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Net Profit (2024)</h3>
+          <p class="mt-2 text-3xl font-bold">$168.1M</p>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Return to profitability</p>
+          <p class="text-xs text-gray-500 mt-2">Source: Korea Biomedical Review, Feb 5, 2025</p>
+        </div>
+      </div>
+
+      <!-- Product Details -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-6">XCOPRI® (Cenobamate) Overview</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <div class="flex items-center mb-4">
+              <div class="bg-orange-100 dark:bg-orange-900 rounded-lg p-3 mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-600 dark:text-orange-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold">Product Details</h3>
+            </div>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-orange-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Focus:</strong> Antiseizure medication for drug-resistant focal epilepsy</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-orange-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>FDA Approval:</strong> November 21, 2019</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-orange-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>U.S. Launch Date:</strong> May 2020</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-orange-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Patient Reach:</strong> 175,000+ patients as of September 30, 2024</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div class="flex items-center mb-4">
+
+
+
+<div class="bg-teal-100 dark:bg-teal-900 rounded-lg p-3 mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-600 dark:text-teal-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold">Clinical Evidence</h3>
+            </div>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-teal-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Phase 3 Northeast Asia:</strong> 100% seizure freedom at 400 mg dose vs. 25.9% placebo</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-teal-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Presentation Date:</strong> December 9, 2024 at AES Annual Meeting</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-teal-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Market Potential:</strong> $5B U.S. market (2024), $11.13B global market (2024)</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-teal-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>U.S. Market Share:</strong> ~6.5% (and growing)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Section -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Revenue Trends</h2>
+          <div class="h-80">
+            <canvas id="xcopri-revenue-trends"></canvas>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">Source: Company Reports 2022-2024</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">U.S. Sales Growth</h2>
+          <div class="h-80">
+            <canvas id="xcopri-us-sales-growth"></canvas>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">Source: SK Life Science Press Release, March 20, 2025</p>
+        </div>
+      </div>
+
+      <!-- Second Charts Row -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">U.S. Market Share</h2>
+          <div class="h-80">
+            <canvas id="xcopri-market-share"></canvas>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">Source: Towards Healthcare, 2024</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Revenue Breakdown</h2>
+          <div class="h-80">
+            <canvas id="xcopri-revenue-breakdown"></canvas>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">Source: Company Reports 2023-2024</p>
+        </div>
+      </div>
+
+      <!-- Business Insights -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Sales Growth Drivers</h2>
+          <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+            <li class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>U.S. prescription growth (175,000+ patients by Sep 2024)</span>
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>High gross margin (>90%)</span>
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>Expansion into new markets (e.g., Northeast Asia)</span>
+            </li>
+          </ul>
+          
+          <div class="mt-6">
+            <h3 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Quarterly Performance:</h3>
+            <div class="text-sm text-gray-600 dark:text-gray-400">
+              <p>Q3 2023 Revenue: $56.1M (+19.2% YoY)</p>
+              <p>Q4 2024 Revenue: $120.7M</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Future Outlook</h2>
+          <div class="grid grid-cols-1 gap-4">
+            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">2025 U.S. Sales Target</h3>
+              <p class="mt-1 text-xl font-semibold">$420-450M</p>
+              <p class="text-xs text-green-600">+29-38% YoY growth</p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Future Products Pipeline</h3>
+              <div class="mt-2 space-y-1 text-sm">
+                <p>• TPD, RPT, oncology expansion</p>
+                <p>• XCOPRI indications expansion by 2025-2026</p>
+                <p>• New markets: Korea, Japan NDA planned</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-4">
+            <h3 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Long-term Projection:</h3>
+            <div class="bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 p-3 rounded-lg">
+              <p class="text-sm text-gray-600 dark:text-gray-300">SK Biopharmaceuticals expects XCOPRI U.S. sales to reach $1 billion by 2029, representing substantial continued growth from current levels.</p>
+              <p class="text-xs text-gray-500 mt-2">Source: Yonhap News Agency</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sources and Citations -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+        <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
+        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc pl-4">
+          <li>Korea Biomedical Review, "SK biopharmaceuticals' annual profit hits record high driven by cenobamate sales growth" (Feb 5, 2025)</li>
+          <li>SK Biopharmaceuticals Press Release, "SK Biopharmaceuticals Announces 2024 Financial Results" (Feb 5, 2025)</li>
+          <li>SK Life Science Press Release, "175,000 Patients Treated with XCOPRI" (March 20, 2025)</li>
+          <li>Yonhap News Agency, "SK Biopharmaceuticals expects US$1 bln in U.S. sales in 2029"</li>
+          <li>American Epilepsy Society (AES) Annual Meeting Abstract, 2024</li>
+          <li>Ono Pharma Data Presentation (Dec 9, 2024)</li>
+          <li>Towards Healthcare, "Epilepsy Drugs Market Size Envisioned at USD 15.16 Billion by 2032"</li>
+          <li>XCOPRI cenobamate tablets prescription information</li>
+        </ul>
+      </div>
+    </div>
+  `;
+}
 
 function generateLivaNovaDashboard(data) {
   return `
@@ -5512,6 +5995,291 @@ function generateLivaNovaDashboard(data) {
     </div>
   `;
 }
+
+
+
+function initializeLivanovaCharts(data) {
+  const isDarkMode = document.documentElement.classList.contains('dark');
+  const textColor = isDarkMode ? '#ffffff' : '#666666';
+  const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
+
+  // Revenue by Region Chart
+  const revenueByRegionCtx = document.getElementById('livanova-revenue-by-region').getContext('2d');
+  new Chart(revenueByRegionCtx, {
+    type: 'bar',
+    data: {
+      labels: ['2022', '2023', '2024'],
+      datasets: [
+        {
+          label: 'United States',
+          data: [374.5, 407.5, 441.0],
+          backgroundColor: 'rgba(59, 130, 246, 0.8)',
+          borderColor: 'rgba(59, 130, 246, 1)',
+          borderWidth: 1
+        },
+        {
+          label: 'Europe',
+          data: [50.3, 57.4, 54.9],
+          backgroundColor: 'rgba(16, 185, 129, 0.8)',
+          borderColor: 'rgba(16, 185, 129, 1)',
+          borderWidth: 1
+        },
+        {
+          label: 'Rest of World',
+          data: [52.2, 54.8, 58.3],
+          backgroundColor: 'rgba(249, 115, 22, 0.8)',
+          borderColor: 'rgba(249, 115, 22, 1)',
+          borderWidth: 1
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          stacked: false,
+          ticks: { color: textColor },
+          grid: { color: gridColor }
+        },
+        y: {
+          stacked: false,
+          beginAtZero: true,
+          ticks: {
+            color: textColor,
+            callback: function(value) {
+              return '$' + value + 'M';
+            }
+          },
+          grid: { color: gridColor },
+          title: {
+            display: true,
+            text: 'Revenue (Millions USD)',
+            color: textColor
+          }
+        }
+      },
+      plugins: {
+        legend: { 
+          position: 'top',
+          labels: { color: textColor }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return context.dataset.label + ': $' + context.raw.toFixed(1) + 'M';
+            }
+          }
+        }
+      }
+    }
+  });
+  // Expenses Chart (continued)
+  const expensesCtx = document.getElementById('livanova-expenses').getContext('2d');
+  new Chart(expensesCtx, {
+    type: 'pie',
+    data: {
+      labels: ['Cost of Sales', 'SG&A', 'R&D'],
+      datasets: [{
+        data: [50.2, 187.6, 121.0],
+        backgroundColor: [
+          'rgba(59, 130, 246, 0.8)',
+          'rgba(16, 185, 129, 0.8)',
+          'rgba(249, 115, 22, 0.8)'
+        ],
+        borderColor: [
+          'rgba(59, 130, 246, 1)',
+          'rgba(16, 185, 129, 1)',
+          'rgba(249, 115, 22, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { labels: { color: textColor } },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const value = context.raw;
+              const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
+              const percentage = ((value / total) * 100).toFixed(1);
+              return `$${value.toFixed(1)}M (${percentage}%)`;
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // Performance Trend Chart
+  const performanceTrendCtx = document.getElementById('livanova-performance-trend').getContext('2d');
+  new Chart(performanceTrendCtx, {
+    type: 'line',
+    data: {
+      labels: ['2022', '2023', '2024'],
+      datasets: [
+        {
+          label: 'Revenue Growth (%)',
+          data: [null, 9.0, 6.6],
+          borderColor: 'rgba(59, 130, 246, 1)',
+          backgroundColor: 'rgba(59, 130, 246, 0.1)',
+          tension: 0.3,
+          fill: false
+        },
+        {
+          label: 'Segment Income Growth (%)',
+          data: [null, -11.2, 27.3],
+          borderColor: 'rgba(16, 185, 129, 1)',
+          backgroundColor: 'rgba(16, 185, 129, 0.1)',
+          tension: 0.3,
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: false,
+          ticks: {
+            color: textColor,
+            callback: function(value) {
+              return value + '%';
+            }
+          },
+          grid: { color: gridColor }
+        },
+        x: {
+          ticks: { color: textColor },
+          grid: { color: gridColor }
+        }
+      },
+      plugins: {
+        legend: { labels: { color: textColor } },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              if (context.raw === null) {
+                return `${context.dataset.label}: No data`;
+              }
+              return `${context.dataset.label}: ${context.raw}%`;
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // Revenue & Income Analysis Chart
+  const revenueIncomeCtx = document.getElementById('livanova-revenue-income').getContext('2d');
+  new Chart(revenueIncomeCtx, {
+    type: 'bar',
+    data: {
+      labels: ['2022', '2023', '2024'],
+      datasets: [
+        {
+          label: 'Total Revenue ($M)',
+          data: [477.0, 519.7, 554.2],
+          backgroundColor: 'rgba(59, 130, 246, 0.8)',
+          borderColor: 'rgba(59, 130, 246, 1)',
+          borderWidth: 1,
+          order: 2
+        },
+        {
+          label: 'Segment Income ($M)',
+          data: [172.8, 153.4, 195.3],
+          backgroundColor: 'rgba(16, 185, 129, 0.8)',
+          borderColor: 'rgba(16, 185, 129, 1)',
+          borderWidth: 1,
+          order: 1
+        },
+        {
+          label: 'Profit Margin (%)',
+          data: [36.2, 29.5, 35.2],
+          type: 'line',
+          fill: false,
+          borderColor: 'rgba(249, 115, 22, 1)',
+          backgroundColor: 'rgba(249, 115, 22, 0.1)',
+          borderWidth: 2,
+          tension: 0.4,
+          pointStyle: 'circle',
+          pointRadius: 5,
+          pointHoverRadius: 8,
+          yAxisID: 'y1',
+          order: 0
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          type: 'linear',
+          position: 'left',
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'USD ($M)',
+            color: textColor
+          },
+          ticks: {
+            color: textColor,
+            callback: function(value) {
+              return '$' + value + 'M';
+            }
+          },
+          grid: { color: gridColor }
+        },
+        y1: {
+          type: 'linear',
+          position: 'right',
+          beginAtZero: true,
+          max: 50,
+          title: {
+            display: true,
+            text: 'Profit Margin (%)',
+            color: textColor
+          },
+          ticks: {
+            color: textColor,
+            callback: function(value) {
+              return value + '%';
+            }
+          },
+          grid: {
+            drawOnChartArea: false,
+            color: gridColor
+          }
+        },
+        x: {
+          ticks: { color: textColor },
+          grid: { color: gridColor }
+        }
+      },
+      plugins: {
+        legend: { labels: { color: textColor } },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              if (context.dataset.label === 'Profit Margin (%)') {
+                return `${context.dataset.label}: ${context.raw}%`;
+              } else {
+                return `${context.dataset.label}: $${context.raw.toFixed(1)}M`;
+              }
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+
 // Update dashboard creation to use combined data
 function generateNeuromodulationEpilepsyDashboard(medtronicData, livanovaData) {
     return `

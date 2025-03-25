@@ -10,119 +10,104 @@ function destroyCharts() {
 }
 
 async function renderFDADashboard(companyName) {
+  // Declare variables in a broader scope
+  let loadingSpinner = document.getElementById('loading-spinner-fda');
+  let statsSkeleton = document.getElementById('stats-skeleton');
+
   try {
-    // Initialize page state with safe defaults
     window.pageState = {
       udi: { current: 1, size: 10 },
       pma: { current: 1, size: 10 }
     };
 
-    // Show loading states
-    const loadingSpinner = document.getElementById('loading-spinner-fda');
-    const statsSkeleton = document.getElementById('stats-skeleton');
-    
     if (loadingSpinner) loadingSpinner.classList.remove('hidden');
     if (statsSkeleton) statsSkeleton.classList.remove('hidden');
 
-    // Clear all tables on new load
     const tables = ['udiTable', 'pmaTable'];
     tables.forEach(tableId => {
       const table = document.getElementById(tableId);
       if (table) table.innerHTML = '';
     });
 
-    // Load and process data with proper error handling
     const data = await loadFDAData(companyName);
     console.log('FDA Data Loaded:', data);
 
-    // Normalize data structure to ensure we always have a consistent format
     const normalizedData = {
-      udi: { 
-        results: data.udi?.data || data.udi?.results || [] 
-      },
-      pma: { 
-        results: data.pma?.data || data.pma?.results || [] 
-      }
+      udi: { results: data.udi?.data || data.udi?.results || [] },
+      pma: { results: data.pma?.data || data.pma?.results || [] }
     };
 
-    // Store data globally for modal access with normalized structure
     window.globalFDAData = normalizedData;
-
     destroyCharts();
 
-    // Initialize components
     setupModal();
-    updateOverviewStats(normalizedData);
-    initializeCharts(normalizedData);
+    
+    const hasData = normalizedData.udi.results.length > 0 || normalizedData.pma.results.length > 0;
+    const isNeuroPace = companyName === "NeuroPace";
 
-    // Populate sections based on company
-    if (["Livanova", "Medtronic", "NeuroPace"].includes(companyName)) {
-      // UDI data (for LivaNova and Medtronic only)
-      try {
-        if (["Livanova", "Medtronic"].includes(companyName) && normalizedData.udi?.results?.length) {
+    // Hide all sections by default
+    ['udi-section', 'pma-section', '510k-section', 'registrations-section', 'adverse-section'].forEach(sectionId => {
+      const section = document.getElementById(sectionId);
+      if (section) section.classList.add('hidden');
+    });
+
+    if (hasData) {
+      updateOverviewStats(normalizedData);
+      initializeCharts(normalizedData);
+
+      document.getElementById('fdacharts').classList.remove('hidden');
+      document.getElementById('fdam').classList.remove('hidden');
+
+      if (["Livanova", "Medtronic"].includes(companyName) && normalizedData.udi.results.length) {
+        const udiSection = document.getElementById('udi-section');
+        if (udiSection) {
           populateUDIDevices(normalizedData.udi);
-          const udiSection = document.getElementById('udi-section');
-          if (udiSection) udiSection.classList.remove('hidden');
-        } else {
-          const udiSection = document.getElementById('udi-section');
-          if (udiSection) udiSection.classList.add('hidden');
+          udiSection.classList.remove('hidden');
         }
-      } catch (error) {
-        console.warn('Error populating UDI devices:', error);
       }
 
-      // PMA data (for all three companies)
-      try {
-        if (normalizedData.pma?.results?.length) {
+      if (["Livanova", "Medtronic", "NeuroPace"].includes(companyName) && normalizedData.pma.results.length) {
+        const pmaSection = document.getElementById('pma-section');
+        if (pmaSection) {
           populatePMA(normalizedData.pma);
-          const pmaSection = document.getElementById('pma-section');
-          if (pmaSection) pmaSection.classList.remove('hidden');
-        } else {
-          const pmaSection = document.getElementById('pma-section');
-          if (pmaSection) pmaSection.classList.add('hidden');
+          pmaSection.classList.remove('hidden');
         }
-      } catch (error) {
-        console.warn('Error populating PMA:', error);
       }
 
-      // Hide any other sections that might be in the HTML
-      ['510k-section', 'registrations-section', 'adverse-section'].forEach(sectionId => {
-        const section = document.getElementById(sectionId);
-        if (section) section.classList.add('hidden');
-      });
-
-      // Hide no-data message for companies with data
       const noDataMessage = document.getElementById('no-data-message');
       if (noDataMessage) noDataMessage.classList.add('hidden');
+
+      // Only show AI summary for NeuroPace if it has no UDI data
+      if (isNeuroPace && !normalizedData.udi.results.length) {
+        displayAISummary(companyName);
+      } else {
+        const summaryEl = document.getElementById('ai-summary');
+        if (summaryEl) summaryEl.innerHTML = '';
+      }
     } else {
-      // For companies with no data, show a message and AI summary
+      // For companies with no data, show only the no-data message and AI summary
       const noDataMessage = document.getElementById('no-data-message');
+      document.getElementById('fdacharts').classList.add('hidden');
+      document.getElementById('fdam').classList.add('hidden');
       if (noDataMessage) noDataMessage.classList.remove('hidden');
+
       
-      // Hide all data sections
-      ['pma-section', 'udi-section'].forEach(sectionId => {
+      ['udi-section', 'pma-section'].forEach(sectionId => {
         const section = document.getElementById(sectionId);
         if (section) section.classList.add('hidden');
       });
+
+      updateOverviewStats({ udi: { results: [] }, pma: { results: [] } }); // Reset stats to 0
+      displayAISummary(companyName); // Show AI summary only for no-data companies
     }
 
-    // Set up pagination handlers
     setupPaginationHandlers();
-
-    // Add AI summary
-    displayAISummary(companyName);
-
-    // Add table search functionality
     setupTableSearch();
 
   } catch (error) {
     console.error('Error rendering FDA dashboard:', error);
     showErrorState(error);
   } finally {
-    // Hide loading states
-    const loadingSpinner = document.getElementById('loading-spinner-fda');
-    const statsSkeleton = document.getElementById('stats-skeleton');
-    
     if (loadingSpinner) loadingSpinner.classList.add('hidden');
     if (statsSkeleton) statsSkeleton.classList.add('hidden');
   }
@@ -133,7 +118,6 @@ async function loadFDAData(companyName) {
     const data = {};
     
     if (["Livanova", "Medtronic"].includes(companyName)) {
-      // These companies have both UDI and PMA data
       try {
         data.udi = await fetch(`./data/${companyName}/udi.json`).then(res => res.json());
       } catch (error) {
@@ -148,15 +132,14 @@ async function loadFDAData(companyName) {
         data.pma = { data: [] };
       }
     } else if (companyName === "NeuroPace") {
-      // NeuroPace only has PMA data
       try {
         data.pma = await fetch(`./data/${companyName}/pma.json`).then(res => res.json());
       } catch (error) {
         console.warn(`Failed to load PMA data for ${companyName}:`, error);
         data.pma = { data: [] };
       }
+      data.udi = { data: [] }; // NeuroPace has no UDI data
     } else {
-      // For other companies, just return empty data sets
       data.udi = { data: [] };
       data.pma = { data: [] };
     }
@@ -164,7 +147,6 @@ async function loadFDAData(companyName) {
     return data;
   } catch (error) {
     console.error(`Failed to load FDA data: ${error.message}`);
-    // Return empty data sets instead of throwing an error
     return {
       udi: { data: [] },
       pma: { data: [] }
@@ -173,11 +155,9 @@ async function loadFDAData(companyName) {
 }
 
 function updateOverviewStats(data) {
-  // Set counters for UDI and PMA with null checks
   setElementTextSafely('totalUDI', data.udi?.results?.length || '0');
   setElementTextSafely('totalPMA', data.pma?.results?.length || '0');
   
-  // Hide the other stat elements if they exist
   const hiddenStats = ['total510k', 'totalRegistrations', 'totalAdverse'];
   hiddenStats.forEach(id => {
     const element = document.getElementById(id);
@@ -185,7 +165,131 @@ function updateOverviewStats(data) {
       element.parentElement.style.display = 'none';
     }
   });
+
+  // Specifically hide UDI stat for NeuroPace
+  if (window.globalFDAData?.udi.results.length === 0) {
+    const udiStat = document.getElementById('totalUDI');
+    if (udiStat && udiStat.parentElement) {
+      udiStat.parentElement.style.display = 'none';
+    }
+  }
 }
+
+function initializeCharts(data) {
+  if (typeof Chart === 'undefined') {
+    console.warn('Chart.js not found, skipping chart initialization');
+    return;
+  }
+
+  const chartContainers = [
+    'pma_timeline_chart',
+    'udi_distribution_chart',
+    'fda_safety_timeline_chart_101',
+    'fda_geographic_chart_102',
+    'fda_classification_chart_103',
+    'fda_portfolio_chart_104'
+  ];
+
+  // Hide all chart containers by default
+  chartContainers.forEach(id => {
+    const container = document.getElementById(id);
+    if (container && container.parentElement && container.parentElement.parentElement) {
+      container.parentElement.parentElement.style.display = 'none';
+    }
+  });
+
+  if (data.pma?.results?.length) {
+    const pmaTimelineCtx = document.getElementById('pma_timeline_chart');
+    if (pmaTimelineCtx) {
+      try {
+        const timelineData = processPMATimeline(data.pma.results);
+        const pmaTimelineChart = new Chart(pmaTimelineCtx, {
+          type: 'line',
+          data: {
+            labels: timelineData.labels,
+            datasets: [{
+              label: 'PMA Approvals',
+              data: timelineData.approvals,
+              borderColor: '#3B82F6',
+              backgroundColor: '#3B82F633',
+              fill: true,
+              tension: 0.4
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              tooltip: {
+                callbacks: {
+                  label: (context) => `Approvals: ${context.raw}`,
+                  afterBody: (context) => {
+                    const details = timelineData.details[context.dataIndex];
+                    return [
+                      '',
+                      'Devices:',
+                      ...details.devices.map(d => `• ${d.trade_name || d.device_name || 'Unknown Device'}`)
+                    ];
+                  }
+                }
+              },
+              legend: { position: 'top' }
+            },
+            scales: {
+              x: { title: { display: true, text: 'Year' } },
+              y: { title: { display: true, text: 'Number of Approvals' }, beginAtZero: true }
+            }
+          }
+        });
+        activeCharts.push(pmaTimelineChart);
+        pmaTimelineCtx.parentElement.parentElement.style.display = 'block';
+      } catch (error) {
+        console.warn('Error creating PMA timeline chart:', error);
+      }
+    }
+  }
+
+  if (data.udi?.results?.length) {
+    const udiDistCtx = document.getElementById('udi_distribution_chart');
+    if (udiDistCtx) {
+      try {
+        const distData = processUDIDistribution(data.udi.results);
+        const udiDistChart = new Chart(udiDistCtx, {
+          type: 'pie',
+          data: {
+            labels: distData.labels,
+            datasets: [{
+              data: distData.data,
+              backgroundColor: distData.colors
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              tooltip: {
+                callbacks: {
+                  label: (context) => {
+                    const label = context.label;
+                    const value = context.raw;
+                    const percentage = ((value / distData.total) * 100).toFixed(1);
+                    return `${label}: ${value} (${percentage}%)`;
+                  }
+                }
+              },
+              legend: { position: 'right' }
+            }
+          }
+        });
+        activeCharts.push(udiDistChart);
+        udiDistCtx.parentElement.parentElement.style.display = 'block';
+      } catch (error) {
+        console.warn('Error creating UDI distribution chart:', error);
+      }
+    }
+  }
+}
+
+// Rest of the functions remain largely unchanged, but here's the modified displayAISummary:
+
 
 // Helper function to safely set text content
 function setElementTextSafely(elementId, text) {
@@ -195,113 +299,113 @@ function setElementTextSafely(elementId, text) {
   }
 }
 
-function initializeCharts(data) {
-  // Only try to create charts if Chart.js is available
-  if (typeof Chart === 'undefined') {
-    console.warn('Chart.js not found, skipping chart initialization');
-    return;
-  }
+// function initializeCharts(data) {
+//   // Only try to create charts if Chart.js is available
+//   if (typeof Chart === 'undefined') {
+//     console.warn('Chart.js not found, skipping chart initialization');
+//     return;
+//   }
 
-  // 1. PMA Approval Timeline
-  const pmaTimelineCtx = document.getElementById('pma_timeline_chart');
-  if (pmaTimelineCtx && data.pma?.results?.length) {
-    try {
-      const timelineData = processPMATimeline(data.pma.results);
-      const pmaTimelineChart = new Chart(pmaTimelineCtx, {
-        type: 'line',
-        data: {
-          labels: timelineData.labels,
-          datasets: [{
-            label: 'PMA Approvals',
-            data: timelineData.approvals,
-            borderColor: '#3B82F6',
-            backgroundColor: '#3B82F633',
-            fill: true,
-            tension: 0.4
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            tooltip: {
-              callbacks: {
-                label: (context) => `Approvals: ${context.raw}`,
-                afterBody: (context) => {
-                  const details = timelineData.details[context.dataIndex];
-                  return [
-                    '',
-                    'Devices:',
-                    ...details.devices.map(d => `• ${d.trade_name || d.device_name || 'Unknown Device'}`)
-                  ];
-                }
-              }
-            },
-            legend: { position: 'top' }
-          },
-          scales: {
-            x: { title: { display: true, text: 'Year' } },
-            y: { title: { display: true, text: 'Number of Approvals' }, beginAtZero: true }
-          }
-        }
-      });
-      activeCharts.push(pmaTimelineChart);
-    } catch (error) {
-      console.warn('Error creating PMA timeline chart:', error);
-    }
-  }
+//   // 1. PMA Approval Timeline
+//   const pmaTimelineCtx = document.getElementById('pma_timeline_chart');
+//   if (pmaTimelineCtx && data.pma?.results?.length) {
+//     try {
+//       const timelineData = processPMATimeline(data.pma.results);
+//       const pmaTimelineChart = new Chart(pmaTimelineCtx, {
+//         type: 'line',
+//         data: {
+//           labels: timelineData.labels,
+//           datasets: [{
+//             label: 'PMA Approvals',
+//             data: timelineData.approvals,
+//             borderColor: '#3B82F6',
+//             backgroundColor: '#3B82F633',
+//             fill: true,
+//             tension: 0.4
+//           }]
+//         },
+//         options: {
+//           responsive: true,
+//           plugins: {
+//             tooltip: {
+//               callbacks: {
+//                 label: (context) => `Approvals: ${context.raw}`,
+//                 afterBody: (context) => {
+//                   const details = timelineData.details[context.dataIndex];
+//                   return [
+//                     '',
+//                     'Devices:',
+//                     ...details.devices.map(d => `• ${d.trade_name || d.device_name || 'Unknown Device'}`)
+//                   ];
+//                 }
+//               }
+//             },
+//             legend: { position: 'top' }
+//           },
+//           scales: {
+//             x: { title: { display: true, text: 'Year' } },
+//             y: { title: { display: true, text: 'Number of Approvals' }, beginAtZero: true }
+//           }
+//         }
+//       });
+//       activeCharts.push(pmaTimelineChart);
+//     } catch (error) {
+//       console.warn('Error creating PMA timeline chart:', error);
+//     }
+//   }
 
-  // 2. UDI Device Distribution (for LivaNova and Medtronic)
-  const udiDistCtx = document.getElementById('udi_distribution_chart');
-  if (udiDistCtx && data.udi?.results?.length) {
-    try {
-      const distData = processUDIDistribution(data.udi.results);
-      const udiDistChart = new Chart(udiDistCtx, {
-        type: 'pie',
-        data: {
-          labels: distData.labels,
-          datasets: [{
-            data: distData.data,
-            backgroundColor: distData.colors
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            tooltip: {
-              callbacks: {
-                label: (context) => {
-                  const label = context.label;
-                  const value = context.raw;
-                  const percentage = ((value / distData.total) * 100).toFixed(1);
-                  return `${label}: ${value} (${percentage}%)`;
-                }
-              }
-            },
-            legend: { position: 'right' }
-          }
-        }
-      });
-      activeCharts.push(udiDistChart);
-    } catch (error) {
-      console.warn('Error creating UDI distribution chart:', error);
-    }
-  }
+//   // 2. UDI Device Distribution (for LivaNova and Medtronic)
+//   const udiDistCtx = document.getElementById('udi_distribution_chart');
+//   if (udiDistCtx && data.udi?.results?.length) {
+//     try {
+//       const distData = processUDIDistribution(data.udi.results);
+//       const udiDistChart = new Chart(udiDistCtx, {
+//         type: 'pie',
+//         data: {
+//           labels: distData.labels,
+//           datasets: [{
+//             data: distData.data,
+//             backgroundColor: distData.colors
+//           }]
+//         },
+//         options: {
+//           responsive: true,
+//           plugins: {
+//             tooltip: {
+//               callbacks: {
+//                 label: (context) => {
+//                   const label = context.label;
+//                   const value = context.raw;
+//                   const percentage = ((value / distData.total) * 100).toFixed(1);
+//                   return `${label}: ${value} (${percentage}%)`;
+//                 }
+//               }
+//             },
+//             legend: { position: 'right' }
+//           }
+//         }
+//       });
+//       activeCharts.push(udiDistChart);
+//     } catch (error) {
+//       console.warn('Error creating UDI distribution chart:', error);
+//     }
+//   }
 
-  // Hide the other chart containers that might be in the HTML
-  const hiddenChartContainers = [
-    'fda_safety_timeline_chart_101',
-    'fda_geographic_chart_102',
-    'fda_classification_chart_103',
-    'fda_portfolio_chart_104'
-  ];
+//   // Hide the other chart containers that might be in the HTML
+//   const hiddenChartContainers = [
+//     'fda_safety_timeline_chart_101',
+//     'fda_geographic_chart_102',
+//     'fda_classification_chart_103',
+//     'fda_portfolio_chart_104'
+//   ];
   
-  hiddenChartContainers.forEach(id => {
-    const container = document.getElementById(id);
-    if (container && container.parentElement && container.parentElement.parentElement) {
-      container.parentElement.parentElement.style.display = 'none';
-    }
-  });
-}
+//   hiddenChartContainers.forEach(id => {
+//     const container = document.getElementById(id);
+//     if (container && container.parentElement && container.parentElement.parentElement) {
+//       container.parentElement.parentElement.style.display = 'none';
+//     }
+//   });
+// }
 
 function processPMATimeline(pmaData) {
   const yearlyData = pmaData.reduce((acc, item) => {
@@ -564,25 +668,25 @@ function displayAISummary(companyName) {
     "XCORPRI": `
       <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">AI Summary for XCOPRI (SK Biopharmaceuticals)</h3>
       <p class="text-gray-700 dark:text-gray-300">
-        XCOPRI has no PMA or UDI data because it is a pharmaceutical product (cenobamate), not a medical device, and thus falls under different FDA regulatory pathways (e.g., NDA). XCOPRI was approved in November 2019 for partial-onset seizures in adults, but this data is not captured in device-specific endpoints like PMA or UDI. The lack of device data aligns with XCOPRI's classification as a drug, which is outside the scope of this dashboard's focus on device approvals.
+        XCOPRI has no PMA or UDI data because it is a pharmaceutical product (cenobamate), not a medical device, and thus falls under different FDA regulatory pathways (e.g., NDA). XCOPRI was approved in November 2019 for partial-onset seizures in adults, but this data is not captured in device-specific endpoints like PMA or UDI.
       </p>
     `,
     "Precisis AG": `
       <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">AI Summary for Precisis AG</h3>
       <p class="text-gray-700 dark:text-gray-300">
-        Precisis AG has no FDA PMA or UDI data as of March 2025 because its EASEE System, while promising, has not yet received FDA approval. The company received a Breakthrough Device Designation in 2022 and has CE Mark approval in Europe (2022), but U.S. clinical trials are still ongoing. The absence of FDA data reflects its early-stage status in the U.S. market, though its minimally invasive approach to epilepsy treatment suggests future potential.
+        Precisis AG has no FDA PMA or UDI data as of March 2025 because its EASEE System has not yet received FDA approval. The company received a Breakthrough Device Designation in 2022 and has CE Mark approval in Europe (2022), but U.S. clinical trials are ongoing.
       </p>
     `,
     "EpiMinder": `
       <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">AI Summary for Epi-Minder</h3>
       <p class="text-gray-700 dark:text-gray-300">
-        Epi-Minder lacks FDA PMA or UDI data because its sub-scalp EEG monitor is still in the clinical trial phase, primarily in Australia, with no FDA approvals as of March 2025. The device aims to provide long-term seizure monitoring, which could complement epilepsy treatments, but its pre-approval status explains the absence of FDA data. Epi-Minder's focus on monitoring rather than direct treatment may also limit its immediate relevance to device approval pathways.
+        Epi-Minder lacks FDA PMA or UDI data because its sub-scalp EEG monitor is still in the clinical trial phase in Australia, with no FDA approvals as of March 2025. The device aims to provide long-term seizure monitoring.
       </p>
     `,
     "FlowMedical": `
       <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">AI Summary for Flow Medical/Flow Neuroscience</h3>
       <p class="text-gray-700 dark:text-gray-300">
-        Flow Medical/Flow Neuroscience has no FDA PMA or UDI data for epilepsy applications because its Flow tDCS headset is primarily approved in Europe for depression, not epilepsy. While tDCS has potential for epilepsy treatment by modulating brain excitability, no FDA trials or approvals exist for this indication as of March 2025. The lack of data reflects its current focus on depression and the early stage of exploration for epilepsy applications.
+        Flow Medical/Flow Neuroscience has no FDA PMA or UDI data for epilepsy applications because its Flow tDCS headset is approved in Europe for depression, not epilepsy, with no FDA approvals for this indication as of March 2025.
       </p>
     `
   };
@@ -592,6 +696,7 @@ function displayAISummary(companyName) {
     <p class="text-gray-700 dark:text-gray-300">No summary available for ${companyName}.</p>
   `;
 }
+
 
 function setupTableSearch() {
   const searchConfigs = [
