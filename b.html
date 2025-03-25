@@ -6,14 +6,14 @@
     <title>Competitor List - Enterprise Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Configure Tailwind with Starkey's colors
+        // Configure Tailwind with colors
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         starkey: {
-                            blue: '#0072CE', // Main blue from Starkey's website
+                            blue: '#0072CE',
                             dark: '#1a1a1a',
                             gray: '#4A5568'
                         }
@@ -22,65 +22,45 @@
             }
         }
     </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         /* Dark mode transitions */
         .dark-mode-transition {
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         
-        /* Improved select styling for dark mode */
-        select {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right 0.5rem center;
-            background-repeat: no-repeat;
-            background-size: 1.5em 1.5em;
-            padding-right: 2.5rem;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-        }
-        
-        .dark select {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-        }
-
         /* Card hover effects */
-        .metric-card {
+        .company-card {
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         
-        .metric-card:hover {
+        .company-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
         
-        /* Responsive table styles */
+        /* Mobile styles */
         @media (max-width: 768px) {
-            .responsive-table-card {
-                display: flex;
-                flex-direction: column;
-                margin-bottom: 1rem;
-                break-inside: avoid;
+            .mobile-card {
+                display: block;
             }
-            
-            .responsive-table-header {
-                font-weight: bold;
-                margin-bottom: 0.25rem;
-            }
-            
-            .table-hidden {
+            .desktop-table {
                 display: none;
             }
-            
-            .table-visible {
+        }
+        
+        /* Desktop styles */
+        @media (min-width: 769px) {
+            .mobile-card {
+                display: none;
+            }
+            .desktop-table {
                 display: block;
             }
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 transition-colors duration-200">
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200">
     <!-- Navigation -->
     <nav class="bg-white dark:bg-gray-800 shadow-lg transition-colors duration-200">
         <div class="max-w-7xl mx-auto px-4">
@@ -89,76 +69,40 @@
                     <div class="flex-shrink-0">
                         <svg id="logo-86" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="ccustom" fill-rule="evenodd" clip-rule="evenodd" d="M25.5557 11.6853C23.9112 10.5865 21.9778 10 20 10V0C23.9556 0 27.8224 1.17298 31.1114 3.37061C34.4004 5.56823 36.9638 8.69181 38.4776 12.3463C39.9913 16.0008 40.3874 20.0222 39.6157 23.9018C38.844 27.7814 36.9392 31.3451 34.1421 34.1421C31.3451 36.9392 27.7814 38.844 23.9018 39.6157C20.0222 40.3874 16.0008 39.9913 12.3463 38.4776C8.69181 36.9638 5.56823 34.4004 3.37061 31.1114C1.17298 27.8224 0 23.9556 0 20H10C10 21.9778 10.5865 23.9112 11.6853 25.5557C12.7841 27.2002 14.3459 28.4819 16.1732 29.2388C18.0004 29.9957 20.0111 30.1937 21.9509 29.8078C23.8907 29.422 25.6725 28.4696 27.0711 27.0711C28.4696 25.6725 29.422 23.8907 29.8078 21.9509C30.1937 20.0111 29.9957 18.0004 29.2388 16.1732C28.4819 14.3459 27.2002 12.7841 25.5557 11.6853Z" fill="#007DFC"></path><path class="ccustom" fill-rule="evenodd" clip-rule="evenodd" d="M10 5.16562e-07C10 1.31322 9.74135 2.61358 9.2388 3.82683C8.73625 5.04009 7.99966 6.14248 7.07107 7.07107C6.14249 7.99966 5.0401 8.73625 3.82684 9.2388C2.61358 9.74134 1.31322 10 5.4439e-06 10L5.00679e-06 20C2.62644 20 5.22716 19.4827 7.65368 18.4776C10.0802 17.4725 12.285 15.9993 14.1421 14.1421C15.9993 12.285 17.4725 10.0802 18.4776 7.65367C19.4827 5.22715 20 2.62643 20 -3.81469e-06L10 5.16562e-07Z" fill="#007DFC"></path></svg>
                     </div>
-                    <div class="hidden md:block"> 
+                    <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
-                            <a href="./indexold.html" style="display: none;" class="text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Dashboard</a>
-                            <a href="./index.html" class="bg-starkey-blue text-white px-3 py-2 rounded-md text-sm font-medium">Companies</a>
-                            <a href="./an.html" class="text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Device Intelligence</a>
-                            <a href="./startups.html" style="display: none;" class="text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Startups</a>
-                            <a href="./reports.html" style="display: none;" class="text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-4 rounded-md text-sm font-medium transition-colors duration-200">Reports</a>
-                            <a href="./settings.html" style="display: none;" class="text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Settings</a>
+                            <a href="#" class="bg-starkey-blue text-white px-3 py-2 rounded-md text-sm font-medium">Companies</a>
+                            <a href="#" class="text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Device Intelligence</a>
                         </div>
                     </div>
                 </div>
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center">
                     <!-- Dark Mode Toggle -->
                     <button id="dark-mode-toggle" class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
                         <i class="fas fa-sun dark:hidden"></i>
                         <i class="fas fa-moon hidden dark:inline"></i>
                     </button>
-                    <div class="flex items-center" style="display: none;">
-                        <button class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-                            <i class="fas fa-bell"></i>
-                        </button>
-                        <button class="ml-2 p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-                            <i class="fas fa-user-circle"></i>
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-200">
+    <main class="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-200 pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <!-- Header with Filters -->
+            <!-- Header -->
             <div class="mb-6">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
-                    <h1 class="text-3xl font-bold text-gray-900 dark:text-white transition-colors duration-200">Competitor Analysis</h1>
-                    <div class="flex flex-wrap gap-2">
-                        <div class="relative">
-                            <select class="pl-3 pr-10 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-starkey-blue focus:border-starkey-blue">
-                                <option>All Markets</option>
-                                <option>Epilepsy</option>
-                                <option>Neuromodulation</option>
-                            </select>
-                        </div>
-                        <div class="relative">
-                            <select class="pl-3 pr-10 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-starkey-blue focus:border-starkey-blue">
-                                <option>All Companies</option>
-                                <option>Key Competitors</option>
-                                <option>Emerging Threats</option>
-                            </select>
-                        </div>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fas fa-search text-gray-400"></i>
-                            </div>
-                            <input type="text" placeholder="Search companies..." class="pl-10 pr-4 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-starkey-blue focus:border-starkey-blue">
-                        </div>
-                    </div>
-                </div>
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white transition-colors duration-200">Competitor Analysis</h1>
             </div>
 
-            <!-- Mobile View (Cards) -->
-            <div class="md:hidden space-y-4">
-                <!-- LivaNova Card -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+            <!-- Mobile Cards View -->
+            <div class="mobile-card space-y-4">
+                <!-- LivaNova -->
+                <div class="company-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
                     <div class="p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-750">
                         <div class="flex justify-between items-center">
                             <h3 class="font-bold text-gray-900 dark:text-white">LivaNova</h3>
-                            <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full flex items-center">
+                            <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full">
                                 <i class="fas fa-bolt mr-1"></i> Key Player
                             </span>
                         </div>
@@ -169,197 +113,236 @@
                             <p class="text-sm text-gray-700 dark:text-gray-300">Announced wind-down of ACS segment (2024) to focus on neuromodulation; new AES 2024 data on VNS Therapy</p>
                         </div>
                         <div class="grid grid-cols-2 gap-2 mb-4">
-                            <div class="metric-card bg-gray-50 dark:bg-gray-750 rounded-lg p-3">
+                            <div class="bg-gray-50 dark:bg-gray-750 rounded-lg p-3">
                                 <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">2023 Revenue</div>
                                 <div class="font-semibold text-gray-900 dark:text-white flex items-center">
                                     <i class="fas fa-chart-line text-green-500 mr-1"></i> ~$500M
                                 </div>
-                                <div class="metric-card bg-gray-50 dark:bg-gray-750 rounded-lg p-3">
-                                    <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">Growth</div>
-                                    <div class="font-semibold text-gray-900 dark:text-white flex items-center">
-                                        <i class="fas fa-arrow-up text-green-500 mr-1"></i> 9%
-                                    </div>
-                                </div>
-                                <div class="metric-card bg-gray-50 dark:bg-gray-750 rounded-lg p-3">
-                                    <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">Estimated Implants</div>
-                                    <div class="font-semibold text-gray-900 dark:text-white flex items-center">
-                                        <i class="fas fa-hospital-user text-blue-500 mr-1"></i> 5,000-7,000
-                                    </div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-gray-750 rounded-lg p-3">
+                                <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">Growth</div>
+                                <div class="font-semibold text-gray-900 dark:text-white flex items-center">
+                                    <i class="fas fa-arrow-up text-green-500 mr-1"></i> 9%
                                 </div>
                             </div>
-                            <button onclick="app.showQuickView(1)" class="w-full bg-starkey-blue hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center">
-                                <i class="fas fa-chart-bar mr-2"></i> View Details
-                            </button>
+                            <div class="bg-gray-50 dark:bg-gray-750 rounded-lg p-3">
+                                <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">Estimated Implants</div>
+                                <div class="font-semibold text-gray-900 dark:text-white flex items-center">
+                                    <i class="fas fa-hospital-user text-blue-500 mr-1"></i> 5,000-7,000
+                                </div>
+                            </div>
                         </div>
+                        <button class="w-full bg-starkey-blue hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center">
+                            <i class="fas fa-chart-bar mr-2"></i> View Details
+                        </button>
                     </div>
-    
-                    <!-- Medtronic Card -->
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
-                        <div class="p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-750">
-                            <div class="flex justify-between items-center">
-                                <h3 class="font-bold text-gray-900 dark:text-white">Medtronic</h3>
-                                <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs px-2 py-1 rounded-full flex items-center">
-                                    <i class="fas fa-building mr-1"></i> Enterprise
-                                </span>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <div class="mb-3">
-                                <div class="text-xs uppercase text-gray-500 dark:text-gray-400 font-medium mb-1">Recent Activities</div>
-                                <p class="text-sm text-gray-700 dark:text-gray-300">FDA approval for Percept™ RC DBS (Jan 2024); AES 2024 research</p>
-                            </div>
-                            <div class="grid grid-cols-2 gap-2 mb-4">
-                                <div class="metric-card bg-gray-50 dark:bg-gray-750 rounded-lg p-3">
-                                    <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">2023 Revenue</div>
-                                    <div class="font-semibold text-gray-900 dark:text-white flex items-center">
-                                        <i class="fas fa-chart-line text-green-500 mr-1"></i> ~$10-20M
-                                    </div>
-                                </div>
-                                <div class="metric-card bg-gray-50 dark:bg-gray-750 rounded-lg p-3">
-                                    <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">Growth</div>
-                                    <div class="font-semibold text-gray-900 dark:text-white flex items-center">
-                                        <i class="fas fa-arrow-up text-yellow-500 mr-1"></i> Low-single digit
-                                    </div>
-                                </div>
-                                <div class="metric-card bg-gray-50 dark:bg-gray-750 rounded-lg p-3">
-                                    <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">Registry Patients</div>
-                                    <div class="font-semibold text-gray-900 dark:text-white flex items-center">
-                                        <i class="fas fa-users text-blue-500 mr-1"></i> 69
-                                    </div>
-                                </div>
-                            </div>
-                            <button onclick="app.showQuickView(2)" class="w-full bg-starkey-blue hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center">
-                                <i class="fas fa-chart-bar mr-2"></i> View Details
-                            </button>
-                        </div>
-                    </div>
-    
-                    <!-- More mobile cards would go here -->
                 </div>
-    
-                <!-- Desktop Table View -->
-                <div class="hidden md:block bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-colors duration-200">
-                    <div class="overflow-x-auto">
-                        <table class="w-full divide-y divide-gray-200 dark:divide-gray-700">
-                            <thead class="bg-gray-50 dark:bg-gray-750">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Company
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Recent Activities
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Quick Metrics
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Actions
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700" id="competitor-table-body">
-                                <!-- LivaNova -->
-                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-150">
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-                                                <span class="text-blue-600 dark:text-blue-300 font-bold">LN</span>
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900 dark:text-white">LivaNova</div>
-                                                <div class="text-sm text-gray-500 dark:text-gray-400 flex items-center">
-                                                    <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-0.5 rounded-full">Key Player</span>
-                                                </div>
+
+                <!-- Medtronic -->
+                <div class="company-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                    <div class="p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-750">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-bold text-gray-900 dark:text-white">Medtronic</h3>
+                            <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs px-2 py-1 rounded-full">
+                                <i class="fas fa-building mr-1"></i> Enterprise
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="mb-3">
+                            <div class="text-xs uppercase text-gray-500 dark:text-gray-400 font-medium mb-1">Recent Activities</div>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">FDA approval for Percept™ RC DBS (Jan 2024); AES 2024 research</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="bg-gray-50 dark:bg-gray-750 rounded-lg p-3">
+                                <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">2023 Revenue</div>
+                                <div class="font-semibold text-gray-900 dark:text-white flex items-center">
+                                    <i class="fas fa-chart-line text-green-500 mr-1"></i> ~$10-20M
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-gray-750 rounded-lg p-3">
+                                <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">Growth</div>
+                                <div class="font-semibold text-gray-900 dark:text-white flex items-center">
+                                    <i class="fas fa-arrow-up text-yellow-500 mr-1"></i> Low-single digit
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-gray-750 rounded-lg p-3">
+                                <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">Registry Patients</div>
+                                <div class="font-semibold text-gray-900 dark:text-white flex items-center">
+                                    <i class="fas fa-users text-blue-500 mr-1"></i> 69
+                                </div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-starkey-blue hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center">
+                            <i class="fas fa-chart-bar mr-2"></i> View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- NeuroPace -->
+                <div class="company-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                    <div class="p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-750">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-bold text-gray-900 dark:text-white">NeuroPace</h3>
+                            <span class="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs px-2 py-1 rounded-full">
+                                <i class="fas fa-star mr-1"></i> Competitor
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="mb-3">
+                            <div class="text-xs uppercase text-gray-500 dark:text-gray-400 font-medium mb-1">Recent Activities</div>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">FDA clearance for Detect-Only Mode (Mar 2025); new data in Epilepsia (Jan 2024)</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="bg-gray-50 dark:bg-gray-750 rounded-lg p-3">
+                                <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">2023 Revenue</div>
+                                <div class="font-semibold text-gray-900 dark:text-white flex items-center">
+                                    <i class="fas fa-chart-line text-green-500 mr-1"></i> $51.8M
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-gray-750 rounded-lg p-3">
+                                <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">Growth</div>
+                                <div class="font-semibold text-gray-900 dark:text-white flex items-center">
+                                    <i class="fas fa-arrow-up text-green-500 mr-1"></i> 35%
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-gray-750 rounded-lg p-3">
+                                <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">New Patients</div>
+                                <div class="font-semibold text-gray-900 dark:text-white flex items-center">
+                                    <i class="fas fa-user-plus text-blue-500 mr-1"></i> 237
+                                </div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-starkey-blue hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center">
+                            <i class="fas fa-chart-bar mr-2"></i> View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desktop Table View -->
+            <div class="desktop-table bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-colors duration-200">
+                <div class="overflow-x-auto">
+                    <table class="w-full divide-y divide-gray-200 dark:divide-gray-700">
+                        <thead class="bg-gray-50 dark:bg-gray-750">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    Company
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    Recent Activities
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    Quick Metrics
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                            <!-- LivaNova -->
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-150">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
+                                            <span class="text-blue-600 dark:text-blue-300 font-bold">LN</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900 dark:text-white">LivaNova</div>
+                                            <div class="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                                                <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-0.5 rounded-full">Key Player</span>
                                             </div>
                                         </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900 dark:text-white">Wind-down of ACS segment (2024)</div>
-                                        <div class="text-sm text-gray-500 dark:text-gray-400">Focus on neuromodulation; new AES 2024 data</div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="flex flex-wrap gap-2">
-                                            <div class="bg-green-100 dark:bg-green-900 px-2 py-1 rounded-full flex items-center text-sm">
-                                                <i class="fas fa-dollar-sign text-green-600 dark:text-green-400 mr-1"></i>
-                                                <span class="text-green-800 dark:text-green-200">~$500M</span>
-                                            </div>
-                                            <div class="bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded-full flex items-center text-sm">
-                                                <i class="fas fa-arrow-trend-up text-blue-600 dark:text-blue-400 mr-1"></i>
-                                                <span class="text-blue-800 dark:text-blue-200">9% Growth</span>
-                                            </div>
-                                            <div class="bg-purple-100 dark:bg-purple-900 px-2 py-1 rounded-full flex items-center text-sm">
-                                                <i class="fas fa-hospital-user text-purple-600 dark:text-purple-400 mr-1"></i>
-                                                <span class="text-purple-800 dark:text-purple-200">5-7K Implants</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-900 dark:text-white">Wind-down of ACS segment (2024)</div>
+                                    <div class="text-sm text-gray-500 dark:text-gray-400">Focus on neuromodulation; new AES 2024 data</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex flex-wrap gap-2">
+                                        <div class="bg-green-100 dark:bg-green-900 px-2 py-1 rounded-full flex items-center text-sm">
+                                            <i class="fas fa-dollar-sign text-green-600 dark:text-green-400 mr-1"></i>
+                                            <span class="text-green-800 dark:text-green-200">~$500M</span>
+                                        </div>
+                                        <div class="bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded-full flex items-center text-sm">
+                                            <i class="fas fa-arrow-up text-blue-600 dark:text-blue-400 mr-1"></i>
+                                            <span class="text-blue-800 dark:text-blue-200">9% Growth</span>
+                                        </div>
+                                        <div class="bg-purple-100 dark:bg-purple-900 px-2 py-1 rounded-full flex items-center text-sm">
+                                            <i class="fas fa-hospital-user text-purple-600 dark:text-purple-400 mr-1"></i>
+                                            <span class="text-purple-800 dark:text-purple-200">5-7K Implants</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-starkey-blue hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-starkey-blue transition-colors duration-200">
+                                        <i class="fas fa-chart-bar mr-2"></i> View
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Medtronic -->
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-150">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center">
+                                            <span class="text-purple-600 dark:text-purple-300 font-bold">MD</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900 dark:text-white">Medtronic</div>
+                                            <div class="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                                                <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs px-2 py-0.5 rounded-full">Enterprise</span>
                                             </div>
                                         </div>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button onclick="app.showQuickView(1)" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-starkey-blue hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-starkey-blue transition-colors duration-200">
-                                            <i class="fas fa-chart-bar mr-2"></i> View
-                                        </button>
-                                    </td>
-                                </tr>
-                                
-                                <!-- Medtronic -->
-                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-150">
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center">
-                                                <span class="text-purple-600 dark:text-purple-300 font-bold">MD</span>
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900 dark:text-white">Medtronic</div>
-                                                <div class="text-sm text-gray-500 dark:text-gray-400 flex items-center">
-                                                    <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs px-2 py-0.5 rounded-full">Enterprise</span>
-                                                </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-900 dark:text-white">FDA approval for Percept™ RC DBS (Jan 2024)</div>
+                                    <div class="text-sm text-gray-500 dark:text-gray-400">AES 2024 research presented</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex flex-wrap gap-2">
+                                        <div class="bg-green-100 dark:bg-green-900 px-2 py-1 rounded-full flex items-center text-sm">
+                                            <i class="fas fa-dollar-sign text-green-600 dark:text-green-400 mr-1"></i>
+                                            <span class="text-green-800 dark:text-green-200">~$10-20M</span>
+                                        </div>
+                                        <div class="bg-yellow-100 dark:bg-yellow-900 px-2 py-1 rounded-full flex items-center text-sm">
+                                            <i class="fas fa-arrow-up text-yellow-600 dark:text-yellow-400 mr-1"></i>
+                                            <span class="text-yellow-800 dark:text-yellow-200">Low growth</span>
+                                        </div>
+                                        <div class="bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded-full flex items-center text-sm">
+                                            <i class="fas fa-users text-blue-600 dark:text-blue-400 mr-1"></i>
+                                            <span class="text-blue-800 dark:text-blue-200">69 Patients</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-starkey-blue hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-starkey-blue transition-colors duration-200">
+                                        <i class="fas fa-chart-bar mr-2"></i> View
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- NeuroPace -->
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-150">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-red-100 dark:bg-red-900 flex items-center justify-center">
+                                            <span class="text-red-600 dark:text-red-300 font-bold">NP</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900 dark:text-white">NeuroPace</div>
+                                            <div class="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                                                <span class="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs px-2 py-0.5 rounded-full">Competitor</span>
                                             </div>
                                         </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900 dark:text-white">FDA approval for Percept™ RC DBS (Jan 2024)</div>
-                                        <div class="text-sm text-gray-500 dark:text-gray-400">AES 2024 research presented</div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="flex flex-wrap gap-2">
-                                            <div class="bg-green-100 dark:bg-green-900 px-2 py-1 rounded-full flex items-center text-sm">
-                                                <i class="fas fa-dollar-sign text-green-600 dark:text-green-400 mr-1"></i>
-                                                <span class="text-green-800 dark:text-green-200">~$10-20M</span>
-                                            </div>
-                                            <div class="bg-yellow-100 dark:bg-yellow-900 px-2 py-1 rounded-full flex items-center text-sm">
-                                                <i class="fas fa-arrow-trend-up text-yellow-600 dark:text-yellow-400 mr-1"></i>
-                                                <span class="text-yellow-800 dark:text-yellow-200">Low growth</span>
-                                            </div>
-                                            <div class="bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded-full flex items-center text-sm">
-                                                <i class="fas fa-users text-blue-600 dark:text-blue-400 mr-1"></i>
-                                                <span class="text-blue-800 dark:text-blue-200">69 Patients</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button onclick="app.showQuickView(2)" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-starkey-blue hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-starkey-blue transition-colors duration-200">
-                                            <i class="fas fa-chart-bar mr-2"></i> View
-                                        </button>
-                                    </td>
-                                </tr>
-                                
-                                <!-- NeuroPace -->
-                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-150">
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-red-100 dark:bg-red-900 flex items-center justify-center">
-                                                <span class="text-red-600 dark:text-red-300 font-bold">NP</span>
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900 dark:text-white">NeuroPace</div>
-                                                <div class="text-sm text-gray-500 dark:text-gray-400 flex items-center">
-                                                    <span class="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs px-2 py-0.5 rounded-full">Competitor</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900 dark:text-white">FDA clearance for Detect-Only Mode (Mar 2025)</div>
-                                        <div class="text-sm text-gray-500 dark:text-gray-400">New data in Epilepsia (Jan 2024)</div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-900 dark:text-white">FDA clearance for Detect-Only Mode (Mar 2025)</div>
+                                    <div class="text-sm text-gray-500 dark:text-gray-400">New data in Epilepsia (Jan 2024)</div>
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex flex-wrap gap-2">
@@ -368,7 +351,7 @@
                                             <span class="text-green-800 dark:text-green-200">$51.8M</span>
                                         </div>
                                         <div class="bg-green-100 dark:bg-green-900 px-2 py-1 rounded-full flex items-center text-sm">
-                                            <i class="fas fa-arrow-trend-up text-green-600 dark:text-green-400 mr-1"></i>
+                                            <i class="fas fa-arrow-up text-green-600 dark:text-green-400 mr-1"></i>
                                             <span class="text-green-800 dark:text-green-200">35% Growth</span>
                                         </div>
                                         <div class="bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded-full flex items-center text-sm">
@@ -378,325 +361,122 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 text-right">
-                                    <button onclick="app.showQuickView(3)" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-starkey-blue hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-starkey-blue transition-colors duration-200">
+                                    <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-starkey-blue hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-starkey-blue transition-colors duration-200">
                                         <i class="fas fa-chart-bar mr-2"></i> View
                                     </button>
                                 </td>
                             </tr>
                             
-                            <!-- Other companies would follow the same pattern -->
+                            <!-- XCOPRI -->
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-150">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center">
+                                            <span class="text-green-600 dark:text-green-300 font-bold">XC</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900 dark:text-white">XCOPRI (SK Biopharmaceuticals)</div>
+                                            <div class="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                                                <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-2 py-0.5 rounded-full">Pharmaceutical</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-900 dark:text-white">100,000 patients treated globally (Mar 2024)</div>
+                                    <div class="text-sm text-gray-500 dark:text-gray-400">R&D expansion plans</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex flex-wrap gap-2">
+                                        <div class="bg-green-100 dark:bg-green-900 px-2 py-1 rounded-full flex items-center text-sm">
+                                            <i class="fas fa-dollar-sign text-green-600 dark:text-green-400 mr-1"></i>
+                                            <span class="text-green-800 dark:text-green-200">$303M</span>
+                                        </div>
+                                        <div class="bg-green-100 dark:bg-green-900 px-2 py-1 rounded-full flex items-center text-sm">
+                                            <i class="fas fa-arrow-up text-green-600 dark:text-green-400 mr-1"></i>
+                                            <span class="text-green-800 dark:text-green-200">49% Growth</span>
+                                        </div>
+                                        <div class="bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded-full flex items-center text-sm">
+                                            <i class="fas fa-users text-blue-600 dark:text-blue-400 mr-1"></i>
+                                            <span class="text-blue-800 dark:text-blue-200">30,000 U.S. Patients</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-starkey-blue hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-starkey-blue transition-colors duration-200">
+                                        <i class="fas fa-chart-bar mr-2"></i> View
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Precisis AG -->
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-150">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center">
+                                            <span class="text-indigo-600 dark:text-indigo-300 font-bold">PA</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900 dark:text-white">Precisis AG</div>
+                                            <div class="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                                                <span class="bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs px-2 py-0.5 rounded-full">Research</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-900 dark:text-white">CE certification (Sep 2022)</div>
+                                    <div class="text-sm text-gray-500 dark:text-gray-400">UK market entry planned (Q2 2024)</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex flex-wrap gap-2">
+                                        <div class="bg-indigo-100 dark:bg-indigo-900 px-2 py-1 rounded-full flex items-center text-sm">
+                                            <i class="fas fa-money-bill-wave text-indigo-600 dark:text-indigo-400 mr-1"></i>
+                                            <span class="text-indigo-800 dark:text-indigo-200">€20M Funding</span>
+                                        </div>
+                                        <div class="bg-yellow-100 dark:bg-yellow-900 px-2 py-1 rounded-full flex items-center text-sm">
+                                            <i class="fas fa-flask text-yellow-600 dark:text-yellow-400 mr-1"></i>
+                                            <span class="text-yellow-800 dark:text-yellow-200">40 Trial Patients</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-starkey-blue hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-starkey-blue transition-colors duration-200">
+                                        <i class="fas fa-chart-bar mr-2"></i> View
+                                    </button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="bg-gray-50 dark:bg-gray-750 px-4 py-3 flex items-center justify-between border-t border-gray-200 dark:border-gray-700 sm:px-6">
-                    <div class="flex-1 flex justify-between sm:hidden">
-                        <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
-                            Previous
-                        </a>
-                        <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
-                            Next
-                        </a>
-                    </div>
-                    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-                        <div>
-                            <p class="text-sm text-gray-700 dark:text-gray-300">
-                                Showing <span class="font-medium">1</span> to <span class="font-medium">7</span> of <span class="font-medium">7</span> results
-                            </p>
-                        </div>
-                        <div>
-                            <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                                <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700">
-                                    <span class="sr-only">Previous</span>
-                                    <i class="fas fa-chevron-left"></i>
-                                </a>
-                                <a href="#" aria-current="page" class="z-10 bg-starkey-blue border-starkey-blue text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium">
-                                    1
-                                </a>
-                                <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700">
-                                    <span class="sr-only">Next</span>
-                                    <i class="fas fa-chevron-right"></i>
-                                </a>
-                            </nav>
-                        </div>
-                    </div>
+                <div class="bg-gray-50 dark:bg-gray-750 px-4 py-3 border-t border-gray-200 dark:border-gray-700">
+                    <p class="text-sm text-gray-700 dark:text-gray-300">
+                        Showing 5 of 7 entries
+                    </p>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Quick View Modal -->
-    <div id="quick-view-modal" class="fixed inset-0 bg-gray-500 dark:bg-gray-900 bg-opacity-75 dark:bg-opacity-90 hidden transition-all duration-200 z-50">
-        <div class="flex items-center justify-center min-h-screen p-4">
-            <div class="bg-white dark:bg-gray-800 rounded-lg max-w-4xl w-full mx-4 shadow-xl transition-all duration-200 overflow-hidden">
-                <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white transition-colors duration-200" id="modal-company-name">Competitor Details</h3>
-                    <button onclick="app.hideQuickView()" class="text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-300 transition-colors duration-200">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
-                </div>
-                <div class="p-6" id="quick-view-content">
-                    <!-- Quick view content will be inserted here -->
-                    <div class="animate-pulse">
-                        <div class="flex space-x-4 mb-6">
-                            <div class="rounded-full bg-gray-200 dark:bg-gray-700 h-12 w-12"></div>
-                            <div class="flex-1 space-y-4">
-                                <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
-                                <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
-                            </div>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full"></div>
-                            <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full"></div>
-                            <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                            <div class="h-32 bg-gray-200 dark:bg-gray-700 rounded"></div>
-                            <div class="h-32 bg-gray-200 dark:bg-gray-700 rounded"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex justify-end p-6 border-t border-gray-200 dark:border-gray-700 gap-3">
-                    <button onclick="app.hideQuickView()" class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
-                        Close
-                    </button>
-                    <button class="px-4 py-2 bg-starkey-blue hover:bg-blue-700 text-white rounded-md shadow-sm transition-colors duration-200">
-                        Full Report
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <!-- Simple Dark Mode Toggle Script -->
     <script>
-        // Enhanced Dark mode functionality
+        // Only keep darkmode toggle functionality
         document.addEventListener('DOMContentLoaded', function() {
-            // Check system preference initially
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            // Check for saved preference
             const savedDarkMode = localStorage.getItem('darkMode');
             
-            // Set initial dark mode based on saved preference or system preference
-            if (savedDarkMode !== null) {
-                if (savedDarkMode === 'true') {
-                    document.documentElement.classList.add('dark');
-                }
-            } else if (prefersDark) {
+            // Set initial dark mode
+            if (savedDarkMode === 'true') {
                 document.documentElement.classList.add('dark');
-                localStorage.setItem('darkMode', 'true');
             }
 
-            // Dark mode toggle functionality
+            // Dark mode toggle button
             const darkModeToggle = document.getElementById('dark-mode-toggle');
             darkModeToggle.addEventListener('click', function() {
                 document.documentElement.classList.toggle('dark');
                 const isDark = document.documentElement.classList.contains('dark');
                 localStorage.setItem('darkMode', isDark);
-                
-                // Update button aria-label for accessibility
-                this.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
             });
-
-            // Listen for system dark mode changes
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-                if (localStorage.getItem('darkMode') === null) {
-                    if (e.matches) {
-                        document.documentElement.classList.add('dark');
-                    } else {
-                        document.documentElement.classList.remove('dark');
-                    }
-                }
-            });
-        });
-
-        // App functionality for quick view
-        const app = {
-            showQuickView: function(id) {
-                // In a real application, you'd fetch data based on the ID
-                document.getElementById('quick-view-modal').classList.remove('hidden');
-                document.getElementById('quick-view-modal').classList.add('flex');
-                document.body.classList.add('overflow-hidden');
-                
-                // Dummy content based on ID - in production this would be AJAX loaded
-                const companies = {
-                    1: {name: 'LivaNova', type: 'Key Player'},
-                    2: {name: 'Medtronic', type: 'Enterprise'},
-                    3: {name: 'NeuroPace', type: 'Competitor'},
-                    4: {name: 'XCOPRI', type: 'Pharmaceutical'},
-                    5: {name: 'Epi-Minder', type: 'Startup'},
-                    6: {name: 'Flow Medical', type: 'Emerging Threat'},
-                    7: {name: 'Precisis AG', type: 'Research'}
-                };
-                
-                if (companies[id]) {
-                    document.getElementById('modal-company-name').textContent = companies[id].name;
-                    
-                    // In production, you would load real data here
-                    setTimeout(() => {
-                        const companyData = this.getDummyCompanyData(id);
-                        document.getElementById('quick-view-content').innerHTML = companyData;
-                    }, 500);
-                }
-            },
-            
-            hideQuickView: function() {
-                document.getElementById('quick-view-modal').classList.add('hidden');
-                document.getElementById('quick-view-modal').classList.remove('flex');
-                document.body.classList.remove('overflow-hidden');
-            },
-            
-            getDummyCompanyData: function(id) {
-                // This would be replaced by real data in production
-                return `
-                    <div class="space-y-6">
-                        <div class="flex items-center space-x-4">
-                            <div class="h-16 w-16 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-                                <span class="text-blue-600 dark:text-blue-300 text-2xl font-bold">LN</span>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold text-gray-900 dark:text-white">Company Overview</h4>
-                                <p class="text-gray-500 dark:text-gray-400">Global medical technology company specializing in neuromodulation</p>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="bg-gray-50 dark:bg-gray-750 rounded-lg p-4">
-                                <h5 class="font-medium text-gray-900 dark:text-white mb-3">Financial Metrics</h5>
-                                <div class="space-y-2">
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-500 dark:text-gray-400">Revenue (2023)</span>
-                                        <span class="font-medium text-gray-900 dark:text-white">$495.7M</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-500 dark:text-gray-400">YoY Growth</span>
-                                        <span class="font-medium text-green-600 dark:text-green-400">+9.2%</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-500 dark:text-gray-400">Market Share</span>
-                                        <span class="font-medium text-gray-900 dark:text-white">32%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-gray-50 dark:bg-gray-750 rounded-lg p-4">
-                                <h5 class="font-medium text-gray-900 dark:text-white mb-3">Product Performance</h5>
-                                <div class="space-y-2">
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-500 dark:text-gray-400">Devices Implanted</span>
-                                        <span class="font-medium text-gray-900 dark:text-white">5,843</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-500 dark:text-gray-400">Patient Satisfaction</span>
-                                        <span class="font-medium text-gray-900 dark:text-white">87%</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-500 dark:text-gray-400">Efficacy Rate</span>
-                                        <span class="font-medium text-gray-900 dark:text-white">76%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <h5 class="font-medium text-gray-900 dark:text-white mb-3">Recent Developments</h5>
-                            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-                                <li class="flex items-start">
-                                    <i class="fas fa-circle-check text-green-500 mt-1 mr-2"></i>
-                                    <span>Announced strategic refocus on neuromodulation business (Q4 2023)</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-circle-check text-green-500 mt-1 mr-2"></i>
-                                    <span>Presented favorable long-term outcomes data at AES 2024 conference</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-circle-check text-green-500 mt-1 mr-2"></i>
-                                    <span>Wind-down of Advanced Circulatory Support (ACS) business unit</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-circle-check text-green-500 mt-1 mr-2"></i>
-                                    <span>Expanded partnership with EEG monitoring company for integrated solutions</span>
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <h5 class="font-medium text-gray-900 dark:text-white mb-3">Competitive Strengths</h5>
-                                <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-                                    <li class="flex items-start">
-                                        <i class="fas fa-plus-circle text-blue-500 mt-1 mr-2"></i>
-                                        <span>Well-established treatment pathway with neurologists</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <i class="fas fa-plus-circle text-blue-500 mt-1 mr-2"></i>
-                                        <span>Strong clinical evidence base with long-term data</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <i class="fas fa-plus-circle text-blue-500 mt-1 mr-2"></i>
-                                        <span>Global infrastructure and distribution channels</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            
-                            <div>
-                                <h5 class="font-medium text-gray-900 dark:text-white mb-3">Competitive Weaknesses</h5>
-                                <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-                                    <li class="flex items-start">
-                                        <i class="fas fa-minus-circle text-red-500 mt-1 mr-2"></i>
-                                        <span>Legacy technology platform with limited sensing capabilities</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <i class="fas fa-minus-circle text-red-500 mt-1 mr-2"></i>
-                                        <span>Slower innovation cycle compared to pure-play competitors</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <i class="fas fa-minus-circle text-red-500 mt-1 mr-2"></i>
-                                        <span>Limited connectivity and data analytics offerings</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-        };
-        
-        // Responsive Table Setup
-        document.addEventListener('DOMContentLoaded', function() {
-            const checkResponsive = () => {
-                const tableRows = document.querySelectorAll('#competitor-table-body tr');
-                if (window.innerWidth < 768) {
-                    // Mobile view - add attributes for mobile styling
-                    tableRows.forEach(row => {
-                        row.classList.add('responsive-table-card');
-                    });
-                } else {
-                    // Desktop view - remove mobile styling
-                    tableRows.forEach(row => {
-                        row.classList.remove('responsive-table-card');
-                    });
-                }
-            };
-            
-            // Run on load and on resize
-            checkResponsive();
-            window.addEventListener('resize', checkResponsive);
-            
-            // Add search functionality
-            const searchInput = document.querySelector('input[type="text"]');
-            if (searchInput) {
-                searchInput.addEventListener('input', function() {
-                    const searchTerm = this.value.toLowerCase();
-                    const tableRows = document.querySelectorAll('#competitor-table-body tr');
-                    
-                    tableRows.forEach(row => {
-                        const companyName = row.querySelector('td:first-child').textContent.toLowerCase();
-                        if (companyName.includes(searchTerm)) {
-                            row.style.display = '';
-                        } else {
-                            row.style.display = 'none';
-                        }
-                    });
-                });
-            }
         });
     </script>
 </body>
