@@ -171,7 +171,7 @@
                         " class="tab-button text-starkey-blue dark:text-blue-400 whitespace-nowrap py-4 px-1 border-b-2 border-starkey-blue font-medium text-sm transition-colors duration-200">
                         Market Analysis
                     </button>
-                    <button style="display: none;" class="tab-button text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm transition-colors duration-200">
+                    <button  class="tab-button text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm transition-colors duration-200">
                         FDA Product Portfolio
                     </button>
                     <button class="tab-button text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm transition-colors duration-200">
@@ -995,10 +995,179 @@
                     </div>
                     </div> -->
 
-             
+        <!-- Loading Spinner -->
+
+ <!-- FDA Dashboard Container -->
+<div id="product-portfolio-content" class="fda-dashboard">
+    <!-- Loading Spinner -->
+    <div id="loading-spinner-fda" class="flex justify-center items-center mb-6">
+      <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
+    </div>
+  
+    <!-- No Data Message - Initially Hidden -->
+    <div id="no-data-message" class="hidden bg-yellow-50 dark:bg-yellow-900 p-4 rounded-lg mb-6">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <svg class="h-5 w-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <div class="ml-3">
+          <h3 class="text-sm font-medium text-yellow-800 dark:text-yellow-100">No FDA Device Data Available</h3>
+          <div class="mt-2 text-sm text-yellow-700 dark:text-yellow-200">
+            <p>This company doesn't have FDA device approval data. See the AI summary below for more information.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- FDA Dashboard Content -->
+    <div id=" fda-dashboard" class="space-y-6">
+      <!-- Overview Statistics Skeleton -->
+      <div id="stats-skeleton" class="grid grid-cols-1 md:grid-cols-2 gap-4 animate-pulse">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
+          <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+          <div class="mt-2 h-8 bg-gray-200 dark:bg-gray-700 rounded"></div>
+          <div class="mt-1 h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
+          <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+          <div class="mt-2 h-8 bg-gray-200 dark:bg-gray-700 rounded"></div>
+          <div class="mt-1 h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
+        </div>
+      </div>
+  
+      <!-- Main Stats Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
+          <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Total UDI Devices</h3>
+          <p id="totalUDI" class="mt-2 text-3xl font-semibold dark:text-white">-</p>
+          <p class="text-sm text-blue-600 dark:text-blue-400">Active registrations</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
+          <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">PMA Approvals</h3>
+          <p id="totalPMA" class="mt-2 text-3xl font-semibold dark:text-white">-</p>
+          <p class="text-sm text-green-600 dark:text-green-400">Total approvals</p>
+        </div>
+      </div>
+  
+      <!-- AI Summary Section -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+        <div id="ai-summary" class="prose dark:prose-invert max-w-none">
+          <!-- AI summary content will be inserted here -->
+        </div>
+      </div>
+  
+      <!-- Charts Section -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- UDI Distribution Chart -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+          <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+            <h3 class="text-lg font-medium dark:text-white">UDI Device Distribution</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400">By medical specialty</p>
+          </div>
+          <div class="p-4">
+            <canvas id="udi_distribution_chart" class="w-full" height="300"></canvas>
+          </div>
+        </div>
+  
+        <!-- PMA Timeline Chart -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+          <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+            <h3 class="text-lg font-medium dark:text-white">PMA Approval Timeline</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Yearly approvals</p>
+          </div>
+          <div class="p-4">
+            <canvas id="pma_timeline_chart" class="w-full" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+  
+      <!-- UDI Devices Section -->
+      <div id="udi-section" class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
+        <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-medium dark:text-white">UDI Device Listings</h3>
+            <input type="text" id="udiSearch" placeholder="Search devices..." class="px-4 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300">
+          </div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead class="bg-gray-50 dark:bg-gray-700">
+              <tr>
+                <th scope="col" colspan="5" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Device Information</th>
+              </tr>
+            </thead>
+            <tbody id="udiTable" class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700"></tbody>
+          </table>
+          <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex justify-between items-center">
+              <div class="text-sm text-gray-500 dark:text-gray-400">
+                Showing <span id="udiPageStart">1</span> to <span id="udiPageEnd">10</span> of <span id="udiTotal">0</span>
+              </div>
+              <div class="flex space-x-2">
+                <button id="udiPrevPage" class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">Previous</button>
+                <button id="udiNextPage" class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- PMA Section -->
+      <div id="pma-section" class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
+        <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-medium dark:text-white">PMA Approvals</h3>
+            <input type="text" id="pmaSearch" placeholder="Search approvals..." class="px-4 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300">
+          </div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead class="bg-gray-50 dark:bg-gray-700">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Device</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">PMA Number</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Decision Date</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Decision</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="pmaTable" class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700"></tbody>
+          </table>
+          <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex justify-between items-center">
+              <div class="text-sm text-gray-500 dark:text-gray-400">
+                Showing <span id="pmaPageStart">1</span> to <span id="pmaPageEnd">10</span> of <span id="pmaTotal">0</span>
+              </div>
+              <div class="flex space-x-2">
+                <button id="pmaPrevPage" class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">Previous</button>
+                <button id="pmaNextPage" class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Modal -->
+    <div id="detail-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-2xl w-full">
+        <div class="flex justify-between items-center mb-4">
+          <h3 id="modal-title" class="text-xl font-semibold dark:text-white"></h3>
+          <button id="modal-close" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <div id="modal-content" class="overflow-y-auto max-h-[70vh]"></div>
+      </div>
+    </div>
+  </div>
                 
 <!-- FDA Dashboard Tab Content -->
-<div id="product-portfolio-content" class="space-y-6 " >
+<div id="prodct-portfolio-content" class="space-y-6 hidden" >
     <!-- Overview Statistics -->
     <div id="stats-skeleton" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 animate-pulse">
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4">

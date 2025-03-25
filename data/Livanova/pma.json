@@ -1,43 +1,7 @@
 {
   "status": "success",
-  "count": 100,
+  "count": 177,
   "data": [
-    {
-      "pma_number": "P970003",
-      "supplement_number": "S018",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Real-Time Process",
-      "supplement_reason": "Change Design/Components/Specifications/Material",
-      "expedited_review_flag": "N",
-      "date_received": "1999-01-19",
-      "decision_date": "1999-02-18",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "Approval for the Model 250 NCP Programming Software Version 4.4 (for use with Model 100 NCP Pulse Generator Versions B and C).",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
     {
       "pma_number": "P970003",
       "supplement_number": "S136",
@@ -328,42 +292,6 @@
     },
     {
       "pma_number": "P970003",
-      "supplement_number": "S033",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Special (Immediate Track)",
-      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
-      "expedited_review_flag": "N",
-      "date_received": "2001-05-07",
-      "decision_date": "2001-06-07",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "APPROVAL FOR LABELING CHANGES.  THE CHANGES ARE INTENDED TO: 1) ADD A WARNING THAT RECOMMENDS THAT PHYSICIANS USE CARE WHEN TREATING PATIENTS WITH PRE-EXISTING OBSTRUCTIVE SLEEP APNEA (OSA), AND  2) ADD AND STRENGTHEN PRECAUTIONS REGARDING: A) ELECTROSURGERY, B) THERAPEUTIC ULTRASOUND, C) EXPOSURE TO ENVIRONMENTS THAT ARE PROTECTED BY A WARNING NOTICE PREVENTING ENTRY BY PATIENTS WITH AN IMPLANTED PACEMAKER, AND D) APPLICATION OF OTHER THERAPIES INVOLVING ELECTRIC CURRENT, SUCH AS TENS DEVICES.",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
       "supplement_number": "S121",
       "applicant": "LivaNova USA, Inc.",
       "street_1": "100 Cyberonics Blvd.",
@@ -421,42 +349,6 @@
       "docket_number": "",
       "decision_code": "APPR",
       "ao_statement": "APPROVAL FOR CHANGES TO BATTERY LONGEVITY DESIGN REQUIREMENTS AND RELATED LABELING OF BATTERY LONGEVITY TABLES FOR YOUR MODEL 102 AND 102R PULSE GENERATORS.",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
-      "supplement_number": "S051",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Normal 180 Day Track",
-      "supplement_reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
-      "expedited_review_flag": "N",
-      "date_received": "2004-02-24",
-      "decision_date": "2004-04-29",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "APPROVAL FOR AN ALTERNATIVE STERILIZATION PROCESS (HYDROGEN PEROXIDE GAS PLASMA USING THE STERRAD 200 GMP STERILIZER) FOR THE MODEL 302 LEAD AND MODEL 502 ACCESSORY PACK AND APPROVAL FOR A THREE YEAR SHELF LIFE FOR THE MODEL 302 LEAD AND MODEL 502 ACCESSORY PACK.",
       "openfda": {
         "registration_number": [
           "1644487"
@@ -905,78 +797,6 @@
     },
     {
       "pma_number": "P970003",
-      "supplement_number": "S014",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Special (Immediate Track)",
-      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
-      "expedited_review_flag": "N",
-      "date_received": "1998-12-21",
-      "decision_date": "1999-01-20",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "Approval for labeling changes being made to the Model 100 NCP PUlse Generator Physician's Manual, the Model 300 NCP Bipolar Lead Physician's Manual, and the Patient's Manual for the NCP System.",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
-      "supplement_number": "S042",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Real-Time Process",
-      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
-      "expedited_review_flag": "N",
-      "date_received": "2002-05-01",
-      "decision_date": "2002-07-29",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "APPROVAL FOR MINOR LABELING MODIFICATIONS TO THE EXISTING MODEL 100/101 NCP PULSE GENERATOR PHYSICIAN'S MANUAL.",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
       "supplement_number": "S228",
       "applicant": "LivaNova USA, Inc.",
       "street_1": "100 Cyberonics Blvd.",
@@ -1157,42 +977,6 @@
     },
     {
       "pma_number": "P970003",
-      "supplement_number": "S167",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
-      "trade_name": "MODEL 201 PROGRAMMING WAND",
-      "product_code": "MUZ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "30-Day Notice",
-      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
-      "expedited_review_flag": "N",
-      "date_received": "2013-12-03",
-      "decision_date": "2014-01-02",
-      "docket_number": "",
-      "decision_code": "OK30",
-      "ao_statement": "REPLACE THE CAPACITOR USED IN THE ASSEMBLY OF THE PRINTED CIRCUIT BOARDS FOR THE PROGRAMMING WAND.",
-      "openfda": {
-        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3",
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ]
-      }
-    },
-    {
-      "pma_number": "P970003",
       "supplement_number": "S234",
       "applicant": "LivaNova USA, Inc.",
       "street_1": "100 Cyberonics Blvd.",
@@ -1214,42 +998,6 @@
       "docket_number": "",
       "decision_code": "APPR",
       "ao_statement": "Approval for changes to the M3000 Programming Software (from M3000 v1.6.1.9 to M3000 v1.6.2.0).",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
-      "supplement_number": "S011",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "30-Day Notice",
-      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
-      "expedited_review_flag": "N",
-      "date_received": "1998-10-01",
-      "decision_date": "1998-10-16",
-      "docket_number": "",
-      "decision_code": "OK30",
-      "ao_statement": "The 30-day Notice requested that a welding process be added to the firms' internal manufacturing capabilities.  This process is equivalent to the welding process already performed by Cyberonics' subcontractors.  The process is being brougth in-house in order to simplify the manufacturing process, improve control of product flow, and improve product availability.",
       "openfda": {
         "registration_number": [
           "1644487"
@@ -1301,42 +1049,6 @@
     },
     {
       "pma_number": "P970003",
-      "supplement_number": "S005",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROTHESIS SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Real-Time Process",
-      "supplement_reason": "Change Design/Components/Specifications/Material",
-      "expedited_review_flag": "N",
-      "date_received": "1997-09-16",
-      "decision_date": "1997-10-09",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "Approval for the modified NCP(R) System Lead Connector Boot Design and the NCP(R) System Programming Software Version 4.1.",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
       "supplement_number": "S101",
       "applicant": "LivaNova USA, Inc.",
       "street_1": "100 Cyberonics Blvd.",
@@ -1358,114 +1070,6 @@
       "docket_number": "",
       "decision_code": "OK30",
       "ao_statement": "CHANGE TO THE HANDHELD REWORK PROCESS.",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
-      "supplement_number": "S035",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Special (Immediate Track)",
-      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
-      "expedited_review_flag": "N",
-      "date_received": "2001-08-27",
-      "decision_date": "2001-09-04",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "APPROVAL FOR A CHANGE TO THE LABELING TO ADD A CONTRAINDICATION REGARDING THE USE OF DIATHERMY ON PATIENTS IMPLANTED WITH THE NEUROCYBERNETIC PROSTHESIS (NCP(R)) SYSTEM.",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
-      "supplement_number": "S025",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Real-Time Process",
-      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
-      "expedited_review_flag": "N",
-      "date_received": "1999-12-27",
-      "decision_date": "2000-02-16",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "Changes to the approved patient labeling for the NCP system.",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
-      "supplement_number": "S010",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "30-Day Notice",
-      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
-      "expedited_review_flag": "N",
-      "date_received": "1998-09-14",
-      "decision_date": "1998-09-25",
-      "docket_number": "",
-      "decision_code": "OK30",
-      "ao_statement": "30-day notice requested the addition of a cleanroom equivalent to one already in use.",
       "openfda": {
         "registration_number": [
           "1644487"
@@ -1733,78 +1337,6 @@
     },
     {
       "pma_number": "P970003",
-      "supplement_number": "S041",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Real-Time Process",
-      "supplement_reason": "Change Design/Components/Specifications/Material",
-      "expedited_review_flag": "N",
-      "date_received": "2002-04-29",
-      "decision_date": "2002-06-18",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "APPROVAL FOR MODIFICATIONS TO THE EXISTING MODEL 250 PROGRAMMING SOFTWARE VERSION 6.1 (BUILD 4), RESULTING IN THE NEW VERSION 6.1 (BUILD 5).",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
-      "supplement_number": "S024",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Special (Immediate Track)",
-      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
-      "expedited_review_flag": "N",
-      "date_received": "1999-12-03",
-      "decision_date": "1999-12-18",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "Approval for labeling changes to enhance the safety of Model 400 NCP Tunneling Tool.",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
       "supplement_number": "S139",
       "applicant": "LivaNova USA, Inc.",
       "street_1": "100 Cyberonics Blvd.",
@@ -1862,42 +1394,6 @@
       "docket_number": "",
       "decision_code": "APPR",
       "ao_statement": "APPROVAL FOR THE ADDITION OF A PRECAUTION TO THE MODEL 250 PROGRAMMING SOFTWARE PHYSICIAN?S MANUAL V.6.1 AND MODEL 250 PROGRAMMING SOFTWARE PHYSICIAN?S MANUAL V.7.0 IN THREE DIFFERENT PLACES IN EACH OF THE RESPECTIVE MANUALS.",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
-      "supplement_number": "S047",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Real-Time Process",
-      "supplement_reason": "Change Design/Components/Specifications/Material",
-      "expedited_review_flag": "N",
-      "date_received": "2003-06-20",
-      "decision_date": "2003-08-14",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "APPROVAL FOR THE NEUROCYBERNETIC PROTHESIS (NCP) SYSTEM MODEL 102R GENERATOR, HUMAN FACTORS IMPROVEMENTS TO THE MODEL 102 GENERATOR AND LABELING CHANGES TO THE MODEL 302 LEAD WHICH ARE INDICATED FOR USE AS AN ADJUNCTIVE THERAPY IN REDUCING THE FREQUENCY OF SEIZURES THAT ARE REFRACTORY TO ANTIEPILEPTIC MEDICATIONS.",
       "openfda": {
         "registration_number": [
           "1644487"
@@ -1985,114 +1481,6 @@
     },
     {
       "pma_number": "P970003",
-      "supplement_number": "S022",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Real-Time Process",
-      "supplement_reason": "Change Design/Components/Specifications/Material",
-      "expedited_review_flag": "N",
-      "date_received": "1999-04-01",
-      "decision_date": "1999-05-05",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "Approval for the Model 101 NCP Pulse Generator (for use with Model 201 NCP Programming Wand and Model 250 NCP Programming Software Version 4.4).",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
-      "supplement_number": "S020",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "30-Day Notice",
-      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
-      "expedited_review_flag": "N",
-      "date_received": "1999-03-19",
-      "decision_date": "1999-04-05",
-      "docket_number": "",
-      "decision_code": "OK30",
-      "ao_statement": "The 30-Day Notice requested relocation of the Feed Through Welding Equipment fromt he Webster, TX manufacturing facility to the existing Houston, TX (Space Center) manufacturing facility.",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
-      "supplement_number": "S008",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROTHESIS SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "30-Day Notice",
-      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
-      "expedited_review_flag": "N",
-      "date_received": "1998-02-19",
-      "decision_date": "1998-03-13",
-      "docket_number": "",
-      "decision_code": "OK30",
-      "ao_statement": "",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
       "supplement_number": "S098",
       "applicant": "LivaNova USA, Inc.",
       "street_1": "100 Cyberonics Blvd.",
@@ -2114,42 +1502,6 @@
       "docket_number": "",
       "decision_code": "APPR",
       "ao_statement": "APPROVAL FOR TWO CHANGES TO HE PULSE GENERATOR SOFTWARE TO ELIMINATE A RARE TIMING CONDITION THAT MAY CAUSE THE SOFTWARE WATCHDOG TO, AT THE END OF A MAGNET-INITIATED BURST, REPORT AN ERROR EVEN THOUGH NO SUCH ERROR OCCURRED.",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
-      "supplement_number": "S070",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Real-Time Process",
-      "supplement_reason": "Change Design/Components/Specifications/Material",
-      "expedited_review_flag": "N",
-      "date_received": "2006-07-17",
-      "decision_date": "2006-09-05",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "APPROVAL FOR A CHANGE FROM ADDING A STRAIN RELIEF GROMMET TO THE SERIAL DATA CABLE OF THE MODEL 201 PROGRAMMING WAND DURING FINAL ASSEMBLY TO MOLDING AN IMPROVED STRAIN RELIEF ONTO THE SERIAL DATA CABLE DURING ITS MANUFACTURE AND CHANGES TO THE TIE-DOWN USED IN THE MODEL 302 LEAD, THE MODEL 303 LEAD, AND THE MODEL 502 ACCESSORY PACK.",
       "openfda": {
         "registration_number": [
           "1644487"
@@ -2197,42 +1549,6 @@
         "medical_specialty_description": "Unknown",
         "regulation_number": "",
         "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
-      "supplement_number": "S176",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
-      "trade_name": "PULSE GENERATOR-MODEL 102, PULSE DUO GENERATOR-MODEL 102R, ASPIREHC GENERATOR-MODEL 105",
-      "product_code": "MUZ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Real-Time Process",
-      "supplement_reason": "Change Design/Components/Specifications/Material",
-      "expedited_review_flag": "N",
-      "date_received": "2014-12-09",
-      "decision_date": "2015-03-04",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "APPROVAL FOR AN UPDATE TO THE LONGEVITY MANUFACTURING REQUIREMENTASSOCIATED WITH THE MODEL 102/102R AND MODEL 105 GENERATORS.",
-      "openfda": {
-        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3",
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ]
       }
     },
     {
@@ -2345,42 +1661,6 @@
     },
     {
       "pma_number": "P970003",
-      "supplement_number": "S030",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "MODEL 150 NEUROCYBERNETIC PROSTHESIS SYSTEM PROGRAMMING SOFTWARE (VERSION 6)",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Real-Time Process",
-      "supplement_reason": "Change Design/Components/Specifications/Material",
-      "expedited_review_flag": "N",
-      "date_received": "2001-01-26",
-      "decision_date": "2001-02-27",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "APPROVAL FOR THE SYSTEM MODEL 250 NCP PROGRAMMING SOFTWARE (VERSION 6).",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
       "supplement_number": "S113",
       "applicant": "LivaNova USA, Inc.",
       "street_1": "100 Cyberonics Blvd.",
@@ -2402,42 +1682,6 @@
       "docket_number": "",
       "decision_code": "OK30",
       "ao_statement": "ADDITION OF A SUPPLIER IN THE STERILIZATION PROCESS.",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
-      "supplement_number": "S032",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Normal 180 Day Track",
-      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
-      "expedited_review_flag": "N",
-      "date_received": "2001-03-23",
-      "decision_date": "2001-05-10",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "APPROVAL FOR A NEW STERILIZATION SITE LOCATED AT STERITEC, INC., ATHENS, TEXAS, AS WELL AS LABELING PROCESS AND PACKAGING CHANGES, AND A COMBINED MODEL PHYSICIAN'S MANUAL.",
       "openfda": {
         "registration_number": [
           "1644487"
@@ -2546,42 +1790,6 @@
       "docket_number": "",
       "decision_code": "APPR",
       "ao_statement": "APPROVAL FOR THE POST-APPROVAL STUDY.",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
-      "supplement_number": "S102",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) PROGRAMMING WAND",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Special (Immediate Track)",
-      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
-      "expedited_review_flag": "N",
-      "date_received": "2008-10-01",
-      "decision_date": "2008-11-12",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "APPROVAL FOR LABELING CHANGES THAT INCLUDE THE ADDITION OF CONFIRMATORY TESTING INFORMATION, STRENGTHENING OF WARNINGS, AND FORMATTING REVISIONS.",
       "openfda": {
         "registration_number": [
           "1644487"
@@ -2990,78 +2198,6 @@
         "fei_number": [
           "1000117004"
         ]
-      }
-    },
-    {
-      "pma_number": "P970003",
-      "supplement_number": "S017",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "30-Day Notice",
-      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
-      "expedited_review_flag": "N",
-      "date_received": "1999-01-04",
-      "decision_date": "1999-01-28",
-      "docket_number": "",
-      "decision_code": "OK30",
-      "ao_statement": "The 30-Day Notice requested to bring in-house a seam welding process equivalent to processes performed by subcontractors.  The welding process involves welding the can bottom half of the Pulse Generator to a can lid.",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
-      "supplement_number": "S034",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "Real-Time Process",
-      "supplement_reason": "Change Design/Components/Specifications/Material",
-      "expedited_review_flag": "N",
-      "date_received": "2001-05-21",
-      "decision_date": "2001-06-29",
-      "docket_number": "",
-      "decision_code": "APPR",
-      "ao_statement": "APPROVAL FOR THE MODEL 101 IN-LINE PULSE GENERATOR (VERSION 2.0), MODEL 302 IN-LINE BIPOLAR LEADS (VERSION 1.0), MODEL 402 IN-LINE TUNNELING TOOL (VERSION 1.0 AND LABELING CHANGES.",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
       }
     },
     {
@@ -3498,42 +2634,6 @@
     },
     {
       "pma_number": "P970003",
-      "supplement_number": "S021",
-      "applicant": "LivaNova USA, Inc.",
-      "street_1": "100 Cyberonics Blvd.",
-      "street_2": "",
-      "city": "Houston",
-      "state": "TX",
-      "zip": "77058",
-      "zip_ext": "",
-      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
-      "trade_name": "NEUROCYBERNETIC PROSTHESIS (NCP) SYSTEM",
-      "product_code": "LYJ",
-      "advisory_committee": "NE",
-      "advisory_committee_description": "Neurology",
-      "supplement_type": "30-Day Notice",
-      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
-      "expedited_review_flag": "N",
-      "date_received": "1999-03-19",
-      "decision_date": "1999-04-05",
-      "docket_number": "",
-      "decision_code": "OK30",
-      "ao_statement": "The 30-Day Notice requested relocation of the Laser Marking Equipment from the Webster, TX manufacturing facility to the existing Houston, TX (Space Center) manufacturing facility.",
-      "openfda": {
-        "registration_number": [
-          "1644487"
-        ],
-        "fei_number": [
-          "1000117004"
-        ],
-        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
-        "medical_specialty_description": "Unknown",
-        "regulation_number": "",
-        "device_class": "3"
-      }
-    },
-    {
-      "pma_number": "P970003",
       "supplement_number": "S095",
       "applicant": "LivaNova USA, Inc.",
       "street_1": "100 Cyberonics Blvd.",
@@ -3570,7 +2670,2311 @@
     },
     {
       "pma_number": "P970003",
-      "supplement_number": "S016",
+      "supplement_number": "S183",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY SYSTEM, VNS THERAPY PROGRAMMING SOFTWARE (V11.0.4)",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2015-07-29",
+      "decision_date": "2015-10-28",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR THE INTRODUCTION OF THE MOTION CL910 AND MINOR MODIFICATIONS AND ENHANCEMENTS TO THE VNS THERAPY PROGRAMMING SOFTWARE MODEL 250 VERSION 11.0.4.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S138",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY GENERATORS, LEADS PROGRAMING SOFTWARE, PROGRAMMING WAND AND ASSCCESORY PACK",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2011-09-30",
+      "decision_date": "2011-10-27",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "IMPLEMENTATION OF STATISTICAL PROCESS CONTROL (SPC) SOFTWARE.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S067",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY PERENNIA MODEL 303 LEAD",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2006-05-26",
+      "decision_date": "2006-06-22",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "CHANGE TO THE JOINING PROCESS FOR THE LEAD MODEL 303.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S172",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY LEAD, MODEL 302,VNS THERAPY PERENNIADURA LEAD,MODEL 303,VNS THERAPY PERENNIAFLEX LEAD MODEL 304",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2014-06-19",
+      "decision_date": "2014-07-17",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "AUTOMATE A WELD ANGLE MEASUREMENT PROCESS.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S119",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2010-11-22",
+      "decision_date": "2011-01-21",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR THE ASPIRE HC MODEL 105 GENERATOR.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S131",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2011-07-12",
+      "decision_date": "2011-08-11",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "CHANGE TO MODIFY THE ELECTRICAL TEST SYSTEM SOFTWARE.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S240",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS Therapy System",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Special (Immediate Track)",
+      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+      "expedited_review_flag": "N",
+      "date_received": "2023-02-01",
+      "decision_date": "2023-03-02",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "Approval for updates to a warning header in the VNS Therapy Physicians Manuals for both Epilepsy and Depression to clarify section about VNS Therapy uses in which safety and effectiveness have not been established.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S053",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2004-02-02",
+      "decision_date": "2004-03-03",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "CHANGES IN THE MANUFACTURING PROCESS TO PROPOSE USING CYBERONICS, INC. AS AN ADDITIONAL IN-HOUSE FACILITY FOR BIOBURDEN TESTING ON PRODUCTS AND REDUCING THE FREQUENCY OF SAMPLING OF TUNNELING TOOLS AND ACCESSORY PACKS.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S213",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS Therapy System",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2017-07-19",
+      "decision_date": "2017-08-11",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "Removal of a redundant generator interrogation inspection and a redundant sterilization inspection from the shipping process.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S100",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY PERENNIAFLEX",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2008-07-24",
+      "decision_date": "2008-12-19",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR THE FOLLOWING MINOR MODIFICATIONS TO THE APPROVEDMODEL 303 STIMULATION LEAD (THE NEW MODEL TO BE REFERRED TO AS \"304\"):1)  CHANGING THE COIL MATERIAL TO ONE WITH A LOWER TITANIUM TOLERANCE (< 0.01%) TO IMPROVEFATIGUE RESISTANCE;2) CHANGING THE INSULATING MATERIAL TO ONE THAT IS SIMILAR, BUT WITH IMPROVED FATIGUE ANDABRASION RESISTANCE;3) ADDING A CONTROLLED FILLET TO THE ELECTRODE BIFURCATION TO IMPROVE FATIGUE RESISTANCE, AND4) ADDING AN INTERMEDIATE ELECTRODE SIZE (2.5 MM) THAT ALSO OFFERS NERVE COVERAGE >360 DEGREES.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S177",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY SYSTEM PROGRAMMING SOFTWARE",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2015-03-12",
+      "decision_date": "2015-04-10",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "ADDITIONAL INSPECTION STEP.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S094",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2007-11-19",
+      "decision_date": "2007-12-19",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "ADD ADDITIONAL DETAILS TO THE INSPECTION CRITERIA FOR DELAMINATION AND CONSTRAINED COIL IN LEAD MODELS 302 AND 303.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S193",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2016-02-23",
+      "decision_date": "2016-03-24",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "Support of Model 105 and Model 106 Final Generator production at Cyberonics Costa Rica facility.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S080",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2007-04-13",
+      "decision_date": "2007-05-10",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "MODIFY THE CURRENT MANUFACTURING PROCESS OF THE NCP PROGRAMMING WANDS, MODEL 201 BY ADDING AN AUTOMATED VERSION OF THE FINAL ELECTRICAL TEST PROCESS.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S084",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2007-05-29",
+      "decision_date": "2007-06-28",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "CHANGE FROM A DIRECT METALLIZATION PROCESS TO AN ELECTROLESS COPPER METHOD FOR THE PRINTED CIRCUIT BOARD MANUFACTURING PROCESS.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S132",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM PULSE GENERATORS",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2011-07-05",
+      "decision_date": "2011-08-04",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "USE OF A NEW PIECE OF EQUIPMENT FOR A QUALITY SYSTEMS TEST.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S109",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM/NCP/VNS PULSE GENERATORS",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Special (Immediate Track)",
+      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+      "expedited_review_flag": "N",
+      "date_received": "2010-04-19",
+      "decision_date": "2010-05-18",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR A LABELING MODIFICATION REGARDING THE INTERNAL CLOCK RESET IN THE MODEL 100, 101, 102 AND 102R IMPLANTED PULSE GENERATORS (IPGS).",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S208",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2016-12-19",
+      "decision_date": "2017-01-18",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "Update that is being made to the X-Ray inspection criteria for the presence of solders under the Application Specific Integrated Circuit (ASIC) of the Model 103/104 and Model 105/106 Generator Printed Circuit Board Assemblies (PCBA).",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S158",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY ACCESSORY PACK",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2013-02-01",
+      "decision_date": "2013-05-02",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR A NEW TORQUE WRENCH MODEL FEATURING A RECESSED NOSE DESIGN",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S230",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS Therapy System",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2019-12-06",
+      "decision_date": "2020-01-29",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "Incorporate a temporary manufacturing software screening test that detects devices susceptible to GC5 errata.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S229",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS Therapy System",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2019-10-15",
+      "decision_date": "2020-01-13",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "Approval for the changes that are being made to the firmware of the Model 1000 Generator (SN >= 100,000) to prevent resetting the microcontroller unit when an uncorrectable FRAM bit error is detected.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S068",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2006-06-16",
+      "decision_date": "2007-02-08",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR USE OF AN ADDITIONAL STERILIZATION METHOD.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S233",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS Therapy System",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+      "expedited_review_flag": "N",
+      "date_received": "2020-06-02",
+      "decision_date": "2022-08-12",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "Approval for MR-conditional labeling for the VNS Model 1000-D SenTiva Duo Generator.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S187",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY MODEL 303 LEAD",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2015-10-27",
+      "decision_date": "2015-11-25",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "ADDITION OF ALTERNATE WELD PARAMETERS FOR THE MODEL 303 IMPLANTABLE LEAD FOR THE VNS THERAPY® SYSTEM.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S239",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS Therapy System",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Special (Immediate Track)",
+      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+      "expedited_review_flag": "N",
+      "date_received": "2023-02-01",
+      "decision_date": "2023-03-02",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "Approval for updates to the warning and precaution sections in the VNS Therapy Physicians Manuals for both Epilepsy and Depression regarding a clearer message directing the reader to view and reference the LivaNova magnetic resonance imaging (MRI) guidelines for any considerations for MRI scans in patients with the VNS Therapy System.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S128",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM PULSE GENERATORS",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2011-06-13",
+      "decision_date": "2011-07-11",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "USE OF A NEW LASER MARKER IN THE MANUFACTURING PROCESS OF THE PULSE GENERATORS.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S173",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY ASPIRESR",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2014-10-23",
+      "decision_date": "2015-05-29",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR THE MODEL 106 ASPIRESR GENERATOR AND MODEL 250 VERSION 11.0.5 PROGRAMMING SOFTWARE.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S091",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track No User Fee",
+      "supplement_reason": "Other",
+      "expedited_review_flag": "N",
+      "date_received": "2007-09-27",
+      "decision_date": "2007-12-20",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR REVISIONS TO THE POST-APPROVAL STUDY.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S117",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track No User Fee",
+      "supplement_reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2010-11-12",
+      "decision_date": "2011-08-26",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED AT CYBERONICS IN AUSTIN, TEXAS.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S209",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2017-01-24",
+      "decision_date": "2017-02-16",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "Updated environmental monitoring equipment.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S170",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track No User Fee",
+      "supplement_reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2014-04-28",
+      "decision_date": "2016-02-12",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "Approval for a manufacturing site located at Cyberonics Latam S.L.R., Edificio B49, 51 Ave 0, Zona Franca Coyol, Coyol - Alajuela, Costa Rica facility, in which the site will perform the final assembly, packaging, storing, and distribution of the Implantable Pulse Generators and the Lead Finals.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S235",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS Therapy PerenniaDURA Model 303 Lead",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2022-02-22",
+      "decision_date": "2022-03-09",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "Add a new inspection of the bifurcated tubing wall thickness associated with the M303 Lead.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S075",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track No User Fee",
+      "supplement_reason": "Postapproval Study Protocol",
+      "expedited_review_flag": "N",
+      "date_received": "2006-12-15",
+      "decision_date": "2007-02-12",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR THE POST-APPROVAL STUDY.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S141",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2011-11-03",
+      "decision_date": "2011-12-02",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "ADDITION OF A REWORK STEP FOR SOLDERING OPERATIONS OF LIGHT EMITTING DIODES (LEDS) TO PRINTED CIRCUIT BOARDS (PCBS).",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S071",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+      "expedited_review_flag": "N",
+      "date_received": "2006-08-24",
+      "decision_date": "2006-10-17",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR THE FOLLOWING CHANGES TO THE LABELING HARMONIZATION AND MODULARIZATION FOR PHYSICIAN PULSE GENERATOR AND LEAD LABELING: 1) THE ADDITION OF A MANUAL ENTITLED, ?REVISION/REPLACEMENT/REMOVAL PROCEDURE MANUAL?.  2) THE INCORPORATION OF THE PHYSICIAN?S MANUAL FOR THE MODEL 303 LEAD INTO THE HARMONIZED LABELING WHICH INCLUDES THE ADDITION OF THE MODULAR PHYSICIAN?S MANUAL ENTITLED, ?TECHNICAL INFORMATION ? VNS THERAPY PERENNIA MODEL 303 LEAD?.  3) REVISIONS TO THE ?IMPLANTATION PROCEDURE? MODULE.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S181",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "CYBERONICS VNS THERAPY SYSTEM",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2015-06-22",
+      "decision_date": "2015-07-31",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "USE OF NEW PROCESSES FOR REPROCESSING TABLET COMPUTERS RETURNED FROM THE FIELD AND A PROCESS TO INSTALL PREVIOUSLY APPROVED SOFTWARE UPGRADES ON TABLET COMPUTERS THAT HAVE BEEN DISTRIBUTED TO THE FIELD FOR THE CYBERONICS® VNS THERAPY® SYSTEM TABLET COMPUTERS (MOTION MODEL CL900 OR CYBERONICS MODEL 700, MOTION MODEL CL910 OR CYBERONICS MODEL 720).",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S199",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "PULSE MODEL 102, DEMIPULSE MODEL 103, ASPIREHC MODEL 105, ASPIRESR MODEL 106 GENERATOR.",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2016-05-09",
+      "decision_date": "2016-06-08",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "Use of a new resistance welder during the spot welding of anchor tabs onto Model 102, 103, 105 and 106 generator-cans of the VNS Therapy Systems.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S184",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY MODEL 302 LEAD",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2015-07-29",
+      "decision_date": "2015-08-28",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "REMOVAL OF AN ACETONE AND ISOPROPYL ALCOHOL PRE-CONDITIONING TREATMENT STEP IN THE MANUFACTURE OF YOUR MODEL 302 LEADS FOR THE VNS THERAPY SYSTEM.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S130",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2011-06-27",
+      "decision_date": "2011-07-29",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR A MODIFICATION TO THE SERIAL ADAPTER CABLE POWER CONNECTOR.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S116",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM MODEL 250 PROGRAMMING SOFTWARE, VERSION 8.0",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2010-09-27",
+      "decision_date": "2010-11-23",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR DESIGN MODIFICATIONS AND ASSOCIATED LABELING CHANGES TO THE PROGRAMMING SOFTWARE, MODEL 250 PROGRAMMING SOFTWARE.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S231",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS Therapy System",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2020-02-14",
+      "decision_date": "2020-05-13",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "Approval for a new generator known as SenTiva Duo Model 1000-D Generator. The Model 1000-D Generator is identical to the Model 1000 SenTiva Generator with the exception of the header which will be compatible with dual pin leads.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S204",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "ASPIRESR MODEL 106 GENERATOR",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2016-08-11",
+      "decision_date": "2016-09-09",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "Implementation of new electrical testing for the Model 106 Generator used in the VNS Therapy System, with additional minor test software corrections and improvements.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S072",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2006-10-06",
+      "decision_date": "2006-11-02",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "REPROCESSING OF THE NCP PROGRAMMING WANDS FOR MODEL 201.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S058",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM, MODEL 302",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Special (Immediate Track)",
+      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+      "expedited_review_flag": "N",
+      "date_received": "2005-07-20",
+      "decision_date": "2005-09-29",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR CHANGES TO THE MODEL 302 LEAD PHYSICIAN'S MANUAL CLARIFYING INFORMATION REGARDING HANDLING TO AVOID DAMAGE TO THE LEAD AND HELICAL ELECTRODES.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S189",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY ASPIRESR GENERATOR; VNS THERAPY PROGRAMMING SOFTWARE",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Special (Immediate Track)",
+      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+      "expedited_review_flag": "N",
+      "date_received": "2016-01-29",
+      "decision_date": "2016-02-26",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "Approval for a labeling change to inform clinicians of modified stimulator programming parameters to enhance safety in the use of the device.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S089",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Special (Immediate Track)",
+      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+      "expedited_review_flag": "N",
+      "date_received": "2007-09-10",
+      "decision_date": "2007-10-11",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR THE ADDITION OF INSTRUCTIONS TO THE TROUBLESHOOTING SECTION IN THE MODEL 250 PROGRAMMING SOFTWARE PHYSICIAN?S MANUAL V.7.1 AND MINOR CORRESPONDING CHANGES TO THE HANDHELD COMPUTER CONNECTION INSTRUCTIONS (HP JORNADA, DELL AXIM X5 AND X50).",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S103",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2008-10-31",
+      "decision_date": "2008-12-19",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR THE ADDITION OF A SOFTWARE ACCESSORY/TOOL REFERRED TO AS THE ¿GENERATOR FIELD UPGRADER¿ (GFU).  THE GFU IS DESIGNED TO BE USED TO UPGRADE SOFTWARE IN THE DEMIPULSE, MODEL 103 AND DEMIPULSE DUO, MODEL 104 PULSE GENERATORS TO EITHER ENHANCE PRE-EXISTING FEATURES OR TO RESOLVE SOFTWARE ANOMALIES.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S221",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "SenTiva Model 1000 Generator",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2018-12-27",
+      "decision_date": "2019-03-27",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "Approval for firmware updates of the Model 1000 Generator.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S120",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2011-01-24",
+      "decision_date": "2011-02-17",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "ADDITION OF ALTERNATE RAW MATERIALS AND REMOVAL OF ASSOCIATED CLEANING STEPS.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S214",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS Therapy System",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2017-11-20",
+      "decision_date": "2017-12-27",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "Change to the Leads Manufacturing Process to add the following two (2) processes on all commercially available Lead Models (302/303/304):1) Additional use of the currently approved primer; proposed application to the Suture and along the exposed edge of the Electrode; and2) Implementation of a Protection Aid to encapsulate the Lead Helicals, protecting them from Ribbon Damage during further processing steps. This will be removed at the end of the Lead Final assembly.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S152",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY PULSE GENERATOR, 102/102R",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2012-08-17",
+      "decision_date": "2012-09-13",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "USE OF ALTERNATE SCHOTTKY DIODES FOR THE VNS THERAPY IMPLANTABLE PULSE GENERATORS AND THE PROGRAMMING WAND.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S077",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track No User Fee",
+      "supplement_reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2007-03-15",
+      "decision_date": "2007-12-14",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED AT CYBERONICS, HOUSTON, TEXAS.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S063",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY PULSE GENERATOR, LEAD AND PATIENT KIT",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+      "expedited_review_flag": "N",
+      "date_received": "2006-01-27",
+      "decision_date": "2006-06-29",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR LABELING HARMONIZATION AND MODULARIZATION FOR PHYSICIAN, PULSE GENERATOR, LEAD AND PATIENT KIT LABELING.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S223",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS Therapy System",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2019-02-04",
+      "decision_date": "2019-03-12",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "Removal of a redundant inspection step at receiving inspection for flange warpage from the inner and outer tray used to package VNS Therapy Generators, Leads, accessory Packs and Tunnelers.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S087",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "",
+      "expedited_review_flag": "N",
+      "date_received": "2007-08-17",
+      "decision_date": "2007-09-04",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "ADDITION OF A NEW MODEL PACKAGING SYSTEM FOR THE DEVICE.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S111",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track No User Fee",
+      "supplement_reason": "Postapproval Study Protocol - OSB",
+      "expedited_review_flag": "N",
+      "date_received": "2010-06-22",
+      "decision_date": "2010-08-04",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S238",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "Demipulse Generator; Demipulse Duo Generator, AspireSR Generator, SenTiva Generator; SenTiva Duo Generator, Symmetr",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2023-01-09",
+      "decision_date": "2023-02-07",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "Introduce a new resistance welding system and associated parameter changes utilized in the production of the VNS Therapy System Implantable Pulse Generators.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S179",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "PULSE GENERATOR-MODEL102, PULSE DUO GENERATOR-MODEL 102R",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2015-05-26",
+      "decision_date": "2015-08-21",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR THE INTRODUCTION OF AN ALTERNATE MICROPROCESSOR, MANUFACTURED BY A DIFFERENT VENDOR, FOR THE MODEL 102/102R PULSE GENERATORS USED IN THE VNS THERAPY SYSTEM.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S153",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2012-10-01",
+      "decision_date": "2012-10-30",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "CHANGE AND THE USE OF ALTERNATE COMPONENTS ON THE PRINTED CIRCUIT BOARD FOR THE PROGRAMMING WAND.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S241",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS Therapy System; Model 3100 Programming Software; Model 2000 Programming Wand",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2023-04-03",
+      "decision_date": "2023-09-15",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "Approval for the new Model 3100 v1.0 Programmer Software, updated M2000 v1.1.2.2 Programming Wand Firmware, and the new Digital Products Platform.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S106",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track No User Fee",
+      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+      "expedited_review_flag": "N",
+      "date_received": "2009-02-05",
+      "decision_date": "2009-03-06",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR CHANGING THE TRADE NAME OF THE VNS THERAPY PERENNIA MODEL 303 LEAD TO VNS THERAPY PERENNIADURA MODEL 303 LEAD.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S168",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "CYBERONICS VNS THERAPY SYSTEM",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2014-02-26",
+      "decision_date": "2014-03-28",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "MAKE CHANGES TO THE DIE PACKAGING USED IN THE CREATION OF THE APPLICATION SPECIFIC INTEGRATED CIRCUIT.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S203",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2016-07-15",
+      "decision_date": "2016-08-12",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "Addition of an alternate automated proofreading system for receiving inspection of printed labeling materials at the Houston manufacturing facility.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S135",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2011-09-01",
+      "decision_date": "2011-10-31",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR AN UPGRADE TO THE COMMUNICATION FLASH LOADER (CFL) PORTION OF THE FIRMWARE OF THE DEMIPULSE IMPLANTABLE PULSE GENERATORS, MODEL 103 AND MODEL 104.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S064",
       "applicant": "LivaNova USA, Inc.",
       "street_1": "100 Cyberonics Blvd.",
       "street_2": "",
@@ -3586,11 +4990,1380 @@
       "supplement_type": "Real-Time Process",
       "supplement_reason": "Change Design/Components/Specifications/Material",
       "expedited_review_flag": "N",
-      "date_received": "1999-01-04",
-      "decision_date": "1999-02-18",
+      "date_received": "2006-02-01",
+      "decision_date": "2006-05-04",
       "docket_number": "",
       "decision_code": "APPR",
-      "ao_statement": "Approval for the Model 201 NCP Programming Wand (for use with Model 100 NCP Pulse Generator Versions B and C).",
+      "ao_statement": "APPROVAL FOR THE VNS THERAPY PERENNIA MODEL 303 LEAD.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S137",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2011-09-21",
+      "decision_date": "2011-10-21",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "CHANGE IN THE ACCEPTANCE CRITERIA FOR THE MODEL 102/102R PULSE GENERATORS.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S140",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2011-10-21",
+      "decision_date": "2011-12-20",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR : 1) REMOVAL OF THE CR10 AND CR11 TVS DIODES FROM THE PCBA DESIGN; AND 2) A CHANGE TO THE PRINTED CIRCUIT BOARD (PCB) SPECIFICATION TO ACCEPT VIAS (VERTICAL ELECTRICAL CONNECTIONS BETWEEN DIFFERENT LAYERS OF CONDUCTORS ON A PCB) FILLED WITH EPOXY FROM THE PCB VENDOR, WHICH IS CURRENTLY ALLOWED FOR THE MODEL 103/104 PULSE GENERATORS.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S104",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track No User Fee",
+      "supplement_reason": "Postapproval Study Protocol - OSB",
+      "expedited_review_flag": "N",
+      "date_received": "2008-11-26",
+      "decision_date": "2009-07-23",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S112",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY PROGRAMMING SOFTWARE",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2010-07-22",
+      "decision_date": "2010-09-17",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR UPGRADING THE OPERATING SYSTEM OF THE DELL X5 HANDHELD COMPUTER.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S118",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEMS",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2010-11-19",
+      "decision_date": "2010-12-17",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "ADDITION OF AN ALTERNATIVE MANUFACTURING PROCESS MATERIAL AND SUPPLIER.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S155",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY PULSE/PULSE DUO GENERATOR",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "135 Review Track For 30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2012-11-19",
+      "decision_date": "2013-02-25",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR A MODIFICATION TO THE ELECTRICAL TEST SYSTEM (ETS) SOFTWARE USED IN PRODUCTION.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S225",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS Therapy System",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2019-05-28",
+      "decision_date": "2020-03-20",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "Approval for a New Multi-Product Sales Packaging Kit and Alternate Universal Inner Generator Medical Tray.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S149",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2012-06-06",
+      "decision_date": "2012-06-20",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "NEW ROUTING FIXTURE IN THE MANUFACTURE OF THE PULSE GENERATOR PRINTED CIRCUIT BOARD ASSEMBLY.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S110",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM PULSE GENERATOR CLEANING PROCESS CHANGE",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "135 Review Track For 30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2010-05-27",
+      "decision_date": "2010-11-05",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL TO CHANGE THE GENERATOR CLEANING PROCESS.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S194",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2016-02-24",
+      "decision_date": "2016-03-24",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "Addition of alternate weld parameters for manufacture of the Model 303 implantable lead at the Costa Rica facility.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S060",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track No User Fee",
+      "supplement_reason": "Postapproval Study Protocol",
+      "expedited_review_flag": "N",
+      "date_received": "2005-08-31",
+      "decision_date": "2005-11-08",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S243",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "SenTiva Generator, SenTiva Duo Generator",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2024-02-15",
+      "decision_date": "2024-03-15",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "to automate the dimensional inspections using the Keyence LM-1100 Image Dimension Measuring System during the receiving inspection for the VNS Therapy devices",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S039",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "NEUROCYBERNETIC PROSTHESES(NCP) SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2002-04-17",
+      "decision_date": "2002-06-18",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR MODIFICATIONS TO THE EXISTING MODEL 402 TUNNELING TOOL (VERSION 1), RESULTING IN THE NEW VNS THERAPY TUNNELER, MODEL 402 (VERSION 2), AND MODIFICATIONS TO THE EXISTING MODEL 500 ACCESSORY PACK, RESULTING IN THE NEW VNS THERAPY ACCESSORY PACK, MODEL 502.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S146",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track No User Fee",
+      "supplement_reason": "Labeling Change - PAS",
+      "expedited_review_flag": "N",
+      "date_received": "2012-03-08",
+      "decision_date": "2013-11-26",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "REQUESTED APPROVAL FOR A LABELING UPDATE TO INCLUDE THE RESULTS OF THE D-21 POST APPROVALSTUDY.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S196",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2016-04-18",
+      "decision_date": "2016-07-13",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "Approval for the following device changes:  1) The Model 106 Generators technical requirement for Heartbeat amplitude detection is being updated to include a minimum lower threshold (i.e. Minimum alower) for each of the generators five (5) gain settings (as well as adjustments to the maximum lower threshold (i.e. alower); 2) The Universal Test System is being updated of the Model 106 Generator so that the updated firmware can be loaded onto Model 106 generators; and 3) Universal Test System (UTS) Updates and Improvements.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S185",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "PULSE/PULSE DUO GENERATOR; DEMIPULSE/DEMIPULSE DUO GENERATOR; ASPIREHC GENERATOR; ASPIRESR GENERATOR",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2015-08-31",
+      "decision_date": "2015-09-30",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "IMPLEMENTATION OF AN ALTERNATE SPOT WELDING SYSTEM USED DURING MANUFACTURE OF THE VNS THERAPY SYSTEM.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S142",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY SYSTEM PULSE GENERATORS",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2011-12-02",
+      "decision_date": "2011-12-23",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "TWO REVISIONS TO THE SOFTWARE USED IN THE AUTOMATED FUNCTIONAL TEST SYSTEM (AFT) FOR THE VNS THERAPY SYSTEM PULSE GENERATORS.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S125",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY DEMIPULSE/DEMIPULSE DUO GENERATORS",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2011-03-31",
+      "decision_date": "2011-04-29",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "MODIFICATION OF VISUAL INSPECTION ACCEPTANCE CRITERIA FOR THREE CAPACITORS",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S133",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2011-08-01",
+      "decision_date": "2011-08-31",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "CHANGE TO ADD ADDITIONAL TESTING FOR THE FLASH MEMORY CARDS.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S245",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS Therapy System",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Special (Immediate Track)",
+      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+      "expedited_review_flag": "N",
+      "date_received": "2024-10-15",
+      "decision_date": "2024-11-14",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "VNS Therapy Physicians Manuals (Epilepsy and Depression): Update to the Warnings, Device Diagnostics, and General Troubleshooting sections to add information related to a Potential Loss of Function due to a stuck-closed reed switch. Additional update to the technical language to refer to the magnetic sensor more generally instead of specifying a reed switch to allow other technologies to be used without requiring additional labeling updates.\tVNS Therapy Patient Guides (Epilepsy and Depression): Updates to the General Warnings, How the Magnet Works, General Malfunction, and Frequently Asked Questions to add information related to device malfunctions, and specifically potentially malfunction of the sensor in the M1000 or M1000-D device. Additionally, updates to remove unnecessary technical information about the reed switch and instead only provide information about the functions of the magnet.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S211",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS Therapy Model 3000 Programmer",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2017-05-02",
+      "decision_date": "2017-10-03",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "Approval for the introduction of the Model3000 Programmer into interstate commerce.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S156",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY PULSE GENERATOR (DEMIPULSE AND DEMIPULSE DUO)",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2013-01-17",
+      "decision_date": "2013-02-07",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "MANUFACTURING CHANGE FOR THE THERAPY GENERATORS.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S069",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track No User Fee",
+      "supplement_reason": "Postapproval Study Protocol",
+      "expedited_review_flag": "N",
+      "date_received": "2006-07-12",
+      "decision_date": "2006-08-09",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL OF THE POST-APPROVAL PROTOCOL REVISION FOR THE DEVICE.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S073",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2006-10-06",
+      "decision_date": "2006-11-02",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "REPROCESSING OF THE HANDHELD COMPUTERS FOR THE VNS THERAPY SYSTEM, MODEL 250 PROGRAMMING SOFTWARE.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S150",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2012-07-02",
+      "decision_date": "2012-07-26",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "UPDATES TO THE ELECTRICAL TEST SYSTEM SOFTWARE FOR VARIOUS MODELS OF THE VNS THERAPY SYSTEM PULSE GENERATORS.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S127",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM PULSE GENERATORS",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2011-05-04",
+      "decision_date": "2011-06-03",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "MAKE CHANGES TO SOFTWARE USED IN AN ELECTRICAL TESTING SYSTEM.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S082",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Special (Immediate Track)",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2007-05-18",
+      "decision_date": "2007-06-15",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL TO ADD TWO ADDITIONAL IN-PROCESS QUALITY INSPECTION TESTS IN ORDER TO PROVIDE ADDITIONAL ASSURANCE OF RELIABILITY OF THE MODEL 102 AND MODEL 102R PULSE GENERATORS.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S126",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM GENERATORS",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2011-04-20",
+      "decision_date": "2011-05-20",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "ADDITION OF A THREAD GAUGING PROCESS TO THE HEADER ATTACHMENT PROCESS AND THE MODIFICATION OR FINAL INSPECTION PROCESS.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S169",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY GENERATOR (DEMIPULSE AND DEMIPULSE DUO), VNS THERAPY GENERATOR (ASPIREHC)",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2014-04-04",
+      "decision_date": "2014-07-02",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR A CHANGE TO THE PRINTED CIRCUIT BOARD ASSEMBLYMANUFACTURING DESIGN REQUIREMENT FOR VOLTAGE MEASUREMENT ACCURACY AND TOLERANCE ASSOCIATED WITH ITS ELECTRICAL TESTING.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S081",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY PULSE GENERATORS",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Special (Immediate Track)",
+      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+      "expedited_review_flag": "N",
+      "date_received": "2007-04-30",
+      "decision_date": "2007-05-14",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL TO ADD ADDITIONAL PRECAUTIONARY INFORMATION TO THE MODEL 300 LEAD PHYSICIAN?S MANUAL AS AN ERRATA SHEET AND TO REVISE THE MODEL 102, 102R, 302 AND 303 VNS THERAPY PHYSICIAN?S MANUAL MODULE ENTITLED ?INTRODUCTION TO THE VNS THERAPY (SYSTEM INDICATIONS, CONTRAINDICATIONS, WARNINGS, AND PRECAUTIONS).?",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S192",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2016-02-22",
+      "decision_date": "2016-03-23",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "Removal of a solvent treatment step from the manufacture of Model 302 Leads at the Costa Rica facility.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "",
+      "supplement_reason": "",
+      "expedited_review_flag": "Y",
+      "date_received": "1997-01-27",
+      "decision_date": "1997-07-16",
+      "docket_number": "98M-0140",
+      "fed_reg_notice_date": "1998-03-04",
+      "decision_code": "APPR",
+      "ao_statement": "Approval for the NeuroCybernetic Prosthesis (NCP(R)) System which includes the Model 100 NCP Generator, the Model 300 Series NCP Vagus Nerve Stimulation Lead, the Model 400 Tunneling Tool, and NCP System Accessories.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S145",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2012-01-13",
+      "decision_date": "2012-02-06",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "INTRODUCTION OF WORK INSTRUCTIONS TO ALLOW REWORK AND REPLACEMENT OF COMPONENTS IN THE VNS THERAPY SYSTEM.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S205",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track",
+      "supplement_reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+      "expedited_review_flag": "N",
+      "date_received": "2016-11-04",
+      "decision_date": "2017-06-06",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "Approval for updates that are being made to the MRI chapter of VNS Therapy® System Physician's Manual.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S237",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS Therapy System",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2022-12-19",
+      "decision_date": "2023-01-18",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "Introduce a new parallel-gap welding system and its associated parameter changes used in the production of the M303 and M304 Leads.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S174",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted (depression)",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "MUZ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track No User Fee",
+      "supplement_reason": "Postapproval Study Protocol - OSB",
+      "expedited_review_flag": "N",
+      "date_received": "2014-11-17",
+      "decision_date": "2015-06-04",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted (Depression)",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S123",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2011-02-25",
+      "decision_date": "2011-03-25",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "CHANGE TO THE PULSE GENERATOR MANUFACTURING PROCESS.",
+      "openfda": {
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ],
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P970003",
+      "supplement_number": "S076",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "STIMULATOR, AUTONOMIC NERVE, IMPLANTED FOR EPILEPSY",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2007-01-22",
+      "decision_date": "2007-06-29",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR THE VNS THERAPY DEMIPULSE, MODEL 103 GENERATOR AND VNS THERAPY DEMIPULSE DUO, MODEL 104 GENERATOR.",
       "openfda": {
         "registration_number": [
           "1644487"
