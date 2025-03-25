@@ -630,7 +630,7 @@ const components = {
                         ${this.renderRecentActivities(competitor.recentActivities)}
                     </div>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">
+                <td class="px-6 py-4 whitespace-nowrap" style="display: none;">
                     ${this.renderQuickMetrics(competitor.keyMetrics)}
                 </td>
 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
