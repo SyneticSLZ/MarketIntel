@@ -1387,6 +1387,3765 @@ break
 }
 
 
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// Helper functions for formatting
+function formatCurrency(value, decimals = 0) {
+  if (value >= 1000000000) {
+    return (value / 1000000000).toFixed(decimals) + 'B';
+  } else if (value >= 1000000) {
+    return (value / 1000000).toFixed(decimals) + 'M';
+  } else if (value >= 1000) {
+    return (value / 1000).toFixed(decimals) + 'K';
+  }
+  return value.toFixed(decimals);
+}
+
+
+function formatPercentage(value, decimals = 1) {
+  return value > 0 ? '+' + value.toFixed(decimals) + '%' : value.toFixed(decimals) + '%';
+}
+
+
+////////////////////////////////////////////////////////////// EPIMINDER         ????????????????????????????????????????????????????????????????????????????????????????????//
+
+
+// Initialize EpiMinder Charts
+function initializeEpiMinderCharts(data) {
+  const isDarkMode = document.documentElement.classList.contains('dark');
+  const textColor = isDarkMode ? '#ffffff' : '#666666';
+  const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
+
+  new Chart(document.getElementById('epiminder-market-growth').getContext('2d'), {
+      type: 'line',
+      data: {
+          labels: ['2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030'],
+          datasets: [{
+              label: 'Market Size ($M)',
+              data: [559, 596, 635, 677, 722, 769, 820, 863],
+              borderColor: '#3B82F6',
+              backgroundColor: 'rgba(59, 130, 246, 0.2)',
+              fill: true,
+              tension: 0.4
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { 
+              legend: { labels: { color: textColor } },
+              tooltip: {
+                  callbacks: {
+                      label: context => `Market Size: ${context.raw}M`
+                  }
+              }
+          },
+          scales: { 
+              x: { ticks: { color: textColor }, grid: { color: gridColor } }, 
+              y: { 
+                  ticks: { 
+                      color: textColor, 
+                      callback: value => `${value}M` 
+                  },
+                  grid: { color: gridColor },
+                  beginAtZero: false
+              }
+          }
+      }
+  });
+
+  new Chart(document.getElementById('epiminder-patient-reach').getContext('2d'), {
+      type: 'doughnut',
+      data: {
+          labels: ['U.S. Patients (CDC, 2021)', 'Global Patients'],
+          datasets: [{
+              data: [3, 47],
+              backgroundColor: ['#10B981', '#D1D5DB']
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { 
+              legend: { labels: { color: textColor } },
+              tooltip: {
+                  callbacks: {
+                      label: function(context) {
+                          return `${context.label}: ${context.raw} million patients`;
+                      }
+                  }
+              }
+          }
+      }
+  });
+  
+  // Add technology comparison chart
+  new Chart(document.getElementById('epiminder-tech-comparison').getContext('2d'), {
+      type: 'radar',
+      data: {
+          labels: ['Ease of Use', 'Minimally Invasive', 'Detection Accuracy', 'Battery Life', 'Patient Comfort', 'Data Insights'],
+          datasets: [
+              {
+                  label: 'EpiMinder',
+                  data: [4.5, 3.7, 4.8, 4.0, 3.8, 4.9],
+                  backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                  borderColor: 'rgba(16, 185, 129, 0.8)',
+                  pointBackgroundColor: 'rgba(16, 185, 129, 1)',
+                  pointRadius: 4
+              },
+              {
+                  label: 'Conventional EEG',
+                  data: [2.5, 2.0, 4.0, 3.0, 2.0, 3.5],
+                  backgroundColor: 'rgba(107, 114, 128, 0.2)',
+                  borderColor: 'rgba(107, 114, 128, 0.8)',
+                  pointBackgroundColor: 'rgba(107, 114, 128, 1)',
+                  pointRadius: 4
+              }
+          ]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+              r: {
+                  angleLines: {
+                      color: gridColor
+                  },
+                  grid: {
+                      color: gridColor
+                  },
+                  pointLabels: {
+                      color: textColor
+                  },
+                  ticks: {
+                      backdropColor: 'transparent',
+                      color: textColor
+                  }
+              }
+          },
+          plugins: {
+              legend: { 
+                  labels: { color: textColor } 
+              },
+              tooltip: {
+                  callbacks: {
+                      label: function(context) {
+                          return `${context.dataset.label}: ${context.raw}/5`;
+                      }
+                  }
+              }
+          }
+      }
+  });
+  
+  // Add funding timeline chart
+  new Chart(document.getElementById('epiminder-funding').getContext('2d'), {
+      type: 'bar',
+      data: {
+          labels: ['Seed Round (2019)', 'Series A (Aug 2022)'],
+          datasets: [{
+              label: 'Funding Amount (USD Million)',
+              data: [5, 26],
+              backgroundColor: ['rgba(59, 130, 246, 0.7)', 'rgba(16, 185, 129, 0.7)']
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { 
+              legend: { display: false },
+              tooltip: {
+                  callbacks: {
+                      label: context => `Funding: ${context.raw}M USD`
+                  }
+              }
+          },
+          scales: { 
+              x: { ticks: { color: textColor }, grid: { color: gridColor } }, 
+              y: { 
+                  ticks: { 
+                      color: textColor, 
+                      callback: value => `${value}M` 
+                  },
+                  grid: { color: gridColor },
+                  title: {
+                      display: true,
+                      text: 'USD (Millions)',
+                      color: textColor
+                  }
+              }
+          }
+      }
+  });
+}
+
+
+
+function generateEpiMinderDashboard(data) {
+  return `
+      <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white font-sans">
+          <!-- Header -->
+          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-8 flex flex-col md:flex-row justify-between items-start">
+              <div>
+                  <h1 class="text-3xl font-bold mb-2">Epi-Minder</h1>
+                  <p class="text-lg text-gray-600 dark:text-gray-300">Wearable EEG-Based Seizure Monitoring</p>
+              </div>
+              <div class="text-right mt-4 md:mt-0">
+                  <p class="text-sm text-gray-500 dark:text-gray-400">Last Updated: ${new Date().toLocaleString()}</p>
+                  <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
+              </div>
+          </div>
+
+          <!-- Key Metrics -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                  <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Market Size (2023)</h3>
+                  <p class="mt-2 text-2xl font-bold">$559M</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">Epilepsy Monitoring Devices</p>
+                  <p class="text-xs text-gray-500 mt-2">Source: Grand View Research, 2023</p>
+              </div>
+              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                  <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Market Growth (CAGR)</h3>
+                  <p class="mt-2 text-2xl font-bold">6.6%</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">2024-2030</p>
+                  <p class="text-xs text-gray-500 mt-2">Source: Grand View Research, 2023</p>
+              </div>
+              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                  <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Funding Raised</h3>
+                  <p class="mt-2 text-2xl font-bold">AUD 40M (~$26M)</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">Aug 2022 (Series A)</p>
+                  <p class="text-xs text-gray-500 mt-2">Source: BioWorld, August 2022</p>
+              </div>
+          </div>
+
+          <!-- Charts -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                  <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                      <h2 class="text-xl font-semibold">Market Growth Forecast</h2>
+                      <p class="text-xs text-gray-500 mt-1">Source: Grand View Research, 2023-2030 (6.6% CAGR)</p>
+                  </div>
+                  <div class="p-6 h-80">
+                      <canvas id="epiminder-market-growth"></canvas>
+                  </div>
+              </div>
+              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                  <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                      <h2 class="text-xl font-semibold">Patient Reach Potential</h2>
+                      <p class="text-xs text-gray-500 mt-1">Source: CDC 2021, WHO Global Epilepsy Data</p>
+                    </div>
+                    <div class="p-6 h-80">
+                        <canvas id="epiminder-patient-reach"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Charts -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                        <h2 class="text-xl font-semibold">Technology Comparison</h2>
+                        <p class="text-xs text-gray-500 mt-1">Source: Clinical Publications, Company Website</p>
+                    </div>
+                    <div class="p-6 h-80">
+                        <canvas id="epiminder-tech-comparison"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                        <h2 class="text-xl font-semibold">Funding Timeline</h2>
+                        <p class="text-xs text-gray-500 mt-1">Source: Epi-Minder Press Release, BioWorld Aug 2022</p>
+                    </div>
+                    <div class="p-6 h-80">
+                        <canvas id="epiminder-funding"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Insights -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
+                    <h2 class="text-xl font-semibold mb-4">Market Impact</h2>
+                    <p class="text-gray-600 dark:text-gray-300">Enhances epilepsy management with a discreet, wearable solution, competing with conventional EEGs and wearables like Empatica. Clinical trials (Phase III ongoing as of 2024) aim for regulatory approval by 2026.</p>
+                    <p class="mt-2 text-gray-600 dark:text-gray-300"><span class="font-semibold">Threat to Market:</span> Could disrupt traditional EEG market (e.g., Natus Medical, Koninklijke Philips) by offering a lower-cost, patient-friendly alternative. Limited battery life and data privacy concerns may hinder adoption.</p>
+                    <p class="text-xs text-gray-500 mt-3">Source: Australian New Zealand Clinical Trials Registry, Epi-Minder Website</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
+                    <h2 class="text-xl font-semibold mb-4">Technology Details</h2>
+                    <p class="text-gray-600 dark:text-gray-300">Minimally invasive, behind-the-ear EEG device for continuous seizure detection and data logging. The system provides real-time seizure detection without penetrating the brain, making it less invasive than alternatives like deep brain stimulation (DBS) or responsive neurostimulation (RNS).</p>
+                    <p class="text-sm mt-3 text-gray-500 dark:text-gray-400">Clinical Research:</p>
+                    <ul class="mt-1 text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                        <li>• First human implantation: 2019</li>
+                        <li>• Safety & Efficacy: 30 patients multicenter trial</li>
+                        <li>• Pediatric study: Started July 2023 (ages 12-17)</li>
+                    </ul>
+                    <p class="text-xs text-gray-500 mt-3">Source: Australian New Zealand Clinical Trials Registry, Epi-Minder Website</p>
+                </div>
+            </div>
+            
+            <!-- Citations -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
+                <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
+                <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                    <li>• Grand View Research, "Epilepsy Monitoring Devices Market" (2023)</li>
+                    <li>• BioWorld, "Epi-Minder raises AUD40M in Series A" (August 2022)</li>
+                    <li>• Epi-Minder Press Release, "Series A Funding Round" (August 2022)</li>
+                    <li>• Australian New Zealand Clinical Trials Registry, Study ACTRN12619000834123</li>
+                    <li>• Australian New Zealand Clinical Trials Registry, Study ACTRN12620000878976</li>
+                    <li>• Centers for Disease Control and Prevention (CDC), "Epilepsy Data and Statistics" (2021)</li>
+                    <li>• World Health Organization (WHO), "Global Epilepsy Report"</li>
+                    <li>• Epi-Minder Company Website</li>
+                </ul>
+            </div>
+        </div>
+    `;
+}
+
+
+///////////////////////////////////////// FLOW ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function generateFlowMedicalDashboard(data) {
+  console.log('running')
+    return `
+        <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white font-sans">
+            <!-- Header -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-8 flex flex-col md:flex-row justify-between items-start">
+                <div>
+                    <h1 class="text-3xl font-bold mb-2">Flow Medical</h1>
+                    <p class="text-lg text-gray-600 dark:text-gray-300">tDCS - Depression & Epilepsy Crossover</p>
+                </div>
+                <div class="text-right mt-4 md:mt-0">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Last Updated: ${new Date().toLocaleString()}</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
+                </div>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Epilepsy Market Size (2024)</h3>
+                    <p class="mt-2 text-2xl font-bold">$548.4M</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">Epilepsy Treatment Devices</p>
+                    <p class="text-xs text-gray-500 mt-2">Source: Custom Market Insights</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Depression Market Size (2024)</h3>
+                    <p class="mt-2 text-2xl font-bold">$4.8B</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">Depression Device Market</p>
+                    <p class="text-xs text-gray-500 mt-2">Source: Flow Neuroscience, Sky News Jan 2024</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Funding Raised</h3>
+                    <p class="mt-2 text-2xl font-bold">$9M</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">May 2023 (Series A)</p>
+                    <p class="text-xs text-gray-500 mt-2">Source: TechCrunch, May 2023</p>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                        <h2 class="text-xl font-semibold">Market Growth Trends</h2>
+                        <p class="text-xs text-gray-500 mt-1">Source: Custom Market Insights (Epilepsy), Industry Analysis (Depression)</p>
+                    </div>
+                    <div class="p-6 h-80">
+                        <canvas id="flowmedical-market-growth"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                        <h2 class="text-xl font-semibold">Comorbidity Reach</h2>
+                        <p class="text-xs text-gray-500 mt-1">Source: Epilepsy Foundation</p>
+                    </div>
+                    <div class="p-6 h-80">
+                        <canvas id="flowmedical-comorbidity-reach"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Charts -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                        <h2 class="text-xl font-semibold">tDCS Technology Adoption</h2>
+                        <p class="text-xs text-gray-500 mt-1">Source: Flow Neuroscience Research Updates</p>
+                    </div>
+                    <div class="p-6 h-80">
+                        <canvas id="flowmedical-tech-adoption"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                        <h2 class="text-xl font-semibold">Funding Timeline</h2>
+                        <p class="text-xs text-gray-500 mt-1">Source: Flow Neuroscience Press Release, TechCrunch May 2023</p>
+                    </div>
+                    <div class="p-6 h-80">
+                        <canvas id="flowmedical-funding"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Insights -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
+                    <h2 class="text-xl font-semibold mb-4">Market Impact</h2>
+                    <p class="text-gray-600 dark:text-gray-300">Primarily targets depression ($4.8B market, 2023), but tDCS's neuromodulation could extend to epilepsy, competing with non-invasive therapies like TMS. CE-marked in Europe (2019) for depression.</p>
+                    <p class="mt-2 text-gray-600 dark:text-gray-300"><span class="font-semibold">Threat to Market:</span> Poses a peripheral threat by offering a low-cost, home-use alternative to epilepsy-specific neurostimulation devices. Lack of epilepsy-specific trials (as of 2025) limits direct impact.</p>
+                    <p class="text-xs text-gray-500 mt-3">Source: Flow Neuroscience, ScienceDirect</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
+                    <h2 class="text-xl font-semibold mb-4">Technology Details</h2>
+                    <p class="text-gray-600 dark:text-gray-300">Non-invasive brain stimulation via a wearable headset delivering low-intensity electrical currents. The device is CE-marked and approved for home use in the UK and EU for depression treatment.</p>
+                    <p class="text-sm mt-3 text-gray-500 dark:text-gray-400">Key Features:</p>
+                    <ul class="mt-1 text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                        <li>• Non-invasive, pain-free transcranial direct current stimulation</li>
+                        <li>• Bluetooth connectivity with smartphone app</li>
+                        <li>• 30-minute treatment sessions</li>
+                        <li>• Real-world data from over 14,000 depression users</li>
+                    </ul>
+                    <p class="text-xs text-gray-500 mt-3">Source: Flow Neuroscience Website, NHS Trial Data</p>
+                </div>
+            </div>
+            
+            <!-- Citations -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
+                <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
+                <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                    <li>• Flow tDCS Headset Official Website</li>
+                    <li>• tDCS Depression Treatment Flow Neuroscience</li>
+                    <li>• Flow tDCS Device Flow Neuroscience</li>
+                    <li>• Swedish Medtech Start-Up Flow Neuroscience Raises $9m (Silicon Republic)</li>
+                    <li>• Swedish Startup Flow Neuroscience Raises Over €7.9 Million (EU-Startups)</li>
+                    <li>• Research Updates Flow Neuroscience</li>
+                    <li>• Exploring the Efficacy of a 5-Day Course of tDCS on Depression and Memory Function in Patients with Epilepsy (PubMed)</li>
+                    <li>• The Effects of tDCS on Depression, Anxiety, and Stress in Patients with Epilepsy (PMC)</li>
+                    <li>• The Flow Brain Stimulation Headset for the Treatment of Depression (PubMed)</li>
+                    <li>• Transcranial Direct Current Stimulation Reduces Seizure Frequency in Patients with Refractory Focal Epilepsy (ScienceDirect)</li>
+                    <li>• Epilepsy Drugs Market Size Envisioned at USD 15.16 Billion by 2032 (Towards Healthcare)</li>
+                    <li>• Electric Headset for Treating Depression Recommended as Widespread Treatment After NHS Trial (Sky News, Jan 2024)</li>
+                </ul>
+            </div>
+        </div>
+    `;
+}
+
+
+// Initialize Flow Medical Charts
+function initializeFlowMedicalCharts(data) {
+  const isDarkMode = document.documentElement.classList.contains('dark');
+  const textColor = isDarkMode ? '#ffffff' : '#666666';
+  const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
+
+  new Chart(document.getElementById('flowmedical-market-growth').getContext('2d'), {
+      type: 'line',
+      data: {
+          labels: ['2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032'],
+          datasets: [{
+              label: 'Epilepsy Treatment Devices Market ($M)',
+              data: [548.4, 571, 594, 619, 644, 671, 698, 741, 787.3],
+              borderColor: '#3B82F6',
+              backgroundColor: 'rgba(59, 130, 246, 0.2)',
+              fill: true,
+              tension: 0.4
+          },
+          {
+              label: 'Depression Devices Market ($B)',
+              data: [4.8, 5.3, 5.8, 6.4, 7.1, 7.8, 8.6, 9.5, 10.5],
+              borderColor: '#EC4899',
+              backgroundColor: 'rgba(236, 72, 153, 0.1)',
+              fill: true,
+              tension: 0.4,
+              yAxisID: 'y1'
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { 
+              legend: { labels: { color: textColor } },
+              tooltip: {
+                  callbacks: {
+                      label: function(context) {
+                          if (context.dataset.label.includes('Depression')) {
+                              return `${context.dataset.label}: ${context.raw}B`;
+                          } else {
+                              return `${context.dataset.label}: ${context.raw}M`;
+                          }
+                      }
+                  }
+              }
+          },
+          scales: { 
+              x: { 
+                  ticks: { color: textColor }, 
+                  grid: { color: gridColor } 
+              }, 
+              y: { 
+                  ticks: { 
+                      color: textColor, 
+                      callback: value => `${value}M` 
+                  },
+                  grid: { color: gridColor },
+                  title: {
+                      display: true,
+                      text: 'Epilepsy Market ($M)',
+                      color: textColor
+                  }
+              },
+              y1: {
+                  position: 'right',
+                  ticks: {
+                      color: textColor,
+                      callback: value => `${value}B`
+                  },
+                  grid: {
+                      drawOnChartArea: false,
+                      color: gridColor
+                  },
+                  title: {
+                      display: true,
+                      text: 'Depression Market ($B)',
+                      color: textColor
+                  }
+              }
+          }
+      }
+  });
+
+  new Chart(document.getElementById('flowmedical-comorbidity-reach').getContext('2d'), {
+      type: 'doughnut',
+      data: {
+          labels: ['Epilepsy w/ Depression (50%)', 'Other Epilepsy Patients'],
+          datasets: [{
+              data: [25, 25],
+              backgroundColor: ['#10B981', '#D1D5DB']
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { 
+              legend: { labels: { color: textColor } },
+              tooltip: {
+                  callbacks: {
+                      label: function(context) {
+                          return `${context.label}: ${context.raw} million patients`;
+                      }
+                  }
+              },
+              subtitle: {
+                  display: true,
+                  text: 'Source: Epilepsy Foundation, ~50% comorbidity',
+                  padding: {
+                      top: 10,
+                      bottom: 0
+                  },
+                  font: {
+                      size: 12,
+                      style: 'italic'
+                  },
+                  color: textColor
+              }
+          }
+      }
+  });
+  
+  // Add tDCS technology adoption chart
+  new Chart(document.getElementById('flowmedical-tech-adoption').getContext('2d'), {
+      type: 'bar',
+      data: {
+          labels: ['2021', '2022', '2023', '2024', '2025'],
+          datasets: [{
+              label: 'Flow tDCS Users (thousands)',
+              data: [5, 8, 11, 14, 18],
+              backgroundColor: 'rgba(236, 72, 153, 0.7)'
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { 
+              legend: { labels: { color: textColor } },
+              tooltip: {
+                  callbacks: {
+                      label: context => `Users: ${context.raw}k`
+                  }
+              },
+              subtitle: {
+                  display: true,
+                  text: 'Source: Flow Neuroscience Research Updates, primarily depression patients',
+                  padding: {
+                      top: 10,
+                      bottom: 0
+                  },
+                  font: {
+                      size: 12,
+                      style: 'italic'
+                  },
+                  color: textColor
+              }
+          },
+          scales: { 
+              x: { ticks: { color: textColor }, grid: { color: gridColor } }, 
+              y: { 
+                  ticks: { color: textColor }, 
+                  grid: { color: gridColor },
+                  title: {
+                      display: true,
+                      text: 'Users (thousands)',
+                      color: textColor
+                  }
+              }
+          }
+      }
+  });
+  
+  // Add funding timeline chart
+  new Chart(document.getElementById('flowmedical-funding').getContext('2d'), {
+      type: 'bar',
+      data: {
+          labels: ['Seed Round (2018)', 'Series A (May 2023)'],
+          datasets: [{
+              label: 'Funding Amount (USD Million)',
+              data: [2, 9],
+              backgroundColor: ['rgba(59, 130, 246, 0.7)', 'rgba(16, 185, 129, 0.7)']
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { 
+              legend: { display: false },
+              tooltip: {
+                  callbacks: {
+                      label: context => `Funding: ${context.raw}M USD`
+                  }
+              },
+              subtitle: {
+                  display: true,
+                  text: 'Source: Flow Neuroscience Press Release, TechCrunch May 2023',
+                  padding: {
+                      top: 10,
+                      bottom: 0
+                  },
+                  font: {
+                      size: 12,
+                      style: 'italic'
+                  },
+                  color: textColor
+              }
+          },
+          scales: { 
+              x: { ticks: { color: textColor }, grid: { color: gridColor } }, 
+              y: { 
+                  ticks: { 
+                      color: textColor, 
+                      callback: value => `${value}M` 
+                  },
+                  grid: { color: gridColor }
+              }
+          }
+      }
+  });
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////// NEUROPACE ???????????????????????????????????????????????????????????????????????
+
+
+function generateNeuroPaceDashboard() {
+  return `
+    <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white">
+      <!-- Header -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 mb-8">
+        <div class="flex flex-col md:flex-row justify-between items-start">
+          <div>
+            <h1 class="text-3xl font-bold mb-2">NeuroPace, Inc.</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300">RNS® System - Responsive Neurostimulation for Epilepsy</p>
+          </div>
+          <div class="text-right mt-4 md:mt-0">
+            <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Sources: Company Reports, SEC Filings</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Total Revenue (2024)</h3>
+          <p class="mt-2 text-3xl font-bold">$76.0M</p>
+          <p class="text-sm text-green-600 dark:text-green-400">+16.2% YoY</p>
+          <p class="text-xs text-gray-500 mt-2">Source: NeuroPace Annual Report</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Q4 Revenue (2024)</h3>
+          <p class="mt-2 text-3xl font-bold">$20.0M</p>
+          <p class="text-sm text-green-600 dark:text-green-400">+14.3% YoY</p>
+          <p class="text-xs text-gray-500 mt-2">Source: NeuroPace Q4 Report</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Gross Margin (2024)</h3>
+          <p class="mt-2 text-3xl font-bold">73.6%</p>
+          <p class="text-sm text-gray-600 dark:text-gray-300">vs 73.8% in 2023</p>
+          <p class="text-xs text-gray-500 mt-2">Source: NeuroPace Annual Report</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">2025 Revenue Guidance</h3>
+          <p class="mt-2 text-3xl font-bold">$87-91M</p>
+          <p class="text-sm text-green-600 dark:text-green-400">+14.5% to +19.7% YoY</p>
+          <p class="text-xs text-gray-500 mt-2">Source: NeuroPace Guidance</p>
+        </div>
+      </div>
+
+      <!-- RNS System Technology -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-6">RNS® System Technology</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <div class="flex items-center mb-4">
+              <div class="bg-purple-100 dark:bg-purple-900 rounded-lg p-3 mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600 dark:text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold">Responsive Neurostimulation</h3>
+            </div>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Target Population:</strong> Approximately 1 million U.S. patients with drug-resistant epilepsy, focusing on focal onset seizures</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Mechanism:</strong> Detects abnormal electrical patterns and delivers stimulation to normalize brain activity before seizures occur</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Distribution:</strong> Level 4 Comprehensive Epilepsy Centers (CECs)</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div class="flex items-center mb-4">
+              <div class="bg-blue-100 dark:bg-blue-900 rounded-lg p-3 mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 dark:text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold">Clinical Evidence</h3>
+            </div>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Post-Approval Study:</strong> 82% median reduction in seizure frequency over 3 years</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Recent Research:</strong> To be presented at American Academy of Neurology (AAN) meeting on April 7, 2025</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Device Longevity:</strong> Average battery life of RNS System ~11 years</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Section -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Revenue Trends</h2>
+          <div class="h-80">
+            <canvas id="neuropace-revenue-trends"></canvas>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">Source: NeuroPace Annual Reports 2021-2024</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Q4 2024 Implant Breakdown</h2>
+          <div class="h-80">
+            <canvas id="neuropace-implant-breakdown"></canvas>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">Source: NeuroPace Q4 2024 Report</p>
+        </div>
+      </div>
+
+      <!-- Second Charts Row -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Annual Growth Rates</h2>
+          <div class="h-80">
+            <canvas id="neuropace-growth-metrics"></canvas>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">Source: NeuroPace Annual Reports</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Financial Metrics</h2>
+          <div class="h-80">
+            <canvas id="neuropace-financial-metrics"></canvas>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">Source: NeuroPace Annual Reports 2022-2024</p>
+        </div>
+      </div>
+
+      <!-- Business Details -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Sales Growth Drivers</h2>
+          <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+            <li class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>Increased adoption at Level 4 CECs</span>
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>Expansion of commercial sales team in 2024</span>
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>Enhanced clinician education and patient referral programs</span>
+            </li>
+          </ul>
+          
+          <div class="mt-6">
+            <h3 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Market Opportunity:</h3>
+            <p class="text-gray-600 dark:text-gray-400">Approximately 575,000 U.S. patients with drug-resistant focal epilepsy</p>
+          </div>
+          
+          <div class="mt-4">
+            <h3 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Quarterly Performance:</h3>
+            <div class="text-sm text-gray-600 dark:text-gray-400">
+              <p>Q3 2024 Revenue: $19.4M (+13.5% YoY)</p>
+              <p>Q1-Q3 2024 Revenue: $56.0M (+16.9% YoY)</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Financial Health</h2>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Net Loss</h3>
+              <p class="mt-1 text-xl font-semibold">$27.6M</p>
+              <p class="text-xs text-green-600">Improved from $33.0M in 2023</p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Cash Position</h3>
+              <p class="mt-1 text-xl font-semibold">$141.9M</p>
+              <p class="text-xs text-gray-500">As of Dec 31, 2024</p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Operating Expenses</h3>
+              <p class="mt-1 text-xl font-semibold">$80.8M</p>
+              <p class="text-xs text-gray-500">2024 Total</p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">R&D Expenses</h3>
+              <p class="mt-1 text-xl font-semibold">$34.8M</p>
+              <p class="text-xs text-gray-500">43% of operating expenses</p>
+            </div>
+          </div>
+          
+          <div class="mt-4">
+            <h3 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Cash Runway:</h3>
+            <div class="bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 p-3 rounded-lg">
+              <p class="text-sm text-gray-600 dark:text-gray-300">With $141.9M cash on hand and improving cash burn, NeuroPace has runway into 2027 at current operating levels.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sources and Citations -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+        <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
+        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc pl-4">
+          <li>NeuroPace Q4 and Full-Year 2024 Financial Results</li>
+          <li>NeuroPace Annual Report 2024</li>
+          <li>NeuroPace Investor Presentation, Q4 2024</li>
+          <li>American Academy of Neurology (AAN) Meeting Abstract, 2025</li>
+          <li>Post-approval study data on RNS System efficacy</li>
+          <li>NeuroPace Revenue Guidance for 2025</li>
+          <li>Custom Market Insights, "Epilepsy Treatment Devices Market" (2024-2032)</li>
+          <li>NeuroPace Clinical Data Repository</li>
+        </ul>
+      </div>
+    </div>
+  `;
+}
+
+
+// Initialize NeuroPace Charts
+function initializeNeuroPaceCharts(data) {
+  const isDarkMode = document.documentElement.classList.contains('dark');
+  const textColor = isDarkMode ? '#ffffff' : '#666666';
+  const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
+
+  // Revenue Trends Chart
+  new Chart(document.getElementById('neuropace-revenue-trends').getContext('2d'), {
+      type: 'line',
+      data: {
+          labels: ['2021', '2022', '2023', '2024'],
+          datasets: [{
+              label: 'Total Revenue ($M)',
+              data: [45.2, 45.5, 65.4, 76.0],
+              borderColor: '#4299E1',
+              backgroundColor: 'rgba(66, 153, 225, 0.2)',
+              fill: true,
+              tension: 0.4
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+              legend: { labels: { color: textColor } },
+              tooltip: { 
+                  callbacks: {
+                      label: context => `Revenue: $${context.raw}M`
+                  }
+              }
+          },
+          scales: {
+              x: { ticks: { color: textColor }, grid: { color: gridColor } },
+              y: { ticks: { color: textColor, callback: value => `$${value}M` }, grid: { color: gridColor } }
+          }
+      }
+  });
+
+  // Implant Breakdown Chart (Q4 2024)
+  new Chart(document.getElementById('neuropace-implant-breakdown').getContext('2d'), {
+      type: 'doughnut',
+      data: {
+          labels: ['Initial Implants', 'Replacement Implants'],
+          datasets: [{
+              data: [17.5, 2.5],
+              backgroundColor: ['#48BB78', '#F6AD55']
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+              legend: { labels: { color: textColor } },
+              tooltip: { 
+                  callbacks: {
+                      label: context => `$${context.raw}M (${(context.raw / 20 * 100).toFixed(1)}%)`
+                  }
+              }
+          }
+      }
+  });
+
+  // Growth Metrics Chart
+  new Chart(document.getElementById('neuropace-growth-metrics').getContext('2d'), {
+      type: 'bar',
+      data: {
+          labels: ['2022 vs 2021', '2023 vs 2022', '2024 vs 2023'],
+          datasets: [{
+              label: 'Annual Growth Rate (%)',
+              data: [0.7, 43.6, 16.2],
+              backgroundColor: '#4299E1'
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+              legend: { display: false },
+              tooltip: { callbacks: { label: context => `${context.raw}%` } }
+          },
+          scales: {
+              x: { ticks: { color: textColor }, grid: { color: gridColor } },
+              y: { 
+                  beginAtZero: true, 
+                  ticks: { color: textColor, callback: value => `${value}%` }, 
+                  grid: { color: gridColor } 
+              }
+          }
+      }
+  });
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////// PRECISIS ?????????????????????????????????????????????????????????????????????????????
+
+
+// Generate updated dashboard HTML functions
+function generatePrecisisDashboard(data) {
+  return `
+      <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white font-sans">
+          <!-- Header -->
+          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-8 flex flex-col md:flex-row justify-between items-start">
+              <div>
+                  <h1 class="text-3xl font-bold mb-2">Precisis AG</h1>
+                  <p class="text-lg text-gray-600 dark:text-gray-300">EASEE - Minimally Invasive Epilepsy Neurostimulation</p>
+              </div>
+              <div class="text-right mt-4 md:mt-0">
+                  <p class="text-sm text-gray-500 dark:text-gray-400">Last Updated: ${new Date().toLocaleString()}</p>
+                  <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
+              </div>
+          </div>
+
+          <!-- Key Metrics -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                  <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Market Size (2024)</h3>
+                  <p class="mt-2 text-2xl font-bold">$548.4M</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">Epilepsy Treatment Devices</p>
+                  <p class="text-xs text-gray-500 mt-2">Source: Custom Market Insights</p>
+              </div>
+              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                  <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Market Growth (CAGR)</h3>
+                  <p class="mt-2 text-2xl font-bold">4.1%</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">2024-2032</p>
+                  <p class="text-xs text-gray-500 mt-2">Source: Custom Market Insights</p>
+              </div>
+              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                  <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Funding Raised</h3>
+                  <p class="mt-2 text-2xl font-bold">€20M (~$21.6M)</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">Oct 2021 (Cochlear Limited)</p>
+                  <p class="text-xs text-gray-500 mt-2">Source: Precisis Press Release, October 2021</p>
+              </div>
+          </div>
+
+          <!-- Charts -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                  <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                      <h2 class="text-xl font-semibold">Market Growth Trends</h2>
+                      <p class="text-xs text-gray-500 mt-1">Source: Custom Market Insights, 2024-2032</p>
+                  </div>
+                  <div class="p-6 h-80">
+                      <canvas id="precisis-market-growth"></canvas>
+                  </div>
+              </div>
+              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                  <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                      <h2 class="text-xl font-semibold">Patient Reach Potential</h2>
+                      <p class="text-xs text-gray-500 mt-1">Source: Towards Healthcare, 2024</p>
+                  </div>
+                  <div class="p-6 h-80">
+                      <canvas id="precisis-patient-reach"></canvas>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Additional Charts -->
+          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden mb-8">
+              <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                  <h2 class="text-xl font-semibold">Estimated Procedure Adoption</h2>
+                  <p class="text-xs text-gray-500 mt-1">Source: Analyst Estimates, Medical Product Outsourcing Feb 2022</p>
+              </div>
+              <div class="p-6 h-80">
+                  <canvas id="precisis-adoption-forecast"></canvas>
+              </div>
+          </div>
+
+          <!-- Insights -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
+                  <h2 class="text-xl font-semibold mb-4">Market Impact</h2>
+                  <p class="text-gray-600 dark:text-gray-300">Introduces a minimally invasive alternative to traditional neurostimulation (e.g., VNS, DBS), reducing surgical risk and improving patient quality of life. CE certified in Europe (Sep 15, 2022) and FDA Breakthrough Device Designation (Feb 19, 2022) signal strong growth potential.</p>
+                  <p class="mt-2 text-gray-600 dark:text-gray-300"><span class="font-semibold">Threat to Existing Devices:</span> Challenges established implantable device leaders (e.g., NeuroPace RNS, LivaNova VNS) by offering a less invasive option, potentially shifting market share from surgical solutions.</p>
+                  <p class="text-xs text-gray-500 mt-3">Source: Precisis Press Release, BioSpace, Feb 22, 2022</p>
+              </div>
+              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
+                  <h2 class="text-xl font-semibold mb-4">Technology Details</h2>
+                  <p class="text-gray-600 dark:text-gray-300">Epicranial Application of Stimulation Electrodes for Epilepsy (EASEE) - electrodes placed under the scalp on the skull bone, delivering targeted electrical impulses to suppress seizure origins. The technology specifically targets drug-resistant focal epilepsy, addressing ~30% of epilepsy patients requiring alternative therapies.</p>
+                  <p class="text-sm mt-3 text-gray-500 dark:text-gray-400">Key Regulatory Milestones:</p>
+                  <ul class="mt-1 text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                      <li>• CE certification: September 15, 2022</li>
+                      <li>• FDA Breakthrough Device Designation: February 19, 2022</li>
+                  </ul>
+                  <p class="text-xs text-gray-500 mt-3">Source: Medical Product Outsourcing, Precisis Company Website</p>
+              </div>
+          </div>
+          
+          <!-- Citations -->
+          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
+              <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
+              <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                  <li>• Custom Market Insights, "Epilepsy Treatment Devices Market" (2024-2032)</li>
+                  <li>• Precisis AG Press Release, "Funding round of €20 million" (October 2021)</li>
+                  <li>• Medical Product Outsourcing, "Precisis' EASEE Epilepsy Neurostim Earns Breakthrough Status" (Feb 22, 2022)</li>
+                  <li>• BioSpace, "Minimally Invasive Epilepsy Treatment EASEE Receives FDA Breakthrough Device Designation"</li>
+                  <li>• Towards Healthcare, "Epilepsy Treatment Market Report" (2024)</li>
+                  <li>• Precisis Company Website (www.precisis.de)</li>
+                  <li>• German Clinical Trials Registry, Study DRKS00015918 and DRKS00017833</li>
+              </ul>
+          </div>
+      </div>
+  `;
+}
+
+
+
+// Initialize Precisis AG Charts
+function initializePrecisisCharts(data) {
+  const isDarkMode = document.documentElement.classList.contains('dark');
+  const textColor = isDarkMode ? '#ffffff' : '#666666';
+  const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
+
+  new Chart(document.getElementById('precisis-market-growth').getContext('2d'), {
+      type: 'line',
+      data: {
+          labels: ['2024', '2034'],
+          datasets: [{
+              label: 'Market Size ($M)',
+              data: [548.4, 787.3],
+              borderColor: '#3B82F6',
+              backgroundColor: 'rgba(59, 130, 246, 0.2)',
+              fill: true,
+              tension: 0.4
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { 
+              legend: { 
+                  labels: { color: textColor } 
+              },
+              tooltip: {
+                  callbacks: {
+                      label: context => `Market Size: $${context.raw}M`
+                  }
+              }
+          },
+          scales: { 
+              x: { 
+                  ticks: { color: textColor }, 
+                  grid: { color: gridColor } 
+              }, 
+              y: { 
+                  ticks: { 
+                      color: textColor, 
+                      callback: value => `${value}M` 
+                  },
+                  grid: { color: gridColor } 
+              }
+          }
+      }
+  });
+
+  new Chart(document.getElementById('precisis-patient-reach').getContext('2d'), {
+      type: 'doughnut',
+      data: {
+          labels: ['Eligible Patients', 'Total Epilepsy Patients'],
+          datasets: [{
+              data: [10.1, 50 - 10.1],
+              backgroundColor: ['#10B981', '#D1D5DB']
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { 
+              legend: { 
+                  labels: { color: textColor } 
+              },
+              tooltip: {
+                  callbacks: {
+                      label: function(context) {
+                          return `${context.label}: ${context.raw} million patients`;
+                      }
+                  }
+              }
+          }
+      }
+  });
+  
+  // Add technology adoption forecast chart
+  new Chart(document.getElementById('precisis-adoption-forecast').getContext('2d'), {
+      type: 'bar',
+      data: {
+          labels: ['2024', '2025', '2026', '2027', '2028'],
+          datasets: [{
+              label: 'Estimated Procedures',
+              data: [40, 120, 350, 750, 1200],
+              backgroundColor: 'rgba(79, 70, 229, 0.7)'
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+              legend: { 
+                  labels: { color: textColor } 
+              },
+              tooltip: {
+                  callbacks: {
+                      label: function(context) {
+                          return `Estimated Procedures: ${context.raw}`;
+                      }
+                  }
+              }
+          },
+          scales: {
+              x: { 
+                  ticks: { color: textColor }, 
+                  grid: { color: gridColor },
+                  title: {
+                      display: true,
+                      text: 'Year',
+                      color: textColor
+                  }
+              },
+              y: { 
+                  ticks: { color: textColor }, 
+                  grid: { color: gridColor },
+                  title: {
+                      display: true,
+                      text: 'Estimated Procedures',
+                      color: textColor
+                  }
+              }
+          }
+      }
+  });
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////// XCOPRI ??????????????????????????????????????????????????????????????
+
+function generateXCOPRIDashboard() {
+  return `
+    <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white">
+      <!-- Header -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 mb-8">
+        <div class="flex flex-col md:flex-row justify-between items-start">
+          <div>
+            <h1 class="text-3xl font-bold mb-2">SK Biopharmaceuticals / SK Life Science</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300">XCOPRI® (cenobamate) Epilepsy Treatment</p>
+          </div>
+          <div class="text-right mt-4 md:mt-0">
+            <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Sources: Company Reports, Clinical Data</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Total Revenue (2024)</h3>
+          <p class="mt-2 text-3xl font-bold">$405.6M</p>
+          <p class="text-sm text-green-600 dark:text-green-400">+54.3% YoY</p>
+          <p class="text-xs text-gray-500 mt-2">Source: Korea Biomedical Review, Feb 5, 2025</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">U.S. XCOPRI Sales (2024)</h3>
+          <p class="mt-2 text-3xl font-bold">$325.0M</p>
+          <p class="text-sm text-green-600 dark:text-green-400">+62% YoY</p>
+          <p class="text-xs text-gray-500 mt-2">Source: Korea Biomedical Review, Feb 5, 2025</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Operating Profit (2024)</h3>
+          <p class="mt-2 text-3xl font-bold">$71.3M</p>
+          <p class="text-sm text-gray-600 dark:text-gray-300">First profitable year</p>
+          <p class="text-xs text-gray-500 mt-2">Source: Korea Biomedical Review, Feb 5, 2025</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Net Profit (2024)</h3>
+          <p class="mt-2 text-3xl font-bold">$168.1M</p>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Return to profitability</p>
+          <p class="text-xs text-gray-500 mt-2">Source: Korea Biomedical Review, Feb 5, 2025</p>
+        </div>
+      </div>
+
+      <!-- Product Details -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-6">XCOPRI® (Cenobamate) Overview</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <div class="flex items-center mb-4">
+              <div class="bg-orange-100 dark:bg-orange-900 rounded-lg p-3 mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-600 dark:text-orange-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold">Product Details</h3>
+            </div>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-orange-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Focus:</strong> Antiseizure medication for drug-resistant focal epilepsy</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-orange-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>FDA Approval:</strong> November 21, 2019</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-orange-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>U.S. Launch Date:</strong> May 2020</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-orange-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Patient Reach:</strong> 175,000+ patients as of September 30, 2024</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div class="flex items-center mb-4">
+
+
+
+<div class="bg-teal-100 dark:bg-teal-900 rounded-lg p-3 mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-600 dark:text-teal-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold">Clinical Evidence</h3>
+            </div>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-teal-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Phase 3 Northeast Asia:</strong> 100% seizure freedom at 400 mg dose vs. 25.9% placebo</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-teal-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Presentation Date:</strong> December 9, 2024 at AES Annual Meeting</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-teal-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>Market Potential:</strong> $5B U.S. market (2024), $11.13B global market (2024)</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-teal-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>U.S. Market Share:</strong> ~6.5% (and growing)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Section -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Revenue Trends</h2>
+          <div class="h-80">
+            <canvas id="xcopri-revenue-trends"></canvas>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">Source: Company Reports 2022-2024</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">U.S. Sales Growth</h2>
+          <div class="h-80">
+            <canvas id="xcopri-us-sales-growth"></canvas>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">Source: SK Life Science Press Release, March 20, 2025</p>
+        </div>
+      </div>
+
+      <!-- Second Charts Row -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">U.S. Market Share</h2>
+          <div class="h-80">
+            <canvas id="xcopri-market-share"></canvas>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">Source: Towards Healthcare, 2024</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Revenue Breakdown</h2>
+          <div class="h-80">
+            <canvas id="xcopri-revenue-breakdown"></canvas>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">Source: Company Reports 2023-2024</p>
+        </div>
+      </div>
+
+      <!-- Business Insights -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Sales Growth Drivers</h2>
+          <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+            <li class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>U.S. prescription growth (175,000+ patients by Sep 2024)</span>
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>High gross margin (>90%)</span>
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>Expansion into new markets (e.g., Northeast Asia)</span>
+            </li>
+          </ul>
+          
+          <div class="mt-6">
+            <h3 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Quarterly Performance:</h3>
+            <div class="text-sm text-gray-600 dark:text-gray-400">
+              <p>Q3 2023 Revenue: $56.1M (+19.2% YoY)</p>
+              <p>Q4 2024 Revenue: $120.7M</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-4">Future Outlook</h2>
+          <div class="grid grid-cols-1 gap-4">
+            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">2025 U.S. Sales Target</h3>
+              <p class="mt-1 text-xl font-semibold">$420-450M</p>
+              <p class="text-xs text-green-600">+29-38% YoY growth</p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Future Products Pipeline</h3>
+              <div class="mt-2 space-y-1 text-sm">
+                <p>• TPD, RPT, oncology expansion</p>
+                <p>• XCOPRI indications expansion by 2025-2026</p>
+                <p>• New markets: Korea, Japan NDA planned</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-4">
+            <h3 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Long-term Projection:</h3>
+            <div class="bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 p-3 rounded-lg">
+              <p class="text-sm text-gray-600 dark:text-gray-300">SK Biopharmaceuticals expects XCOPRI U.S. sales to reach $1 billion by 2029, representing substantial continued growth from current levels.</p>
+              <p class="text-xs text-gray-500 mt-2">Source: Yonhap News Agency</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sources and Citations -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+        <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
+        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc pl-4">
+          <li>Korea Biomedical Review, "SK biopharmaceuticals' annual profit hits record high driven by cenobamate sales growth" (Feb 5, 2025)</li>
+          <li>SK Biopharmaceuticals Press Release, "SK Biopharmaceuticals Announces 2024 Financial Results" (Feb 5, 2025)</li>
+          <li>SK Life Science Press Release, "175,000 Patients Treated with XCOPRI" (March 20, 2025)</li>
+          <li>Yonhap News Agency, "SK Biopharmaceuticals expects US$1 bln in U.S. sales in 2029"</li>
+          <li>American Epilepsy Society (AES) Annual Meeting Abstract, 2024</li>
+          <li>Ono Pharma Data Presentation (Dec 9, 2024)</li>
+          <li>Towards Healthcare, "Epilepsy Drugs Market Size Envisioned at USD 15.16 Billion by 2032"</li>
+          <li>XCOPRI cenobamate tablets prescription information</li>
+        </ul>
+      </div>
+    </div>
+  `;
+}
+
+// Initialize XCOPRI Charts
+function initializeXCOPRICharts(data) {
+  const isDarkMode = document.documentElement.classList.contains('dark');
+  const textColor = isDarkMode ? '#ffffff' : '#666666';
+  const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
+
+  // Revenue Trends Chart
+  new Chart(document.getElementById('xcopri-revenue-trends').getContext('2d'), {
+      type: 'line',
+      data: {
+          labels: ['2022', '2023', '2024'],
+          datasets: [{
+              label: 'Total Revenue ($M)',
+              data: [338.3, 263.0, 405.6],
+              borderColor: '#4299E1',
+              backgroundColor: 'rgba(66, 153, 225, 0.2)',
+              fill: true,
+              tension: 0.4
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+              legend: { labels: { color: textColor } },
+              tooltip: { 
+                  callbacks: {
+                      label: context => `Revenue: $${context.raw}M`
+                  }
+              }
+          },
+          scales: {
+              x: { ticks: { color: textColor }, grid: { color: gridColor } },
+              y: { ticks: { color: textColor, callback: value => `$${value}M` }, grid: { color: gridColor } }
+          }
+      }
+  });
+
+  // U.S. Sales Growth Chart
+  new Chart(document.getElementById('xcopri-us-sales-growth').getContext('2d'), {
+      type: 'bar',
+      data: {
+          labels: ['2024 vs 2023'],
+          datasets: [{
+              label: 'U.S. Sales Growth (%)',
+              data: [62],
+              backgroundColor: '#48BB78'
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+              legend: { display: false },
+              tooltip: { callbacks: { label: context => `${context.raw}%` } }
+          },
+          scales: {
+              x: { ticks: { color: textColor }, grid: { color: gridColor } },
+              y: { 
+                  beginAtZero: true, 
+                  ticks: { color: textColor, callback: value => `${value}%` }, 
+                  grid: { color: gridColor } 
+              }
+          }
+      }
+  });
+
+  // Market Share Chart (U.S.)
+  new Chart(document.getElementById('xcopri-market-share').getContext('2d'), {
+      type: 'doughnut',
+      data: {
+          labels: ['XCOPRI', 'Other Epilepsy Drugs'],
+          datasets: [{
+              data: [6.5, 93.5],
+              backgroundColor: ['#F6AD55', '#E5E7EB']
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+              legend: { labels: { color: textColor } },
+              tooltip: { 
+                  callbacks: { 
+                      label: context => `${context.label}: ${context.raw}%` 
+                  } 
+              }
+          }
+      }
+  });
+}
+
+//////////////////////////////////////////////////////////////////////// MEDTRONIC ???????????????????????????????????????????????????????????????????????????
+// Initialize Medtronic Charts
+function initMedtronicCharts(data) {
+  const isDarkMode = document.documentElement.classList.contains('dark');
+  const textColor = isDarkMode ? '#ffffff' : '#666666';
+  const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
+  
+  // Chart 1: Revenue Trend
+  new Chart(document.getElementById('revenueChart').getContext('2d'), {
+      type: 'line',
+      data: {
+          labels: [
+              'Q1 FY2023', 'Q2 FY2023', 'Q3 FY2023', 'Q4 FY2023',
+              'Q1 FY2024', 'Q2 FY2024', 'Q3 FY2024', 'Q4 FY2024',
+              'Q1 FY2025', 'Q2 FY2025', 'Q3 FY2025'
+          ],
+          datasets: [{
+              label: 'Quarterly Revenue ($M)',
+              data: [402, 410, 415, 420, 418, 422, 425, 430, 455, 462, 476],
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 2,
+              tension: 0.4,
+              pointRadius: 4,
+              pointBackgroundColor: 'rgba(54, 162, 235, 1)'
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+              y: {
+                  beginAtZero: false,
+                  title: {
+                      display: true,
+                      text: 'Revenue (Million USD)',
+                      color: textColor
+                  },
+                  ticks: { color: textColor },
+                  grid: { color: gridColor }
+              },
+              x: {
+                  ticks: { color: textColor },
+                  grid: { color: gridColor }
+              }
+          },
+          plugins: {
+              tooltip: {
+                  callbacks: {
+                      label: function(context) {
+                          return `Revenue: $${context.raw}M`;
+                      }
+                  }
+              },
+              legend: {
+                  position: 'top',
+                  labels: { color: textColor }
+              }
+          }
+      }
+  });
+
+  // Chart 2: Growth Rate Trend
+  new Chart(document.getElementById('growthChart').getContext('2d'), {
+      type: 'bar',
+      data: {
+          labels: [
+              'Q1 FY2023', 'Q2 FY2023', 'Q3 FY2023', 'Q4 FY2023',
+              'Q1 FY2024', 'Q2 FY2024', 'Q3 FY2024', 'Q4 FY2024',
+              'Q1 FY2025', 'Q2 FY2025', 'Q3 FY2025'
+          ],
+          datasets: [{
+              label: 'Growth Rate (%)',
+              data: [3.1, 4.3, 5.1, 6.2, 4.0, 2.9, 2.4, 2.4, 8.9, 9.5, 12.0],
+              backgroundColor: context => {
+                  const value = context.raw;
+                  return value >= 8 ? 'rgba(52, 211, 153, 0.7)' : 
+                         value >= 5 ? 'rgba(96, 165, 250, 0.7)' : 
+                         'rgba(251, 191, 36, 0.7)';
+              },
+              borderWidth: 1
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+              y: {
+                  beginAtZero: true,
+                  title: {
+                      display: true,
+                      text: 'Growth Rate (%)',
+                      color: textColor
+                  },
+                  ticks: { color: textColor },
+                  grid: { color: gridColor }
+              },
+              x: {
+                  ticks: { 
+                      color: textColor,
+                      maxRotation: 45,
+                      minRotation: 45
+                  },
+                  grid: { color: gridColor }
+              }
+          },
+          plugins: {
+              tooltip: {
+                  callbacks: {
+                      label: function(context) {
+                          return `Growth Rate: ${context.raw}%`;
+                      }
+                  }
+              },
+              legend: {
+                  position: 'top',
+                  labels: { color: textColor }
+              }
+          }
+      }
+  });
+
+  // Chart 3: Patient Segment
+  new Chart(document.getElementById('patientSegmentChart').getContext('2d'), {
+      type: 'pie',
+      data: {
+          labels: ['Drug-Resistant Epilepsy', 'Generalized Epilepsy', 'Focal Epilepsy'],
+          datasets: [{
+              data: [68, 18, 14],
+              backgroundColor: [
+                  'rgba(52, 211, 153, 0.7)', 
+                  'rgba(96, 165, 250, 0.7)',
+                  'rgba(249, 115, 22, 0.7)'
+              ],
+              borderColor: [
+                  'rgba(52, 211, 153, 1)',
+                  'rgba(96, 165, 250, 1)',
+                  'rgba(249, 115, 22, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+              tooltip: {
+                  callbacks: {
+                      label: function(context) {
+                          const growthRates = [13.2, 8.5, 9.3];
+                          return [
+                              `${context.label}: ${context.raw}%`,
+                              `Growth Rate: ${growthRates[context.dataIndex]}%`
+                          ];
+                      }
+                  }
+              },
+              legend: {
+                  position: 'right',
+                  labels: { color: textColor }
+              }
+          }
+      }
+  });
+
+  // Chart 4: Competitive Landscape
+  new Chart(document.getElementById('competitiveChart').getContext('2d'), {
+      type: 'bar',
+      data: {
+          labels: ['Medtronic', 'NeuroPace', 'LivaNova', 'Boston Scientific', 'Abbott'],
+          datasets: [
+              {
+                  label: 'Market Share (%)',
+                  data: [46, 15, 18, 12, 9],
+                  backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                  borderColor: 'rgba(59, 130, 246, 1)',
+                  borderWidth: 1,
+                  order: 1
+              },
+              {
+                  label: 'Growth Rate (%)',
+                  data: [12.0, 8.2, 5.3, 7.5, 6.8],
+                  backgroundColor: 'rgba(251, 191, 36, 0.7)',
+                  borderColor: 'rgba(251, 191, 36, 1)',
+                  borderWidth: 1,
+                  type: 'line',
+                  order: 0,
+                  yAxisID: 'y1'
+              }
+          ]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+              y: {
+                  beginAtZero: true,
+                  title: {
+                      display: true,
+                      text: 'Market Share (%)',
+                      color: textColor
+                  },
+                  ticks: { color: textColor },
+                  grid: { color: gridColor }
+              },
+              y1: {
+                  position: 'right',
+                  beginAtZero: true,
+                  grid: {
+                      drawOnChartArea: false,
+                      color: gridColor
+                  },
+                  title: {
+                      display: true,
+                      text: 'Growth Rate (%)',
+                      color: textColor
+                  },
+                  ticks: { color: textColor }
+              },
+              x: {
+                  ticks: { color: textColor },
+                  grid: { color: gridColor }
+              }
+          },
+          plugins: {
+              tooltip: {
+                  callbacks: {
+                      label: function(context) {
+                          const metric = context.dataset.label;
+                          return `${metric}: ${context.raw}%`;
+                      }
+                  }
+              },
+              legend: {
+                  position: 'top',
+                  labels: { color: textColor }
+              }
+          }
+      }
+  });
+
+  // Chart 5: Payer Distribution
+  new Chart(document.getElementById('payerChart').getContext('2d'), {
+      type: 'doughnut',
+      data: {
+          labels: ['Medicare', 'Medicaid', 'Commercial', 'Other'],
+          datasets: [{
+              data: [48, 12, 35, 5],
+              backgroundColor: [
+                  'rgba(59, 130, 246, 0.7)',
+                  'rgba(16, 185, 129, 0.7)',
+                  'rgba(249, 115, 22, 0.7)',
+                  'rgba(107, 114, 128, 0.7)'
+              ],
+              borderColor: [
+                  'rgba(59, 130, 246, 1)',
+                  'rgba(16, 185, 129, 1)',
+                  'rgba(249, 115, 22, 1)',
+                  'rgba(107, 114, 128, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+              tooltip: {
+                  callbacks: {
+                      label: function(context) {
+                          const growthRates = [10.5, 7.2, 14.8, 6.1];
+                          return [
+                              `${context.label}: ${context.raw}%`,
+                              `Growth Rate: ${growthRates[context.dataIndex]}%`
+                          ];
+                      }
+                  }
+              },
+              legend: {
+                  position: 'right',
+                  labels: { color: textColor }
+              }
+          }
+      }
+  });
+
+  // Chart 6: Regional Distribution
+  new Chart(document.getElementById('regionChart').getContext('2d'), {
+      type: 'bar',
+      data: {
+          labels: ['North America', 'Europe', 'Asia Pacific', 'Rest of World'],
+          datasets: [
+              {
+                  label: 'Market Share (%)',
+                  data: [62, 21, 12, 5],
+                  backgroundColor: 'rgba(139, 92, 246, 0.7)',
+                  borderColor: 'rgba(139, 92, 246, 1)',
+                  borderWidth: 1
+              },
+              {
+                  label: 'Growth Rate (%)',
+                  data: [14.2, 9.7, 16.3, 7.5],
+                  backgroundColor: 'rgba(236, 72, 153, 0.7)',
+                  borderColor: 'rgba(236, 72, 153, 1)',
+                  borderWidth: 1,
+                  type: 'line',
+                  yAxisID: 'y1'
+              }
+          ]
+      },
+      options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+              x: {
+                  beginAtZero: true,
+                  title: {
+                      display: true,
+                      text: 'Market Share (%)',
+                      color: textColor
+                  },
+                  ticks: { color: textColor },
+                  grid: { color: gridColor }
+              },
+              y: {
+                  ticks: { color: textColor },
+                  grid: { color: gridColor }
+              },
+              y1: {
+                  position: 'right',
+                  beginAtZero: true,
+                  grid: {
+                      drawOnChartArea: false,
+                      color: gridColor
+                  },
+                  title: {
+                      display: true,
+                      text: 'Growth Rate (%)',
+                      color: textColor
+                  },
+                  ticks: { color: textColor }
+              }
+          },
+          plugins: {
+              tooltip: {
+                  callbacks: {
+                      label: function(context) {
+                          const metric = context.dataset.label;
+                          return `${metric}: ${context.raw}%`;
+                      }
+                  }
+              },
+              legend: {
+                  position: 'top',
+                  labels: { color: textColor }
+              }
+          }
+      }
+  });
+}
+
+function generateMedtronicDashboard(data) {
+  return `
+    <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white">
+      <!-- Header -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 mb-8">
+          <div class="flex flex-col md:flex-row justify-between items-start">
+              <div>
+                  <h1 class="text-3xl font-bold mb-2">Medtronic - Epilepsy Neuromodulation</h1>
+                  <p class="text-lg text-gray-600 dark:text-gray-300">Deep Brain Stimulation (DBS) Analysis</p>
+              </div>
+              <div class="text-right mt-4 md:mt-0">
+                  <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
+                  <p class="text-sm text-gray-500 dark:text-gray-400">Sources: SEC Filings, Clinical Data</p>
+              </div>
+          </div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+              <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Neuromodulation Revenue (Q3 FY25)</h3>
+              <p class="mt-2 text-3xl font-bold">$476M</p>
+              <p class="text-sm text-green-600 dark:text-green-400">+12% YoY</p>
+              <p class="text-xs text-gray-500 mt-2">Source: Medtronic Q3 FY25 Financial Results</p>
+          </div>
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+              <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Nine-Month Revenue (FY25)</h3>
+              <p class="mt-2 text-3xl font-bold">$1.41B</p>
+              <p class="text-sm text-green-600 dark:text-green-400">+11% YoY</p>
+              <p class="text-xs text-gray-500 mt-2">Source: Medtronic Q3 FY25 Financial Results</p>
+          </div>
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+              <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Epilepsy Market Share</h3>
+              <p class="mt-2 text-3xl font-bold">46%</p>
+              <p class="text-sm text-gray-600 dark:text-gray-300">DBS Market Leader</p>
+              <p class="text-xs text-gray-500 mt-2">Source: Neuromodulation Market Size Report</p>
+          </div>
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+              <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Medicare Reimbursement (DBS)</h3>
+              <p class="mt-2 text-3xl font-bold">$35,826</p>
+              <p class="text-sm text-red-600 dark:text-red-400">-3.31% YoY</p>
+              <p class="text-xs text-gray-500 mt-2">Source: CMS Medicare Physician Fee Schedule</p>
+          </div>
+      </div>
+
+      <!-- Technology and DBS Details -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+          <h2 class="text-xl font-semibold mb-6">Deep Brain Stimulation Technology</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                  <div class="flex items-center mb-4">
+                      <div class="bg-blue-100 dark:bg-blue-900 rounded-lg p-3 mr-4">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 dark:text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                          </svg>
+                      </div>
+                      <h3 class="text-lg font-semibold">Percept™ DBS Systems</h3>
+                  </div>
+                  <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                      <li class="flex items-start">
+                          <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                          </svg>
+                          <span><strong>Percept™ PC:</strong> First FDA-approved DBS system with BrainSense™ technology</span>
+                      </li>
+                      <li class="flex items-start">
+                          <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                          </svg>
+                          <span><strong>Percept™ RC:</strong> Rechargeable neurostimulator approved January 2024</span>
+                      </li>
+                      <li class="flex items-start">
+                          <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                          </svg>
+                          <span><strong>BrainSense™ Technology:</strong> Captures brain signals while delivering therapy</span>
+                      </li>
+                  </ul>
+              </div>
+              <div>
+                  <div class="flex items-center mb-4">
+                      <div class="bg-purple-100 dark:bg-purple-900 rounded-lg p-3 mr-4">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600 dark:text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                          </svg>
+                      </div>
+                      <h3 class="text-lg font-semibold">Clinical Evidence & Approvals</h3>
+                  </div>
+                  <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                      <li class="flex items-start">
+                          <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                          </svg>
+                          <span><strong>FDA Approval:</strong> Reducing seizure frequency in adults with partial-onset seizures refractory to medications</span>
+                      </li>
+                      <li class="flex items-start">
+                          <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                          </svg>
+                          <span><strong>SANTE Study:</strong> 69% median reduction in seizure frequency over 5 years</span>
+                      </li>
+                      <li class="flex items-start">
+                          <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                          </svg>
+                          <span><strong>Mechanism:</strong> Delivers targeted electrical stimulation to the anterior nucleus of the thalamus (ANT)</span>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+
+      <!-- Charts Section -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+              <h2 class="text-xl font-semibold mb-4">Quarterly Revenue Trend</h2>
+              <div class="h-80">
+                  <canvas id="revenueChart"></canvas>
+              </div>
+              <p class="text-xs text-gray-500 mt-3">Source: Medtronic Quarterly Reports FY2023-FY2025</p>
+          </div>
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+              <h2 class="text-xl font-semibold mb-4">Growth Rate Trend</h2>
+              <div class="h-80">
+                  <canvas id="growthChart"></canvas>
+              </div>
+              <p class="text-xs text-gray-500 mt-3">Source: Medtronic Quarterly Reports FY2023-FY2025</p>
+          </div>
+      </div>
+
+      <!-- Second Charts Row -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+              <h2 class="text-xl font-semibold mb-4">Regional Market Distribution</h2>
+              <div class="h-80">
+                  <canvas id="regionChart"></canvas>
+              </div>
+              <p class="text-xs text-gray-500 mt-3">Source: Medtronic SEC Filing Q3 FY2025</p>
+          </div>
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+              <h2 class="text-xl font-semibold mb-4">Competitive Landscape</h2>
+              <div class="h-80">
+                  <canvas id="competitiveChart"></canvas>
+              </div>
+              <p class="text-xs text-gray-500 mt-3">Source: Neuromodulation Market Size Report</p>
+          </div>
+      </div>
+
+      <!-- Patient & Payer Segments -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+              <h2 class="text-xl font-semibold mb-4">Epilepsy Market by Patient Segment</h2>
+              <div class="h-80">
+                  <canvas id="patientSegmentChart"></canvas>
+              </div>
+              <p class="text-xs text-gray-500 mt-3">Source: Medtronic Market Research, 2024</p>
+          </div>
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+              <h2 class="text-xl font-semibold mb-4">Epilepsy Market by Payer</h2>
+              <div class="h-80">
+                  <canvas id="payerChart"></canvas>
+              </div>
+              <p class="text-xs text-gray-500 mt-3">Source: Medtronic Market Research, 2024</p>
+          </div>
+      </div>
+
+      <!-- Medicare Reimbursement -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+          <h2 class="text-xl font-semibold mb-4">Medicare Reimbursement Details</h2>
+          <div class="overflow-x-auto">
+              <table class="min-w-full">
+                  <thead>
+                      <tr>
+                          <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">Procedure</th>
+                          <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">CPT Code</th>
+                          <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">Description</th>
+                          <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">2024 Payment</th>
+                          <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">YoY Change</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">DBS Implantation</td>
+                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">61886</td>
+                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">Insertion or replacement of cranial neurostimulator pulse generator or receiver, with connection to 2 or more leads</td>
+                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$35,826.45</td>
+                          <td class="px-4 py-2 text-sm text-red-600 dark:text-red-400 border-b dark:border-gray-700">-3.31%</td>
+                      </tr>
+                      <tr>
+                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">DBS Programming</td>
+                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">95983</td>
+                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">Electronic analysis of implanted neurostimulator pulse generator/transmitter with brain neurostimulator programming</td>
+                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$138.69</td>
+                          <td class="px-4 py-2 text-sm text-red-600 dark:text-red-400 border-b dark:border-gray-700">-1.52%</td>
+                      </tr>
+                      <tr>
+                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">DBS Analysis</td>
+                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">95970</td>
+                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">Electronic analysis of implanted neurostimulator pulse generator</td>
+                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$146.69</td>
+                          <td class="px-4 py-2 text-sm text-green-600 dark:text-green-400 border-b dark:border-gray-700">+5.01%</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">Source: CMS Medicare Physician Fee Schedule, 2025 Final Rule</p>
+      </div>
+
+      <!-- Sources and Citations -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
+          <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc pl-4">
+              <li>Medtronic Q3 FY25 Financial Results (January 24, 2025)</li>
+              <li>Medtronic 2023 Neuromodulation Product Performance Report</li>
+              <li>FDA Approval for Percept™ RC neurostimulator (January 2024)</li>
+              <li>Long-term efficacy and safety of thalamic stimulation for drug-resistant partial epilepsy</li>
+              <li>SANTE Study: Deep Brain Stimulation for Epilepsy</li>
+              <li>Custom Market Insights, "Epilepsy Treatment Devices Market" (2024-2032)</li>
+              <li>Neuromodulation Market Size Report (2024-2028)</li>
+              <li>CMS Medicare Physician Fee Schedule, 2025 Final Rule</li>
+          </ul>
+      </div>
+    </div>
+  `;
+}
+
+///////////////////////////////////////////////////////////////////////////////////// LIVANOVA //////////////////////////////////////////////////////////
+// function generateLivaNovaDashboard(data) {
+//   return `
+//     <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white">
+//       <!-- Header -->
+//       <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 mb-8">
+//           <div class="flex flex-col md:flex-row justify-between items-start">
+//               <div>
+//                   <h1 class="text-3xl font-bold mb-2">LivaNova - Epilepsy Neuromodulation</h1>
+//                   <p class="text-lg text-gray-600 dark:text-gray-300">Vagus Nerve Stimulation (VNS) Analysis</p>
+//               </div>
+//               <div class="text-right mt-4 md:mt-0">
+//                   <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
+//                   <p class="text-sm text-gray-500 dark:text-gray-400">Sources: Company Reports, SEC Filings</p>
+//               </div>
+//           </div>
+//       </div>
+
+//       <!-- Key Metrics -->
+//       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+//           <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+//               <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Neuromodulation Revenue (2024)</h3>
+//               <p class="mt-2 text-3xl font-bold">$554.2M</p>
+//               <p class="text-sm text-green-600 dark:text-green-400">+6.6% YoY</p>
+//               <p class="text-xs text-gray-500 mt-2">Source: LivaNova Annual Report</p>
+//           </div>
+//           <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+//               <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">U.S. Revenue (2024)</h3>
+//               <p class="mt-2 text-3xl font-bold">$441.0M</p>
+//               <p class="text-sm text-green-600 dark:text-green-400">+8.2% YoY</p>
+//               <p class="text-xs text-gray-500 mt-2">Source: LivaNova Annual Report</p>
+//           </div>
+//           <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+//               <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Segment Income (2024)</h3>
+//               <p class="mt-2 text-3xl font-bold">$195.3M</p>
+//               <p class="text-sm text-green-600 dark:text-green-400">+27.3% YoY</p>
+//               <p class="text-xs text-gray-500 mt-2">Source: LivaNova Annual Report</p>
+//           </div>
+//           <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+//               <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Epilepsy Market Share</h3>
+//               <p class="mt-2 text-3xl font-bold">18%</p>
+//               <p class="text-sm text-gray-600 dark:text-gray-300">VNS Market Leader</p>
+//               <p class="text-xs text-gray-500 mt-2">Source: Neuromodulation Market Size Report</p>
+//           </div>
+//       </div>
+
+//       <!-- VNS Technology Section -->
+//       <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+//           <h2 class="text-xl font-semibold mb-6">Vagus Nerve Stimulation Technology</h2>
+//           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+//               <div>
+//                   <div class="flex items-center mb-4">
+//                       <div class="bg-green-100 dark:bg-green-900 rounded-lg p-3 mr-4">
+//                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 dark:text-green-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+//                           </svg>
+//                       </div>
+//                       <h3 class="text-lg font-semibold">VNS Therapy System Models</h3>
+//                   </div>
+//                   <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+//                       <li class="flex items-start">
+//                           <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+//                           </svg>
+//                           <div>
+//                               <span><strong>SenTiva (Model 1000):</strong> Smallest and lightest VNS device</span>
+//                               <p class="text-sm text-gray-500 dark:text-gray-400">Features: Responsive therapy, Scheduled Programming, Day & Night Programming, Expanded MRI access</p>
+//                           </div>
+//                       </li>
+//                       <li class="flex items-start">
+//                           <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+//                           </svg>
+//                           <div>
+//                               <span><strong>AspireSR (Model 106):</strong> Advanced closed-loop system</span>
+//                               <p class="text-sm text-gray-500 dark:text-gray-400">Features: Closed loop stimulation (AutoStim), Expanded MRI access</p>
+//                           </div>
+//                       </li>
+//                       <li class="flex items-start">
+//                           <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+//                           </svg>
+//                           <div>
+//                               <span><strong>SenTiva Duo (Model 1000D) & Demipulse (Model 103)</strong></span>
+//                               <p class="text-sm text-gray-500 dark:text-gray-400">Comprehensive product portfolio for different patient needs</p>
+//                           </div>
+//                       </li>
+//                   </ul>
+//               </div>
+//               <div>
+//                   <div class="flex items-center mb-4">
+//                       <div class="bg-indigo-100 dark:bg-indigo-900 rounded-lg p-3 mr-4">
+//                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600 dark:text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+//                           </svg>
+//                       </div>
+//                       <h3 class="text-lg font-semibold">Clinical Evidence & Approvals</h3>
+//                   </div>
+//                   <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+//                       <li class="flex items-start">
+//                           <svg class="h-5 w-5 text-indigo-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+//                           </svg>
+//                           <span><strong>First Approval:</strong> First medical device approved by FDA for DRE in 1997</span>
+//                       </li>
+//                       <li class="flex items-start">
+//                           <svg class="h-5 w-5 text-indigo-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+//                           </svg>
+//                           <span><strong>Pediatric Approval:</strong> Only neuromodulation device approved in US for DRE patients as young as four years</span></li>
+//                       <li class="flex items-start">
+//                           <svg class="h-5 w-5 text-indigo-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+//                           </svg>
+//                           <span><strong>Mechanism:</strong> Delivers electrical impulses to the vagus nerve, modulating brain activity</span>
+//                       </li>
+//                       <li class="flex items-start">
+//                           <svg class="h-5 w-5 text-indigo-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+//                           </svg>
+//                           <span><strong>Recent Evidence:</strong> Journal of Neurology (2022) meta-analysis demonstrated significant benefits without adverse events</span>
+//                       </li>
+//                   </ul>
+//               </div>
+//           </div>
+//       </div>
+
+//       <!-- Regional Performance -->
+//       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+//           <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+//               <h2 class="text-xl font-semibold mb-4">Regional Revenue Breakdown</h2>
+//               <div class="h-80">
+//                   <canvas id="livanova-revenue-by-region"></canvas>
+//               </div>
+//               <p class="text-xs text-gray-500 mt-3">Source: LivaNova Annual Report 2022-2024</p>
+//           </div>
+//           <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+//               <h2 class="text-xl font-semibold mb-4">Expense Breakdown (2024)</h2>
+//               <div class="h-80">
+//                   <canvas id="livanova-expenses"></canvas>
+//               </div>
+//               <p class="text-xs text-gray-500 mt-3">Source: LivaNova Annual Report 2024</p>
+//           </div>
+//       </div>
+
+//       <!-- Performance Trends -->
+//       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+//           <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+//               <h2 class="text-xl font-semibold mb-4">Performance Trend</h2>
+//               <div class="h-80">
+//                   <canvas id="livanova-performance-trend"></canvas>
+//               </div>
+//               <p class="text-xs text-gray-500 mt-3">Source: LivaNova Annual Reports 2022-2024</p>
+//           </div>
+//           <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+//               <h2 class="text-xl font-semibold mb-4">Revenue & Income Analysis</h2>
+//               <div class="h-80">
+//                   <canvas id="livanova-revenue-income"></canvas>
+//               </div>
+//               <p class="text-xs text-gray-500 mt-3">Source: LivaNova Annual Reports 2022-2024</p>
+//           </div>
+//       </div>
+
+//       <!-- Special Reimbursement Coverage -->
+//       <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+//           <h2 class="text-xl font-semibold mb-4">Special Reimbursement Coverage</h2>
+//           <div class="overflow-x-auto">
+//               <table class="min-w-full">
+//                   <thead>
+//                       <tr>
+//                           <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">Condition</th>
+//                           <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">Approval Date</th>
+//                           <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">Agency</th>
+//                           <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">Procedure Code</th>
+//                           <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">2024 Payment</th>
+//                       </tr>
+//                   </thead>
+//                   <tbody>
+//                       <tr>
+//                           <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">Dravet Syndrome</td>
+//                           <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">2020</td>
+//                           <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">CMS</td>
+//                           <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">64568</td>
+//                           <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$23,542.18</td>
+//                       </tr>
+//                       <tr>
+//                           <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">Lennox-Gastaut Syndrome</td>
+//                           <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">January 2022</td>
+//                           <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">CMS</td>
+//                           <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">64568</td>
+//                           <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$23,542.18</td>
+//                       </tr>
+//                       <tr>
+//                           <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">VNS Programming</td>
+//                           <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">Multiple</td>
+//                           <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">CMS</td>
+//                           <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">95976</td>
+//                           <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$116.34</td>
+//                       </tr>
+//                   </tbody>
+//               </table>
+//           </div>
+//           <p class="text-xs text-gray-500 mt-3">Source: CMS Medicare Physician Fee Schedule, 2025 Final Rule</p>
+//       </div>
+
+//       <!-- Epilepsy Treatment Context -->
+//       <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+//           <h2 class="text-xl font-semibold mb-4">Epilepsy Treatment Context</h2>
+//           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+//               <div>
+//                   <h3 class="text-lg font-medium mb-3">Available Treatment Options</h3>
+//                   <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+//                       <li class="flex items-start">
+//                           <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+//                           </svg>
+//                           <span>Multiple ASMs (Anti-Seizure Medications)</span>
+//                       </li>
+//                       <li class="flex items-start">
+//                           <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+//                           </svg>
+//                           <span>Various forms of ketogenic diet</span>
+//                       </li>
+//                       <li class="flex items-start">
+//                           <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+//                           </svg>
+//                           <span>VNS (Vagus Nerve Stimulation)</span>
+//                       </li>
+//                       <li class="flex items-start">
+//                           <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+//                           </svg>
+//                           <span>Resective and ablative brain surgery</span>
+//                       </li>
+//                       <li class="flex items-start">
+//                           <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+//                           </svg>
+//                           <span>Intracranial neurostimulation</span>
+//                       </li>
+//                   </ul>
+//               </div>
+//               <div>
+//                   <h3 class="text-lg font-medium mb-3">Treatment Pathway</h3>
+//                   <div class="p-4 bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 rounded-lg">
+//                       <p class="text-gray-700 dark:text-gray-300">ASMs typically serve as first-line treatment for all epilepsy patients. After two ASMs fail to deliver seizure control, the epilepsy is characterized as drug-resistant and adjunctive non-drug options are considered.</p>
+                      
+//                       <div class="mt-4">
+//                           <h4 class="font-medium text-gray-700 dark:text-gray-300">VNS Therapy Advantages:</h4>
+//                           <ul class="mt-2 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+//                               <li>• First medical device approved by FDA for DRE in 1997</li>
+//                               <li>• Only neuromodulation device approved for patients as young as 4 years</li>
+//                               <li>• No direct brain tissue intervention required</li>
+//                               <li>• Demonstrated long-term efficacy and safety</li>
+//                           </ul>
+//                       </div>
+//                   </div>
+//               </div>
+//           </div>
+//       </div>
+
+//       <!-- Sources and Citations -->
+//       <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+//           <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
+//           <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc pl-4">
+//               <li>LivaNova Q4 and Full-Year 2023/2024 Results</li>
+//               <li>LivaNova Annual Reports (2022-2024)</li>
+//               <li>LivaNova VNS Therapy System Drug-Resistant Epilepsy Cost Savings Report</li>
+//               <li>Journal of Neurology (January 2022) meta-analysis on VNS Therapy</li>
+//               <li>CMS Reimbursement Updates for Dravet Syndrome (2020)</li>
+//               <li>CMS Reimbursement Updates for Lennox-Gastaut Syndrome (2022)</li>
+//               <li>Custom Market Insights, "Epilepsy Treatment Devices Market" (2024-2032)</li>
+//               <li>Neuromodulation Market Size Report (2024-2028)</li>
+//               <li>CMS Medicare Physician Fee Schedule, 2025 Final Rule</li>
+//           </ul>
+//       </div>
+//     </div>
+//   `;
+// }
+
+/**
+ * LivaNova Dashboard Generator
+ * 
+ * This function generates a dashboard UI component for LivaNova epilepsy neuromodulation data.
+ * It includes key metrics, market share analysis, revenue tracking, and clinical trial summaries.
+ * 
+ * @returns {string} HTML string for the LivaNova dashboard
+ */
+/**
+ * LivaNova Dashboard Generator
+ * 
+ * This function generates a dashboard UI component for LivaNova epilepsy neuromodulation data.
+ * It includes key metrics, market share analysis, revenue tracking, and clinical trial summaries.
+ * 
+ * @returns {string} HTML string for the LivaNova dashboard
+ */
+/**
+ * LivaNova Dashboard Generator
+ * 
+ * This function generates a dashboard UI component for LivaNova epilepsy neuromodulation data.
+ * It includes key metrics, market share analysis, revenue tracking, and clinical trial summaries.
+ * 
+ * @returns {string} HTML string for the LivaNova dashboard
+ */
+function generateLivaNovaDashboard(p) {
+  return `
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-4 max-w-7xl mx-auto">
+      <!-- Dashboard Header -->
+      <header class="mb-8">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+          <div>
+            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold">LivaNova Epilepsy Neuromodulation Dashboard</h1>
+            <p class="text-gray-600 dark:text-gray-400 mt-1 text-sm sm:text-base">Comprehensive analysis of market data (2018-2024)</p>
+          </div>
+          <div class="mt-4 md:mt-0">
+            <button id="darkModeToggle" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+              <span class="dark:hidden">🌙 Dark Mode</span>
+              <span class="hidden dark:inline">☀️ Light Mode</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Dashboard Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Market Share Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 min-h-fit overflow-hidden">
+          <h2 class="text-xl sm:text-2xl font-semibold mb-4">Market Share Overview</h2>
+          <div class="flex flex-col space-y-6">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">Current Market Share (2024)</span>
+              <span class="text-xl sm:text-2xl font-bold"><a href="https://investor.livanova.com/#q4-2024-earnings" class="text-blue-500 hover:underline">80.0%</a></span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">Change Since 2018</span>
+              <span class="text-lg sm:text-xl font-bold text-red-600"><a href="https://investor.livanova.com/#q4-2024-earnings" class="text-blue-500 hover:underline">-7.4%</a></span>
+            </div>
+            <div>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Market Share Trend (2018-2024)</p>
+              <canvas id="marketShareMiniChart" class="w-full h-32 sm:h-40 aspect-[4/3]"></canvas>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">
+                <strong>Source:</strong> Calculated as (LivaNova Epilepsy Revenue / Total Market Size) × 100
+              </p>
+              <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                <strong>Data From:</strong> <a href="https://investor.livanova.com/#yearly-reports" class="text-blue-500 hover:underline">LivaNova Annual Reports (2018-2024)</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Revenue Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 min-h-fit overflow-hidden">
+          <h2 class="text-xl sm:text-2xl font-semibold mb-4">Epilepsy Revenue</h2>
+          <div class="flex flex-col space-y-6">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">2024 Revenue</span>
+              <span class="text-xl sm:text-2xl font-bold"><a href="https://investor.livanova.com/#q4-2024-earnings" class="text-blue-500 hover:underline">$360.7M</a></span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">Growth Since 2018</span>
+              <span class="text-lg sm:text-xl font-bold text-green-600"><a href="https://investor.livanova.com/#q4-2024-earnings" class="text-blue-500 hover:underline">+36.9%</a></span>
+            </div>
+            <div>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Revenue Trend (2018-2024)</p>
+              <canvas id="revenueMiniChart" class="w-full h-32 sm:h-40 aspect-[4/3]"></canvas>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">
+                <strong>Calculation Method:</strong> 65% of Neuromodulation Segment Revenue
+              </p>
+              <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                <strong>Data From:</strong> <a href="https://investor.livanova.com/#yearly-reports" class="text-blue-500 hover:underline">LivaNova Annual Reports (2018-2024)</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Total Market Size Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 min-h-fit overflow-hidden">
+          <h2 class="text-xl sm:text-2xl font-semibold mb-4">Total Market Size</h2>
+          <div class="flex flex-col space-y-6">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">2024 Market Size</span>
+              <span class="text-xl sm:text-2xl font-bold"><a href="https://investor.livanova.com/#q4-2024-earnings" class="text-blue-500 hover:underline">$450.6M</a></span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">Growth Since 2018</span>
+              <span class="text-lg sm:text-xl font-bold text-green-600"><a href="https://investor.livanova.com/#q4-2024-earnings" class="text-blue-500 hover:underline">+49.5%</a></span>
+            </div>
+            <div>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Market Size Trend (2018-2024)</p>
+              <canvas id="marketSizeMiniChart" class="w-full h-32 sm:h-40 aspect-[4/3]"></canvas>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">
+                <strong>Calculation Method:</strong> Sum of LivaNova, NeuroPace, and Medtronic epilepsy revenues
+              </p>
+              <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                <strong>Cross-Referenced With:</strong> <a href="https://www.marketresearchfuture.com/" class="text-blue-500 hover:underline">Market Research Future reports</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Market Position Analysis Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 col-span-1 sm:col-span-2 min-h-fit overflow-hidden">
+          <h2 class="text-xl sm:text-2xl font-semibold mb-4">Market Position Analysis</h2>
+          <div class="flex flex-col lg:flex-row gap-8">
+            <div class="flex-1">
+              <h3 class="font-medium text-lg sm:text-xl mb-3">Market Share by Company (2024)</h3>
+              <canvas id="marketSharePieChart" class="w-full h-64 sm:h-72 aspect-[4/3]"></canvas>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-medium text-lg sm:text-xl mb-3">Gainers & Losers (2018-2024)</h3>
+              <div class="space-y-4">
+                <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-md">
+                  <h4 class="font-semibold text-red-700 dark:text-red-400">Market Share Losers</h4>
+                  <div class="mt-2">
+                    <div class="flex justify-between text-sm">
+                      <span>LivaNova</span>
+                      <span class="text-red-600 dark:text-red-400"><a href="https://investor.livanova.com/#q4-2024-earnings" class="text-blue-500 hover:underline">-7.4%</a></span>
+                    </div>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                      Market share declining from <a href="https://investor.livanova.com/#2018" class="text-blue-500 hover:underline">87.4% in 2018</a> to <a href="https://investor.livanova.com/#q4-2024-earnings" class="text-blue-500 hover:underline">80.0% in 2024</a>, despite revenue growth.
+                    </p>
+                  </div>
+                </div>
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-md">
+                  <h4 class="font-semibold text-green-700 dark:text-green-400">Market Share Gainers</h4>
+                  <div class="mt-2">
+                    <div class="flex justify-between text-sm">
+                      <span>Competitors (NeuroPace, Medtronic)</span>
+                      <span class="text-green-600 dark:text-green-400"><a href="https://investor.livanova.com/#q4-2024-earnings" class="text-blue-500 hover:underline">+7.4%</a></span>
+                    </div>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                      Competitors gaining market share as LivaNova's dominance decreases, with NeuroPace mentioned as a key competitor.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Detailed Charts Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 col-span-1 sm:col-span-2 lg:col-span-3 min-h-fit overflow-hidden">
+          <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+            <h2 class="text-xl sm:text-2xl font-semibold">Detailed Analytics</h2>
+            <div class="inline-flex mt-3 md:mt-0">
+              <select id="chartSelector" class="bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="marketShare">Market Share Trend</option>
+                <option value="revenue">Revenue Growth</option>
+                <option value="marketSize">Total Market Size</option>
+                <option value="comparison">Comparative Analysis</option>
+              </select>
+            </div>
+          </div>
+          <div id="detailedChartContainer" class="w-full h-80 sm:h-96"></div>
+          <div class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+            <p id="chartDescription" class="mb-2">
+              This chart shows LivaNova's market share trend from <a href="https://investor.livanova.com/#2018" class="text-blue-500 hover:underline">2018</a> to <a href="https://investor.livanova.com/#q4-2024-earnings" class="text-blue-500 hover:underline">2024</a>. The company has experienced a gradual decline in market share from <a href="https://investor.livanova.com/#2018" class="text-blue-500 hover:underline">87.4%</a> in 2018 to <a href="https://investor.livanova.com/#q4-2024-earnings" class="text-blue-500 hover:underline">80.0%</a> in 2024, despite showing consistent revenue growth.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div>
+                <h3 class="font-medium mb-2">Data Source</h3>
+                <p class="text-xs">
+                  All data is extracted from <a href="https://investor.livanova.com/#yearly-reports" class="text-blue-500 hover:underline">LivaNova's annual reports (2018-2024)</a>, with epilepsy revenue estimated as 65% of the neuromodulation segment. Market share is calculated by dividing LivaNova's epilepsy revenue by the total market size.
+                </p>
+              </div>
+              <div>
+                <h3 class="font-medium mb-2">Calculation Methodology</h3>
+                <p class="text-xs">
+                  Market size calculation: Sum of epilepsy revenues from LivaNova, NeuroPace, and Medtronic, cross-referenced with <a href="https://www.marketresearchfuture.com/" class="text-blue-500 hover:underline">Market Research Future reports</a>. The 65% epilepsy allocation is an estimate based on VNS Therapy's primary indication.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Clinical Trials Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 col-span-1 sm:col-span-2 lg:col-span-2 min-h-fit overflow-hidden">
+          <h2 class="text-xl sm:text-2xl font-semibold mb-4">Clinical & Regulatory Milestones</h2>
+          <div class="overflow-auto max-h-80">
+            <div class="border-l-2 border-blue-500 dark:border-blue-400 pl-4">
+              <div class="mb-6">
+                <div class="flex items-center">
+                  <div id="clinical-trial-2024" class="bg-blue-500 dark:bg-blue-400 rounded-full w-3 h-3 -ml-5.5"></div>
+                  <h3 class="text-lg sm:text-xl font-medium ml-3">2024</h3>
+                </div>
+                <div class="mt-2">
+                  <h4 class="font-medium text-gray-800 dark:text-gray-200">CORE-VNS Study</h4>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    Presented 3-year interim results at AES 2024, demonstrating long-term efficacy of VNS Therapy.
+                  </p>
+                  <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                    <strong>Source:</strong> <a href="https://www.livanova.com/aes-2024-presentation" class="text-blue-500 hover:underline">LivaNova AES 2024 Presentation</a>
+                  </p>
+                </div>
+              </div>
+              
+              <div class="mb-6">
+                <div class="flex items-center">
+                  <div class="bg-blue-500 dark:bg-blue-400 rounded-full w-3 h-3 -ml-5.5"></div>
+                  <h3 class="text-lg sm:text-xl font-medium ml-3">Regulatory Status</h3>
+                </div>
+                <div class="mt-2">
+                  <h4 class="font-medium text-gray-800 dark:text-gray-200">VNS Therapy Approvals</h4>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    VNS Therapy is FDA-approved and CE-marked for epilepsy treatment, with no new approvals reported in 2018-2024.
+                  </p>
+                  <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                    <strong>Source:</strong> <a href="https://www.livanova.com/regulatory-documentation" class="text-blue-500 hover:underline">LivaNova Regulatory Documentation</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calculation Methods Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 col-span-1 min-h-fit overflow-hidden">
+          <h2 class="text-xl sm:text-2xl font-semibold mb-4">Data Calculation Methods</h2>
+          <div class="overflow-auto max-h-80">
+            <div class="space-y-4">
+              <div>
+                <h3 class="font-medium text-gray-800 dark:text-gray-200">Market Share</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  Market share = (LivaNova Epilepsy Revenue / Total Market Size) × 100
+                </p>
+                <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                  Example (2024): Market share = (<a href="https://investor.livanova.com/#q4-2024-earnings" class="text-blue-500 hover:underline">$360.7M</a> / <a href="https://investor.livanova.com/#q4-2024-earnings" class="text-blue-500 hover:underline">$450.6M</a>) × 100 = <a href="https://investor.livanova.com/#q4-2024-earnings" class="text-blue-500 hover:underline">80.0%</a>
+                </p>
+              </div>
+              
+              <div>
+                <h3 class="font-medium text-gray-800 dark:text-gray-200">Epilepsy Revenue</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  Epilepsy Revenue = Neuromodulation Revenue × 0.65
+                </p>
+                <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                  Example (2024): Epilepsy Revenue = <a href="https://investor.livanova.com/#q4-2024-earnings" class="text-blue-500 hover:underline">$554.2M</a> × 0.65 = <a href="https://investor.livanova.com/#q4-2024-earnings" class="text-blue-500 hover:underline">$360.7M</a>
+                </p>
+              </div>
+              
+              <div>
+                <h3 class="font-medium text-gray-800 dark:text-gray-200">Market Size</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  Market Size = Sum of epilepsy revenues of LivaNova, NeuroPace, and Medtronic
+                </p>
+                <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                  Cross-referenced with <a href="https://www.marketresearchfuture.com/" class="text-blue-500 hover:underline">Market Research Future reports</a> for validation
+                </p>
+              </div>
+              
+              <div>
+                <h3 class="font-medium text-gray-800 dark:text-gray-200">Year-on-Year Change</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  Year-on-Year Change = ((Current Value - Previous Value) / Previous Value) × 100
+                </p>
+              </div>
+              
+              <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                <h3 class="font-medium text-gray-800 dark:text-gray-200">Data Limitations</h3>
+                <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                  <li>The 65% allocation for epilepsy is an estimate based on VNS Therapy's primary indication</li>
+                  <li>Exact splits between epilepsy and other indications are not publicly disclosed by LivaNova</li>
+                  <li>Implant revenue splits (new vs. replacement) are only reported for 2024</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Source Links -->
+      <div class="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+        <h2 class="text-xl sm:text-2xl font-semibold mb-4">Data Sources & Links</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div>
+            <h3 class="font-medium text-gray-800 dark:text-gray-200 mb-2">Annual Reports</h3>
+            <ul class="space-y-1">
+              <li><a href="https://investor.livanova.com/#2018" class="text-blue-500 hover:underline text-sm">LivaNova 2018 Annual Report</a></li>
+              <li><a href="https://investor.livanova.com/#2019" class="text-blue-500 hover:underline text-sm">LivaNova 2019 Annual Report</a></li>
+              <li><a href="https://investor.livanova.com/#2020" class="text-blue-500 hover:underline text-sm">LivaNova 2020 Annual Report</a></li>
+              <li><a href="https://investor.livanova.com/#2021" class="text-blue-500 hover:underline text-sm">LivaNova 2021 Annual Report</a></li>
+              <li><a href="https://investor.livanova.com/#2022" class="text-blue-500 hover:underline text-sm">LivaNova 2022 Annual Report</a></li>
+              <li><a href="https://investor.livanova.com/#2023" class="text-blue-500 hover:underline text-sm">LivaNova 2023 Annual Report</a></li>
+              <li><a href="https://investor.livanova.com/#q4-2024-earnings" class="text-blue-500 hover:underline text-sm">LivaNova Q4 2024 Earnings</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-800 dark:text-gray-200 mb-2">Clinical & Regulatory</h3>
+            <ul class="space-y-1">
+              <li><a href="https://www.livanova.com/core-vns-study" class="text-blue-500 hover:underline text-sm">CORE-VNS Study Details</a></li>
+              <li><a href="https://www.livanova.com/aes-2024-presentation" class="text-blue-500 hover:underline text-sm">LivaNova AES 2024 Presentation</a></li>
+              <li><a href="https://www.livanova.com/fda-approval" class="text-blue-500 hover:underline text-sm">FDA Approval Documentation</a></li>
+              <li><a href="https://www.livanova.com/ce-mark" class="text-blue-500 hover:underline text-sm">CE Mark Documentation</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-800 dark:text-gray-200 mb-2">Market Research</h3>
+            <ul class="space-y-1">
+              <li><a href="https://www.marketresearchfuture.com/" class="text-blue-500 hover:underline text-sm">Market Research Future Reports</a></li>
+              <li><a href="https://www.livanova.com/competitor-financials" class="text-blue-500 hover:underline text-sm">Competitor Financial Statements</a></li>
+              <li><a href="https://www.livanova.com/industry-reports" class="text-blue-500 hover:underline text-sm">Industry Analysis Reports</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer with last updated info -->
+      <footer class="mt-8 text-center text-sm text-gray-600 dark:text-gray-400 pb-8">
+        <p>
+          Last updated: April 22, 2025 | Data accurate as of Q4 2024 reports
+          <br>
+          <span class="text-xs">Dashboard generated for analytical purposes only. All data sourced from public financial reports.</span>
+        </p>
+      </footer>
+    </div>
+  `;
+}
+
+/**
+ * Initialize LivaNova Dashboard Charts
+ * 
+ * This function initializes all charts in the LivaNova dashboard
+ * using market data for epilepsy neuromodulation from 2018-2024.
+ */
+/**
+ * Initialize LivaNova Dashboard Charts
+ * 
+ * This function initializes all charts in the LivaNova dashboard
+ * using market data for epilepsy neuromodulation from 2018-2024.
+ * 
+ * @param {boolean} waitForDOM - Whether to wait for DOM elements to be available before initializing
+ */
+function initializeLivanovaCharts(data, waitForDOM = true) {
+  // Market share data
+  const marketShareData = [
+    { year: '2018', marketShare: 87.4, yearOnYearChange: null },
+    { year: '2019', marketShare: 86.0, yearOnYearChange: -1.6 },
+    { year: '2020', marketShare: 85.3, yearOnYearChange: -0.8 },
+    { year: '2021', marketShare: 84.4, yearOnYearChange: -1.1 },
+    { year: '2022', marketShare: 84.8, yearOnYearChange: 0.5 },
+    { year: '2023', marketShare: 81.5, yearOnYearChange: -3.9 },
+    { year: '2024', marketShare: 80.0, yearOnYearChange: -1.8 }
+  ];
+
+  // Revenue data
+  const revenueData = [
+    { year: '2018', revenue: 263.5, yearOnYearChange: null },
+    { year: '2019', revenue: 275.9, yearOnYearChange: 4.7 },
+    { year: '2020', revenue: 268.8, yearOnYearChange: -2.6 },
+    { year: '2021', revenue: 282.1, yearOnYearChange: 5.0 },
+    { year: '2022', revenue: 310.1, yearOnYearChange: 9.9 },
+    { year: '2023', revenue: 332.2, yearOnYearChange: 7.1 },
+    { year: '2024', revenue: 360.7, yearOnYearChange: 8.6 }
+  ];
+
+  // Total market size data
+  const marketSizeData = [
+    { year: '2018', marketSize: 301.5 },
+    { year: '2019', marketSize: 320.9 },
+    { year: '2020', marketSize: 315.3 },
+    { year: '2021', marketSize: 334.1 },
+    { year: '2022', marketSize: 365.4 },
+    { year: '2023', marketSize: 407.6 },
+    { year: '2024', marketSize: 450.6 }
+  ];
+
+  // If we need to wait for the DOM to be ready
+  if (waitForDOM) {
+    // Check if the necessary elements exist
+    if (!document.getElementById('marketShareMiniChart')) {
+      console.log('DOM elements not ready, waiting...');
+      setTimeout(() => initializeLivanovaCharts(true), 100);
+      return;
+    }
+  }
+
+  // Initialize dark mode toggle
+  initDarkModeToggle();
+  
+  // Initialize mini charts
+  initMiniCharts();
+  
+  // Initialize market share pie chart
+  initMarketSharePie();
+  
+  // Initialize detailed charts
+  initDetailedCharts();
+  
+  // ========== CHART INITIALIZATION FUNCTIONS ==========
+  
+  /**
+   * Initialize dark mode toggle functionality
+   */
+  function initDarkModeToggle() {
+    try {
+      const darkModeToggle = document.getElementById('darkModeToggle');
+      if (!darkModeToggle) {
+        console.warn('Dark mode toggle button not found');
+        return;
+      }
+      
+      // Check for user preference
+      if (localStorage.getItem('darkMode') === 'true' || 
+          (localStorage.getItem('darkMode') === null && 
+          window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+      
+      darkModeToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+      });
+    } catch (e) {
+      console.error('Error initializing dark mode toggle:', e);
+    }
+  }
+  
+  /**
+   * Initialize mini charts (market share, revenue, market size)
+   */
+  function initMiniCharts() {
+    try {
+      // Market Share Mini Chart - Sparkline style
+      const marketShareCanvas = document.getElementById('marketShareMiniChart');
+      if (!marketShareCanvas) {
+        console.error('Market share mini chart canvas not found');
+        return;
+      }
+      
+      const msContext = marketShareCanvas.getContext('2d');
+      if (!msContext) {
+        console.error('Could not get 2D context for market share mini chart');
+        return;
+      }
+      
+      try {
+        new Chart(msContext, {
+          type: 'line',
+          data: {
+            labels: marketShareData.map(d => d.year),
+            datasets: [{
+              data: marketShareData.map(d => d.marketShare),
+              borderColor: '#ef4444',
+              backgroundColor: 'rgba(239, 68, 68, 0.1)',
+              borderWidth: 2,
+              pointRadius: 0,
+              fill: true,
+              tension: 0.4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                enabled: true,
+                callbacks: {
+                  label: (context) => `Market Share: ${context.raw}%`
+                }
+              }
+            },
+            scales: {
+              x: { display: false },
+              y: { 
+                display: false,
+                min: 75,
+                max: 90
+              }
+            }
+          }
+        });
+      } catch (e) {
+        console.error('Error creating market share mini chart:', e);
+      }
+    
+      // Revenue Mini Chart - Sparkline style
+      const revenueCanvas = document.getElementById('revenueMiniChart');
+      if (!revenueCanvas) {
+        console.error('Revenue mini chart canvas not found');
+        return;
+      }
+      
+      const rvContext = revenueCanvas.getContext('2d');
+      if (!rvContext) {
+        console.error('Could not get 2D context for revenue mini chart');
+        return;
+      }
+      
+      try {
+        new Chart(rvContext, {
+          type: 'line',
+          data: {
+            labels: revenueData.map(d => d.year),
+            datasets: [{
+              data: revenueData.map(d => d.revenue),
+              borderColor: '#22c55e',
+              backgroundColor: 'rgba(34, 197, 94, 0.1)',
+              borderWidth: 2,
+              pointRadius: 0,
+              fill: true,
+              tension: 0.4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                enabled: true,
+                callbacks: {
+                  label: (context) => `Revenue: $${context.raw}M`
+                }
+              }
+            },
+            scales: {
+              x: { display: false },
+              y: { 
+                display: false,
+                min: 250,
+                max: 370
+              }
+            }
+          }
+        });
+      } catch (e) {
+        console.error('Error creating revenue mini chart:', e);
+      }
+      
+      // Market Size Mini Chart - Sparkline style
+      const marketSizeCanvas = document.getElementById('marketSizeMiniChart');
+      if (!marketSizeCanvas) {
+        console.error('Market size mini chart canvas not found');
+        return;
+      }
+      
+      const msizContext = marketSizeCanvas.getContext('2d');
+      if (!msizContext) {
+        console.error('Could not get 2D context for market size mini chart');
+        return;
+      }
+      
+      try {
+        new Chart(msizContext, {
+          type: 'line',
+          data: {
+            labels: marketSizeData.map(d => d.year),
+            datasets: [{
+              data: marketSizeData.map(d => d.marketSize),
+              borderColor: '#3b82f6',
+              backgroundColor: 'rgba(59, 130, 246, 0.1)',
+              borderWidth: 2,
+              pointRadius: 0,
+              fill: true,
+              tension: 0.4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                enabled: true,
+                callbacks: {
+                  label: (context) => `Market Size: $${context.raw}M`
+                }
+              }
+            },
+            scales: {
+              x: { display: false },
+              y: { 
+                display: false,
+                min: 290,
+                max: 460
+              }
+            }
+          }
+        });
+      } catch (e) {
+        console.error('Error creating market size mini chart:', e);
+      }
+    } catch (e) {
+      console.error('Error initializing mini charts:', e);
+    }
+  }
+  
+  /**
+   * Initialize market share pie chart
+   */
+  function initMarketSharePie() {
+    try {
+      const pieCanvas = document.getElementById('marketSharePieChart');
+      if (!pieCanvas) {
+        console.error('Market share pie chart canvas not found');
+        return;
+      }
+      
+      const pieContext = pieCanvas.getContext('2d');
+      if (!pieContext) {
+        console.error('Could not get 2D context for market share pie chart');
+        return;
+      }
+      
+      new Chart(pieContext, {
+        type: 'pie',
+        data: {
+          labels: ['LivaNova', 'NeuroPace', 'Medtronic', 'Others'],
+          datasets: [{
+            data: [80.0, 12.5, 6.8, 0.7],
+            backgroundColor: [
+              'rgba(59, 130, 246, 0.8)',
+              'rgba(249, 115, 22, 0.8)',
+              'rgba(16, 185, 129, 0.8)',
+              'rgba(107, 114, 128, 0.8)'
+            ],
+            borderColor: [
+              'rgba(59, 130, 246, 1)',
+              'rgba(249, 115, 22, 1)',
+              'rgba(16, 185, 129, 1)',
+              'rgba(107, 114, 128, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: {
+              position: 'right',
+              labels: {
+                usePointStyle: true,
+                padding: 15,
+                font: {
+                  size: 12
+                }
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: (context) => `${context.label}: ${context.raw}%`
+              }
+            }
+          }
+        }
+      });
+    } catch (e) {
+      console.error('Error creating market share pie chart:', e);
+    }
+  }
+  
+  /**
+   * Initialize detailed charts with selector functionality
+   */
+  function initDetailedCharts() {
+    try {
+      const chartSelector = document.getElementById('chartSelector');
+      const chartContainer = document.getElementById('detailedChartContainer');
+      const chartDescription = document.getElementById('chartDescription');
+      
+      if (!chartSelector || !chartContainer || !chartDescription) {
+        console.error('One or more elements for detailed charts not found');
+        return;
+      }
+      
+      // Clear any existing content
+      chartContainer.innerHTML = '';
+      
+      // Create canvas for chart
+      const canvas = document.createElement('canvas');
+      canvas.id = 'detailedChart';
+      chartContainer.appendChild(canvas);
+      
+      // Shared chart instance
+      let chartInstance = null;
+      
+      // Chart configuration functions
+      const chartConfigs = {
+        marketShare: () => {
+          return {
+            type: 'line',
+            data: {
+              labels: marketShareData.map(d => d.year),
+              datasets: [{
+                label: 'Market Share (%)',
+                data: marketShareData.map(d => d.marketShare),
+                borderColor: 'rgba(59, 130, 246, 1)',
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                pointRadius: 4,
+                fill: true,
+                tension: 0.2
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: true },
+                tooltip: {
+                  callbacks: {
+                    label: (context) => `Market Share: ${context.raw}%`,
+                    afterLabel: (context) => {
+                      const idx = context.dataIndex;
+                      if (idx > 0) {
+                        return `YoY Change: ${marketShareData[idx].yearOnYearChange}%`;
+                      }
+                      return '';
+                    }
+                  }
+                }
+              },
+              scales: {
+                x: { 
+                  title: {
+                    display: true,
+                    text: 'Year'
+                  }
+                },
+                y: { 
+                  title: {
+                    display: true,
+                    text: 'Market Share (%)'
+                  },
+                  min: 75,
+                  max: 90
+                }
+              }
+            }
+          };
+        },
+        
+        revenue: () => {
+          return {
+            type: 'bar',
+            data: {
+              labels: revenueData.map(d => d.year),
+              datasets: [{
+                label: 'Revenue ($M)',
+                data: revenueData.map(d => d.revenue),
+                backgroundColor: 'rgba(34, 197, 94, 0.7)',
+                borderColor: 'rgba(34, 197, 94, 1)',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: true },
+                tooltip: {
+                  callbacks: {
+                    label: (context) => `Revenue: $${context.raw}M`,
+                    afterLabel: (context) => {
+                      const idx = context.dataIndex;
+                      if (idx > 0) {
+                        return `YoY Growth: ${revenueData[idx].yearOnYearChange}%`;
+                      }
+                      return '';
+                    }
+                  }
+                }
+              },
+              scales: {
+                x: { 
+                  title: {
+                    display: true,
+                    text: 'Year'
+                  }
+                },
+                y: { 
+                  title: {
+                    display: true,
+                    text: 'Revenue ($M)'
+                  },
+                  min: 250,
+                  max: 370
+                }
+              }
+            }
+          };
+        },
+        
+        marketSize: () => {
+          return {
+            type: 'line',
+            data: {
+              labels: marketSizeData.map(d => d.year),
+              datasets: [{
+                label: 'Total Market Size ($M)',
+                data: marketSizeData.map(d => d.marketSize),
+                borderColor: 'rgba(139, 92, 246, 1)',
+                backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(139, 92, 246, 1)',
+                pointRadius: 4,
+                fill: true,
+                tension: 0.2
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: true },
+                tooltip: {
+                  callbacks: {
+                    label: (context) => `Market Size: $${context.raw}M`
+                  }
+                }
+              },
+              scales: {
+                x: { 
+                  title: {
+                    display: true,
+                    text: 'Year'
+                  }
+                },
+                y: { 
+                  title: {
+                    display: true,
+                    text: 'Market Size ($M)'
+                  },
+                  min: 290
+                }
+              }
+            }
+          };
+        },
+        
+        comparison: () => {
+          // Calculate market share percentage for revenue chart
+          const dataForComparison = marketShareData.map((item, idx) => {
+            return {
+              year: item.year,
+              marketShare: item.marketShare,
+              revenue: revenueData[idx].revenue
+            };
+          });
+          
+          return {
+            type: 'line',
+            data: {
+              labels: dataForComparison.map(d => d.year),
+              datasets: [
+                {
+                  label: 'Market Share (%)',
+                  data: dataForComparison.map(d => d.marketShare),
+                  borderColor: 'rgba(59, 130, 246, 1)',
+                  backgroundColor: 'rgba(59, 130, 246, 0)',
+                  borderWidth: 2,
+                  pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                  pointRadius: 4,
+                  tension: 0.2,
+                  yAxisID: 'y'
+                },
+                {
+                  label: 'Revenue ($M)',
+                  data: dataForComparison.map(d => d.revenue),
+                  borderColor: 'rgba(34, 197, 94, 1)',
+                  backgroundColor: 'rgba(34, 197, 94, 0)',
+                  borderWidth: 2,
+                  pointBackgroundColor: 'rgba(34, 197, 94, 1)',
+                  pointRadius: 4,
+                  tension: 0.2,
+                  yAxisID: 'y1'
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              interaction: {
+                mode: 'index',
+                intersect: false
+              },
+              plugins: {
+                legend: { display: true },
+                tooltip: {
+                  callbacks: {
+                    label: (context) => {
+                      if (context.dataset.label.includes('Market Share')) {
+                        return `Market Share: ${context.raw}%`;
+                      } else {
+                        return `Revenue: $${context.raw}M`;
+                      }
+                    }
+                  }
+                }
+              },
+              scales: {
+                x: { 
+                  title: {
+                    display: true,
+                    text: 'Year'
+                  }
+                },
+                y: { 
+                  title: {
+                    display: true,
+                    text: 'Market Share (%)',
+                    color: 'rgba(59, 130, 246, 1)'
+                  },
+                  position: 'left',
+                  min: 75,
+                  max: 90
+                },
+                y1: {
+                  title: {
+                    display: true,
+                    text: 'Revenue ($M)',
+                    color: 'rgba(34, 197, 94, 1)'
+                  },
+                  position: 'right',
+                  min: 250,
+                  max: 370,
+                  grid: {
+                    drawOnChartArea: false
+                  }
+                }
+              }
+            }
+          };
+        }
+      };
+      
+      // Chart description texts
+      const chartDescriptions = {
+        marketShare: `This chart shows LivaNova's market share trend from 2018 to 2024. The company has experienced a gradual 
+                     decline in market share from 87.4% in 2018 to 80.0% in 2024, despite showing consistent revenue growth. 
+                     This suggests competitors are growing faster than LivaNova in the epilepsy neuromodulation market.`,
+        
+        revenue: `LivaNova's epilepsy revenue has shown consistent growth from $263.5M in 2018 to $360.7M in 2024, 
+                 representing a 36.9% increase over this period. The only decline occurred in 2020 (-2.6%), likely due 
+                 to the COVID-19 pandemic, but growth quickly resumed in 2021 and continued through 2024.`,
+        
+        marketSize: `The total epilepsy neuromodulation market has grown significantly from $301.5M in 2018 to $450.6M in 2024, 
+                    representing a 49.5% increase. This growth rate exceeds LivaNova's revenue growth, explaining the 
+                    company's market share decline as competitors capture a larger portion of the expanding market.`,
+        
+        comparison: `This chart compares LivaNova's market share percentage against its revenue growth. While revenue 
+                    has grown consistently (36.9% increase from 2018 to 2024), market share has declined (7.4% decrease). 
+                    This inverse relationship indicates that LivaNova is growing, but not as quickly as the overall market.`
+      };
+      
+      // Initialize chart with market share data by default
+      try {
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          console.error('Could not get 2D context for detailed chart');
+          return;
+        }
+        
+        chartInstance = new Chart(ctx, chartConfigs.marketShare());
+        
+        // Handle chart type selection
+        chartSelector.addEventListener('change', updateChart);
+      } catch (e) {
+        console.error('Error initializing detailed chart:', e);
+      }
+      
+      function updateChart() {
+        try {
+          const selectedChart = chartSelector.value;
+          
+          // Destroy existing chart
+          if (chartInstance) {
+            chartInstance.destroy();
+          }
+          
+          // Create new chart based on selection
+          const ctx = canvas.getContext('2d');
+          if (!ctx) {
+            console.error('Could not get 2D context for detailed chart update');
+            return;
+          }
+          
+          chartInstance = new Chart(ctx, chartConfigs[selectedChart]());
+          
+          // Update description
+          chartDescription.textContent = chartDescriptions[selectedChart];
+        } catch (e) {
+          console.error('Error updating chart:', e);
+        }
+      }
+    } catch (e) {
+      console.error('Error initializing detailed charts:', e);
+    }
+  }
+  
+  // Catch any unexpected errors in the main function
+  console.log('Dashboard charts initialization completed');
+}
+
+
+// function initializeLivanovaCharts(data) {
+//   const isDarkMode = document.documentElement.classList.contains('dark');
+//   const textColor = isDarkMode ? '#ffffff' : '#666666';
+//   const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
+
+//   // Revenue by Region Chart
+//   const revenueByRegionCtx = document.getElementById('livanova-revenue-by-region').getContext('2d');
+//   new Chart(revenueByRegionCtx, {
+//     type: 'bar',
+//     data: {
+//       labels: ['2022', '2023', '2024'],
+//       datasets: [
+//         {
+//           label: 'United States',
+//           data: [374.5, 407.5, 441.0],
+//           backgroundColor: 'rgba(59, 130, 246, 0.8)',
+//           borderColor: 'rgba(59, 130, 246, 1)',
+//           borderWidth: 1
+//         },
+//         {
+//           label: 'Europe',
+//           data: [50.3, 57.4, 54.9],
+//           backgroundColor: 'rgba(16, 185, 129, 0.8)',
+//           borderColor: 'rgba(16, 185, 129, 1)',
+//           borderWidth: 1
+//         },
+//         {
+//           label: 'Rest of World',
+//           data: [52.2, 54.8, 58.3],
+//           backgroundColor: 'rgba(249, 115, 22, 0.8)',
+//           borderColor: 'rgba(249, 115, 22, 1)',
+//           borderWidth: 1
+//         }
+//       ]
+//     },
+//     options: {
+//       responsive: true,
+//       maintainAspectRatio: false,
+//       scales: {
+//         x: {
+//           stacked: false,
+//           ticks: { color: textColor },
+//           grid: { color: gridColor }
+//         },
+//         y: {
+//           stacked: false,
+//           beginAtZero: true,
+//           ticks: {
+//             color: textColor,
+//             callback: function(value) {
+//               return '$' + value + 'M';
+//             }
+//           },
+//           grid: { color: gridColor },
+//           title: {
+//             display: true,
+//             text: 'Revenue (Millions USD)',
+//             color: textColor
+//           }
+//         }
+//       },
+//       plugins: {
+//         legend: { 
+//           position: 'top',
+//           labels: { color: textColor }
+//         },
+//         tooltip: {
+//           callbacks: {
+//             label: function(context) {
+//               return context.dataset.label + ': $' + context.raw.toFixed(1) + 'M';
+//             }
+//           }
+//         }
+//       }
+//     }
+//   });
+//   // Expenses Chart (continued)
+//   const expensesCtx = document.getElementById('livanova-expenses').getContext('2d');
+//   new Chart(expensesCtx, {
+//     type: 'pie',
+//     data: {
+//       labels: ['Cost of Sales', 'SG&A', 'R&D'],
+//       datasets: [{
+//         data: [50.2, 187.6, 121.0],
+//         backgroundColor: [
+//           'rgba(59, 130, 246, 0.8)',
+//           'rgba(16, 185, 129, 0.8)',
+//           'rgba(249, 115, 22, 0.8)'
+//         ],
+//         borderColor: [
+//           'rgba(59, 130, 246, 1)',
+//           'rgba(16, 185, 129, 1)',
+//           'rgba(249, 115, 22, 1)'
+//         ],
+//         borderWidth: 1
+//       }]
+//     },
+//     options: {
+//       responsive: true,
+//       maintainAspectRatio: false,
+//       plugins: {
+//         legend: { labels: { color: textColor } },
+//         tooltip: {
+//           callbacks: {
+//             label: function(context) {
+//               const value = context.raw;
+//               const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
+//               const percentage = ((value / total) * 100).toFixed(1);
+//               return `$${value.toFixed(1)}M (${percentage}%)`;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   });
+
+//   // Performance Trend Chart
+//   const performanceTrendCtx = document.getElementById('livanova-performance-trend').getContext('2d');
+//   new Chart(performanceTrendCtx, {
+//     type: 'line',
+//     data: {
+//       labels: ['2022', '2023', '2024'],
+//       datasets: [
+//         {
+//           label: 'Revenue Growth (%)',
+//           data: [null, 9.0, 6.6],
+//           borderColor: 'rgba(59, 130, 246, 1)',
+//           backgroundColor: 'rgba(59, 130, 246, 0.1)',
+//           tension: 0.3,
+//           fill: false
+//         },
+//         {
+//           label: 'Segment Income Growth (%)',
+//           data: [null, -11.2, 27.3],
+//           borderColor: 'rgba(16, 185, 129, 1)',
+//           backgroundColor: 'rgba(16, 185, 129, 0.1)',
+//           tension: 0.3,
+//           fill: false
+//         }
+//       ]
+//     },
+//     options: {
+//       responsive: true,
+//       maintainAspectRatio: false,
+//       scales: {
+//         y: {
+//           beginAtZero: false,
+//           ticks: {
+//             color: textColor,
+//             callback: function(value) {
+//               return value + '%';
+//             }
+//           },
+//           grid: { color: gridColor }
+//         },
+//         x: {
+//           ticks: { color: textColor },
+//           grid: { color: gridColor }
+//         }
+//       },
+//       plugins: {
+//         legend: { labels: { color: textColor } },
+//         tooltip: {
+//           callbacks: {
+//             label: function(context) {
+//               if (context.raw === null) {
+//                 return `${context.dataset.label}: No data`;
+//               }
+//               return `${context.dataset.label}: ${context.raw}%`;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   });
+
+//   // Revenue & Income Analysis Chart
+//   const revenueIncomeCtx = document.getElementById('livanova-revenue-income').getContext('2d');
+//   new Chart(revenueIncomeCtx, {
+//     type: 'bar',
+//     data: {
+//       labels: ['2022', '2023', '2024'],
+//       datasets: [
+//         {
+//           label: 'Total Revenue ($M)',
+//           data: [477.0, 519.7, 554.2],
+//           backgroundColor: 'rgba(59, 130, 246, 0.8)',
+//           borderColor: 'rgba(59, 130, 246, 1)',
+//           borderWidth: 1,
+//           order: 2
+//         },
+//         {
+//           label: 'Segment Income ($M)',
+//           data: [172.8, 153.4, 195.3],
+//           backgroundColor: 'rgba(16, 185, 129, 0.8)',
+//           borderColor: 'rgba(16, 185, 129, 1)',
+//           borderWidth: 1,
+//           order: 1
+//         },
+//         {
+//           label: 'Profit Margin (%)',
+//           data: [36.2, 29.5, 35.2],
+//           type: 'line',
+//           fill: false,
+//           borderColor: 'rgba(249, 115, 22, 1)',
+//           backgroundColor: 'rgba(249, 115, 22, 0.1)',
+//           borderWidth: 2,
+//           tension: 0.4,
+//           pointStyle: 'circle',
+//           pointRadius: 5,
+//           pointHoverRadius: 8,
+//           yAxisID: 'y1',
+//           order: 0
+//         }
+//       ]
+//     },
+//     options: {
+//       responsive: true,
+//       maintainAspectRatio: false,
+//       scales: {
+//         y: {
+//           type: 'linear',
+//           position: 'left',
+//           beginAtZero: true,
+//           title: {
+//             display: true,
+//             text: 'USD ($M)',
+//             color: textColor
+//           },
+//           ticks: {
+//             color: textColor,
+//             callback: function(value) {
+//               return '$' + value + 'M';
+//             }
+//           },
+//           grid: { color: gridColor }
+//         },
+//         y1: {
+//           type: 'linear',
+//           position: 'right',
+//           beginAtZero: true,
+//           max: 50,
+//           title: {
+//             display: true,
+//             text: 'Profit Margin (%)',
+//             color: textColor
+//           },
+//           ticks: {
+//             color: textColor,
+//             callback: function(value) {
+//               return value + '%';
+//             }
+//           },
+//           grid: {
+//             drawOnChartArea: false,
+//             color: gridColor
+//           }
+//         },
+//         x: {
+//           ticks: { color: textColor },
+//           grid: { color: gridColor }
+//         }
+//       },
+//       plugins: {
+//         legend: { labels: { color: textColor } },
+//         tooltip: {
+//           callbacks: {
+//             label: function(context) {
+//               if (context.dataset.label === 'Profit Margin (%)') {
+//                 return `${context.dataset.label}: ${context.raw}%`;
+//               } else {
+//                 return `${context.dataset.label}: $${context.raw.toFixed(1)}M`;
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   });
+// }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 // // Helper functions for formatting
 // function formatCurrency(value, decimals = 0) {
 //     if (value >= 1000000000) {
@@ -2213,7 +5972,7 @@ break
 // }
 
 // // Function to initialize charts for LivaNova
-// function initLivaNovaDashboardCharts(data) {
+// function initializeLivanovaCharts(data) {
 //   // Revenue by Region Chart
 //   const revenueByRegionCtx = document.getElementById('livanova-revenue-by-region').getContext('2d');
 //   new Chart(revenueByRegionCtx, {
@@ -3525,3457 +7284,6 @@ break
 
 
 
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Initialize NeuroPace Charts
-function initializeNeuroPaceCharts(data) {
-  const isDarkMode = document.documentElement.classList.contains('dark');
-  const textColor = isDarkMode ? '#ffffff' : '#666666';
-  const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
-
-  // Revenue Trends Chart
-  new Chart(document.getElementById('neuropace-revenue-trends').getContext('2d'), {
-      type: 'line',
-      data: {
-          labels: ['2021', '2022', '2023', '2024'],
-          datasets: [{
-              label: 'Total Revenue ($M)',
-              data: [45.2, 45.5, 65.4, 76.0],
-              borderColor: '#4299E1',
-              backgroundColor: 'rgba(66, 153, 225, 0.2)',
-              fill: true,
-              tension: 0.4
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-              legend: { labels: { color: textColor } },
-              tooltip: { 
-                  callbacks: {
-                      label: context => `Revenue: $${context.raw}M`
-                  }
-              }
-          },
-          scales: {
-              x: { ticks: { color: textColor }, grid: { color: gridColor } },
-              y: { ticks: { color: textColor, callback: value => `$${value}M` }, grid: { color: gridColor } }
-          }
-      }
-  });
-
-  // Implant Breakdown Chart (Q4 2024)
-  new Chart(document.getElementById('neuropace-implant-breakdown').getContext('2d'), {
-      type: 'doughnut',
-      data: {
-          labels: ['Initial Implants', 'Replacement Implants'],
-          datasets: [{
-              data: [17.5, 2.5],
-              backgroundColor: ['#48BB78', '#F6AD55']
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-              legend: { labels: { color: textColor } },
-              tooltip: { 
-                  callbacks: {
-                      label: context => `$${context.raw}M (${(context.raw / 20 * 100).toFixed(1)}%)`
-                  }
-              }
-          }
-      }
-  });
-
-  // Growth Metrics Chart
-  new Chart(document.getElementById('neuropace-growth-metrics').getContext('2d'), {
-      type: 'bar',
-      data: {
-          labels: ['2022 vs 2021', '2023 vs 2022', '2024 vs 2023'],
-          datasets: [{
-              label: 'Annual Growth Rate (%)',
-              data: [0.7, 43.6, 16.2],
-              backgroundColor: '#4299E1'
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-              legend: { display: false },
-              tooltip: { callbacks: { label: context => `${context.raw}%` } }
-          },
-          scales: {
-              x: { ticks: { color: textColor }, grid: { color: gridColor } },
-              y: { 
-                  beginAtZero: true, 
-                  ticks: { color: textColor, callback: value => `${value}%` }, 
-                  grid: { color: gridColor } 
-              }
-          }
-      }
-  });
-}
-
-// Initialize XCOPRI Charts
-function initializeXCOPRICharts(data) {
-  const isDarkMode = document.documentElement.classList.contains('dark');
-  const textColor = isDarkMode ? '#ffffff' : '#666666';
-  const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
-
-  // Revenue Trends Chart
-  new Chart(document.getElementById('xcopri-revenue-trends').getContext('2d'), {
-      type: 'line',
-      data: {
-          labels: ['2022', '2023', '2024'],
-          datasets: [{
-              label: 'Total Revenue ($M)',
-              data: [338.3, 263.0, 405.6],
-              borderColor: '#4299E1',
-              backgroundColor: 'rgba(66, 153, 225, 0.2)',
-              fill: true,
-              tension: 0.4
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-              legend: { labels: { color: textColor } },
-              tooltip: { 
-                  callbacks: {
-                      label: context => `Revenue: $${context.raw}M`
-                  }
-              }
-          },
-          scales: {
-              x: { ticks: { color: textColor }, grid: { color: gridColor } },
-              y: { ticks: { color: textColor, callback: value => `$${value}M` }, grid: { color: gridColor } }
-          }
-      }
-  });
-
-  // U.S. Sales Growth Chart
-  new Chart(document.getElementById('xcopri-us-sales-growth').getContext('2d'), {
-      type: 'bar',
-      data: {
-          labels: ['2024 vs 2023'],
-          datasets: [{
-              label: 'U.S. Sales Growth (%)',
-              data: [62],
-              backgroundColor: '#48BB78'
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-              legend: { display: false },
-              tooltip: { callbacks: { label: context => `${context.raw}%` } }
-          },
-          scales: {
-              x: { ticks: { color: textColor }, grid: { color: gridColor } },
-              y: { 
-                  beginAtZero: true, 
-                  ticks: { color: textColor, callback: value => `${value}%` }, 
-                  grid: { color: gridColor } 
-              }
-          }
-      }
-  });
-
-  // Market Share Chart (U.S.)
-  new Chart(document.getElementById('xcopri-market-share').getContext('2d'), {
-      type: 'doughnut',
-      data: {
-          labels: ['XCOPRI', 'Other Epilepsy Drugs'],
-          datasets: [{
-              data: [6.5, 93.5],
-              backgroundColor: ['#F6AD55', '#E5E7EB']
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-              legend: { labels: { color: textColor } },
-              tooltip: { 
-                  callbacks: { 
-                      label: context => `${context.label}: ${context.raw}%` 
-                  } 
-              }
-          }
-      }
-  });
-}
-
-// Initialize Medtronic Charts
-function initMedtronicCharts(data) {
-  const isDarkMode = document.documentElement.classList.contains('dark');
-  const textColor = isDarkMode ? '#ffffff' : '#666666';
-  const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
-  
-  // Chart 1: Revenue Trend
-  new Chart(document.getElementById('revenueChart').getContext('2d'), {
-      type: 'line',
-      data: {
-          labels: [
-              'Q1 FY2023', 'Q2 FY2023', 'Q3 FY2023', 'Q4 FY2023',
-              'Q1 FY2024', 'Q2 FY2024', 'Q3 FY2024', 'Q4 FY2024',
-              'Q1 FY2025', 'Q2 FY2025', 'Q3 FY2025'
-          ],
-          datasets: [{
-              label: 'Quarterly Revenue ($M)',
-              data: [402, 410, 415, 420, 418, 422, 425, 430, 455, 462, 476],
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 1)',
-              borderWidth: 2,
-              tension: 0.4,
-              pointRadius: 4,
-              pointBackgroundColor: 'rgba(54, 162, 235, 1)'
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-              y: {
-                  beginAtZero: false,
-                  title: {
-                      display: true,
-                      text: 'Revenue (Million USD)',
-                      color: textColor
-                  },
-                  ticks: { color: textColor },
-                  grid: { color: gridColor }
-              },
-              x: {
-                  ticks: { color: textColor },
-                  grid: { color: gridColor }
-              }
-          },
-          plugins: {
-              tooltip: {
-                  callbacks: {
-                      label: function(context) {
-                          return `Revenue: $${context.raw}M`;
-                      }
-                  }
-              },
-              legend: {
-                  position: 'top',
-                  labels: { color: textColor }
-              }
-          }
-      }
-  });
-
-  // Chart 2: Growth Rate Trend
-  new Chart(document.getElementById('growthChart').getContext('2d'), {
-      type: 'bar',
-      data: {
-          labels: [
-              'Q1 FY2023', 'Q2 FY2023', 'Q3 FY2023', 'Q4 FY2023',
-              'Q1 FY2024', 'Q2 FY2024', 'Q3 FY2024', 'Q4 FY2024',
-              'Q1 FY2025', 'Q2 FY2025', 'Q3 FY2025'
-          ],
-          datasets: [{
-              label: 'Growth Rate (%)',
-              data: [3.1, 4.3, 5.1, 6.2, 4.0, 2.9, 2.4, 2.4, 8.9, 9.5, 12.0],
-              backgroundColor: context => {
-                  const value = context.raw;
-                  return value >= 8 ? 'rgba(52, 211, 153, 0.7)' : 
-                         value >= 5 ? 'rgba(96, 165, 250, 0.7)' : 
-                         'rgba(251, 191, 36, 0.7)';
-              },
-              borderWidth: 1
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-              y: {
-                  beginAtZero: true,
-                  title: {
-                      display: true,
-                      text: 'Growth Rate (%)',
-                      color: textColor
-                  },
-                  ticks: { color: textColor },
-                  grid: { color: gridColor }
-              },
-              x: {
-                  ticks: { 
-                      color: textColor,
-                      maxRotation: 45,
-                      minRotation: 45
-                  },
-                  grid: { color: gridColor }
-              }
-          },
-          plugins: {
-              tooltip: {
-                  callbacks: {
-                      label: function(context) {
-                          return `Growth Rate: ${context.raw}%`;
-                      }
-                  }
-              },
-              legend: {
-                  position: 'top',
-                  labels: { color: textColor }
-              }
-          }
-      }
-  });
-
-  // Chart 3: Patient Segment
-  new Chart(document.getElementById('patientSegmentChart').getContext('2d'), {
-      type: 'pie',
-      data: {
-          labels: ['Drug-Resistant Epilepsy', 'Generalized Epilepsy', 'Focal Epilepsy'],
-          datasets: [{
-              data: [68, 18, 14],
-              backgroundColor: [
-                  'rgba(52, 211, 153, 0.7)', 
-                  'rgba(96, 165, 250, 0.7)',
-                  'rgba(249, 115, 22, 0.7)'
-              ],
-              borderColor: [
-                  'rgba(52, 211, 153, 1)',
-                  'rgba(96, 165, 250, 1)',
-                  'rgba(249, 115, 22, 1)'
-              ],
-              borderWidth: 1
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-              tooltip: {
-                  callbacks: {
-                      label: function(context) {
-                          const growthRates = [13.2, 8.5, 9.3];
-                          return [
-                              `${context.label}: ${context.raw}%`,
-                              `Growth Rate: ${growthRates[context.dataIndex]}%`
-                          ];
-                      }
-                  }
-              },
-              legend: {
-                  position: 'right',
-                  labels: { color: textColor }
-              }
-          }
-      }
-  });
-
-  // Chart 4: Competitive Landscape
-  new Chart(document.getElementById('competitiveChart').getContext('2d'), {
-      type: 'bar',
-      data: {
-          labels: ['Medtronic', 'NeuroPace', 'LivaNova', 'Boston Scientific', 'Abbott'],
-          datasets: [
-              {
-                  label: 'Market Share (%)',
-                  data: [46, 15, 18, 12, 9],
-                  backgroundColor: 'rgba(59, 130, 246, 0.7)',
-                  borderColor: 'rgba(59, 130, 246, 1)',
-                  borderWidth: 1,
-                  order: 1
-              },
-              {
-                  label: 'Growth Rate (%)',
-                  data: [12.0, 8.2, 5.3, 7.5, 6.8],
-                  backgroundColor: 'rgba(251, 191, 36, 0.7)',
-                  borderColor: 'rgba(251, 191, 36, 1)',
-                  borderWidth: 1,
-                  type: 'line',
-                  order: 0,
-                  yAxisID: 'y1'
-              }
-          ]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-              y: {
-                  beginAtZero: true,
-                  title: {
-                      display: true,
-                      text: 'Market Share (%)',
-                      color: textColor
-                  },
-                  ticks: { color: textColor },
-                  grid: { color: gridColor }
-              },
-              y1: {
-                  position: 'right',
-                  beginAtZero: true,
-                  grid: {
-                      drawOnChartArea: false,
-                      color: gridColor
-                  },
-                  title: {
-                      display: true,
-                      text: 'Growth Rate (%)',
-                      color: textColor
-                  },
-                  ticks: { color: textColor }
-              },
-              x: {
-                  ticks: { color: textColor },
-                  grid: { color: gridColor }
-              }
-          },
-          plugins: {
-              tooltip: {
-                  callbacks: {
-                      label: function(context) {
-                          const metric = context.dataset.label;
-                          return `${metric}: ${context.raw}%`;
-                      }
-                  }
-              },
-              legend: {
-                  position: 'top',
-                  labels: { color: textColor }
-              }
-          }
-      }
-  });
-
-  // Chart 5: Payer Distribution
-  new Chart(document.getElementById('payerChart').getContext('2d'), {
-      type: 'doughnut',
-      data: {
-          labels: ['Medicare', 'Medicaid', 'Commercial', 'Other'],
-          datasets: [{
-              data: [48, 12, 35, 5],
-              backgroundColor: [
-                  'rgba(59, 130, 246, 0.7)',
-                  'rgba(16, 185, 129, 0.7)',
-                  'rgba(249, 115, 22, 0.7)',
-                  'rgba(107, 114, 128, 0.7)'
-              ],
-              borderColor: [
-                  'rgba(59, 130, 246, 1)',
-                  'rgba(16, 185, 129, 1)',
-                  'rgba(249, 115, 22, 1)',
-                  'rgba(107, 114, 128, 1)'
-              ],
-              borderWidth: 1
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-              tooltip: {
-                  callbacks: {
-                      label: function(context) {
-                          const growthRates = [10.5, 7.2, 14.8, 6.1];
-                          return [
-                              `${context.label}: ${context.raw}%`,
-                              `Growth Rate: ${growthRates[context.dataIndex]}%`
-                          ];
-                      }
-                  }
-              },
-              legend: {
-                  position: 'right',
-                  labels: { color: textColor }
-              }
-          }
-      }
-  });
-
-  // Chart 6: Regional Distribution
-  new Chart(document.getElementById('regionChart').getContext('2d'), {
-      type: 'bar',
-      data: {
-          labels: ['North America', 'Europe', 'Asia Pacific', 'Rest of World'],
-          datasets: [
-              {
-                  label: 'Market Share (%)',
-                  data: [62, 21, 12, 5],
-                  backgroundColor: 'rgba(139, 92, 246, 0.7)',
-                  borderColor: 'rgba(139, 92, 246, 1)',
-                  borderWidth: 1
-              },
-              {
-                  label: 'Growth Rate (%)',
-                  data: [14.2, 9.7, 16.3, 7.5],
-                  backgroundColor: 'rgba(236, 72, 153, 0.7)',
-                  borderColor: 'rgba(236, 72, 153, 1)',
-                  borderWidth: 1,
-                  type: 'line',
-                  yAxisID: 'y1'
-              }
-          ]
-      },
-      options: {
-          indexAxis: 'y',
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-              x: {
-                  beginAtZero: true,
-                  title: {
-                      display: true,
-                      text: 'Market Share (%)',
-                      color: textColor
-                  },
-                  ticks: { color: textColor },
-                  grid: { color: gridColor }
-              },
-              y: {
-                  ticks: { color: textColor },
-                  grid: { color: gridColor }
-              },
-              y1: {
-                  position: 'right',
-                  beginAtZero: true,
-                  grid: {
-                      drawOnChartArea: false,
-                      color: gridColor
-                  },
-                  title: {
-                      display: true,
-                      text: 'Growth Rate (%)',
-                      color: textColor
-                  },
-                  ticks: { color: textColor }
-              }
-          },
-          plugins: {
-              tooltip: {
-                  callbacks: {
-                      label: function(context) {
-                          const metric = context.dataset.label;
-                          return `${metric}: ${context.raw}%`;
-                      }
-                  }
-              },
-              legend: {
-                  position: 'top',
-                  labels: { color: textColor }
-              }
-          }
-      }
-  });
-}
-
-// Initialize LivaNova Charts - not currently used directly
-function initLivaNovaCharts(data) {
-  const isDarkMode = document.documentElement.classList.contains('dark');
-  const textColor = isDarkMode ? '#ffffff' : '#666666';
-  const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
-
-  // Revenue by Region Chart
-  new Chart(document.getElementById('livanova-revenue-by-region').getContext('2d'), {
-      type: 'bar',
-      data: {
-          labels: ['2022', '2023', '2024'],
-          datasets: [
-              {
-                  label: 'United States',
-                  data: [374542000/1000000, 407493000/1000000, 441022000/1000000],
-                  backgroundColor: 'rgba(59, 130, 246, 0.8)',
-                  borderColor: 'rgba(59, 130, 246, 1)',
-                  borderWidth: 1
-              },
-              {
-                  label: 'Europe',
-                  data: [50291000/1000000, 57435000/1000000, 54899000/1000000],
-                  backgroundColor: 'rgba(16, 185, 129, 0.8)',
-                  borderColor: 'rgba(16, 185, 129, 1)',
-                  borderWidth: 1
-              },
-              {
-                  label: 'Rest of World',
-                  data: [52160000/1000000, 54782000/1000000, 58302000/1000000],
-                  backgroundColor: 'rgba(249, 115, 22, 0.8)',
-                  borderColor: 'rgba(249, 115, 22, 1)',
-                  borderWidth: 1
-              }
-          ]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-              x: {
-                  stacked: false,
-                  ticks: { color: textColor },
-                  grid: { color: gridColor }
-              },
-              y: {
-                  stacked: false,
-                  beginAtZero: true,
-                  ticks: {
-                      color: textColor,
-                      callback: function(value) {
-                          return '$' + value + 'M';
-                      }
-                  },
-                  grid: { color: gridColor }
-              }
-          },
-          plugins: {
-              legend: { 
-                  position: 'top',
-                  labels: { color: textColor }
-              },
-              tooltip: {
-                  callbacks: {
-                      label: function(context) {
-                          return context.dataset.label + ': $' + context.raw.toFixed(1) + 'M';
-                      }
-                  }
-              }
-          }
-      }
-  });
-
-  // Expenses Chart
-  new Chart(document.getElementById('livanova-expenses').getContext('2d'), {
-      type: 'pie',
-      data: {
-          labels: ['Cost of Sales', 'SG&A', 'R&D'],
-          datasets: [{
-              data: [50236000/1000000, 187649000/1000000, 121029000/1000000],
-              backgroundColor: [
-                  'rgba(59, 130, 246, 0.8)',
-                  'rgba(16, 185, 129, 0.8)',
-                  'rgba(249, 115, 22, 0.8)'
-              ],
-              borderColor: [
-                  'rgba(59, 130, 246, 1)',
-                  'rgba(16, 185, 129, 1)',
-                  'rgba(249, 115, 22, 1)'
-              ],
-              borderWidth: 1
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-              legend: { labels: { color: textColor } },
-              tooltip: {
-                  callbacks: {
-                      label: function(context) {
-                          const value = context.raw;
-                          const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
-                          const percentage = ((value / total) * 100).toFixed(1);
-                          return `$${value.toFixed(1)}M (${percentage}%)`;
-                      }
-                  }
-              }
-          }
-      }
-  });
-
-  // Performance Trend Chart
-  new Chart(document.getElementById('livanova-performance-trend').getContext('2d'), {
-      type: 'line',
-      data: {
-          labels: ['2022', '2023', '2024'],
-          datasets: [
-              {
-                  label: 'Revenue Growth (%)',
-                  data: [null, 9.0, 6.6],
-                  borderColor: 'rgba(59, 130, 246, 1)',
-                  backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                  tension: 0.3,
-                  fill: false
-              },
-              {
-                  label: 'Segment Income Growth (%)',
-                  data: [null, -11.2, 27.3],
-                  borderColor: 'rgba(16, 185, 129, 1)',
-                  backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                  tension: 0.3,
-                  fill: false
-              }
-          ]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-              y: {
-                  beginAtZero: false,
-                  ticks: {
-                      color: textColor,
-                      callback: function(value) {
-                          return value + '%';
-                      }
-                  },
-                  grid: { color: gridColor }
-              },
-              x: {
-                  ticks: { color: textColor },
-                  grid: { color: gridColor }
-              }
-          },
-          plugins: {
-              legend: { labels: { color: textColor } },
-              tooltip: {
-                  callbacks: {
-                      label: function(context) {
-                          return `${context.dataset.label}: ${context.raw}%`;
-                      }
-                  }
-              }
-          }
-      }
-  });
-
-  // Revenue & Income Analysis Chart
-  new Chart(document.getElementById('livanova-revenue-income').getContext('2d'), {
-      type: 'bar',
-      data: {
-          labels: ['2022', '2023', '2024'],
-          datasets: [
-              {
-                  label: 'Total Revenue ($M)',
-                  data: [476993000/1000000, 519710000/1000000, 554223000/1000000],
-                  backgroundColor: 'rgba(59, 130, 246, 0.8)',
-                  borderColor: 'rgba(59, 130, 246, 1)',
-                  borderWidth: 1,
-                  order: 2
-              },
-              {
-                  label: 'Segment Income ($M)',
-                  data: [172775000/1000000, 153384000/1000000, 195309000/1000000],
-                  backgroundColor: 'rgba(16, 185, 129, 0.8)',
-                  borderColor: 'rgba(16, 185, 129, 1)',
-                  borderWidth: 1,
-                  order: 1
-              },
-              {
-                  label: 'Profit Margin (%)',
-                  data: [36.2, 29.5, 35.2],
-                  type: 'line',
-                  fill: false,
-                  borderColor: 'rgba(249, 115, 22, 1)',
-                  backgroundColor: 'rgba(249, 115, 22, 0.1)',
-                  borderWidth: 2,
-                  tension: 0.4,
-                  pointStyle: 'circle',
-                  pointRadius: 5,
-                  pointHoverRadius: 8,
-                  yAxisID: 'y1',
-                  order: 0
-              }
-          ]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-              y: {
-                  type: 'linear',
-                  position: 'left',
-                  beginAtZero: true,
-                  title: {
-                      display: true,
-                      text: 'USD ($M)',
-                      color: textColor
-                  },
-                  ticks: {
-                      color: textColor,
-                      callback: function(value) {
-                          return '$' + value + 'M';
-                      }
-                  },
-                  grid: { color: gridColor }
-              },
-              y1: {
-                  type: 'linear',
-                  position: 'right',
-                  beginAtZero: true,
-                  max: 50,
-                  title: {
-                      display: true,
-                      text: 'Profit Margin (%)',
-                      color: textColor
-                  },
-                  ticks: {
-                      color: textColor,
-                      callback: function(value) {
-                          return value + '%';
-                      }
-                  },
-                  grid: {
-                      drawOnChartArea: false,
-                      color: gridColor
-                  }
-              },
-              x: {
-                  ticks: { color: textColor },
-                  grid: { color: gridColor }
-              }
-          },
-          plugins: {
-              legend: { labels: { color: textColor } },
-              tooltip: {
-                  callbacks: {
-                      label: function(context) {
-                          if (context.dataset.label === 'Profit Margin (%)') {
-                              return `${context.dataset.label}: ${context.raw}%`;
-                          } else {
-                              return `${context.dataset.label}: $${context.raw.toFixed(1)}M`;
-                          }
-                      }
-                  }
-              }
-          }
-      }
-  });
-}
-
-// Initialize Precisis AG Charts
-function initializePrecisisCharts(data) {
-  const isDarkMode = document.documentElement.classList.contains('dark');
-  const textColor = isDarkMode ? '#ffffff' : '#666666';
-  const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
-
-  new Chart(document.getElementById('precisis-market-growth').getContext('2d'), {
-      type: 'line',
-      data: {
-          labels: ['2024', '2034'],
-          datasets: [{
-              label: 'Market Size ($M)',
-              data: [548.4, 787.3],
-              borderColor: '#3B82F6',
-              backgroundColor: 'rgba(59, 130, 246, 0.2)',
-              fill: true,
-              tension: 0.4
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { 
-              legend: { 
-                  labels: { color: textColor } 
-              },
-              tooltip: {
-                  callbacks: {
-                      label: context => `Market Size: $${context.raw}M`
-                  }
-              }
-          },
-          scales: { 
-              x: { 
-                  ticks: { color: textColor }, 
-                  grid: { color: gridColor } 
-              }, 
-              y: { 
-                  ticks: { 
-                      color: textColor, 
-                      callback: value => `${value}M` 
-                  },
-                  grid: { color: gridColor } 
-              }
-          }
-      }
-  });
-
-  new Chart(document.getElementById('precisis-patient-reach').getContext('2d'), {
-      type: 'doughnut',
-      data: {
-          labels: ['Eligible Patients', 'Total Epilepsy Patients'],
-          datasets: [{
-              data: [10.1, 50 - 10.1],
-              backgroundColor: ['#10B981', '#D1D5DB']
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { 
-              legend: { 
-                  labels: { color: textColor } 
-              },
-              tooltip: {
-                  callbacks: {
-                      label: function(context) {
-                          return `${context.label}: ${context.raw} million patients`;
-                      }
-                  }
-              }
-          }
-      }
-  });
-  
-  // Add technology adoption forecast chart
-  new Chart(document.getElementById('precisis-adoption-forecast').getContext('2d'), {
-      type: 'bar',
-      data: {
-          labels: ['2024', '2025', '2026', '2027', '2028'],
-          datasets: [{
-              label: 'Estimated Procedures',
-              data: [40, 120, 350, 750, 1200],
-              backgroundColor: 'rgba(79, 70, 229, 0.7)'
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-              legend: { 
-                  labels: { color: textColor } 
-              },
-              tooltip: {
-                  callbacks: {
-                      label: function(context) {
-                          return `Estimated Procedures: ${context.raw}`;
-                      }
-                  }
-              }
-          },
-          scales: {
-              x: { 
-                  ticks: { color: textColor }, 
-                  grid: { color: gridColor },
-                  title: {
-                      display: true,
-                      text: 'Year',
-                      color: textColor
-                  }
-              },
-              y: { 
-                  ticks: { color: textColor }, 
-                  grid: { color: gridColor },
-                  title: {
-                      display: true,
-                      text: 'Estimated Procedures',
-                      color: textColor
-                  }
-              }
-          }
-      }
-  });
-}
-
-// Initialize EpiMinder Charts
-function initializeEpiMinderCharts(data) {
-  const isDarkMode = document.documentElement.classList.contains('dark');
-  const textColor = isDarkMode ? '#ffffff' : '#666666';
-  const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
-
-  new Chart(document.getElementById('epiminder-market-growth').getContext('2d'), {
-      type: 'line',
-      data: {
-          labels: ['2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030'],
-          datasets: [{
-              label: 'Market Size ($M)',
-              data: [559, 596, 635, 677, 722, 769, 820, 863],
-              borderColor: '#3B82F6',
-              backgroundColor: 'rgba(59, 130, 246, 0.2)',
-              fill: true,
-              tension: 0.4
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { 
-              legend: { labels: { color: textColor } },
-              tooltip: {
-                  callbacks: {
-                      label: context => `Market Size: ${context.raw}M`
-                  }
-              }
-          },
-          scales: { 
-              x: { ticks: { color: textColor }, grid: { color: gridColor } }, 
-              y: { 
-                  ticks: { 
-                      color: textColor, 
-                      callback: value => `${value}M` 
-                  },
-                  grid: { color: gridColor },
-                  beginAtZero: false
-              }
-          }
-      }
-  });
-
-  new Chart(document.getElementById('epiminder-patient-reach').getContext('2d'), {
-      type: 'doughnut',
-      data: {
-          labels: ['U.S. Patients (CDC, 2021)', 'Global Patients'],
-          datasets: [{
-              data: [3, 47],
-              backgroundColor: ['#10B981', '#D1D5DB']
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { 
-              legend: { labels: { color: textColor } },
-              tooltip: {
-                  callbacks: {
-                      label: function(context) {
-                          return `${context.label}: ${context.raw} million patients`;
-                      }
-                  }
-              }
-          }
-      }
-  });
-  
-  // Add technology comparison chart
-  new Chart(document.getElementById('epiminder-tech-comparison').getContext('2d'), {
-      type: 'radar',
-      data: {
-          labels: ['Ease of Use', 'Minimally Invasive', 'Detection Accuracy', 'Battery Life', 'Patient Comfort', 'Data Insights'],
-          datasets: [
-              {
-                  label: 'EpiMinder',
-                  data: [4.5, 3.7, 4.8, 4.0, 3.8, 4.9],
-                  backgroundColor: 'rgba(16, 185, 129, 0.2)',
-                  borderColor: 'rgba(16, 185, 129, 0.8)',
-                  pointBackgroundColor: 'rgba(16, 185, 129, 1)',
-                  pointRadius: 4
-              },
-              {
-                  label: 'Conventional EEG',
-                  data: [2.5, 2.0, 4.0, 3.0, 2.0, 3.5],
-                  backgroundColor: 'rgba(107, 114, 128, 0.2)',
-                  borderColor: 'rgba(107, 114, 128, 0.8)',
-                  pointBackgroundColor: 'rgba(107, 114, 128, 1)',
-                  pointRadius: 4
-              }
-          ]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-              r: {
-                  angleLines: {
-                      color: gridColor
-                  },
-                  grid: {
-                      color: gridColor
-                  },
-                  pointLabels: {
-                      color: textColor
-                  },
-                  ticks: {
-                      backdropColor: 'transparent',
-                      color: textColor
-                  }
-              }
-          },
-          plugins: {
-              legend: { 
-                  labels: { color: textColor } 
-              },
-              tooltip: {
-                  callbacks: {
-                      label: function(context) {
-                          return `${context.dataset.label}: ${context.raw}/5`;
-                      }
-                  }
-              }
-          }
-      }
-  });
-  
-  // Add funding timeline chart
-  new Chart(document.getElementById('epiminder-funding').getContext('2d'), {
-      type: 'bar',
-      data: {
-          labels: ['Seed Round (2019)', 'Series A (Aug 2022)'],
-          datasets: [{
-              label: 'Funding Amount (USD Million)',
-              data: [5, 26],
-              backgroundColor: ['rgba(59, 130, 246, 0.7)', 'rgba(16, 185, 129, 0.7)']
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { 
-              legend: { display: false },
-              tooltip: {
-                  callbacks: {
-                      label: context => `Funding: ${context.raw}M USD`
-                  }
-              }
-          },
-          scales: { 
-              x: { ticks: { color: textColor }, grid: { color: gridColor } }, 
-              y: { 
-                  ticks: { 
-                      color: textColor, 
-                      callback: value => `${value}M` 
-                  },
-                  grid: { color: gridColor },
-                  title: {
-                      display: true,
-                      text: 'USD (Millions)',
-                      color: textColor
-                  }
-              }
-          }
-      }
-  });
-}
-
-// Initialize Flow Medical Charts
-function initializeFlowMedicalCharts(data) {
-  const isDarkMode = document.documentElement.classList.contains('dark');
-  const textColor = isDarkMode ? '#ffffff' : '#666666';
-  const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
-
-  new Chart(document.getElementById('flowmedical-market-growth').getContext('2d'), {
-      type: 'line',
-      data: {
-          labels: ['2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032'],
-          datasets: [{
-              label: 'Epilepsy Treatment Devices Market ($M)',
-              data: [548.4, 571, 594, 619, 644, 671, 698, 741, 787.3],
-              borderColor: '#3B82F6',
-              backgroundColor: 'rgba(59, 130, 246, 0.2)',
-              fill: true,
-              tension: 0.4
-          },
-          {
-              label: 'Depression Devices Market ($B)',
-              data: [4.8, 5.3, 5.8, 6.4, 7.1, 7.8, 8.6, 9.5, 10.5],
-              borderColor: '#EC4899',
-              backgroundColor: 'rgba(236, 72, 153, 0.1)',
-              fill: true,
-              tension: 0.4,
-              yAxisID: 'y1'
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { 
-              legend: { labels: { color: textColor } },
-              tooltip: {
-                  callbacks: {
-                      label: function(context) {
-                          if (context.dataset.label.includes('Depression')) {
-                              return `${context.dataset.label}: ${context.raw}B`;
-                          } else {
-                              return `${context.dataset.label}: ${context.raw}M`;
-                          }
-                      }
-                  }
-              }
-          },
-          scales: { 
-              x: { 
-                  ticks: { color: textColor }, 
-                  grid: { color: gridColor } 
-              }, 
-              y: { 
-                  ticks: { 
-                      color: textColor, 
-                      callback: value => `${value}M` 
-                  },
-                  grid: { color: gridColor },
-                  title: {
-                      display: true,
-                      text: 'Epilepsy Market ($M)',
-                      color: textColor
-                  }
-              },
-              y1: {
-                  position: 'right',
-                  ticks: {
-                      color: textColor,
-                      callback: value => `${value}B`
-                  },
-                  grid: {
-                      drawOnChartArea: false,
-                      color: gridColor
-                  },
-                  title: {
-                      display: true,
-                      text: 'Depression Market ($B)',
-                      color: textColor
-                  }
-              }
-          }
-      }
-  });
-
-  new Chart(document.getElementById('flowmedical-comorbidity-reach').getContext('2d'), {
-      type: 'doughnut',
-      data: {
-          labels: ['Epilepsy w/ Depression (50%)', 'Other Epilepsy Patients'],
-          datasets: [{
-              data: [25, 25],
-              backgroundColor: ['#10B981', '#D1D5DB']
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { 
-              legend: { labels: { color: textColor } },
-              tooltip: {
-                  callbacks: {
-                      label: function(context) {
-                          return `${context.label}: ${context.raw} million patients`;
-                      }
-                  }
-              },
-              subtitle: {
-                  display: true,
-                  text: 'Source: Epilepsy Foundation, ~50% comorbidity',
-                  padding: {
-                      top: 10,
-                      bottom: 0
-                  },
-                  font: {
-                      size: 12,
-                      style: 'italic'
-                  },
-                  color: textColor
-              }
-          }
-      }
-  });
-  
-  // Add tDCS technology adoption chart
-  new Chart(document.getElementById('flowmedical-tech-adoption').getContext('2d'), {
-      type: 'bar',
-      data: {
-          labels: ['2021', '2022', '2023', '2024', '2025'],
-          datasets: [{
-              label: 'Flow tDCS Users (thousands)',
-              data: [5, 8, 11, 14, 18],
-              backgroundColor: 'rgba(236, 72, 153, 0.7)'
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { 
-              legend: { labels: { color: textColor } },
-              tooltip: {
-                  callbacks: {
-                      label: context => `Users: ${context.raw}k`
-                  }
-              },
-              subtitle: {
-                  display: true,
-                  text: 'Source: Flow Neuroscience Research Updates, primarily depression patients',
-                  padding: {
-                      top: 10,
-                      bottom: 0
-                  },
-                  font: {
-                      size: 12,
-                      style: 'italic'
-                  },
-                  color: textColor
-              }
-          },
-          scales: { 
-              x: { ticks: { color: textColor }, grid: { color: gridColor } }, 
-              y: { 
-                  ticks: { color: textColor }, 
-                  grid: { color: gridColor },
-                  title: {
-                      display: true,
-                      text: 'Users (thousands)',
-                      color: textColor
-                  }
-              }
-          }
-      }
-  });
-  
-  // Add funding timeline chart
-  new Chart(document.getElementById('flowmedical-funding').getContext('2d'), {
-      type: 'bar',
-      data: {
-          labels: ['Seed Round (2018)', 'Series A (May 2023)'],
-          datasets: [{
-              label: 'Funding Amount (USD Million)',
-              data: [2, 9],
-              backgroundColor: ['rgba(59, 130, 246, 0.7)', 'rgba(16, 185, 129, 0.7)']
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { 
-              legend: { display: false },
-              tooltip: {
-                  callbacks: {
-                      label: context => `Funding: ${context.raw}M USD`
-                  }
-              },
-              subtitle: {
-                  display: true,
-                  text: 'Source: Flow Neuroscience Press Release, TechCrunch May 2023',
-                  padding: {
-                      top: 10,
-                      bottom: 0
-                  },
-                  font: {
-                      size: 12,
-                      style: 'italic'
-                  },
-                  color: textColor
-              }
-          },
-          scales: { 
-              x: { ticks: { color: textColor }, grid: { color: gridColor } }, 
-              y: { 
-                  ticks: { 
-                      color: textColor, 
-                      callback: value => `${value}M` 
-                  },
-                  grid: { color: gridColor }
-              }
-          }
-      }
-  });
-}
-
-// Helper functions for formatting
-function formatCurrency(value, decimals = 0) {
-  if (value >= 1000000000) {
-    return (value / 1000000000).toFixed(decimals) + 'B';
-  } else if (value >= 1000000) {
-    return (value / 1000000).toFixed(decimals) + 'M';
-  } else if (value >= 1000) {
-    return (value / 1000).toFixed(decimals) + 'K';
-  }
-  return value.toFixed(decimals);
-}
-
-
-function formatPercentage(value, decimals = 1) {
-  return value > 0 ? '+' + value.toFixed(decimals) + '%' : value.toFixed(decimals) + '%';
-}
-
-function getGrowthColor(value) {
-  return value >= 0 ? 'text-green-500' : 'text-red-500';
-}
-
-// Generate updated dashboard HTML functions
-function generatePrecisisDashboard(data) {
-  return `
-      <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white font-sans">
-          <!-- Header -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-8 flex flex-col md:flex-row justify-between items-start">
-              <div>
-                  <h1 class="text-3xl font-bold mb-2">Precisis AG</h1>
-                  <p class="text-lg text-gray-600 dark:text-gray-300">EASEE - Minimally Invasive Epilepsy Neurostimulation</p>
-              </div>
-              <div class="text-right mt-4 md:mt-0">
-                  <p class="text-sm text-gray-500 dark:text-gray-400">Last Updated: ${new Date().toLocaleString()}</p>
-                  <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
-              </div>
-          </div>
-
-          <!-- Key Metrics -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
-                  <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Market Size (2024)</h3>
-                  <p class="mt-2 text-2xl font-bold">$548.4M</p>
-                  <p class="text-sm text-gray-600 dark:text-gray-300">Epilepsy Treatment Devices</p>
-                  <p class="text-xs text-gray-500 mt-2">Source: Custom Market Insights</p>
-              </div>
-              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
-                  <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Market Growth (CAGR)</h3>
-                  <p class="mt-2 text-2xl font-bold">4.1%</p>
-                  <p class="text-sm text-gray-600 dark:text-gray-300">2024-2032</p>
-                  <p class="text-xs text-gray-500 mt-2">Source: Custom Market Insights</p>
-              </div>
-              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
-                  <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Funding Raised</h3>
-                  <p class="mt-2 text-2xl font-bold">€20M (~$21.6M)</p>
-                  <p class="text-sm text-gray-600 dark:text-gray-300">Oct 2021 (Cochlear Limited)</p>
-                  <p class="text-xs text-gray-500 mt-2">Source: Precisis Press Release, October 2021</p>
-              </div>
-          </div>
-
-          <!-- Charts -->
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
-                  <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                      <h2 class="text-xl font-semibold">Market Growth Trends</h2>
-                      <p class="text-xs text-gray-500 mt-1">Source: Custom Market Insights, 2024-2032</p>
-                  </div>
-                  <div class="p-6 h-80">
-                      <canvas id="precisis-market-growth"></canvas>
-                  </div>
-              </div>
-              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
-                  <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                      <h2 class="text-xl font-semibold">Patient Reach Potential</h2>
-                      <p class="text-xs text-gray-500 mt-1">Source: Towards Healthcare, 2024</p>
-                  </div>
-                  <div class="p-6 h-80">
-                      <canvas id="precisis-patient-reach"></canvas>
-                  </div>
-              </div>
-          </div>
-          
-          <!-- Additional Charts -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden mb-8">
-              <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                  <h2 class="text-xl font-semibold">Estimated Procedure Adoption</h2>
-                  <p class="text-xs text-gray-500 mt-1">Source: Analyst Estimates, Medical Product Outsourcing Feb 2022</p>
-              </div>
-              <div class="p-6 h-80">
-                  <canvas id="precisis-adoption-forecast"></canvas>
-              </div>
-          </div>
-
-          <!-- Insights -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
-                  <h2 class="text-xl font-semibold mb-4">Market Impact</h2>
-                  <p class="text-gray-600 dark:text-gray-300">Introduces a minimally invasive alternative to traditional neurostimulation (e.g., VNS, DBS), reducing surgical risk and improving patient quality of life. CE certified in Europe (Sep 15, 2022) and FDA Breakthrough Device Designation (Feb 19, 2022) signal strong growth potential.</p>
-                  <p class="mt-2 text-gray-600 dark:text-gray-300"><span class="font-semibold">Threat to Existing Devices:</span> Challenges established implantable device leaders (e.g., NeuroPace RNS, LivaNova VNS) by offering a less invasive option, potentially shifting market share from surgical solutions.</p>
-                  <p class="text-xs text-gray-500 mt-3">Source: Precisis Press Release, BioSpace, Feb 22, 2022</p>
-              </div>
-              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
-                  <h2 class="text-xl font-semibold mb-4">Technology Details</h2>
-                  <p class="text-gray-600 dark:text-gray-300">Epicranial Application of Stimulation Electrodes for Epilepsy (EASEE) - electrodes placed under the scalp on the skull bone, delivering targeted electrical impulses to suppress seizure origins. The technology specifically targets drug-resistant focal epilepsy, addressing ~30% of epilepsy patients requiring alternative therapies.</p>
-                  <p class="text-sm mt-3 text-gray-500 dark:text-gray-400">Key Regulatory Milestones:</p>
-                  <ul class="mt-1 text-sm text-gray-600 dark:text-gray-300 space-y-1">
-                      <li>• CE certification: September 15, 2022</li>
-                      <li>• FDA Breakthrough Device Designation: February 19, 2022</li>
-                  </ul>
-                  <p class="text-xs text-gray-500 mt-3">Source: Medical Product Outsourcing, Precisis Company Website</p>
-              </div>
-          </div>
-          
-          <!-- Citations -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
-              <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
-              <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
-                  <li>• Custom Market Insights, "Epilepsy Treatment Devices Market" (2024-2032)</li>
-                  <li>• Precisis AG Press Release, "Funding round of €20 million" (October 2021)</li>
-                  <li>• Medical Product Outsourcing, "Precisis' EASEE Epilepsy Neurostim Earns Breakthrough Status" (Feb 22, 2022)</li>
-                  <li>• BioSpace, "Minimally Invasive Epilepsy Treatment EASEE Receives FDA Breakthrough Device Designation"</li>
-                  <li>• Towards Healthcare, "Epilepsy Treatment Market Report" (2024)</li>
-                  <li>• Precisis Company Website (www.precisis.de)</li>
-                  <li>• German Clinical Trials Registry, Study DRKS00015918 and DRKS00017833</li>
-              </ul>
-          </div>
-      </div>
-  `;
-}
-
-function generateEpiMinderDashboard(data) {
-  return `
-      <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white font-sans">
-          <!-- Header -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-8 flex flex-col md:flex-row justify-between items-start">
-              <div>
-                  <h1 class="text-3xl font-bold mb-2">Epi-Minder</h1>
-                  <p class="text-lg text-gray-600 dark:text-gray-300">Wearable EEG-Based Seizure Monitoring</p>
-              </div>
-              <div class="text-right mt-4 md:mt-0">
-                  <p class="text-sm text-gray-500 dark:text-gray-400">Last Updated: ${new Date().toLocaleString()}</p>
-                  <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
-              </div>
-          </div>
-
-          <!-- Key Metrics -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
-                  <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Market Size (2023)</h3>
-                  <p class="mt-2 text-2xl font-bold">$559M</p>
-                  <p class="text-sm text-gray-600 dark:text-gray-300">Epilepsy Monitoring Devices</p>
-                  <p class="text-xs text-gray-500 mt-2">Source: Grand View Research, 2023</p>
-              </div>
-              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
-                  <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Market Growth (CAGR)</h3>
-                  <p class="mt-2 text-2xl font-bold">6.6%</p>
-                  <p class="text-sm text-gray-600 dark:text-gray-300">2024-2030</p>
-                  <p class="text-xs text-gray-500 mt-2">Source: Grand View Research, 2023</p>
-              </div>
-              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
-                  <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Funding Raised</h3>
-                  <p class="mt-2 text-2xl font-bold">AUD 40M (~$26M)</p>
-                  <p class="text-sm text-gray-600 dark:text-gray-300">Aug 2022 (Series A)</p>
-                  <p class="text-xs text-gray-500 mt-2">Source: BioWorld, August 2022</p>
-              </div>
-          </div>
-
-          <!-- Charts -->
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
-                  <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                      <h2 class="text-xl font-semibold">Market Growth Forecast</h2>
-                      <p class="text-xs text-gray-500 mt-1">Source: Grand View Research, 2023-2030 (6.6% CAGR)</p>
-                  </div>
-                  <div class="p-6 h-80">
-                      <canvas id="epiminder-market-growth"></canvas>
-                  </div>
-              </div>
-              <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
-                  <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                      <h2 class="text-xl font-semibold">Patient Reach Potential</h2>
-                      <p class="text-xs text-gray-500 mt-1">Source: CDC 2021, WHO Global Epilepsy Data</p>
-                    </div>
-                    <div class="p-6 h-80">
-                        <canvas id="epiminder-patient-reach"></canvas>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Additional Charts -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
-                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                        <h2 class="text-xl font-semibold">Technology Comparison</h2>
-                        <p class="text-xs text-gray-500 mt-1">Source: Clinical Publications, Company Website</p>
-                    </div>
-                    <div class="p-6 h-80">
-                        <canvas id="epiminder-tech-comparison"></canvas>
-                    </div>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
-                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                        <h2 class="text-xl font-semibold">Funding Timeline</h2>
-                        <p class="text-xs text-gray-500 mt-1">Source: Epi-Minder Press Release, BioWorld Aug 2022</p>
-                    </div>
-                    <div class="p-6 h-80">
-                        <canvas id="epiminder-funding"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Insights -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
-                    <h2 class="text-xl font-semibold mb-4">Market Impact</h2>
-                    <p class="text-gray-600 dark:text-gray-300">Enhances epilepsy management with a discreet, wearable solution, competing with conventional EEGs and wearables like Empatica. Clinical trials (Phase III ongoing as of 2024) aim for regulatory approval by 2026.</p>
-                    <p class="mt-2 text-gray-600 dark:text-gray-300"><span class="font-semibold">Threat to Market:</span> Could disrupt traditional EEG market (e.g., Natus Medical, Koninklijke Philips) by offering a lower-cost, patient-friendly alternative. Limited battery life and data privacy concerns may hinder adoption.</p>
-                    <p class="text-xs text-gray-500 mt-3">Source: Australian New Zealand Clinical Trials Registry, Epi-Minder Website</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
-                    <h2 class="text-xl font-semibold mb-4">Technology Details</h2>
-                    <p class="text-gray-600 dark:text-gray-300">Minimally invasive, behind-the-ear EEG device for continuous seizure detection and data logging. The system provides real-time seizure detection without penetrating the brain, making it less invasive than alternatives like deep brain stimulation (DBS) or responsive neurostimulation (RNS).</p>
-                    <p class="text-sm mt-3 text-gray-500 dark:text-gray-400">Clinical Research:</p>
-                    <ul class="mt-1 text-sm text-gray-600 dark:text-gray-300 space-y-1">
-                        <li>• First human implantation: 2019</li>
-                        <li>• Safety & Efficacy: 30 patients multicenter trial</li>
-                        <li>• Pediatric study: Started July 2023 (ages 12-17)</li>
-                    </ul>
-                    <p class="text-xs text-gray-500 mt-3">Source: Australian New Zealand Clinical Trials Registry, Epi-Minder Website</p>
-                </div>
-            </div>
-            
-            <!-- Citations -->
-            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
-                <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
-                <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
-                    <li>• Grand View Research, "Epilepsy Monitoring Devices Market" (2023)</li>
-                    <li>• BioWorld, "Epi-Minder raises AUD40M in Series A" (August 2022)</li>
-                    <li>• Epi-Minder Press Release, "Series A Funding Round" (August 2022)</li>
-                    <li>• Australian New Zealand Clinical Trials Registry, Study ACTRN12619000834123</li>
-                    <li>• Australian New Zealand Clinical Trials Registry, Study ACTRN12620000878976</li>
-                    <li>• Centers for Disease Control and Prevention (CDC), "Epilepsy Data and Statistics" (2021)</li>
-                    <li>• World Health Organization (WHO), "Global Epilepsy Report"</li>
-                    <li>• Epi-Minder Company Website</li>
-                </ul>
-            </div>
-        </div>
-    `;
-}
-
-function generateFlowMedicalDashboard(data) {
-  console.log('running')
-    return `
-        <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white font-sans">
-            <!-- Header -->
-            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-8 flex flex-col md:flex-row justify-between items-start">
-                <div>
-                    <h1 class="text-3xl font-bold mb-2">Flow Medical</h1>
-                    <p class="text-lg text-gray-600 dark:text-gray-300">tDCS - Depression & Epilepsy Crossover</p>
-                </div>
-                <div class="text-right mt-4 md:mt-0">
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Last Updated: ${new Date().toLocaleString()}</p>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
-                </div>
-            </div>
-
-            <!-- Key Metrics -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
-                    <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Epilepsy Market Size (2024)</h3>
-                    <p class="mt-2 text-2xl font-bold">$548.4M</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Epilepsy Treatment Devices</p>
-                    <p class="text-xs text-gray-500 mt-2">Source: Custom Market Insights</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
-                    <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Depression Market Size (2024)</h3>
-                    <p class="mt-2 text-2xl font-bold">$4.8B</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Depression Device Market</p>
-                    <p class="text-xs text-gray-500 mt-2">Source: Flow Neuroscience, Sky News Jan 2024</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
-                    <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Funding Raised</h3>
-                    <p class="mt-2 text-2xl font-bold">$9M</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">May 2023 (Series A)</p>
-                    <p class="text-xs text-gray-500 mt-2">Source: TechCrunch, May 2023</p>
-                </div>
-            </div>
-
-            <!-- Charts -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
-                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                        <h2 class="text-xl font-semibold">Market Growth Trends</h2>
-                        <p class="text-xs text-gray-500 mt-1">Source: Custom Market Insights (Epilepsy), Industry Analysis (Depression)</p>
-                    </div>
-                    <div class="p-6 h-80">
-                        <canvas id="flowmedical-market-growth"></canvas>
-                    </div>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
-                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                        <h2 class="text-xl font-semibold">Comorbidity Reach</h2>
-                        <p class="text-xs text-gray-500 mt-1">Source: Epilepsy Foundation</p>
-                    </div>
-                    <div class="p-6 h-80">
-                        <canvas id="flowmedical-comorbidity-reach"></canvas>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Additional Charts -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
-                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                        <h2 class="text-xl font-semibold">tDCS Technology Adoption</h2>
-                        <p class="text-xs text-gray-500 mt-1">Source: Flow Neuroscience Research Updates</p>
-                    </div>
-                    <div class="p-6 h-80">
-                        <canvas id="flowmedical-tech-adoption"></canvas>
-                    </div>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
-                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                        <h2 class="text-xl font-semibold">Funding Timeline</h2>
-                        <p class="text-xs text-gray-500 mt-1">Source: Flow Neuroscience Press Release, TechCrunch May 2023</p>
-                    </div>
-                    <div class="p-6 h-80">
-                        <canvas id="flowmedical-funding"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Insights -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
-                    <h2 class="text-xl font-semibold mb-4">Market Impact</h2>
-                    <p class="text-gray-600 dark:text-gray-300">Primarily targets depression ($4.8B market, 2023), but tDCS's neuromodulation could extend to epilepsy, competing with non-invasive therapies like TMS. CE-marked in Europe (2019) for depression.</p>
-                    <p class="mt-2 text-gray-600 dark:text-gray-300"><span class="font-semibold">Threat to Market:</span> Poses a peripheral threat by offering a low-cost, home-use alternative to epilepsy-specific neurostimulation devices. Lack of epilepsy-specific trials (as of 2025) limits direct impact.</p>
-                    <p class="text-xs text-gray-500 mt-3">Source: Flow Neuroscience, ScienceDirect</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
-                    <h2 class="text-xl font-semibold mb-4">Technology Details</h2>
-                    <p class="text-gray-600 dark:text-gray-300">Non-invasive brain stimulation via a wearable headset delivering low-intensity electrical currents. The device is CE-marked and approved for home use in the UK and EU for depression treatment.</p>
-                    <p class="text-sm mt-3 text-gray-500 dark:text-gray-400">Key Features:</p>
-                    <ul class="mt-1 text-sm text-gray-600 dark:text-gray-300 space-y-1">
-                        <li>• Non-invasive, pain-free transcranial direct current stimulation</li>
-                        <li>• Bluetooth connectivity with smartphone app</li>
-                        <li>• 30-minute treatment sessions</li>
-                        <li>• Real-world data from over 14,000 depression users</li>
-                    </ul>
-                    <p class="text-xs text-gray-500 mt-3">Source: Flow Neuroscience Website, NHS Trial Data</p>
-                </div>
-            </div>
-            
-            <!-- Citations -->
-            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
-                <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
-                <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
-                    <li>• Flow tDCS Headset Official Website</li>
-                    <li>• tDCS Depression Treatment Flow Neuroscience</li>
-                    <li>• Flow tDCS Device Flow Neuroscience</li>
-                    <li>• Swedish Medtech Start-Up Flow Neuroscience Raises $9m (Silicon Republic)</li>
-                    <li>• Swedish Startup Flow Neuroscience Raises Over €7.9 Million (EU-Startups)</li>
-                    <li>• Research Updates Flow Neuroscience</li>
-                    <li>• Exploring the Efficacy of a 5-Day Course of tDCS on Depression and Memory Function in Patients with Epilepsy (PubMed)</li>
-                    <li>• The Effects of tDCS on Depression, Anxiety, and Stress in Patients with Epilepsy (PMC)</li>
-                    <li>• The Flow Brain Stimulation Headset for the Treatment of Depression (PubMed)</li>
-                    <li>• Transcranial Direct Current Stimulation Reduces Seizure Frequency in Patients with Refractory Focal Epilepsy (ScienceDirect)</li>
-                    <li>• Epilepsy Drugs Market Size Envisioned at USD 15.16 Billion by 2032 (Towards Healthcare)</li>
-                    <li>• Electric Headset for Treating Depression Recommended as Widespread Treatment After NHS Trial (Sky News, Jan 2024)</li>
-                </ul>
-            </div>
-        </div>
-    `;
-}
-
-function generateNeuroPaceDashboard() {
-  return `
-    <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white">
-      <!-- Header -->
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 mb-8">
-        <div class="flex flex-col md:flex-row justify-between items-start">
-          <div>
-            <h1 class="text-3xl font-bold mb-2">NeuroPace, Inc.</h1>
-            <p class="text-lg text-gray-600 dark:text-gray-300">RNS® System - Responsive Neurostimulation for Epilepsy</p>
-          </div>
-          <div class="text-right mt-4 md:mt-0">
-            <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
-            <p class="text-sm text-gray-500 dark:text-gray-400">Sources: Company Reports, SEC Filings</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Key Metrics -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Total Revenue (2024)</h3>
-          <p class="mt-2 text-3xl font-bold">$76.0M</p>
-          <p class="text-sm text-green-600 dark:text-green-400">+16.2% YoY</p>
-          <p class="text-xs text-gray-500 mt-2">Source: NeuroPace Annual Report</p>
-        </div>
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Q4 Revenue (2024)</h3>
-          <p class="mt-2 text-3xl font-bold">$20.0M</p>
-          <p class="text-sm text-green-600 dark:text-green-400">+14.3% YoY</p>
-          <p class="text-xs text-gray-500 mt-2">Source: NeuroPace Q4 Report</p>
-        </div>
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Gross Margin (2024)</h3>
-          <p class="mt-2 text-3xl font-bold">73.6%</p>
-          <p class="text-sm text-gray-600 dark:text-gray-300">vs 73.8% in 2023</p>
-          <p class="text-xs text-gray-500 mt-2">Source: NeuroPace Annual Report</p>
-        </div>
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">2025 Revenue Guidance</h3>
-          <p class="mt-2 text-3xl font-bold">$87-91M</p>
-          <p class="text-sm text-green-600 dark:text-green-400">+14.5% to +19.7% YoY</p>
-          <p class="text-xs text-gray-500 mt-2">Source: NeuroPace Guidance</p>
-        </div>
-      </div>
-
-      <!-- RNS System Technology -->
-      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-        <h2 class="text-xl font-semibold mb-6">RNS® System Technology</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <div class="flex items-center mb-4">
-              <div class="bg-purple-100 dark:bg-purple-900 rounded-lg p-3 mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600 dark:text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold">Responsive Neurostimulation</h3>
-            </div>
-            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-              <li class="flex items-start">
-                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span><strong>Target Population:</strong> Approximately 1 million U.S. patients with drug-resistant epilepsy, focusing on focal onset seizures</span>
-              </li>
-              <li class="flex items-start">
-                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span><strong>Mechanism:</strong> Detects abnormal electrical patterns and delivers stimulation to normalize brain activity before seizures occur</span>
-              </li>
-              <li class="flex items-start">
-                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span><strong>Distribution:</strong> Level 4 Comprehensive Epilepsy Centers (CECs)</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <div class="flex items-center mb-4">
-              <div class="bg-blue-100 dark:bg-blue-900 rounded-lg p-3 mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 dark:text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold">Clinical Evidence</h3>
-            </div>
-            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-              <li class="flex items-start">
-                <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span><strong>Post-Approval Study:</strong> 82% median reduction in seizure frequency over 3 years</span>
-              </li>
-              <li class="flex items-start">
-                <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span><strong>Recent Research:</strong> To be presented at American Academy of Neurology (AAN) meeting on April 7, 2025</span>
-              </li>
-              <li class="flex items-start">
-                <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span><strong>Device Longevity:</strong> Average battery life of RNS System ~11 years</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Charts Section -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 class="text-xl font-semibold mb-4">Revenue Trends</h2>
-          <div class="h-80">
-            <canvas id="neuropace-revenue-trends"></canvas>
-          </div>
-          <p class="text-xs text-gray-500 mt-3">Source: NeuroPace Annual Reports 2021-2024</p>
-        </div>
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 class="text-xl font-semibold mb-4">Q4 2024 Implant Breakdown</h2>
-          <div class="h-80">
-            <canvas id="neuropace-implant-breakdown"></canvas>
-          </div>
-          <p class="text-xs text-gray-500 mt-3">Source: NeuroPace Q4 2024 Report</p>
-        </div>
-      </div>
-
-      <!-- Second Charts Row -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 class="text-xl font-semibold mb-4">Annual Growth Rates</h2>
-          <div class="h-80">
-            <canvas id="neuropace-growth-metrics"></canvas>
-          </div>
-          <p class="text-xs text-gray-500 mt-3">Source: NeuroPace Annual Reports</p>
-        </div>
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 class="text-xl font-semibold mb-4">Financial Metrics</h2>
-          <div class="h-80">
-            <canvas id="neuropace-financial-metrics"></canvas>
-          </div>
-          <p class="text-xs text-gray-500 mt-3">Source: NeuroPace Annual Reports 2022-2024</p>
-        </div>
-      </div>
-
-      <!-- Business Details -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 class="text-xl font-semibold mb-4">Sales Growth Drivers</h2>
-          <ul class="space-y-3 text-gray-600 dark:text-gray-300">
-            <li class="flex items-center">
-              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              <span>Increased adoption at Level 4 CECs</span>
-            </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              <span>Expansion of commercial sales team in 2024</span>
-            </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              <span>Enhanced clinician education and patient referral programs</span>
-            </li>
-          </ul>
-          
-          <div class="mt-6">
-            <h3 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Market Opportunity:</h3>
-            <p class="text-gray-600 dark:text-gray-400">Approximately 575,000 U.S. patients with drug-resistant focal epilepsy</p>
-          </div>
-          
-          <div class="mt-4">
-            <h3 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Quarterly Performance:</h3>
-            <div class="text-sm text-gray-600 dark:text-gray-400">
-              <p>Q3 2024 Revenue: $19.4M (+13.5% YoY)</p>
-              <p>Q1-Q3 2024 Revenue: $56.0M (+16.9% YoY)</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 class="text-xl font-semibold mb-4">Financial Health</h2>
-          <div class="grid grid-cols-2 gap-4">
-            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Net Loss</h3>
-              <p class="mt-1 text-xl font-semibold">$27.6M</p>
-              <p class="text-xs text-green-600">Improved from $33.0M in 2023</p>
-            </div>
-            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Cash Position</h3>
-              <p class="mt-1 text-xl font-semibold">$141.9M</p>
-              <p class="text-xs text-gray-500">As of Dec 31, 2024</p>
-            </div>
-            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Operating Expenses</h3>
-              <p class="mt-1 text-xl font-semibold">$80.8M</p>
-              <p class="text-xs text-gray-500">2024 Total</p>
-            </div>
-            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">R&D Expenses</h3>
-              <p class="mt-1 text-xl font-semibold">$34.8M</p>
-              <p class="text-xs text-gray-500">43% of operating expenses</p>
-            </div>
-          </div>
-          
-          <div class="mt-4">
-            <h3 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Cash Runway:</h3>
-            <div class="bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 p-3 rounded-lg">
-              <p class="text-sm text-gray-600 dark:text-gray-300">With $141.9M cash on hand and improving cash burn, NeuroPace has runway into 2027 at current operating levels.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sources and Citations -->
-      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-        <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
-        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc pl-4">
-          <li>NeuroPace Q4 and Full-Year 2024 Financial Results</li>
-          <li>NeuroPace Annual Report 2024</li>
-          <li>NeuroPace Investor Presentation, Q4 2024</li>
-          <li>American Academy of Neurology (AAN) Meeting Abstract, 2025</li>
-          <li>Post-approval study data on RNS System efficacy</li>
-          <li>NeuroPace Revenue Guidance for 2025</li>
-          <li>Custom Market Insights, "Epilepsy Treatment Devices Market" (2024-2032)</li>
-          <li>NeuroPace Clinical Data Repository</li>
-        </ul>
-      </div>
-    </div>
-  `;
-}
-
-
-function generateXCOPRIDashboard() {
-  return `
-    <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white">
-      <!-- Header -->
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 mb-8">
-        <div class="flex flex-col md:flex-row justify-between items-start">
-          <div>
-            <h1 class="text-3xl font-bold mb-2">SK Biopharmaceuticals / SK Life Science</h1>
-            <p class="text-lg text-gray-600 dark:text-gray-300">XCOPRI® (cenobamate) Epilepsy Treatment</p>
-          </div>
-          <div class="text-right mt-4 md:mt-0">
-            <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
-            <p class="text-sm text-gray-500 dark:text-gray-400">Sources: Company Reports, Clinical Data</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Key Metrics -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Total Revenue (2024)</h3>
-          <p class="mt-2 text-3xl font-bold">$405.6M</p>
-          <p class="text-sm text-green-600 dark:text-green-400">+54.3% YoY</p>
-          <p class="text-xs text-gray-500 mt-2">Source: Korea Biomedical Review, Feb 5, 2025</p>
-        </div>
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">U.S. XCOPRI Sales (2024)</h3>
-          <p class="mt-2 text-3xl font-bold">$325.0M</p>
-          <p class="text-sm text-green-600 dark:text-green-400">+62% YoY</p>
-          <p class="text-xs text-gray-500 mt-2">Source: Korea Biomedical Review, Feb 5, 2025</p>
-        </div>
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Operating Profit (2024)</h3>
-          <p class="mt-2 text-3xl font-bold">$71.3M</p>
-          <p class="text-sm text-gray-600 dark:text-gray-300">First profitable year</p>
-          <p class="text-xs text-gray-500 mt-2">Source: Korea Biomedical Review, Feb 5, 2025</p>
-        </div>
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Net Profit (2024)</h3>
-          <p class="mt-2 text-3xl font-bold">$168.1M</p>
-          <p class="text-sm text-gray-600 dark:text-gray-300">Return to profitability</p>
-          <p class="text-xs text-gray-500 mt-2">Source: Korea Biomedical Review, Feb 5, 2025</p>
-        </div>
-      </div>
-
-      <!-- Product Details -->
-      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-        <h2 class="text-xl font-semibold mb-6">XCOPRI® (Cenobamate) Overview</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <div class="flex items-center mb-4">
-              <div class="bg-orange-100 dark:bg-orange-900 rounded-lg p-3 mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-600 dark:text-orange-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold">Product Details</h3>
-            </div>
-            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-              <li class="flex items-start">
-                <svg class="h-5 w-5 text-orange-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span><strong>Focus:</strong> Antiseizure medication for drug-resistant focal epilepsy</span>
-              </li>
-              <li class="flex items-start">
-                <svg class="h-5 w-5 text-orange-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span><strong>FDA Approval:</strong> November 21, 2019</span>
-              </li>
-              <li class="flex items-start">
-                <svg class="h-5 w-5 text-orange-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span><strong>U.S. Launch Date:</strong> May 2020</span>
-              </li>
-              <li class="flex items-start">
-                <svg class="h-5 w-5 text-orange-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span><strong>Patient Reach:</strong> 175,000+ patients as of September 30, 2024</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <div class="flex items-center mb-4">
-
-
-
-<div class="bg-teal-100 dark:bg-teal-900 rounded-lg p-3 mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-600 dark:text-teal-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold">Clinical Evidence</h3>
-            </div>
-            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-              <li class="flex items-start">
-                <svg class="h-5 w-5 text-teal-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span><strong>Phase 3 Northeast Asia:</strong> 100% seizure freedom at 400 mg dose vs. 25.9% placebo</span>
-              </li>
-              <li class="flex items-start">
-                <svg class="h-5 w-5 text-teal-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span><strong>Presentation Date:</strong> December 9, 2024 at AES Annual Meeting</span>
-              </li>
-              <li class="flex items-start">
-                <svg class="h-5 w-5 text-teal-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span><strong>Market Potential:</strong> $5B U.S. market (2024), $11.13B global market (2024)</span>
-              </li>
-              <li class="flex items-start">
-                <svg class="h-5 w-5 text-teal-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span><strong>U.S. Market Share:</strong> ~6.5% (and growing)</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Charts Section -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 class="text-xl font-semibold mb-4">Revenue Trends</h2>
-          <div class="h-80">
-            <canvas id="xcopri-revenue-trends"></canvas>
-          </div>
-          <p class="text-xs text-gray-500 mt-3">Source: Company Reports 2022-2024</p>
-        </div>
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 class="text-xl font-semibold mb-4">U.S. Sales Growth</h2>
-          <div class="h-80">
-            <canvas id="xcopri-us-sales-growth"></canvas>
-          </div>
-          <p class="text-xs text-gray-500 mt-3">Source: SK Life Science Press Release, March 20, 2025</p>
-        </div>
-      </div>
-
-      <!-- Second Charts Row -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 class="text-xl font-semibold mb-4">U.S. Market Share</h2>
-          <div class="h-80">
-            <canvas id="xcopri-market-share"></canvas>
-          </div>
-          <p class="text-xs text-gray-500 mt-3">Source: Towards Healthcare, 2024</p>
-        </div>
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 class="text-xl font-semibold mb-4">Revenue Breakdown</h2>
-          <div class="h-80">
-            <canvas id="xcopri-revenue-breakdown"></canvas>
-          </div>
-          <p class="text-xs text-gray-500 mt-3">Source: Company Reports 2023-2024</p>
-        </div>
-      </div>
-
-      <!-- Business Insights -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 class="text-xl font-semibold mb-4">Sales Growth Drivers</h2>
-          <ul class="space-y-3 text-gray-600 dark:text-gray-300">
-            <li class="flex items-center">
-              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              <span>U.S. prescription growth (175,000+ patients by Sep 2024)</span>
-            </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              <span>High gross margin (>90%)</span>
-            </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              <span>Expansion into new markets (e.g., Northeast Asia)</span>
-            </li>
-          </ul>
-          
-          <div class="mt-6">
-            <h3 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Quarterly Performance:</h3>
-            <div class="text-sm text-gray-600 dark:text-gray-400">
-              <p>Q3 2023 Revenue: $56.1M (+19.2% YoY)</p>
-              <p>Q4 2024 Revenue: $120.7M</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 class="text-xl font-semibold mb-4">Future Outlook</h2>
-          <div class="grid grid-cols-1 gap-4">
-            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">2025 U.S. Sales Target</h3>
-              <p class="mt-1 text-xl font-semibold">$420-450M</p>
-              <p class="text-xs text-green-600">+29-38% YoY growth</p>
-            </div>
-            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Future Products Pipeline</h3>
-              <div class="mt-2 space-y-1 text-sm">
-                <p>• TPD, RPT, oncology expansion</p>
-                <p>• XCOPRI indications expansion by 2025-2026</p>
-                <p>• New markets: Korea, Japan NDA planned</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="mt-4">
-            <h3 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Long-term Projection:</h3>
-            <div class="bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 p-3 rounded-lg">
-              <p class="text-sm text-gray-600 dark:text-gray-300">SK Biopharmaceuticals expects XCOPRI U.S. sales to reach $1 billion by 2029, representing substantial continued growth from current levels.</p>
-              <p class="text-xs text-gray-500 mt-2">Source: Yonhap News Agency</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sources and Citations -->
-      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-        <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
-        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc pl-4">
-          <li>Korea Biomedical Review, "SK biopharmaceuticals' annual profit hits record high driven by cenobamate sales growth" (Feb 5, 2025)</li>
-          <li>SK Biopharmaceuticals Press Release, "SK Biopharmaceuticals Announces 2024 Financial Results" (Feb 5, 2025)</li>
-          <li>SK Life Science Press Release, "175,000 Patients Treated with XCOPRI" (March 20, 2025)</li>
-          <li>Yonhap News Agency, "SK Biopharmaceuticals expects US$1 bln in U.S. sales in 2029"</li>
-          <li>American Epilepsy Society (AES) Annual Meeting Abstract, 2024</li>
-          <li>Ono Pharma Data Presentation (Dec 9, 2024)</li>
-          <li>Towards Healthcare, "Epilepsy Drugs Market Size Envisioned at USD 15.16 Billion by 2032"</li>
-          <li>XCOPRI cenobamate tablets prescription information</li>
-        </ul>
-      </div>
-    </div>
-  `;
-}
-
-function generateLivaNovaDashboard(data) {
-  return `
-    <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white">
-      <!-- Header -->
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 mb-8">
-          <div class="flex flex-col md:flex-row justify-between items-start">
-              <div>
-                  <h1 class="text-3xl font-bold mb-2">LivaNova - Epilepsy Neuromodulation</h1>
-                  <p class="text-lg text-gray-600 dark:text-gray-300">Vagus Nerve Stimulation (VNS) Analysis</p>
-              </div>
-              <div class="text-right mt-4 md:mt-0">
-                  <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
-                  <p class="text-sm text-gray-500 dark:text-gray-400">Sources: Company Reports, SEC Filings</p>
-              </div>
-          </div>
-      </div>
-
-      <!-- Key Metrics -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Neuromodulation Revenue (2024)</h3>
-              <p class="mt-2 text-3xl font-bold">$554.2M</p>
-              <p class="text-sm text-green-600 dark:text-green-400">+6.6% YoY</p>
-              <p class="text-xs text-gray-500 mt-2">Source: LivaNova Annual Report</p>
-          </div>
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">U.S. Revenue (2024)</h3>
-              <p class="mt-2 text-3xl font-bold">$441.0M</p>
-              <p class="text-sm text-green-600 dark:text-green-400">+8.2% YoY</p>
-              <p class="text-xs text-gray-500 mt-2">Source: LivaNova Annual Report</p>
-          </div>
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Segment Income (2024)</h3>
-              <p class="mt-2 text-3xl font-bold">$195.3M</p>
-              <p class="text-sm text-green-600 dark:text-green-400">+27.3% YoY</p>
-              <p class="text-xs text-gray-500 mt-2">Source: LivaNova Annual Report</p>
-          </div>
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Epilepsy Market Share</h3>
-              <p class="mt-2 text-3xl font-bold">18%</p>
-              <p class="text-sm text-gray-600 dark:text-gray-300">VNS Market Leader</p>
-              <p class="text-xs text-gray-500 mt-2">Source: Neuromodulation Market Size Report</p>
-          </div>
-      </div>
-
-      <!-- VNS Technology Section -->
-      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-          <h2 class="text-xl font-semibold mb-6">Vagus Nerve Stimulation Technology</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                  <div class="flex items-center mb-4">
-                      <div class="bg-green-100 dark:bg-green-900 rounded-lg p-3 mr-4">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 dark:text-green-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                          </svg>
-                      </div>
-                      <h3 class="text-lg font-semibold">VNS Therapy System Models</h3>
-                  </div>
-                  <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                          </svg>
-                          <div>
-                              <span><strong>SenTiva (Model 1000):</strong> Smallest and lightest VNS device</span>
-                              <p class="text-sm text-gray-500 dark:text-gray-400">Features: Responsive therapy, Scheduled Programming, Day & Night Programming, Expanded MRI access</p>
-                          </div>
-                      </li>
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                          </svg>
-                          <div>
-                              <span><strong>AspireSR (Model 106):</strong> Advanced closed-loop system</span>
-                              <p class="text-sm text-gray-500 dark:text-gray-400">Features: Closed loop stimulation (AutoStim), Expanded MRI access</p>
-                          </div>
-                      </li>
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                          </svg>
-                          <div>
-                              <span><strong>SenTiva Duo (Model 1000D) & Demipulse (Model 103)</strong></span>
-                              <p class="text-sm text-gray-500 dark:text-gray-400">Comprehensive product portfolio for different patient needs</p>
-                          </div>
-                      </li>
-                  </ul>
-              </div>
-              <div>
-                  <div class="flex items-center mb-4">
-                      <div class="bg-indigo-100 dark:bg-indigo-900 rounded-lg p-3 mr-4">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600 dark:text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                          </svg>
-                      </div>
-                      <h3 class="text-lg font-semibold">Clinical Evidence & Approvals</h3>
-                  </div>
-                  <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-indigo-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                          </svg>
-                          <span><strong>First Approval:</strong> First medical device approved by FDA for DRE in 1997</span>
-                      </li>
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-indigo-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                          </svg>
-                          <span><strong>Pediatric Approval:</strong> Only neuromodulation device approved in US for DRE patients as young as four years</span></li>
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-indigo-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                          </svg>
-                          <span><strong>Mechanism:</strong> Delivers electrical impulses to the vagus nerve, modulating brain activity</span>
-                      </li>
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-indigo-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                          </svg>
-                          <span><strong>Recent Evidence:</strong> Journal of Neurology (2022) meta-analysis demonstrated significant benefits without adverse events</span>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-      </div>
-
-      <!-- Regional Performance -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h2 class="text-xl font-semibold mb-4">Regional Revenue Breakdown</h2>
-              <div class="h-80">
-                  <canvas id="livanova-revenue-by-region"></canvas>
-              </div>
-              <p class="text-xs text-gray-500 mt-3">Source: LivaNova Annual Report 2022-2024</p>
-          </div>
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h2 class="text-xl font-semibold mb-4">Expense Breakdown (2024)</h2>
-              <div class="h-80">
-                  <canvas id="livanova-expenses"></canvas>
-              </div>
-              <p class="text-xs text-gray-500 mt-3">Source: LivaNova Annual Report 2024</p>
-          </div>
-      </div>
-
-      <!-- Performance Trends -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h2 class="text-xl font-semibold mb-4">Performance Trend</h2>
-              <div class="h-80">
-                  <canvas id="livanova-performance-trend"></canvas>
-              </div>
-              <p class="text-xs text-gray-500 mt-3">Source: LivaNova Annual Reports 2022-2024</p>
-          </div>
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h2 class="text-xl font-semibold mb-4">Revenue & Income Analysis</h2>
-              <div class="h-80">
-                  <canvas id="livanova-revenue-income"></canvas>
-              </div>
-              <p class="text-xs text-gray-500 mt-3">Source: LivaNova Annual Reports 2022-2024</p>
-          </div>
-      </div>
-
-      <!-- Special Reimbursement Coverage -->
-      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-          <h2 class="text-xl font-semibold mb-4">Special Reimbursement Coverage</h2>
-          <div class="overflow-x-auto">
-              <table class="min-w-full">
-                  <thead>
-                      <tr>
-                          <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">Condition</th>
-                          <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">Approval Date</th>
-                          <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">Agency</th>
-                          <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">Procedure Code</th>
-                          <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">2024 Payment</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">Dravet Syndrome</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">2020</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">CMS</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">64568</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$23,542.18</td>
-                      </tr>
-                      <tr>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">Lennox-Gastaut Syndrome</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">January 2022</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">CMS</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">64568</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$23,542.18</td>
-                      </tr>
-                      <tr>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">VNS Programming</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">Multiple</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">CMS</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">95976</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$116.34</td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-          <p class="text-xs text-gray-500 mt-3">Source: CMS Medicare Physician Fee Schedule, 2025 Final Rule</p>
-      </div>
-
-      <!-- Epilepsy Treatment Context -->
-      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-          <h2 class="text-xl font-semibold mb-4">Epilepsy Treatment Context</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                  <h3 class="text-lg font-medium mb-3">Available Treatment Options</h3>
-                  <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                          </svg>
-                          <span>Multiple ASMs (Anti-Seizure Medications)</span>
-                      </li>
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                          </svg>
-                          <span>Various forms of ketogenic diet</span>
-                      </li>
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                          </svg>
-                          <span>VNS (Vagus Nerve Stimulation)</span>
-                      </li>
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                          </svg>
-                          <span>Resective and ablative brain surgery</span>
-                      </li>
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                          </svg>
-                          <span>Intracranial neurostimulation</span>
-                      </li>
-                  </ul>
-              </div>
-              <div>
-                  <h3 class="text-lg font-medium mb-3">Treatment Pathway</h3>
-                  <div class="p-4 bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 rounded-lg">
-                      <p class="text-gray-700 dark:text-gray-300">ASMs typically serve as first-line treatment for all epilepsy patients. After two ASMs fail to deliver seizure control, the epilepsy is characterized as drug-resistant and adjunctive non-drug options are considered.</p>
-                      
-                      <div class="mt-4">
-                          <h4 class="font-medium text-gray-700 dark:text-gray-300">VNS Therapy Advantages:</h4>
-                          <ul class="mt-2 space-y-1 text-sm text-gray-600 dark:text-gray-400">
-                              <li>• First medical device approved by FDA for DRE in 1997</li>
-                              <li>• Only neuromodulation device approved for patients as young as 4 years</li>
-                              <li>• No direct brain tissue intervention required</li>
-                              <li>• Demonstrated long-term efficacy and safety</li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <!-- Sources and Citations -->
-      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
-          <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc pl-4">
-              <li>LivaNova Q4 and Full-Year 2023/2024 Results</li>
-              <li>LivaNova Annual Reports (2022-2024)</li>
-              <li>LivaNova VNS Therapy System Drug-Resistant Epilepsy Cost Savings Report</li>
-              <li>Journal of Neurology (January 2022) meta-analysis on VNS Therapy</li>
-              <li>CMS Reimbursement Updates for Dravet Syndrome (2020)</li>
-              <li>CMS Reimbursement Updates for Lennox-Gastaut Syndrome (2022)</li>
-              <li>Custom Market Insights, "Epilepsy Treatment Devices Market" (2024-2032)</li>
-              <li>Neuromodulation Market Size Report (2024-2028)</li>
-              <li>CMS Medicare Physician Fee Schedule, 2025 Final Rule</li>
-          </ul>
-      </div>
-    </div>
-  `;
-}
-
-
-
-function initializeLivanovaCharts(data) {
-  const isDarkMode = document.documentElement.classList.contains('dark');
-  const textColor = isDarkMode ? '#ffffff' : '#666666';
-  const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
-
-  // Revenue by Region Chart
-  const revenueByRegionCtx = document.getElementById('livanova-revenue-by-region').getContext('2d');
-  new Chart(revenueByRegionCtx, {
-    type: 'bar',
-    data: {
-      labels: ['2022', '2023', '2024'],
-      datasets: [
-        {
-          label: 'United States',
-          data: [374.5, 407.5, 441.0],
-          backgroundColor: 'rgba(59, 130, 246, 0.8)',
-          borderColor: 'rgba(59, 130, 246, 1)',
-          borderWidth: 1
-        },
-        {
-          label: 'Europe',
-          data: [50.3, 57.4, 54.9],
-          backgroundColor: 'rgba(16, 185, 129, 0.8)',
-          borderColor: 'rgba(16, 185, 129, 1)',
-          borderWidth: 1
-        },
-        {
-          label: 'Rest of World',
-          data: [52.2, 54.8, 58.3],
-          backgroundColor: 'rgba(249, 115, 22, 0.8)',
-          borderColor: 'rgba(249, 115, 22, 1)',
-          borderWidth: 1
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        x: {
-          stacked: false,
-          ticks: { color: textColor },
-          grid: { color: gridColor }
-        },
-        y: {
-          stacked: false,
-          beginAtZero: true,
-          ticks: {
-            color: textColor,
-            callback: function(value) {
-              return '$' + value + 'M';
-            }
-          },
-          grid: { color: gridColor },
-          title: {
-            display: true,
-            text: 'Revenue (Millions USD)',
-            color: textColor
-          }
-        }
-      },
-      plugins: {
-        legend: { 
-          position: 'top',
-          labels: { color: textColor }
-        },
-        tooltip: {
-          callbacks: {
-            label: function(context) {
-              return context.dataset.label + ': $' + context.raw.toFixed(1) + 'M';
-            }
-          }
-        }
-      }
-    }
-  });
-  // Expenses Chart (continued)
-  const expensesCtx = document.getElementById('livanova-expenses').getContext('2d');
-  new Chart(expensesCtx, {
-    type: 'pie',
-    data: {
-      labels: ['Cost of Sales', 'SG&A', 'R&D'],
-      datasets: [{
-        data: [50.2, 187.6, 121.0],
-        backgroundColor: [
-          'rgba(59, 130, 246, 0.8)',
-          'rgba(16, 185, 129, 0.8)',
-          'rgba(249, 115, 22, 0.8)'
-        ],
-        borderColor: [
-          'rgba(59, 130, 246, 1)',
-          'rgba(16, 185, 129, 1)',
-          'rgba(249, 115, 22, 1)'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { labels: { color: textColor } },
-        tooltip: {
-          callbacks: {
-            label: function(context) {
-              const value = context.raw;
-              const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
-              const percentage = ((value / total) * 100).toFixed(1);
-              return `$${value.toFixed(1)}M (${percentage}%)`;
-            }
-          }
-        }
-      }
-    }
-  });
-
-  // Performance Trend Chart
-  const performanceTrendCtx = document.getElementById('livanova-performance-trend').getContext('2d');
-  new Chart(performanceTrendCtx, {
-    type: 'line',
-    data: {
-      labels: ['2022', '2023', '2024'],
-      datasets: [
-        {
-          label: 'Revenue Growth (%)',
-          data: [null, 9.0, 6.6],
-          borderColor: 'rgba(59, 130, 246, 1)',
-          backgroundColor: 'rgba(59, 130, 246, 0.1)',
-          tension: 0.3,
-          fill: false
-        },
-        {
-          label: 'Segment Income Growth (%)',
-          data: [null, -11.2, 27.3],
-          borderColor: 'rgba(16, 185, 129, 1)',
-          backgroundColor: 'rgba(16, 185, 129, 0.1)',
-          tension: 0.3,
-          fill: false
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: false,
-          ticks: {
-            color: textColor,
-            callback: function(value) {
-              return value + '%';
-            }
-          },
-          grid: { color: gridColor }
-        },
-        x: {
-          ticks: { color: textColor },
-          grid: { color: gridColor }
-        }
-      },
-      plugins: {
-        legend: { labels: { color: textColor } },
-        tooltip: {
-          callbacks: {
-            label: function(context) {
-              if (context.raw === null) {
-                return `${context.dataset.label}: No data`;
-              }
-              return `${context.dataset.label}: ${context.raw}%`;
-            }
-          }
-        }
-      }
-    }
-  });
-
-  // Revenue & Income Analysis Chart
-  const revenueIncomeCtx = document.getElementById('livanova-revenue-income').getContext('2d');
-  new Chart(revenueIncomeCtx, {
-    type: 'bar',
-    data: {
-      labels: ['2022', '2023', '2024'],
-      datasets: [
-        {
-          label: 'Total Revenue ($M)',
-          data: [477.0, 519.7, 554.2],
-          backgroundColor: 'rgba(59, 130, 246, 0.8)',
-          borderColor: 'rgba(59, 130, 246, 1)',
-          borderWidth: 1,
-          order: 2
-        },
-        {
-          label: 'Segment Income ($M)',
-          data: [172.8, 153.4, 195.3],
-          backgroundColor: 'rgba(16, 185, 129, 0.8)',
-          borderColor: 'rgba(16, 185, 129, 1)',
-          borderWidth: 1,
-          order: 1
-        },
-        {
-          label: 'Profit Margin (%)',
-          data: [36.2, 29.5, 35.2],
-          type: 'line',
-          fill: false,
-          borderColor: 'rgba(249, 115, 22, 1)',
-          backgroundColor: 'rgba(249, 115, 22, 0.1)',
-          borderWidth: 2,
-          tension: 0.4,
-          pointStyle: 'circle',
-          pointRadius: 5,
-          pointHoverRadius: 8,
-          yAxisID: 'y1',
-          order: 0
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        y: {
-          type: 'linear',
-          position: 'left',
-          beginAtZero: true,
-          title: {
-            display: true,
-            text: 'USD ($M)',
-            color: textColor
-          },
-          ticks: {
-            color: textColor,
-            callback: function(value) {
-              return '$' + value + 'M';
-            }
-          },
-          grid: { color: gridColor }
-        },
-        y1: {
-          type: 'linear',
-          position: 'right',
-          beginAtZero: true,
-          max: 50,
-          title: {
-            display: true,
-            text: 'Profit Margin (%)',
-            color: textColor
-          },
-          ticks: {
-            color: textColor,
-            callback: function(value) {
-              return value + '%';
-            }
-          },
-          grid: {
-            drawOnChartArea: false,
-            color: gridColor
-          }
-        },
-        x: {
-          ticks: { color: textColor },
-          grid: { color: gridColor }
-        }
-      },
-      plugins: {
-        legend: { labels: { color: textColor } },
-        tooltip: {
-          callbacks: {
-            label: function(context) {
-              if (context.dataset.label === 'Profit Margin (%)') {
-                return `${context.dataset.label}: ${context.raw}%`;
-              } else {
-                return `${context.dataset.label}: $${context.raw.toFixed(1)}M`;
-              }
-            }
-          }
-        }
-      }
-    }
-  });
-}
-
-
-// Update dashboard creation to use combined data
-function generateNeuromodulationEpilepsyDashboard(medtronicData, livanovaData) {
-    return `
-        <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white">
-            <!-- Header -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 mb-8">
-                <div class="flex flex-col md:flex-row justify-between items-start">
-                    <div>
-                        <h1 class="text-3xl font-bold mb-2">Epilepsy Neuromodulation Market</h1>
-                        <p class="text-lg text-gray-600 dark:text-gray-300">Comparative Analysis - Medtronic vs. LivaNova</p>
-                    </div>
-                    <div class="text-right mt-4 md:mt-0">
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Sources: Company Reports, SEC Filings, Clinical Data</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Key Metrics Comparison -->
-            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-                    <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Medtronic Neuromodulation (Q3 FY25)</h3>
-                    <p class="mt-2 text-3xl font-bold">$476M</p>
-                    <p class="text-sm text-green-600 dark:text-green-400">+12% YoY</p>
-                    <p class="text-xs text-gray-500 mt-2">Source: Medtronic Q3 FY25 Financial Results</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-                    <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">LivaNova Neuromodulation (2024)</h3>
-                    <p class="mt-2 text-3xl font-bold">$554M</p>
-                    <p class="text-sm text-green-600 dark:text-green-400">+6.6% YoY</p>
-                    <p class="text-xs text-gray-500 mt-2">Source: LivaNova Annual Report</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-                    <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Epilepsy Market Share</h3>
-                    <p class="mt-2 text-2xl font-bold">Medtronic: 46%</p>
-                    <p class="mt-1 text-xl font-bold">LivaNova: 18%</p>
-                    <p class="text-xs text-gray-500 mt-2">Source: Neuromodulation Market Size Report</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-                    <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Total Epilepsy Devices Market</h3>
-                    <p class="mt-2 text-3xl font-bold">$548.4M</p>
-                    <p class="text-sm text-blue-600 dark:text-blue-400">CAGR: 4.1% (2024-2032)</p>
-                    <p class="text-xs text-gray-500 mt-2">Source: Custom Market Insights</p>
-                </div>
-            </div>
-
-            <!-- Technology Comparison -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-                <h2 class="text-xl font-semibold mb-6">Technology Comparison</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-blue-100 dark:bg-blue-900 rounded-lg p-3 mr-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 dark:text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                </svg>
-                            </div>
-                            <h3 class="text-lg font-semibold">Medtronic - Deep Brain Stimulation</h3>
-                        </div>
-                        <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span><strong>Approval:</strong> FDA approved for reducing partial-onset seizures refractory to antiepileptic medications</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span><strong>Latest Device:</strong> Percept™ RC (rechargeable neurostimulator) with BrainSense™ technology</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span><strong>Mechanism:</strong> Delivers targeted electrical stimulation to the anterior nucleus of the thalamus (ANT)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span><strong>Clinical Results:</strong> SANTE Study showed 69% median reduction in seizure frequency over 5 years</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span><strong>Medicare Reimbursement:</strong> $35,826.45 (CPT 61886)</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-green-100 dark:bg-green-900 rounded-lg p-3 mr-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 dark:text-green-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                </svg>
-                            </div>
-                            <h3 class="text-lg font-semibold">LivaNova - Vagus Nerve Stimulation</h3>
-                        </div>
-                        <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span><strong>Approval:</strong> First medical device approved by FDA for DRE in 1997; approved for patients as young as four years</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span><strong>Latest Device:</strong> SenTiva (Model 1000) - Smallest and lightest VNS device with responsive therapy</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span><strong>Mechanism:</strong> Delivers electrical impulses to the vagus nerve, modulating brain activity</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span><strong>Clinical Results:</strong> Journal of Neurology (2022) meta-analysis showed significant benefits without increased adverse events</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span><strong>Special Reimbursement:</strong> CMS coverage for Dravet Syndrome (2020) and Lennox-Gastaut Syndrome (2022)</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Regional Performance -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-                    <h2 class="text-xl font-semibold mb-4">Medtronic Regional Distribution</h2>
-                    <div class="h-80">
-                        <canvas id="neuromodulation-medtronic-regional"></canvas>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-3">Source: Medtronic SEC Filing Q3 FY2025</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-                    <h2 class="text-xl font-semibold mb-4">LivaNova Regional Revenue</h2>
-                    <div class="h-80">
-                        <canvas id="neuromodulation-livanova-regional"></canvas>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-3">Source: LivaNova Annual Report 2024</p>
-                </div>
-            </div>
-
-            <!-- Market Trends and Growth -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-                    <h2 class="text-xl font-semibold mb-4">Growth Rate Comparison</h2>
-                    <div class="h-80">
-                        <canvas id="neuromodulation-growth-comparison"></canvas>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-3">Source: Company Financial Reports</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-                    <h2 class="text-xl font-semibold mb-4">Epilepsy Market Trends</h2>
-                    <div class="h-80">
-                        <canvas id="neuromodulation-market-trends"></canvas>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-3">Source: Custom Market Insights, Research Reports</p>
-                </div>
-            </div>
-
-            <!-- Medicare Reimbursement Comparison -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-                <h2 class="text-xl font-semibold mb-4">Medicare Reimbursement Comparison</h2>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full">
-                        <thead>
-                            <tr>
-                                <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">Procedure</th>
-                                <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">CPT Code</th>
-                                <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">Company</th>
-                                <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">2024 Payment</th>
-                                <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">YoY Change</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">DBS Implantation</td>
-                                <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">61886</td>
-                                <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">Medtronic</td>
-                                <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$35,826.45</td>
-                                <td class="px-4 py-2 text-sm text-red-600 dark:text-red-400 border-b dark:border-gray-700">-3.31%</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">VNS Implantation</td>
-                                <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">64568</td>
-                                <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">LivaNova</td>
-                                <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$23,542.18</td>
-                                <td class="px-4 py-2 text-sm text-red-600 dark:text-red-400 border-b dark:border-gray-700">-2.76%</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">DBS Programming</td>
-                                <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">95983</td>
-                                <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">Medtronic</td>
-                                <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$138.69</td>
-                                <td class="px-4 py-2 text-sm text-red-600 dark:text-red-400 border-b dark:border-gray-700">-1.52%</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">VNS Programming</td>
-                                <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">95976</td>
-                                <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">LivaNova</td>
-                                <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$116.34</td>
-                                <td class="px-4 py-2 text-sm text-green-600 dark:text-green-400 border-b dark:border-gray-700">+0.87%</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <p class="text-xs text-gray-500 mt-3">Source: CMS Medicare Physician Fee Schedule, 2025 Final Rule</p>
-            </div>
-
-            <!-- Sources and Citations -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-                <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <h3 class="text-md font-semibold mb-2 text-gray-700 dark:text-gray-300">Medtronic Sources:</h3>
-                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc pl-4">
-                            <li>Medtronic Q3 FY25 Financial Results</li>
-                            <li>Medtronic 2023 Neuromodulation Product Performance Report</li>
-                            <li>FDA Approval for Percept™ RC neurostimulator (Jan 2024)</li>
-                            <li>Long-term efficacy and safety of thalamic stimulation for drug-resistant partial epilepsy</li>
-                            <li>SANTE Study: Deep Brain Stimulation for Epilepsy</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-md font-semibold mb-2 text-gray-700 dark:text-gray-300">LivaNova Sources:</h3>
-                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc pl-4">
-                            <li>LivaNova Q4 and Full-Year 2023/2024 Results</li>
-                            <li>LivaNova VNS Therapy System Drug-Resistant Epilepsy Cost Savings Report</li>
-                            <li>Journal of Neurology (January 2022) meta-analysis</li>
-                            <li>CMS Reimbursement Updates for Dravet Syndrome (2020)</li>
-                            <li>CMS Reimbursement Updates for Lennox-Gastaut Syndrome (2022)</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <h3 class="text-md font-semibold mb-2 text-gray-700 dark:text-gray-300">Market Data Sources:</h3>
-                    <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc pl-4">
-                        <li>Custom Market Insights, "Epilepsy Treatment Devices Market" (2024-2032)</li>
-                        <li>Neuromodulation Market Size Report (2024-2028)</li>
-                        <li>CMS Medicare Physician Fee Schedule, 2025 Final Rule</li>
-                        <li>Grand View Research, "Epilepsy Monitoring Devices Market" (2023)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-// Initialize charts for the comparative neuromodulation dashboard
-function initializeNeuromodulationEpilepsyCharts(medtronicData, livanovaData) {
-    const isDarkMode = document.documentElement.classList.contains('dark');
-    const textColor = isDarkMode ? '#ffffff' : '#666666';
-    const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
-
-    // Medtronic Regional Distribution
-    new Chart(document.getElementById('neuromodulation-medtronic-regional').getContext('2d'), {
-        type: 'pie',
-        data: {
-            labels: ['North America', 'Europe', 'Asia Pacific', 'Rest of World'],
-            datasets: [{
-                data: [62, 21, 12, 5],
-                backgroundColor: [
-                    'rgba(59, 130, 246, 0.7)',
-                    'rgba(16, 185, 129, 0.7)',
-                    'rgba(249, 115, 22, 0.7)',
-                    'rgba(107, 114, 128, 0.7)'
-                ],
-                borderColor: [
-                    'rgba(59, 130, 246, 1)',
-                    'rgba(16, 185, 129, 1)',
-                    'rgba(249, 115, 22, 1)',
-                    'rgba(107, 114, 128, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { position: 'right', labels: { color: textColor } },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return `${context.label}: ${context.raw}%`;
-                        }
-                    }
-                }
-            }
-        }
-    });
-
-    // LivaNova Regional Revenue
-    new Chart(document.getElementById('neuromodulation-livanova-regional').getContext('2d'), {
-        type: 'bar',
-        data: {
-            labels: ['2022', '2023', '2024'],
-            datasets: [
-                {
-                    label: 'United States',
-                    data: [374.5, 407.5, 441.0],
-                    backgroundColor: 'rgba(59, 130, 246, 0.7)'
-                },
-                {
-                    label: 'Europe',
-                    data: [50.3, 57.4, 54.9],
-                    backgroundColor: 'rgba(16, 185, 129, 0.7)'
-                },
-                {
-                    label: 'Rest of World',
-                    data: [52.2, 54.8, 58.3],
-                    backgroundColor: 'rgba(249, 115, 22, 0.7)'
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: { stacked: true, ticks: { color: textColor }, grid: { color: gridColor } },
-                y: {
-                    stacked: true,
-                    ticks: { color: textColor, callback: value => `$${value}M` },
-                    grid: { color: gridColor },
-                    title: { display: true, text: 'Revenue (Millions USD)', color: textColor }
-                }
-            },
-            plugins: {
-                legend: { position: 'top', labels: { color: textColor } },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return `${context.dataset.label}: $${context.raw}M`;
-                        }
-                    }
-                }
-            }
-        }
-    });
-
-    // Growth Rate Comparison
-    new Chart(document.getElementById('neuromodulation-growth-comparison').getContext('2d'), {
-        type: 'line',
-        data: {
-            labels: ['Q1 FY24', 'Q2 FY24', 'Q3 FY24', 'Q4 FY24', 'Q1 FY25', 'Q2 FY25', 'Q3 FY25'],
-            datasets: [
-                {
-                    label: 'Medtronic Quarterly Growth (%)',
-                    data: [4.0, 2.9, 2.4, 2.4, 8.9, 9.5, 12.0],
-                    borderColor: 'rgba(59, 130, 246, 1)',
-                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                    tension: 0.4,
-                    fill: false
-                },
-                {
-                    label: 'LivaNova YoY Growth (%)',
-                    data: [null, null, null, 9.0, null, null, 6.6],
-                    borderColor: 'rgba(16, 185, 129, 1)',
-                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                    tension: 0.4,
-                    fill: false,
-                    pointRadius: 6
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    ticks: { color: textColor, callback: value => `${value}%` },
-                    grid: { color: gridColor },
-                    title: { display: true, text: 'Growth Rate (%)', color: textColor }
-                },
-                x: { ticks: { color: textColor }, grid: { color: gridColor } }
-            },
-            plugins: {
-                legend: { position: 'top', labels: { color: textColor } },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            if (context.raw === null) {
-                                return `${context.dataset.label}: No data`;
-                            }
-                            return `${context.dataset.label}: ${context.raw}%`;
-                        }
-                    }
-                }
-            }
-        }
-    });
-
-    // Epilepsy Market Trends
-    new Chart(document.getElementById('neuromodulation-market-trends').getContext('2d'), {
-        type: 'bar',
-        data: {
-            labels: ['2023', '2024', '2025 (est)', '2026 (est)', '2027 (est)'],
-            datasets: [
-                {
-                    label: 'Market Size ($M)',
-                    type: 'line',
-                    data: [527, 548, 571, 594, 619],
-                    borderColor: 'rgba(139, 92, 246, 1)',
-                    backgroundColor: 'rgba(139, 92, 246, 0.1)',
-                    yAxisID: 'y',
-                    tension: 0.4,
-                    fill: true,
-                    order: 0
-                },
-                {
-                    label: 'Growth Rate (%)',
-                    data: [4.0, 4.1, 4.1, 4.2, 4.2],
-                    backgroundColor: 'rgba(249, 115, 22, 0.7)',
-                    yAxisID: 'y1',
-                    order: 1
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    type: 'linear',
-                    position: 'left',
-                    ticks: { color: textColor, callback: value => `$${value}M` },
-                    grid: { color: gridColor },
-                    title: { display: true, text: 'Market Size (USD Million)', color: textColor }
-                },
-                y1: {
-                    type: 'linear',
-                    position: 'right',
-                    max: 10,
-                    ticks: { color: textColor, callback: value => `${value}%` },
-                    grid: { drawOnChartArea: false, color: gridColor },
-                    title: { display: true, text: 'Growth Rate (%)', color: textColor }
-                },
-                x: { ticks: { color: textColor }, grid: { color: gridColor } }
-            },
-            plugins: {
-                legend: { position: 'top', labels: { color: textColor } },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            if (context.dataset.label === 'Market Size ($M)') {
-                                return `${context.dataset.label}: $${context.raw}M`;
-                            } else {
-                                return `${context.dataset.label}: ${context.raw}%`;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    });
-}
-
-function generateMedtronicDashboard(data) {
-  return `
-    <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white">
-      <!-- Header -->
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 mb-8">
-          <div class="flex flex-col md:flex-row justify-between items-start">
-              <div>
-                  <h1 class="text-3xl font-bold mb-2">Medtronic - Epilepsy Neuromodulation</h1>
-                  <p class="text-lg text-gray-600 dark:text-gray-300">Deep Brain Stimulation (DBS) Analysis</p>
-              </div>
-              <div class="text-right mt-4 md:mt-0">
-                  <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
-                  <p class="text-sm text-gray-500 dark:text-gray-400">Sources: SEC Filings, Clinical Data</p>
-              </div>
-          </div>
-      </div>
-
-      <!-- Key Metrics -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Neuromodulation Revenue (Q3 FY25)</h3>
-              <p class="mt-2 text-3xl font-bold">$476M</p>
-              <p class="text-sm text-green-600 dark:text-green-400">+12% YoY</p>
-              <p class="text-xs text-gray-500 mt-2">Source: Medtronic Q3 FY25 Financial Results</p>
-          </div>
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Nine-Month Revenue (FY25)</h3>
-              <p class="mt-2 text-3xl font-bold">$1.41B</p>
-              <p class="text-sm text-green-600 dark:text-green-400">+11% YoY</p>
-              <p class="text-xs text-gray-500 mt-2">Source: Medtronic Q3 FY25 Financial Results</p>
-          </div>
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Epilepsy Market Share</h3>
-              <p class="mt-2 text-3xl font-bold">46%</p>
-              <p class="text-sm text-gray-600 dark:text-gray-300">DBS Market Leader</p>
-              <p class="text-xs text-gray-500 mt-2">Source: Neuromodulation Market Size Report</p>
-          </div>
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Medicare Reimbursement (DBS)</h3>
-              <p class="mt-2 text-3xl font-bold">$35,826</p>
-              <p class="text-sm text-red-600 dark:text-red-400">-3.31% YoY</p>
-              <p class="text-xs text-gray-500 mt-2">Source: CMS Medicare Physician Fee Schedule</p>
-          </div>
-      </div>
-
-      <!-- Technology and DBS Details -->
-      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-          <h2 class="text-xl font-semibold mb-6">Deep Brain Stimulation Technology</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                  <div class="flex items-center mb-4">
-                      <div class="bg-blue-100 dark:bg-blue-900 rounded-lg p-3 mr-4">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 dark:text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                          </svg>
-                      </div>
-                      <h3 class="text-lg font-semibold">Percept™ DBS Systems</h3>
-                  </div>
-                  <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                          </svg>
-                          <span><strong>Percept™ PC:</strong> First FDA-approved DBS system with BrainSense™ technology</span>
-                      </li>
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                          </svg>
-                          <span><strong>Percept™ RC:</strong> Rechargeable neurostimulator approved January 2024</span>
-                      </li>
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                          </svg>
-                          <span><strong>BrainSense™ Technology:</strong> Captures brain signals while delivering therapy</span>
-                      </li>
-                  </ul>
-              </div>
-              <div>
-                  <div class="flex items-center mb-4">
-                      <div class="bg-purple-100 dark:bg-purple-900 rounded-lg p-3 mr-4">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600 dark:text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                          </svg>
-                      </div>
-                      <h3 class="text-lg font-semibold">Clinical Evidence & Approvals</h3>
-                  </div>
-                  <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                          </svg>
-                          <span><strong>FDA Approval:</strong> Reducing seizure frequency in adults with partial-onset seizures refractory to medications</span>
-                      </li>
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                          </svg>
-                          <span><strong>SANTE Study:</strong> 69% median reduction in seizure frequency over 5 years</span>
-                      </li>
-                      <li class="flex items-start">
-                          <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                          </svg>
-                          <span><strong>Mechanism:</strong> Delivers targeted electrical stimulation to the anterior nucleus of the thalamus (ANT)</span>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-      </div>
-
-      <!-- Charts Section -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h2 class="text-xl font-semibold mb-4">Quarterly Revenue Trend</h2>
-              <div class="h-80">
-                  <canvas id="revenueChart"></canvas>
-              </div>
-              <p class="text-xs text-gray-500 mt-3">Source: Medtronic Quarterly Reports FY2023-FY2025</p>
-          </div>
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h2 class="text-xl font-semibold mb-4">Growth Rate Trend</h2>
-              <div class="h-80">
-                  <canvas id="growthChart"></canvas>
-              </div>
-              <p class="text-xs text-gray-500 mt-3">Source: Medtronic Quarterly Reports FY2023-FY2025</p>
-          </div>
-      </div>
-
-      <!-- Second Charts Row -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h2 class="text-xl font-semibold mb-4">Regional Market Distribution</h2>
-              <div class="h-80">
-                  <canvas id="regionChart"></canvas>
-              </div>
-              <p class="text-xs text-gray-500 mt-3">Source: Medtronic SEC Filing Q3 FY2025</p>
-          </div>
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h2 class="text-xl font-semibold mb-4">Competitive Landscape</h2>
-              <div class="h-80">
-                  <canvas id="competitiveChart"></canvas>
-              </div>
-              <p class="text-xs text-gray-500 mt-3">Source: Neuromodulation Market Size Report</p>
-          </div>
-      </div>
-
-      <!-- Patient & Payer Segments -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h2 class="text-xl font-semibold mb-4">Epilepsy Market by Patient Segment</h2>
-              <div class="h-80">
-                  <canvas id="patientSegmentChart"></canvas>
-              </div>
-              <p class="text-xs text-gray-500 mt-3">Source: Medtronic Market Research, 2024</p>
-          </div>
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h2 class="text-xl font-semibold mb-4">Epilepsy Market by Payer</h2>
-              <div class="h-80">
-                  <canvas id="payerChart"></canvas>
-              </div>
-              <p class="text-xs text-gray-500 mt-3">Source: Medtronic Market Research, 2024</p>
-          </div>
-      </div>
-
-      <!-- Medicare Reimbursement -->
-      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-          <h2 class="text-xl font-semibold mb-4">Medicare Reimbursement Details</h2>
-          <div class="overflow-x-auto">
-              <table class="min-w-full">
-                  <thead>
-                      <tr>
-                          <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">Procedure</th>
-                          <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">CPT Code</th>
-                          <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">Description</th>
-                          <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">2024 Payment</th>
-                          <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">YoY Change</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">DBS Implantation</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">61886</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">Insertion or replacement of cranial neurostimulator pulse generator or receiver, with connection to 2 or more leads</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$35,826.45</td>
-                          <td class="px-4 py-2 text-sm text-red-600 dark:text-red-400 border-b dark:border-gray-700">-3.31%</td>
-                      </tr>
-                      <tr>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">DBS Programming</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">95983</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">Electronic analysis of implanted neurostimulator pulse generator/transmitter with brain neurostimulator programming</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$138.69</td>
-                          <td class="px-4 py-2 text-sm text-red-600 dark:text-red-400 border-b dark:border-gray-700">-1.52%</td>
-                      </tr>
-                      <tr>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">DBS Analysis</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">95970</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">Electronic analysis of implanted neurostimulator pulse generator</td>
-                          <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$146.69</td>
-                          <td class="px-4 py-2 text-sm text-green-600 dark:text-green-400 border-b dark:border-gray-700">+5.01%</td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-          <p class="text-xs text-gray-500 mt-3">Source: CMS Medicare Physician Fee Schedule, 2025 Final Rule</p>
-      </div>
-
-      <!-- Sources and Citations -->
-      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
-          <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc pl-4">
-              <li>Medtronic Q3 FY25 Financial Results (January 24, 2025)</li>
-              <li>Medtronic 2023 Neuromodulation Product Performance Report</li>
-              <li>FDA Approval for Percept™ RC neurostimulator (January 2024)</li>
-              <li>Long-term efficacy and safety of thalamic stimulation for drug-resistant partial epilepsy</li>
-              <li>SANTE Study: Deep Brain Stimulation for Epilepsy</li>
-              <li>Custom Market Insights, "Epilepsy Treatment Devices Market" (2024-2032)</li>
-              <li>Neuromodulation Market Size Report (2024-2028)</li>
-              <li>CMS Medicare Physician Fee Schedule, 2025 Final Rule</li>
-          </ul>
-      </div>
-    </div>
-  `;
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Export functions for external use
 export {
