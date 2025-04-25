@@ -3057,7 +3057,7 @@ function initializeNeuroPaceCharts() {
       });
     }
   }
-
+  const currentColors = getColors();
   
   // Base chart configuration
   const chartOptions = {
@@ -3085,7 +3085,13 @@ function initializeNeuroPaceCharts() {
         ticks: {
           color: getColors().text,
           font: { size: 12 }
-        }
+        },
+        title: {  // Initialize the title object here
+          display: true,
+          text: '',
+          color: currentColors.text,
+          font: { size: 14, weight: 'bold' }
+      }
       },
       y: {
         grid: {
@@ -3101,6 +3107,7 @@ function initializeNeuroPaceCharts() {
 
 
   const truechartOptions = {
+    
     maintainAspectRatio: false,
     plugins: {
       legend: {
@@ -3125,7 +3132,13 @@ function initializeNeuroPaceCharts() {
         ticks: {
           color: getColors().text,
           font: { size: 12 }
-        }
+        },
+        title: {  // Initialize the title object here
+          display: true,
+          text: '',
+          color: currentColors.text,
+          font: { size: 14, weight: 'bold' }
+      }
       },
       y: {
         grid: {
