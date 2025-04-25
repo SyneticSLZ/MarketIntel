@@ -8825,7 +8825,7 @@ function generateLivaNovaDashboard(p) {
           <p class="mt-2 text-3xl font-bold">$554.2M</p>
           <p class="text-sm text-green-600 dark:text-green-400">+6.6% YoY</p>
           <p class="text-xs text-gray-500 mt-2">
-            <strong>Source:</strong> <a href="https://investor.livanova.com/static-files/2024-q4-earnings" class="text-blue-500 hover:underline">LivaNova Q4 2024 Earnings</a><br>
+            <strong>Source:</strong> <a href="https://investor.livanova.com/news-releases/news-release-details/livanova-reports-fourth-quarter-and-full-year-2024-results" class="text-blue-500 hover:underline">LivaNova Q4 2024 Earnings</a><br>
             <strong>Raw Data:</strong> Total Neuromodulation revenue reported as $554.2M.<br>
             <strong>Calculation:</strong> YoY growth = (($554.2M - $519.7M) / $519.7M) × 100 = 6.6%.<br>
             <strong>Insight:</strong> Reflects global sales growth, driven by U.S. market strength.
@@ -8836,7 +8836,7 @@ function generateLivaNovaDashboard(p) {
           <p class="mt-2 text-3xl font-bold">$441.0M</p>
           <p class="text-sm text-green-600 dark:text-green-400">+8.2% YoY</p>
           <p class="text-xs text-gray-500 mt-2">
-            <strong>Source:</strong> <a href="https://investor.livanova.com/static-files/2024-q4-earnings" class="text-blue-500 hover:underline">LivaNova Q4 2024 Earnings</a><br>
+            <strong>Source:</strong> <a href="https://investor.livanova.com/news-releases/news-release-details/livanova-reports-fourth-quarter-and-full-year-2024-results" class="text-blue-500 hover:underline">LivaNova Q4 2024 Earnings</a><br>
             <strong>Raw Data:</strong> U.S. Neuromodulation revenue reported as $441.0M.<br>
             <strong>Calculation:</strong> YoY growth = (($441.0M - $407.5M) / $407.5M) × 100 = 8.2%.<br>
             <strong>Insight:</strong> Strong U.S. growth due to reimbursement and adoption.
@@ -8847,7 +8847,7 @@ function generateLivaNovaDashboard(p) {
           <p class="mt-2 text-3xl font-bold">$195.3M</p>
           <p class="text-sm text-green-600 dark:text-green-400">+27.3% YoY</p>
           <p class="text-xs text-gray-500 mt-2">
-            <strong>Source:</strong> <a href="https://investor.livanova.com/static-files/2024-q4-earnings" class="text-blue-500 hover:underline">LivaNova Q4 2024 Earnings</a><br>
+            <strong>Source:</strong> <a href="https://investor.livanova.com/news-releases/news-release-details/livanova-reports-fourth-quarter-and-full-year-2024-results" class="text-blue-500 hover:underline">LivaNova Q4 2024 Earnings</a><br>
             <strong>Raw Data:</strong> Neuromodulation segment income reported as $195.3M.<br>
             <strong>Calculation:</strong> YoY growth = (($195.3M - $153.4M) / $153.4M) × 100 = 27.3%.<br>
             <strong>Insight:</strong> Significant margin expansion from operational efficiencies.
@@ -8858,7 +8858,7 @@ function generateLivaNovaDashboard(p) {
           <p class="mt-2 text-3xl font-bold">80.0%</p>
           <p class="text-sm text-gray-600 dark:text-gray-300">VNS Market Leader</p>
           <p class="text-xs text-gray-500 mt-2">
-            <strong>Source:</strong> <a href="https://investor.livanova.com/static-files/2024-q4-earnings" class="text-blue-500 hover:underline">LivaNova Q4 2024 Earnings</a><br>
+            <strong>Source:</strong> <a href="https://investor.livanova.com/news-releases/news-release-details/livanova-reports-fourth-quarter-and-full-year-2024-results" class="text-blue-500 hover:underline">LivaNova Q4 2024 Earnings</a><br>
             <strong>Raw Data:</strong> LivaNova epilepsy revenue = $360.7M; Total VNS market = $450.6M.<br>
             <strong>Calculation:</strong> Market share = ($360.7M / $450.6M) × 100 = 80.0%.<br>
             <strong>Insight:</strong> Dominant in VNS, but declining from 87.4% in 2018.
@@ -8874,7 +8874,7 @@ function generateLivaNovaDashboard(p) {
           <div class="flex flex-col space-y-6">
             <div class="flex justify-between items-center">
               <span class="text-gray-600 dark:text-gray-400">Current Market Share (2024)</span>
-              <span class="text-xl sm:text-2xl font-bold"><a href="https://investor.livanova.com/static-files/2024-q4-earnings" class="text-blue-500 hover:underline">80.0%</a></span>
+              <span class="text-xl sm:text-2xl font-bold"><a href="https://investor.livanova.com/news-releases/news-release-details/livanova-reports-fourth-quarter-and-full-year-2024-results" class="text-blue-500 hover:underline">80.0%</a></span>
             </div>
             <div class="text-xs text-gray-500 dark:text-gray-500 mt-2">
               <strong>Insight:</strong> LivaNova leads VNS market, but competitors are gaining.<br>
@@ -8910,7 +8910,7 @@ function generateLivaNovaDashboard(p) {
           <div class="flex flex-col space-y-6">
             <div class="flex justify-between items-center">
               <span class="text-gray-600 dark:text-gray-400">2024 Revenue</span>
-              <span class="text-xl sm:text-2xl font-bold"><a href="https://investor.livanova.com/static-files/2024-q4-earnings" class="text-blue-500 hover:underline">$360.7M</a></span>
+              <span class="text-xl sm:text-2xl font-bold"><a href="https://investor.livanova.com/news-releases/news-release-details/livanova-reports-fourth-quarter-and-full-year-2024-results" class="text-blue-500 hover:underline">$360.7M</a></span>
             </div>
             <div class="text-xs text-gray-500 dark:text-gray-500 mt-2">
               <strong>Insight:</strong> Strong growth, but slower than market.<br>
@@ -8946,7 +8946,7 @@ function generateLivaNovaDashboard(p) {
           <div class="flex flex-col space-y-6">
             <div class="flex justify-between items-center">
               <span class="text-gray-600 dark:text-gray-400">2024 Market Size</span>
-              <span class="text-xl sm:text-2xl font-bold"><a href="https://investor.livanova.com/static-files/2024-q4-earnings" class="text-blue-500 hover:underline">$450.6M</a></span>
+              <span class="text-xl sm:text-2xl font-bold"><a href="https://investor.livanova.com/news-releases/news-release-details/livanova-reports-fourth-quarter-and-full-year-2024-results" class="text-blue-500 hover:underline">$450.6M</a></span>
             </div>
             <div class="text-xs text-gray-500 dark:text-gray-500 mt-2">
               <strong>Insight:</strong> Growing market driven by DRE demand.<br>
@@ -9098,7 +9098,7 @@ function generateLivaNovaDashboard(p) {
                 <strong>Raw Data:</strong> LivaNova = 80.0% ($360.7M); NeuroPace = 12.5% ($56.2M); Medtronic = 6.8% ($30.6M); Others = 0.7% ($3.1M).<br>
                 <strong>Calculation:</strong> Percentages derived from total market size ($450.6M).<br>
                 <strong>Insight:</strong> LivaNova dominates, but NeuroPace is a growing threat.<br>
-                <strong>Source:</strong> <a href="https://investor.livanova.com/static-files/2024-q4-earnings" class="text-blue-500 hover:underline">LivaNova Q4 2024 Earnings</a>, <a href="https://investors.neuropace.com/static-files/2024-q4-earnings" class="text-blue-500 hover:underline">NeuroPace Q4 2024 Earnings</a>
+                <strong>Source:</strong> <a href="https://investor.livanova.com/news-releases/news-release-details/livanova-reports-fourth-quarter-and-full-year-2024-results" class="text-blue-500 hover:underline">LivaNova Q4 2024 Earnings</a>, <a href="https://investors.neuropace.com/static-files/2024-q4-earnings" class="text-blue-500 hover:underline">NeuroPace Q4 2024 Earnings</a>
               </p>
             </div>
             <div class="flex-1">
@@ -9109,10 +9109,10 @@ function generateLivaNovaDashboard(p) {
                   <div class="mt-2">
                     <div class="flex justify-between text-sm">
                       <span>LivaNova</span>
-                      <span class="text-red-600 dark:text-red-400"><a href="https://investor.livanova.com/static-files/2024-q4-earnings" class="text-blue-500 hover:underline">-7.4%</a></span>
+                      <span class="text-red-600 dark:text-red-400"><a href="https://investor.livanova.com/news-releases/news-release-details/livanova-reports-fourth-quarter-and-full-year-2024-results" class="text-blue-500 hover:underline">-7.4%</a></span>
                     </div>
                     <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
-                      Market share declined from <a href="https://investor.livanova.com/static-files/2018-annual-report" class="text-blue-500 hover:underline">87.4% in 2018</a> to <a href="https://investor.livanova.com/static-files/2024-q4-earnings" class="text-blue-500 hover:underline">80.0% in 2024</a>.
+                      Market share declined from <a href="https://investor.livanova.com/static-files/2018-annual-report" class="text-blue-500 hover:underline">87.4% in 2018</a> to <a href="https://investor.livanova.com/news-releases/news-release-details/livanova-reports-fourth-quarter-and-full-year-2024-results" class="text-blue-500 hover:underline">80.0% in 2024</a>.
                     </p>
                     <p class="text-xs text-gray-500 mt-1">
                       <strong>Raw Data:</strong> 2018 = 87.4%; 2024 = 80.0%.<br>
@@ -9126,7 +9126,7 @@ function generateLivaNovaDashboard(p) {
                   <div class="mt-2">
                     <div class="flex justify-between text-sm">
                       <span>Competitors (NeuroPace, Medtronic)</span>
-                      <span class="text-green-600 dark:text-green-400"><a href="https://investor.livanova.com/static-files/2024-q4-earnings" class="text-blue-500 hover:underline">+7.4%</a></span>
+                      <span class="text-green-600 dark:text-green-400"><a href="https://investor.livanova.com/news-releases/news-release-details/livanova-reports-fourth-quarter-and-full-year-2024-results" class="text-blue-500 hover:underline">+7.4%</a></span>
                     </div>
                     <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       Competitors gained as LivaNova's dominance decreased, with NeuroPace as a key driver.
@@ -9159,7 +9159,7 @@ function generateLivaNovaDashboard(p) {
           <div id="detailedChartContainer" class="w-full h-80 sm:h-96"></div>
           <div class="mt-4 text-sm text-gray-600 dark:text-gray-400">
             <p id="chartDescription" class="mb-2">
-              This chart shows LivaNova's market share trend from <a href="https://investor.livanova.com/static-files/2018-annual-report" class="text-blue-500 hover:underline">2018</a> to <a href="https://investor.livanova.com/static-files/2024-q4-earnings" class="text-blue-500 hover:underline">2024</a>. The company has experienced a gradual decline in market share from <a href="https://investor.livanova.com/static-files/2018-annual-report" class="text-blue-500 hover:underline">87.4%</a> in 2018 to <a href="https://investor.livanova.com/static-files/2024-q4-earnings" class="text-blue-500 hover:underline">80.0%</a> in 2024, despite showing consistent revenue growth.
+              This chart shows LivaNova's market share trend from <a href="https://investor.livanova.com/static-files/2018-annual-report" class="text-blue-500 hover:underline">2018</a> to <a href="https://investor.livanova.com/news-releases/news-release-details/livanova-reports-fourth-quarter-and-full-year-2024-results" class="text-blue-500 hover:underline">2024</a>. The company has experienced a gradual decline in market share from <a href="https://investor.livanova.com/static-files/2018-annual-report" class="text-blue-500 hover:underline">87.4%</a> in 2018 to <a href="https://investor.livanova.com/news-releases/news-release-details/livanova-reports-fourth-quarter-and-full-year-2024-results" class="text-blue-500 hover:underline">80.0%</a> in 2024, despite showing consistent revenue growth.
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
               <div>
@@ -9211,7 +9211,7 @@ function generateLivaNovaDashboard(p) {
                 <strong>Raw Data:</strong> Cost of Sales: $50.2M; SG&A: $187.6M; R&D: $121.0M.<br>
                 <strong>Calculation:</strong> Direct reporting from financial statements.<br>
                 <strong>Insight:</strong> High R&D reflects innovation investment.<br>
-                <strong>Source:</strong> <a href="https://investor.livanova.com/static-files/2024-q4-earnings" class="text-blue-500 hover:underline">LivaNova Q4 2024 Earnings</a>
+                <strong>Source:</strong> <a href="https://investor.livanova.com/news-releases/news-release-details/livanova-reports-fourth-quarter-and-full-year-2024-results" class="text-blue-500 hover:underline">LivaNova Q4 2024 Earnings</a>
               </p>
             </div>
           </div>
@@ -9511,7 +9511,7 @@ function generateLivaNovaDashboard(p) {
                 <li><a href="https://investor.livanova.com/static-files/2021-annual-report" class="text-blue-500 hover:underline">LivaNova 2021 Annual Report</a></li>
                 <li><a href="https://investor.livanova.com/static-files/2022-annual-report" class="text-blue-500 hover:underline">LivaNova 2022 Annual Report</a></li>
                 <li><a href="https://investor.livanova.com/static-files/2023-annual-report" class="text-blue-500 hover:underline">LivaNova 2023 Annual Report</a></li>
-                <li><a href="https://investor.livanova.com/static-files/2024-q4-earnings" class="text-blue-500 hover:underline">LivaNova Q4 2024 Earnings</a></li>
+                <li><a href="https://investor.livanova.com/news-releases/news-release-details/livanova-reports-fourth-quarter-and-full-year-2024-results" class="text-blue-500 hover:underline">LivaNova Q4 2024 Earnings</a></li>
               </ul>
             </div>
             <div>
