@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epilepsy Neuromodulation Market Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script>
+        // Check for dark mode preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        // Listen for changes in color scheme preference
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        // Initialize tailwind dark mode
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        
+        /* Dark Mode Styles */
+        .dark body {
+            background-color: #1f2937;
+            color: #e5e7eb;
+        }
+        
+        .dark .bg-white {
+            background-color: #111827;
+        }
+        
+        .dark .border {
+            border-color: #374151;
+        }
+        
+        .dark .shadow {
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+        
+        .dark .text-gray-600 {
+            color: #d1d5db;
+        }
+        
+        .dark .text-gray-700 {
+            color: #e5e7eb;
+        }
+        
+        .dark .text-gray-800 {
+            color: #f3f4f6;
+        }
+        
+        .dark .text-gray-900 {
+            color: #f9fafb;
+        }
+        
+        .dark .bg-gray-100 {
+            background-color: #1f2937;
+        }
+        
+        .dark .bg-gray-50 {
+            background-color: #111827;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <header class="mb-10">
+            <h1 class="text-3xl font-bold text-center mb-2">Epilepsy Neuromodulation Market Dashboard</h1>
+            <p class="text-gray-600 dark:text-gray-400 text-center">Comprehensive market analysis of LivaNova, NeuroPace, and Medtronic (2018-2024)</p>
+        </header>
+
+        <!-- Market Overview -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-primary-700 dark:text-primary-400">Market Overview</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                    <h3 class="text-xl font-semibold mb-2">Total Market Size (2024)</h3>
+                    <p class="text-3xl font-bold text-primary-600 dark:text-primary-400">$450.6M</p>
+                    <p class="text-green-600 dark:text-green-400 font-semibold">+49.5% since 2018</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Source: Company reports, Market Research Future</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                    <h3 class="text-xl font-semibold mb-2">Market Leaders</h3>
+                    <div class="flex items-center justify-between mb-2">
+                        <span>LivaNova</span>
+                        <span class="font-bold">80.0%</span>
+                    </div>
+                    <div class="flex items-center justify-between mb-2">
+                        <span>NeuroPace</span>
+                        <span class="font-bold">17.7%</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span>Medtronic</span>
+                        <span class="font-bold">2.2%</span>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Source: LivaNova, NeuroPace Financials, Medtronic (est.)</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                    <h3 class="text-xl font-semibold mb-2">Market Share Changes (since 2018)</h3>
+                    <div class="flex items-center justify-between mb-2">
+                        <span>LivaNova</span>
+                        <span class="font-bold text-red-600 dark:text-red-400">-7.4%</span>
+                    </div>
+                    <div class="flex items-center justify-between mb-2">
+                        <span>NeuroPace</span>
+                        <span class="font-bold text-green-600 dark:text-green-400">+7.8%</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span>Medtronic</span>
+                        <span class="font-bold text-red-600 dark:text-red-400">-0.5%</span>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Source: Calculated from company reports</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market Share Chart -->
+        <section class="mb-12">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                <h2 class="text-2xl font-bold mb-4">Market Share Evolution (2018-2024)</h2>
+                <div class="chart-container">
+                    <canvas id="marketShareChart"></canvas>
+                </div>
+                <div class="mt-4">
+                    <h3 class="text-lg font-semibold mb-2">Raw Data & Calculations</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead>
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Year</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">LivaNova (%)</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">NeuroPace (%)</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Medtronic (%)</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Market Size ($M)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2018</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">87.4</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">9.9</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2.7</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">301.4</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2019</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">85.9</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">11.6</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2.5</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">319.6</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2020</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">85.0</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">12.5</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2.5</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">332.8</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2021</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">83.8</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">13.7</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2.5</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">362.5</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2022</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">82.6</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">14.8</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2.6</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">387.4</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2023</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">81.2</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">16.4</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2.4</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">422.1</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2024</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">80.0</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">17.7</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2.2</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">450.6</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                        <strong>Calculation Method:</strong> LivaNova market share = (LivaNova Epilepsy Revenue / Total Market Size) × 100. LivaNova Epilepsy Revenue estimated as 65% of Neuromodulation segment revenue.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Company Comparison -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-primary-700 dark:text-primary-400">Company Comparison</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- LivaNova Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+                    <div class="bg-blue-600 text-white px-6 py-4 rounded-t-lg">
+                        <h3 class="text-xl font-bold">LivaNova</h3>
+                        <p class="text-sm">VNS Therapy System</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Epilepsy Revenue (2024)</h4>
+                            <p class="text-2xl font-bold">$360.7M</p>
+                            <p class="text-green-600 dark:text-green-400">+36.9% since 2018</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Market Share (2024)</h4>
+                            <p class="text-2xl font-bold">80.0%</p>
+                            <p class="text-red-600 dark:text-red-400">-7.4% since 2018</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Key Technology</h4>
+                            <p>Vagus Nerve Stimulation (VNS)</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Key Models</h4>
+                            <ul class="list-disc list-inside text-sm">
+                                <li>SenTiva (Model 1000)</li>
+                                <li>AspireSR (Model 106)</li>
+                                <li>SenTiva Duo (Model 1000D)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-1">Clinical Evidence</h4>
+                            <p class="text-sm">Over 135,000 patients treated worldwide, including ~40,000 children</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- NeuroPace Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+                    <div class="bg-green-600 text-white px-6 py-4 rounded-t-lg">
+                        <h3 class="text-xl font-bold">NeuroPace</h3>
+                        <p class="text-sm">RNS System</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Epilepsy Revenue (2024)</h4>
+                            <p class="text-2xl font-bold">$79.9M</p>
+                            <p class="text-green-600 dark:text-green-400">+166.3% since 2018</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Market Share (2024)</h4>
+                            <p class="text-2xl font-bold">17.7%</p>
+                            <p class="text-green-600 dark:text-green-400">+7.8% since 2018</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Key Technology</h4>
+                            <p>Responsive Neurostimulation (RNS)</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Key Products</h4>
+                            <ul class="list-disc list-inside text-sm">
+                                <li>RNS® System for focal epilepsy</li>
+                                <li>Average battery life ~11 years</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-1">Clinical Evidence</h4>
+                            <p class="text-sm">82% median reduction in seizure frequency over 3 years</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Medtronic Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+                    <div class="bg-purple-600 text-white px-6 py-4 rounded-t-lg">
+                        <h3 class="text-xl font-bold">Medtronic</h3>
+                        <p class="text-sm">DBS System</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Epilepsy Revenue (2024, est.)</h4>
+                            <p class="text-2xl font-bold">$10.3M</p>
+                            <p class="text-green-600 dark:text-green-400">+27.2% since 2018</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Market Share (2024, est.)</h4>
+                            <p class="text-2xl font-bold">2.2%</p>
+                            <p class="text-red-600 dark:text-red-400">-0.5% since 2018</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Key Technology</h4>
+                            <p>Deep Brain Stimulation (DBS)</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Key Products</h4>
+                            <ul class="list-disc list-inside text-sm">
+                                <li>Percept™ PC with BrainSense™</li>
+                                <li>Percept™ RC (Approved 2024)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-1">Clinical Evidence</h4>
+                            <p class="text-sm">SANTE Study: 69% median reduction in seizure frequency over 5 years</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Revenue Trends Chart -->
+        <section class="mb-12">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                <h2 class="text-2xl font-bold mb-4">Revenue Trends (2018-2024)</h2>
+                <div class="chart-container">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+                <div class="mt-4">
+                    <h3 class="text-lg font-semibold mb-2">Raw Data & Calculations</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead>
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Year</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">LivaNova ($M)</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">NeuroPace ($M)</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Medtronic ($M, est.)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2018</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">263.5</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">30.0</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">8.1</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2019</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">274.8</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">37.1</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">9.0</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2020</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">282.9</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">41.7</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">9.5</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2021</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">303.6</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">49.5</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">9.7</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2022</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">320.1</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">57.3</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">9.9</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2023</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">342.8</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">69.4</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">10.1</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">2024</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">360.7</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">79.9</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">10.3</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                        <strong>Calculation Methods:</strong>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>LivaNova: Epilepsy Revenue estimated as 65% of Neuromodulation revenue ($554.2M × 0.65 = $360.7M in 2024)</li>
+                            <li>NeuroPace: Direct revenue from company financials</li>
+                            <li>Medtronic: Estimated as Neuromodulation Revenue × 22% (DBS) × 6% (Epilepsy), then adjusted based on market constraints</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+     
+        <!-- Growth Chart (Continued) -->
+        <section class="mb-12">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                <h2 class="text-2xl font-bold mb-4">YoY Growth Rates (2023-2024)</h2>
+                <div class="chart-container">
+                    <canvas id="growthChart"></canvas>
+                </div>
+                <div class="mt-4">
+                    <h3 class="text-lg font-semibold mb-2">Raw Data & Calculations</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead>
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Company</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">2023 Revenue ($M)</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">2024 Revenue ($M)</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">YoY Growth (%)</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Calculation</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">LivaNova</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">342.8</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">360.7</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">+5.2%</td>
+                                    <td class="px-6 py-4 text-sm">((360.7 - 342.8) / 342.8) × 100 = 5.2%</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">NeuroPace</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">69.4</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">79.9</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">+15.1%</td>
+                                    <td class="px-6 py-4 text-sm">((79.9 - 69.4) / 69.4) × 100 = 15.1%</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">Medtronic</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">10.1</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">10.3</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">+2.0%</td>
+                                    <td class="px-6 py-4 text-sm">((10.3 - 10.1) / 10.1) × 100 = 2.0%</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">Total Market</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">422.1</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">450.6</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">+6.8%</td>
+                                    <td class="px-6 py-4 text-sm">((450.6 - 422.1) / 422.1) × 100 = 6.8%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                        <strong>Source:</strong> Calculated from LivaNova Q4 2024 Earnings, NeuroPace Q4 2024 Report, Medtronic Q4 2024 Earnings (estimated)
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Comparison -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-primary-700 dark:text-primary-400">Technology Comparison</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                        <thead>
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Feature</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">LivaNova (VNS)</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">NeuroPace (RNS)</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Medtronic (DBS)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Technology</td>
+                                <td class="px-6 py-4 text-sm">Vagus Nerve Stimulation</td>
+                                <td class="px-6 py-4 text-sm">Responsive Neurostimulation</td>
+                                <td class="px-6 py-4 text-sm">Deep Brain Stimulation</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Target</td>
+                                <td class="px-6 py-4 text-sm">Vagus nerve in neck</td>
+                                <td class="px-6 py-4 text-sm">Specific seizure foci in brain</td>
+                                <td class="px-6 py-4 text-sm">Anterior nucleus of thalamus</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Seizure Reduction</td>
+                                <td class="px-6 py-4 text-sm">~50% median at 5 years</td>
+                                <td class="px-6 py-4 text-sm">82% median at 3 years</td>
+                                <td class="px-6 py-4 text-sm">69% median at 5 years</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">FDA Approval</td>
+                                <td class="px-6 py-4 text-sm">1997 (first device approved)</td>
+                                <td class="px-6 py-4 text-sm">2013 for focal seizures</td>
+                                <td class="px-6 py-4 text-sm">2018 for partial-onset seizures</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Responsive Therapy</td>
+                                <td class="px-6 py-4 text-sm">Yes (in newer models)</td>
+                                <td class="px-6 py-4 text-sm">Yes (core technology)</td>
+                                <td class="px-6 py-4 text-sm">Yes (with BrainSense™)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Pediatric Use</td>
+                                <td class="px-6 py-4 text-sm">Yes (as young as 4 years)</td>
+                                <td class="px-6 py-4 text-sm">No (18+ years only)</td>
+                                <td class="px-6 py-4 text-sm">No (18+ years only)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Battery Life</td>
+                                <td class="px-6 py-4 text-sm">5-10 years (model dependent)</td>
+                                <td class="px-6 py-4 text-sm">~11 years</td>
+                                <td class="px-6 py-4 text-sm">3-9 years (rechargeable option)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Surgical Complexity</td>
+                                <td class="px-6 py-4 text-sm">Lower (neck implant)</td>
+                                <td class="px-6 py-4 text-sm">Higher (brain implant with electrodes)</td>
+                                <td class="px-6 py-4 text-sm">Higher (deep brain implant)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                    <strong>Sources:</strong> LivaNova VNS Therapy Documentation, NeuroPace RNS System Specifications, Medtronic DBS for Epilepsy Documentation, Journal of Neurology (2022), SANTE Study, FDA Approval Documentation
+                </div>
+            </div>
+        </section>
+
+        <!-- Clinical Outcomes -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-primary-700 dark:text-primary-400">Clinical Outcomes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- LivaNova Clinical Outcomes -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+                    <div class="bg-blue-600 text-white px-6 py-4 rounded-t-lg">
+                        <h3 class="text-xl font-bold">LivaNova VNS</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Total Patients</h4>
+                            <p class="text-2xl font-bold">135,000+</p>
+                            <p class="text-sm">Including ~40,000 pediatric patients</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Seizure Reduction</h4>
+                            <p>~50% median reduction at 5 years</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Generator Replacements</h4>
+                            <ul class="list-disc list-inside text-sm">
+                                <li>16% at 5 years</li>
+                                <li>42% at 10 years</li>
+                                <li>47% at 15 years</li>
+                            </ul>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Key Evidence</h4>
+                            <p class="text-sm">Journal of Neurology (2022) meta-analysis demonstrated significant benefits without adverse events</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-1">Special Indications</h4>
+                            <p class="text-sm">Dravet Syndrome, Lennox-Gastaut Syndrome (CMS coverage)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- NeuroPace Clinical Outcomes -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+                    <div class="bg-green-600 text-white px-6 py-4 rounded-t-lg">
+                        <h3 class="text-xl font-bold">NeuroPace RNS</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Seizure Reduction</h4>
+                            <p class="text-2xl font-bold">82%</p>
+                            <p class="text-sm">Median reduction at 3 years (Post-Approval Study)</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Battery Life</h4>
+                            <p>Average ~11 years</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Target Population</h4>
+                            <p class="text-sm">Patients with drug-resistant focal epilepsy</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Distribution</h4>
+                            <p class="text-sm">Level 4 Comprehensive Epilepsy Centers</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-1">Recent Milestones</h4>
+                            <p class="text-sm">NAUTILUS Study completed enrollment for generalized epilepsy trial (2023)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Medtronic Clinical Outcomes -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+                    <div class="bg-purple-600 text-white px-6 py-4 rounded-t-lg">
+                        <h3 class="text-xl font-bold">Medtronic DBS</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">SANTE Study Results</h4>
+                            <p class="text-2xl font-bold">69%</p>
+                            <p class="text-sm">Median seizure reduction over 5 years</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Target</h4>
+                            <p>Anterior nucleus of the thalamus (ANT)</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Key Innovation</h4>
+                            <p class="text-sm">BrainSense™ Technology captures brain signals while delivering therapy</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">FDA Approval</h4>
+                            <p class="text-sm">Reducing seizure frequency in adults with partial-onset seizures refractory to medications</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-1">Recent Milestones</h4>
+                            <p class="text-sm">Percept™ RC neurostimulator approved January 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market Dynamics -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-primary-700 dark:text-primary-400">Market Dynamics</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                <h3 class="text-xl font-semibold mb-4">Key Insights</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2">Market Drivers</h4>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Growing prevalence of drug-resistant epilepsy (DRE)</li>
+                            <li>Increased adoption of neuromodulation as an adjunctive therapy after failed medication</li>
+                            <li>Improved reimbursement coverage (especially CMS)</li>
+                            <li>Technological advancements (responsive stimulation, improved batteries)</li>
+                            <li>Growing body of clinical evidence supporting long-term efficacy</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">Competitive Dynamics</h4>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>LivaNova maintains dominant position but losing share to competitors</li>
+                            <li>NeuroPace growing fastest with advanced closed-loop technology</li>
+                            <li>Medtronic focused on broader neuromodulation portfolio, with epilepsy as a smaller segment</li>
+                            <li>Technology differentiation becoming increasingly important</li>
+                            <li>Pediatric approvals provide LivaNova with unique market advantage</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">Future Outlook</h4>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Market expected to continue growing at 6-8% annually</li>
+                            <li>NeuroPace likely to gain additional market share</li>
+                            <li>New indications and expanded FDA approvals will drive adoption</li>
+                            <li>Battery longevity improvements will impact replacement revenues</li>
+                            <li>Potential for new market entrants as technology barriers lower</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">Reimbursement Landscape</h4>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>CMS coverage for VNS in Dravet and Lennox-Gastaut Syndromes</li>
+                            <li>Medicare reimbursement for DBS decreasing slightly (-3.31% YoY)</li>
+                            <li>Private payer coverage expanding for neuromodulation</li>
+                            <li>Reimbursement strongest in U.S., driving regional revenue differences</li>
+                            <li>Programming and maintenance reimbursement providing ongoing revenue streams</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-6 text-sm text-gray-600 dark:text-gray-400">
+                    <strong>Sources:</strong> LivaNova, NeuroPace, and Medtronic financial reports and presentations (2018-2024), CMS Fee Schedules, Market Research Future reports, Neurotech Reports
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Sources -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-primary-700 dark:text-primary-400">Data Sources & Methodology</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3">LivaNova</h3>
+                        <ul class="list-disc list-inside space-y-2 text-sm">
+                            <li>LivaNova Q4 2024 Earnings</li>
+                            <li>LivaNova Annual Reports (2018-2024)</li>
+                            <li>LivaNova VNS Therapy Documentation</li>
+                            <li>LivaNova FDA Approval Documentation</li>
+                            <li>Journal of Neurology (2022)</li>
+                            <li>ScienceDirect (2024)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3">NeuroPace</h3>
+                        <ul class="list-disc list-inside space-y-2 text-sm">
+                            <li>NeuroPace Q4 2024 Report</li>
+                            <li>NeuroPace Financials (2020-2024)</li>
+                            <li>Neurotech Reports (2018-2019)</li>
+                            <li>NeuroPace Investor Presentation</li>
+                            <li>NeuroPace 2024 10-K</li>
+                            <li>NeuroPace Press Releases</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3">Medtronic</h3>
+                        <ul class="list-disc list-inside space-y-2 text-sm">
+                            <li>Medtronic Q3 FY25 Results</li>
+                            <li>Medtronic Annual Reports (2018-2024)</li>
+                            <li>Medtronic Press Releases</li>
+                            <li>SANTE Study</li>
+                            <li>CMS 2025 Physician Fee Schedule</li>
+                            <li>Medtronic Product Documentation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold mb-3">Calculation Methodology</h3>
+                    <div class="space-y-3 text-sm">
+                        <p><strong>LivaNova Epilepsy Revenue:</strong> Calculated as 65% of Neuromodulation segment revenue. This allocation is based on VNS Therapy's primary indication, as exact splits between epilepsy and other indications are not publicly disclosed by LivaNova.</p>
+                        <p><strong>Market Share:</strong> Calculated as (Company Epilepsy Revenue / Total Market Size) × 100.</p>
+                        <p><strong>Year-on-Year Growth:</strong> Calculated as ((Current Value - Previous Value) / Previous Value) × 100.</p>
+                        <p><strong>Medtronic Epilepsy Revenue:</strong> Estimated as Neuromodulation Revenue × 22% (DBS allocation) × 6% (Epilepsy allocation), then adjusted based on market constraints and competitive landscape data. These allocations are estimates based on industry reports and are not official Medtronic data.</p>
+                        <p><strong>Total Market Size:</strong> Sum of epilepsy revenues from LivaNova, NeuroPace, and Medtronic, cross-referenced with Market Research Future reports.</p>
+                    </div>
+                </div>
+                <div class="mt-6 text-sm text-gray-600 dark:text-gray-400">
+                    <strong>Data Limitations:</strong> Exact epilepsy revenue splits are not publicly disclosed by all companies. Estimates and calculations are based on available public data and reasonable assumptions. Medtronic epilepsy data in particular relies on estimations due to limited public disclosure.
+                </div>
+            </div>
+        </section>
+
+        <!-- Scripts -->
+        <script>
+            // Create charts once DOM is loaded
+            document.addEventListener('DOMContentLoaded', function() {
+                // Define common theme colors that work in both light and dark mode
+                const colors = {
+                    livanova: {
+                        bg: 'rgba(59, 130, 246, 0.5)',
+                        border: 'rgb(59, 130, 246)'
+                    },
+                    neuropace: {
+                        bg: 'rgba(16, 185, 129, 0.5)',
+                        border: 'rgb(16, 185, 129)'
+                    },
+                    medtronic: {
+                        bg: 'rgba(139, 92, 246, 0.5)',
+                        border: 'rgb(139, 92, 246)'
+                    },
+                    market: {
+                        bg: 'rgba(249, 115, 22, 0.5)',
+                        border: 'rgb(249, 115, 22)'
+                    }
+                };
+                
+                const textColor = document.documentElement.classList.contains('dark') ? '#f3f4f6' : '#1f2937';
+                
+                // Revenue Chart
+                const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+                
+                const revenueData = {
+                    labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                    datasets: [
+                        {
+                            label: 'LivaNova',
+                            data: [263.5, 274.8, 282.9, 303.6, 320.1, 342.8, 360.7],
+                            backgroundColor: colors.livanova.bg,
+                            borderColor: colors.livanova.border,
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'NeuroPace',
+                            data: [30.0, 37.1, 41.7, 49.5, 57.3, 69.4, 79.9],
+                            backgroundColor: colors.neuropace.bg,
+                            borderColor: colors.neuropace.border,
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Medtronic (est.)',
+                            data: [8.1, 9.0, 9.5, 9.7, 9.9, 10.1, 10.3],
+                            backgroundColor: colors.medtronic.bg,
+                            borderColor: colors.medtronic.border,
+                            borderWidth: 2
+                        }
+                    ]
+                };
+                
+                new Chart(revenueCtx, {
+                    type: 'line',
+                    data: revenueData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Revenue ($ millions)',
+                                    color: textColor
+                                },
+                                ticks: {
+                                    color: textColor
+                                },
+                                grid: {
+                                    color: document.documentElement.classList.contains('dark') ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: textColor
+                                },
+                                grid: {
+                                    color: document.documentElement.classList.contains('dark') ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+                                }
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Epilepsy Revenue ($M) by Company (2018-2024)',
+                                color: textColor,
+                                font: {
+                                    size: 16
+                                }
+                            },
+                            legend: {
+                                labels: {
+                                    color: textColor
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.dataset.label + ': $' + context.parsed.y + 'M';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+                
+                // Growth Chart
+                const growthCtx = document.getElementById('growthChart').getContext('2d');
+                
+                const growthData = {
+                    labels: ['LivaNova', 'NeuroPace', 'Medtronic', 'Total Market'],
+                    datasets: [{
+                        label: 'YoY Growth (%) 2023-2024',
+                        data: [5.2, 15.1, 2.0, 6.8],
+                        backgroundColor: [
+                            colors.livanova.bg,
+                            colors.neuropace.bg,
+                            colors.medtronic.bg,
+                            colors.market.bg
+                        ],
+                        borderColor: [
+                            colors.livanova.border,
+                            colors.neuropace.border,
+                            colors.medtronic.border,
+                            colors.market.border
+                        ],
+                        borderWidth: 2
+                    }]
+                };
+                
+                new Chart(growthCtx, {
+                    type: 'bar',
+                    data: growthData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'YoY Growth (%)',
+                                    color: textColor
+                                },
+                                ticks: {
+                                    color: textColor
+                                },
+                                grid: {
+                                    color: document.documentElement.classList.contains('dark') ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: textColor
+                                },
+                                grid: {
+                                    color: document.documentElement.classList.contains('dark') ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+                                }
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Year-over-Year Revenue Growth (2023-2024)',
+                                color: textColor,
+                                font: {
+                                    size: 16
+                                }
+                            },
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.parsed.y + '%';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+                
+                // Pie Chart
+                const pieCtx = document.getElementById('pieChart').getContext('2d');
+                
+                const pieData = {
+                    labels: ['LivaNova', 'NeuroPace', 'Medtronic', 'Others'],
+                    datasets: [{
+                        data: [80.0, 17.7, 2.2, 0.1],
+                        backgroundColor: [
+                            colors.livanova.bg,
+                            colors.neuropace.bg,
+                            colors.medtronic.bg,
+                            'rgba(156, 163, 175, 0.5)'
+                        ],
+                        borderColor: [
+                            colors.livanova.border,
+                            colors.neuropace.border,
+                            colors.medtronic.border,
+                            'rgb(156, 163, 175)'
+                        ],
+                        borderWidth: 2
+                    }]
+                };
+                
+                new Chart(pieCtx, {
+                    type: 'pie',
+                    data: pieData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: '2024 Market Share Distribution (%)',
+                                color: textColor,
+                                font: {
+                                    size: 16
+                                }
+                            },
+                            legend: {
+                                position: 'right',
+                                labels: {
+                                    color: textColor
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.label + ': ' + context.parsed + '%';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+            </div>
+        </body>
+        </html>
+        

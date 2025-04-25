@@ -3,6 +3,7 @@ import gnData from './data/Gn/finance.js';
 import sonovaData from './data/Sonova/finance.js';
 import wsData from './data/Ws/finance.js';
 import DemantData from './data/Demant/finance.js'
+
 // import NeuroPace from './data/NeuroPace/finance.js'
 
 const  NeuroPace =

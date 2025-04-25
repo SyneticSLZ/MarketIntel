@@ -469,6 +469,259 @@ export function renderStrategicAnalysis(companyName) {
    * @param {Array} trials - Array of trial data
    * @param {string} companyName - Name of the company
    */
+  // function renderTrialsView(container, trials, companyName) {
+  //   if (!trials || trials.length === 0) {
+  //     container.innerHTML = `
+  //       <div class="p-6">
+  //         <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Clinical Trials for Epilepsy: ${companyName}</h2>
+  //         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
+  //           <p class="text-gray-700 dark:text-gray-300">No clinical trials found for this company on ClinicalTrials.gov.</p>
+  //         </div>
+  //       </div>
+  //     `;
+  //     return;
+  //   }
+  
+  //   trials.forEach(trial => {
+  //     if (trial.protocolSection?.statusModule?.overallStatus) {
+  //       let status = trial.protocolSection.statusModule.overallStatus;
+  //       status = status.charAt(0).toUpperCase() + status.slice(1).toLowerCase();
+  //       status = status.replace(/_/g, ' ');
+  //       if (status.toUpperCase() === 'RECRUITING') status = 'Recruiting';
+  //       else if (status.toUpperCase() === 'COMPLETED') status = 'Completed';
+  //       else if (status.toUpperCase() === 'WITHDRAWN') status = 'Withdrawn';
+  //       else if (status.toUpperCase() === 'TERMINATED') status = 'Terminated';
+  //       else if (status.toUpperCase().includes('ACTIVE') && status.toUpperCase().includes('NOT')) status = 'Active, not recruiting';
+  //       trial.protocolSection.statusModule.overallStatus = status;
+  //     }
+  //   });
+  
+  //   const recruitingTrials = trials.filter(trial => trial.protocolSection?.statusModule?.overallStatus === 'Recruiting');
+  //   const sortedTrials = [...trials].sort((a, b) => {
+  //     const dateA = new Date(a.protocolSection?.statusModule?.lastUpdatePostDate || '1970-01-01');
+  //     const dateB = new Date(b.protocolSection?.statusModule?.lastUpdatePostDate || '1970-01-01');
+  //     return dateB - dateA;
+  //   });
+  
+  //   const statuses = [...new Set(trials.map(trial => trial.protocolSection?.statusModule?.overallStatus || 'Unknown'))].filter(status => status !== 'Unknown').sort();
+  
+  //   const headerContent = `
+  //     <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+  //       <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+  //         <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Clinical Trials for Epilepsy: ${companyName}</h2>
+  //         <div class="flex gap-2">
+  //           <button id="export-csv" class="flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded hover:bg-gray-200 dark:hover:bg-gray-700">
+  //             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  //               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+  //             </svg>
+  //             Export
+  //           </button>
+  //           <button id="refresh-data" class="flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded hover:bg-gray-200 dark:hover:bg-gray-700">
+  //             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  //               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+  //             </svg>
+  //             Refresh
+  //           </button>
+  //         </div>
+  //       </div>
+  //       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+  //         <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+  //           <h3 class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Total Trials</h3>
+  //           <p class="text-3xl font-bold text-blue-600 dark:text-blue-400">${trials.length}</p>
+  //         </div>
+  //         <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+  //           <h3 class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Currently Recruiting</h3>
+  //           <p class="text-3xl font-bold text-green-600 dark:text-green-400">${recruitingTrials.length}</p>
+  //         </div>
+  //         <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+  //           <h3 class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Completed/Other</h3>
+  //           <p class="text-3xl font-bold text-gray-600 dark:text-gray-400">${trials.length - recruitingTrials.length}</p>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   `;
+  
+  //   const tabsContent = `
+  //     <div class="border-b border-gray-200 dark:border-gray-700">
+  //       <div class="flex overflow-x-auto">
+  //         <button class="px-4 py-3 text-blue-600 dark:text-blue-400 font-medium border-b-2 border-blue-500 dark:border-blue-400 active tab-button" 
+  //                 id="recruiting-tab" data-target="recruiting-content">
+  //           Currently Recruiting (${recruitingTrials.length})
+  //         </button>
+  //         <button class="px-4 py-3 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 font-medium border-b-2 border-transparent hover:border-gray-300 dark:hover:border-gray-600 tab-button" 
+  //                 id="all-tab" data-target="all-content">
+  //           All Trials (${trials.length})
+  //         </button>
+  //         ${statuses.map(status => {
+  //           if (status === 'Recruiting') return '';
+  //           const statusTrials = trials.filter(trial => trial.protocolSection?.statusModule?.overallStatus === status);
+  //           const statusId = status.replace(/\s+/g, '_').toLowerCase();
+  //           return `
+  //             <button class="px-4 py-3 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 font-medium border-b-2 border-transparent hover:border-gray-300 dark:hover:border-gray-600 whitespace-nowrap tab-button" 
+  //                     id="${statusId}-tab" data-target="${statusId}-content">
+  //               ${status} (${statusTrials.length})
+  //             </button>
+  //           `;
+  //         }).join('')}
+  //       </div>
+  //     </div>
+  //   `;
+  
+  //   const tabContainersContent = `
+  //     <div class="tab-content">
+  //       <div id="recruiting-content" class="block" role="tabpanel">
+  //         ${renderTrialsTable(recruitingTrials)}
+  //       </div>
+  //       <div id="all-content" class="hidden" role="tabpanel">
+  //         ${renderTrialsTable(sortedTrials)}
+  //       </div>
+  //       ${statuses.map(status => {
+  //         if (status === 'Recruiting') return '';
+  //         const statusTrials = trials.filter(trial => trial.protocolSection?.statusModule?.overallStatus === status);
+  //         const statusId = status.replace(/\s+/g, '_').toLowerCase();
+  //         return `
+  //           <div id="${statusId}-content" class="hidden" role="tabpanel">
+  //             ${renderTrialsTable(statusTrials)}
+  //           </div>
+  //         `;
+  //       }).join('')}
+  //     </div>
+  //   `;
+  
+  //   container.innerHTML = headerContent + tabsContent + tabContainersContent;
+  
+  //   document.querySelectorAll('.tab-button').forEach(button => {
+  //     button.addEventListener('click', function() {
+  //       document.querySelectorAll('.tab-content > div').forEach(content => {
+  //         content.classList.add('hidden');
+  //         content.classList.remove('block');
+  //       });
+  //       const targetId = this.getAttribute('data-target');
+  //       const targetContent = document.getElementById(targetId);
+  //       if (targetContent) {
+  //         targetContent.classList.remove('hidden');
+  //         targetContent.classList.add('block');
+  //       }
+  //       document.querySelectorAll('.tab-button').forEach(tab => {
+  //         tab.classList.remove('text-blue-600', 'dark:text-blue-400', 'border-blue-500', 'dark:border-blue-400', 'active');
+  //         tab.classList.add('text-gray-600', 'dark:text-gray-400', 'border-transparent');
+  //       });
+  //       this.classList.remove('text-gray-600', 'dark:text-gray-400', 'border-transparent');
+  //       this.classList.add('text-blue-600', 'dark:text-blue-400', 'border-blue-500', 'dark:border-blue-400', 'active');
+  //     });
+  //   });
+  
+  //   document.getElementById('refresh-data')?.addEventListener('click', () => {
+  //     renderStrategicAnalysis(companyName);
+  //   });
+  
+  //   document.getElementById('export-csv')?.addEventListener('click', () => {
+  //     exportToCSV(trials, `${companyName}-epilepsy-trials.csv`);
+  //   });
+  // }
+  
+
+  function generateTrialsSummary(trials) {
+    // Skip if no trials
+    if (!trials || trials.length === 0) {
+      return "No clinical trials found for analysis.";
+    }
+  
+    // Get key statistics
+    const totalTrials = trials.length;
+    const recruitingTrials = trials.filter(trial => 
+      trial.protocolSection?.statusModule?.overallStatus === 'Recruiting').length;
+    
+    // Get all statuses and their counts
+    const statusCounts = {};
+    trials.forEach(trial => {
+      const status = trial.protocolSection?.statusModule?.overallStatus || 'Unknown';
+      statusCounts[status] = (statusCounts[status] || 0) + 1;
+    });
+  
+    // Get phases distribution
+    const phaseCounts = {};
+    trials.forEach(trial => {
+      const phase = trial.protocolSection?.designModule?.phases?.[0] || 'Not Specified';
+      phaseCounts[phase] = (phaseCounts[phase] || 0) + 1;
+    });
+  
+    // Get most recent trial date
+    const dates = trials
+      .map(trial => trial.protocolSection?.statusModule?.lastUpdatePostDate)
+      .filter(date => date)
+      .map(date => new Date(date));
+    
+    const mostRecentDate = dates.length > 0 ? 
+      new Date(Math.max(...dates)).toLocaleDateString() : 'Not available';
+  
+    // Get common treatments/interventions
+    const interventions = [];
+    trials.forEach(trial => {
+      const trialInterventions = trial.protocolSection?.armsInterventionsModule?.interventions || [];
+      trialInterventions.forEach(intervention => {
+        if (intervention.name) {
+          interventions.push(intervention.name);
+        }
+      });
+    });
+    
+    // Count occurrences of each intervention
+    const interventionCounts = {};
+    interventions.forEach(intervention => {
+      interventionCounts[intervention] = (interventionCounts[intervention] || 0) + 1;
+    });
+  
+    // Sort interventions by frequency
+    const sortedInterventions = Object.entries(interventionCounts)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([name, count]) => `${name} (${count})`);
+  
+    // Build summary text
+    let summaryText = `
+      <strong>AI Summary:</strong> A total of ${totalTrials} clinical trials for epilepsy were found, with ${recruitingTrials} currently recruiting participants. 
+      The trials span various statuses: ${Object.entries(statusCounts)
+        .map(([status, count]) => `${status} (${count})`)
+        .join(', ')}.
+      
+      Trial phases include: ${Object.entries(phaseCounts)
+        .map(([phase, count]) => `${phase} (${count})`)
+        .join(', ')}.
+      
+      ${sortedInterventions.length > 0 ? 
+        `The most common interventions/treatments are: ${sortedInterventions.join(', ')}.` : 
+        'No intervention information available.'}
+      
+      The most recent trial update was on ${mostRecentDate}.
+    `;
+  
+    // Clean up whitespace
+    summaryText = summaryText.replace(/\s+/g, ' ').trim();
+    
+    return summaryText;
+  }
+  
+  function renderTrialsSummary(trials) {
+    const summaryText = generateTrialsSummary(trials);
+    
+    return `
+      <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
+        <div class="flex items-start">
+          <div class="flex-shrink-0 mt-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 dark:text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="ml-3">
+            <p class="text-sm text-blue-800 dark:text-blue-300">${summaryText}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  
+  // Modified renderTrialsView function to include the AI summary
   function renderTrialsView(container, trials, companyName) {
     if (!trials || trials.length === 0) {
       container.innerHTML = `
@@ -524,6 +777,9 @@ export function renderStrategicAnalysis(companyName) {
             </button>
           </div>
         </div>
+        
+        ${renderTrialsSummary(trials)}
+        
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
             <h3 class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Total Trials</h3>
@@ -570,7 +826,7 @@ export function renderStrategicAnalysis(companyName) {
     const tabContainersContent = `
       <div class="tab-content">
         <div id="recruiting-content" class="block" role="tabpanel">
-          ${renderTrialsTable(recruitingTrials)}
+          ${renderTrialsTable(sortedTrials)}
         </div>
         <div id="all-content" class="hidden" role="tabpanel">
           ${renderTrialsTable(sortedTrials)}
@@ -619,7 +875,6 @@ export function renderStrategicAnalysis(companyName) {
       exportToCSV(trials, `${companyName}-epilepsy-trials.csv`);
     });
   }
-  
   /**
    * Renders a table of trials
    * @param {Array} trials - Array of trial data
