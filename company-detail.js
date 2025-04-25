@@ -5483,7 +5483,8 @@ function initializeXCOPRICharts() {
 
 //////////////////////////////////////////////////////////////////////// MEDTRONIC ???????????????????????????????????????????????????????????????????????????
 // Initialize Medtronic Charts
-function xinitMedtronicCharts(data) {
+function initMedtronicCharts(data) {
+ 
   const isDarkMode = document.documentElement.classList.contains('dark');
   const textColor = isDarkMode ? '#ffffff' : '#666666';
   const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
@@ -5694,6 +5695,8 @@ function xinitMedtronicCharts(data) {
           }
       }
   });
+
+  cinitMedtronicCharts()
 }
 
 /**
@@ -5707,7 +5710,7 @@ function xinitMedtronicCharts(data) {
  */
 
 
-function xgenerateMedtronicDashboard(data) {
+function generateMedtronicDashboard(data) {
   return `
     <div class="container mx-auto px-6 py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white">
 
@@ -5929,6 +5932,639 @@ function xgenerateMedtronicDashboard(data) {
           </div>
           <p class="text-xs text-gray-500 mt-3">Source: CMS Medicare Physician Fee Schedule, 2025 Final Rule</p>
       </div>
+
+       <div class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-4 max-w-7xl mx-auto">
+      <!-- Dashboard Header -->
+      <header class="mb-8">
+        <!-- Data Disclaimer Banner -->
+        <div class="mt-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-md p-4">
+          <h2 class="font-semibold text-yellow-800 dark:text-yellow-200">⚠️ Important Data Disclaimer</h2>
+          <p class="text-sm text-yellow-700 dark:text-yellow-300 mt-1">
+            All Medtronic epilepsy revenue figures are estimates based on calculations from publicly available data. 
+            Medtronic does not disclose epilepsy-specific revenue figures in their public reports.
+            <button id="disclaimerDetailsButton" class="text-blue-500 hover:underline ml-1 font-medium">
+              View detailed estimation methodology
+            </button>
+          </p>
+        </div>
+      </header>
+
+      <!-- Methodology Modal -->
+      <div id="methodologyModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 max-w-4xl max-h-[90vh] overflow-auto">
+    <div class="flex justify-between items-start mb-4">
+      <h2 class="text-xl sm:text-2xl font-bold">Estimation Methodology & Limitations</h2>
+      <button id="closeMethodologyModal" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    
+    <div class="space-y-6">
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Estimation Methodology</h3>
+        <ol class="list-decimal pl-5 space-y-2 text-sm">
+          <li><strong>Step 1:</strong> Extract total Neuromodulation revenue from Medtronic annual reports (e.g., $2.3B for 2024) 
+            <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">[Source: Medtronic Annual Report]</a></li>
+          <li><strong>Step 2:</strong> Calculate DBS (Deep Brain Stimulation) revenue allocation (~22% of Neuromodulation) 
+            <a href="https://www.neurotechreports.com/pages/neurostimulationreport.html" class="text-blue-500 hover:underline">[Source: Neurotech Reports]</a></li>
+          <li><strong>Step 3:</strong> Calculate Epilepsy-specific allocation (~6% of DBS revenue) 
+            <a href="https://www.marketresearchfuture.com/reports/epilepsy-devices-market-10427" class="text-blue-500 hover:underline">[Source: Market Research Future]</a></li>
+          <li><strong>Step 4:</strong> Cross-reference with total market size and adjust for consistency 
+            <a href="https://www.ihealthcareanalyst.com/report/neurostimulation-devices-market/" class="text-blue-500 hover:underline">[Source: iHealthcareAnalyst]</a></li>
+        </ol>
+        
+        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-md mt-3 overflow-x-auto">
+          <h4 class="font-medium mb-2 text-sm">Calculation Example (2024)</h4>
+          <code class="text-xs">
+            Neuromodulation Revenue: $2.3B (from annual report) <a href="https://news.medtronic.com/2024-05-23-Medtronic-reports-full-year-and-fourth-quarter-fiscal-2024-financial-results-announces-dividend-increase" class="text-blue-500 hover:underline">[Source]</a><br>
+            DBS Revenue: $2.3B × 22% = $506M <a href="https://www.neurotechreports.com/pages/neurostimulationreport.html" class="text-blue-500 hover:underline">[22% Source]</a><br>
+            Raw Epilepsy Estimate: $506M × 6% = $30.4M <a href="https://www.marketresearchfuture.com/reports/epilepsy-devices-market-10427" class="text-blue-500 hover:underline">[6% Source]</a><br>
+            Adjusted Estimate: $10.3M (adjusted for market size consistency)<br>
+            Market Share: ($10.3M / $450.6M) × 100 = 2.2%
+          </code>
+        </div>
+      </div>
+      
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Key Limitations</h3>
+        <ul class="list-disc pl-5 space-y-2 text-sm">
+          <li><strong>Non-Disclosed Data:</strong> Medtronic does not publicly disclose epilepsy-specific revenue or procedure volumes 
+            <a href="https://investorrelations.medtronic.com/financial-information/sec-filings" class="text-blue-500 hover:underline">[Source: SEC Filings]</a></li>
+          <li><strong>Estimation Assumptions:</strong> The 22% DBS allocation 
+            <a href="https://www.neurotechreports.com/pages/neurostimulationreport.html" class="text-blue-500 hover:underline">[Source]</a> 
+            and 6% epilepsy allocation 
+            <a href="https://www.marketresearchfuture.com/reports/epilepsy-devices-market-10427" class="text-blue-500 hover:underline">[Source]</a> 
+            are based on industry reports and analyst estimates, not primary data</li>
+          <li><strong>Market Size Variability:</strong> Total market calculations may exclude smaller players or unreported sales 
+            <a href="https://www.ihealthcareanalyst.com/report/neurostimulation-devices-market/" class="text-blue-500 hover:underline">[Source]</a></li>
+          <li><strong>Estimation Sensitivity:</strong> Small changes in assumptions significantly alter revenue estimates</li>
+          <li><strong>Dynamic Market Factors:</strong> Adoption rates, reimbursement policies, and competition impact epilepsy DBS revenue but are not precisely quantifiable</li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Raw Data (2018-2024)</h3>
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs">
+            <thead>
+              <tr class="bg-gray-100 dark:bg-gray-800">
+                <th class="py-2 px-3 text-left">Year</th>
+                <th class="py-2 px-3 text-left">Neuromodulation ($B)</th>
+                <th class="py-2 px-3 text-left">DBS Revenue ($M)</th>
+                <th class="py-2 px-3 text-left">Raw Epilepsy Estimate ($M)</th>
+                <th class="py-2 px-3 text-left">Adjusted Epilepsy Revenue ($M)</th>
+                <th class="py-2 px-3 text-left">Market Size ($M)</th>
+                <th class="py-2 px-3 text-left">Market Share (%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t border-gray-200 dark:border-gray-600">
+                <td class="py-2 px-3">2018</td>
+                <td class="py-2 px-3">2.1 <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">[Source]</a></td>
+                <td class="py-2 px-3">462</td>
+                <td class="py-2 px-3">27.7</td>
+                <td class="py-2 px-3">8.1</td>
+                <td class="py-2 px-3">301.5</td>
+                <td class="py-2 px-3">2.7</td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-600">
+                <td class="py-2 px-3">2019</td>
+                <td class="py-2 px-3">2.15 <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">[Source]</a></td>
+                <td class="py-2 px-3">473</td>
+                <td class="py-2 px-3">28.4</td>
+                <td class="py-2 px-3">9.0</td>
+                <td class="py-2 px-3">320.9</td>
+                <td class="py-2 px-3">2.8</td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-600">
+                <td class="py-2 px-3">2020</td>
+                <td class="py-2 px-3">2.0 <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">[Source]</a></td>
+                <td class="py-2 px-3">440</td>
+                <td class="py-2 px-3">26.4</td>
+                <td class="py-2 px-3">9.5</td>
+                <td class="py-2 px-3">315.3</td>
+                <td class="py-2 px-3">3.0</td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-600">
+                <td class="py-2 px-3">2021</td>
+                <td class="py-2 px-3">2.1 <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">[Source]</a></td>
+                <td class="py-2 px-3">462</td>
+                <td class="py-2 px-3">27.7</td>
+                <td class="py-2 px-3">9.7</td>
+                <td class="py-2 px-3">334.1</td>
+                <td class="py-2 px-3">2.9</td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-600">
+                <td class="py-2 px-3">2022</td>
+                <td class="py-2 px-3">2.2 <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">[Source]</a></td>
+                <td class="py-2 px-3">484</td>
+                <td class="py-2 px-3">29.0</td>
+                <td class="py-2 px-3">9.9</td>
+                <td class="py-2 px-3">365.4</td>
+                <td class="py-2 px-3">2.7</td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-600">
+                <td class="py-2 px-3">2023</td>
+                <td class="py-2 px-3">2.25 <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">[Source]</a></td>
+                <td class="py-2 px-3">495</td>
+                <td class="py-2 px-3">29.7</td>
+                <td class="py-2 px-3">10.1</td>
+                <td class="py-2 px-3">407.6</td>
+                <td class="py-2 px-3">2.5</td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-600">
+                <td class="py-2 px-3">2024</td>
+                <td class="py-2 px-3">2.3 <a href="https://news.medtronic.com/2024-05-23-Medtronic-reports-full-year-and-fourth-quarter-fiscal-2024-financial-results-announces-dividend-increase" class="text-blue-500 hover:underline">[Source]</a></td>
+                <td class="py-2 px-3">506</td>
+                <td class="py-2 px-3">30.4</td>
+                <td class="py-2 px-3">10.3</td>
+                <td class="py-2 px-3">450.6</td>
+                <td class="py-2 px-3">2.2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Data Sources</h3>
+        <ul class="list-disc pl-5 space-y-1 text-sm">
+          <li>Neuromodulation Revenue: <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">Medtronic Annual Reports (2018-2024)</a></li>
+          <li>22% DBS allocation of Neuromodulation: <a href="https://www.neurotechreports.com/pages/neurostimulationreport.html" class="text-blue-500 hover:underline">Neurotech Reports Neurostimulation Market 2024</a></li>
+          <li>6% Epilepsy allocation of DBS: <a href="https://www.marketresearchfuture.com/reports/epilepsy-devices-market-10427" class="text-blue-500 hover:underline">Market Research Future Epilepsy Devices Market Report</a></li>
+          <li>Growth Data: <a href="https://news.medtronic.com/2024-05-23-Medtronic-reports-full-year-and-fourth-quarter-fiscal-2024-financial-results-announces-dividend-increase" class="text-blue-500 hover:underline">Medtronic Q4 2024 Earnings</a></li>
+          <li>Market Size Validation: <a href="https://www.ihealthcareanalyst.com/report/neurostimulation-devices-market/" class="text-blue-500 hover:underline">iHealthcareAnalyst Neurostimulation Devices Market Report</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <!-- Main Dashboard Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Market Share Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 min-h-fit overflow-hidden">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl sm:text-2xl font-semibold">Market Share Overview</h2>
+            <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full">Estimated</span>
+          </div>
+          <div class="flex flex-col space-y-6">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">Current Market Share (2024)</span>
+              <span class="text-xl sm:text-2xl font-bold">2.2%</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">Change Since 2018</span>
+              <span class="text-lg sm:text-xl font-bold text-red-600">-18.5%</span>
+            </div>
+            <div>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Market Share Trend (2018-2024)</p>
+              <canvas id="marketShareMiniChart" class="w-full h-32 sm:h-40 aspect-[4/3]"></canvas>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">
+                <strong>Calculation Method:</strong> (Medtronic Epilepsy Revenue / Total Market Size) × 100
+              </p>
+              <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                <strong>Data Source:</strong> <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">Medtronic Annual Reports (2018-2024)</a>
+              </p>
+              <div class="mt-2">
+                <button class="showEstimationDetails text-xs text-blue-500 hover:underline" data-target="marketShareEstimation">
+                  View estimation details
+                </button>
+                <div id="marketShareEstimation" class="hidden mt-2 p-2 bg-gray-50 dark:bg-gray-700 rounded-md text-xs">
+                  <p><strong>2024 Example:</strong></p>
+                  <p>Market Share = ($10.3M / $450.6M) × 100 = 2.2%</p>
+                  <p class="mt-1"><strong>Limitations:</strong> Market share calculation depends on estimated epilepsy revenue and may not include all market participants.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Revenue Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 min-h-fit overflow-hidden">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl sm:text-2xl font-semibold">Epilepsy Revenue</h2>
+            <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full">Estimated</span>
+          </div>
+          <div class="flex flex-col space-y-6">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">2024 Revenue</span>
+              <span class="text-xl sm:text-2xl font-bold">$10.3M</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">Growth Since 2018</span>
+              <span class="text-lg sm:text-xl font-bold text-green-600">+27.2%</span>
+            </div>
+            <div>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Revenue Trend (2018-2024)</p>
+              <canvas id="revenueMiniChart" class="w-full h-32 sm:h-40 aspect-[4/3]"></canvas>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">
+                <strong>Calculation Method:</strong> DBS Revenue (~22% of Neuromodulation) × Epilepsy Allocation (~6%)
+              </p>
+              <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                <strong>Data Source:</strong> <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">Medtronic Annual Reports (2018-2024)</a>
+              </p>
+              <div class="mt-2">
+                <button class="showEstimationDetails text-xs text-blue-500 hover:underline" data-target="revenueEstimation">
+                  View estimation details
+                </button>
+                <div id="revenueEstimation" class="hidden mt-2 p-2 bg-gray-50 dark:bg-gray-700 rounded-md text-xs">
+                  <p><strong>2024 Example:</strong></p>
+                  <p>Raw Calculation: $2.3B × 22% × 6% = $30.4M</p>
+                  <p>Adjusted to $10.3M based on market size constraints and competitor data</p>
+                  <p class="mt-1"><strong>Limitations:</strong> Medtronic does not disclose epilepsy-specific revenue; estimates rely on assumptions about DBS allocation (22%) and epilepsy's share of DBS (6%).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Total Market Size Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 min-h-fit overflow-hidden">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl sm:text-2xl font-semibold">Total Market Size</h2>
+            <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full">Estimated</span>
+          </div>
+          <div class="flex flex-col space-y-6">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">2024 Market Size</span>
+              <span class="text-xl sm:text-2xl font-bold">$450.6M</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">Growth Since 2018</span>
+              <span class="text-lg sm:text-xl font-bold text-green-600">+49.5%</span>
+            </div>
+            <div>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Market Size Trend (2018-2024)</p>
+              <canvas id="marketSizeMiniChart" class="w-full h-32 sm:h-40 aspect-[4/3]"></canvas>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">
+                <strong>Calculation Method:</strong> Sum of LivaNova, NeuroPace, and Medtronic epilepsy revenues
+              </p>
+              <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                <strong>Cross-Referenced With:</strong> <a href="https://www.marketresearchfuture.com/reports/epilepsy-devices-market-10427" class="text-blue-500 hover:underline">Market Research Future reports</a>
+              </p>
+              <div class="mt-2">
+                <button class="showEstimationDetails text-xs text-blue-500 hover:underline" data-target="marketSizeEstimation">
+                  View estimation details
+                </button>
+                <div id="marketSizeEstimation" class="hidden mt-2 p-2 bg-gray-50 dark:bg-gray-700 rounded-md text-xs">
+                  <p><strong>2024 Example:</strong></p>
+                  <p>LivaNova: $360.7M (reported)</p>
+                  <p>NeuroPace: $79.9M (reported)</p>
+                  <p>Medtronic: $10.3M (estimated)</p>
+                  <p>Total: $450.6M</p>
+                  <p class="mt-1"><strong>Limitations:</strong> May exclude smaller market participants; dependent on Medtronic estimates; assumes reported figures from LivaNova and NeuroPace are accurate.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Market Position Analysis Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 col-span-1 sm:col-span-3 min-h-fit overflow-hidden">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl sm:text-2xl font-semibold">Market Position Analysis</h2>
+            <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full">Estimated</span>
+          </div>
+          <div class="flex flex-col lg:flex-row gap-8">
+            <div class="flex-1">
+              <h3 class="font-medium text-lg sm:text-xl mb-3">Market Share by Company (2024)</h3>
+              <canvas id="marketSharePieChart" class="w-full h-64 sm:h-72 aspect-[4/3]"></canvas>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-medium text-lg sm:text-xl mb-3">Gainers & Losers (2018-2024)</h3>
+              <div class="space-y-4">
+                <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-md">
+                  <h4 class="font-semibold text-red-700 dark:text-red-400">Market Share Losers</h4>
+                  <div class="mt-2">
+                    <div class="flex justify-between text-sm">
+                      <span>LivaNova</span>
+                      <span class="text-red-600 dark:text-red-400">-7.4%</span>
+                    </div>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                      Market share declined from 87.4% in 2018 to 80.0% in 2024.
+                    </p>
+                  </div>
+                  <div class="mt-2">
+                    <div class="flex justify-between text-sm">
+                      <span>Medtronic</span>
+                      <span class="text-red-600 dark:text-red-400">-0.5%</span>
+                    </div>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                      Market share declined from 2.7% in 2018 to 2.2% in 2024.
+                    </p>
+                  </div>
+                </div>
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-md">
+                  <h4 class="font-semibold text-green-700 dark:text-green-400">Market Share Gainers</h4>
+                  <div class="mt-2">
+                    <div class="flex justify-between text-sm">
+                      <span>NeuroPace</span>
+                      <span class="text-green-600 dark:text-green-400">+7.9%</span>
+                    </div>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                      Market share increased from 9.9% in 2018 to 17.7% in 2024.
+                    </p>
+                  </div>
+                </div>
+                <div class="mt-3 text-xs text-gray-500 dark:text-gray-400 italic">
+                  Note: Data sources include company reports and market research. Figures may be subject to estimation errors.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Detailed Charts Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 col-span-1 sm:col-span-2 lg:col-span-3 min-h-fit overflow-hidden">
+          <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+            <div class="flex items-center">
+              <h2 class="text-xl sm:text-2xl font-semibold">Detailed Analytics</h2>
+              <span class="ml-2 text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full">Estimated</span>
+            </div>
+            <div class="inline-flex mt-3 md:mt-0">
+              <select id="chartSelector" class="bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="marketShare">Market Share Trend</option>
+                <option value="revenue">Revenue Growth</option>
+                <option value="marketSize">Total Market Size</option>
+                <option value="comparison">Comparative Analysis</option>
+                <option value="rawEstimates">Raw vs. Adjusted Estimates</option>
+              </select>
+            </div>
+          </div>
+          <div id="detailedChartContainer" class="w-full h-80 sm:h-96"></div>
+          <div class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+            <p id="chartDescription" class="mb-2">
+              This chart shows Medtronic's estimated market share trend from 2018 to 2024. The company has seen a decline from 2.7% in 2018 to 2.2% in 2024.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div>
+                <h3 class="font-medium mb-2">Data Source</h3>
+                <p class="text-xs">
+                  Data estimated from <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">Medtronic's annual reports (2018-2024)</a>, with epilepsy revenue calculated as 6% of DBS revenue, which is 22% of the neuromodulation segment. Market share is calculated by dividing Medtronic's epilepsy revenue by the total market size.
+                </p>
+              </div>
+              <div>
+                <h3 class="font-medium mb-2">Calculation Methodology</h3>
+                <p class="text-xs">
+                  Market size calculation: Sum of epilepsy revenues from LivaNova, NeuroPace, and Medtronic, cross-referenced with <a href="https://www.marketresearchfuture.com/reports/epilepsy-devices-market-10427" class="text-blue-500 hover:underline">Market Research Future reports</a>.
+                </p>
+              </div>
+            </div>
+            <div class="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-md text-xs text-yellow-800 dark:text-yellow-200">
+              <strong>Estimation Limitations:</strong> Medtronic does not disclose epilepsy-specific revenue. Estimates are derived from public financial data using assumptions about DBS allocation and epilepsy's share of DBS. Small changes in assumptions (e.g., epilepsy's share of DBS from 6% to 5%) can significantly alter revenue estimates.
+            </div>
+          </div>
+        </div>
+
+        <!-- Clinical Trials Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 col-span-1 sm:col-span-2 lg:col-span-2 min-h-fit overflow-hidden">
+          <h2 class="text-xl sm:text-2xl font-semibold mb-4">Clinical & Regulatory Milestones</h2>
+          <div class="overflow-auto max-h-80">
+            <div class="border-l-2 border-blue-500 dark:border-blue-400 pl-4">
+              <div class="mb-6">
+                <div class="flex items-center">
+                  <div id="clinical-trial-2020" class="bg-blue-500 dark:bg-blue-400 rounded-full w-3 h-3 -ml-5.5"></div>
+                  <h3 class="text-lg sm:text-xl font-medium ml-3">2020</h3>
+                </div>
+                <div class="mt-2">
+                  <h4 class="font-medium text-gray-800 dark:text-gray-200">Percept PC DBS Approval</h4>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    FDA approval for Percept PC DBS system with BrainSense technology for epilepsy and other neurological disorders.
+                  </p>
+                  <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                    <strong>Source:</strong> <a href="https://newsroom.medtronic.com/news-releases/news-release-details/fda-approves-next-generation-medtronic-deep-brain-stimulation" class="text-blue-500 hover:underline">Medtronic Press Release</a>
+                  </p>
+                </div>
+              </div>
+              <div class="mb-6">
+                <div class="flex items-center">
+                  <div class="bg-blue-500 dark:bg-blue-400 rounded-full w-3 h-3 -ml-5.5"></div>
+                  <h3 class="text-lg sm:text-xl font-medium ml-3">2024</h3>
+                </div>
+                <div class="mt-2">
+                  <h4 class="font-medium text-gray-800 dark:text-gray-200">Percept RC DBS Approval</h4>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    FDA approval for Percept RC DBS system, enhancing epilepsy treatment capabilities.
+                  </p>
+                  <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                    <strong>Source:</strong> <a href="https://newsroom.medtronic.com/" class="text-blue-500 hover:underline">Medtronic Press Release</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calculation Methods Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 col-span-1 min-h-fit overflow-hidden">
+          <h2 class="text-xl sm:text-2xl font-semibold mb-4">Data Calculation Methods</h2>
+          <div class="overflow-auto max-h-80">
+            <div class="space-y-4">
+              <div>
+                <h3 class="font-medium text-gray-800 dark:text-gray-200">Market Share</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  Market share = (Medtronic Epilepsy Revenue / Total Market Size) × 100
+                </p>
+                <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                  Example (2024): Market share = ($10.3M / $450.6M) × 100 = 2.2%
+                </p>
+              </div>
+              <div>
+                <h3 class="font-medium text-gray-800 dark:text-gray-200">Epilepsy Revenue</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  <strong>Raw Calculation:</strong> Neuromodulation Revenue × 22% (DBS) × 6% (Epilepsy)
+                </p>
+                <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                  Example (2024): Raw Calculation: $2.3B × 22% × 6% = $30.4M
+                </p>
+                <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                  <strong>Adjusted to $10.3M</strong> based on market size constraints and competitive landscape
+                </p>
+              </div>
+              <div>
+                <h3 class="font-medium text-gray-800 dark:text-gray-200">Market Size</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  Market Size = Sum of epilepsy revenues of LivaNova, NeuroPace, and Medtronic
+                </p>
+                <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                  Cross-referenced with <a href="https://www.marketresearchfuture.com/reports/epilepsy-devices-market-10427" class="text-blue-500 hover:underline">Market Research Future reports</a>
+                </p>
+              </div>
+              <div>
+                <h3 class="font-medium text-gray-800 dark:text-gray-200">Year-on-Year Change</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  Year-on-Year Change = ((Current Value - Previous Value) / Previous Value) × 100
+                </p>
+              </div>
+              <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                <h3 class="font-medium text-gray-800 dark:text-gray-200">Data Limitations</h3>
+                <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                  <li>Medtronic does not disclose epilepsy-specific revenue figures</li>
+                  <li>DBS allocation (22%) based on industry reports, not official data</li>
+                  <li>Epilepsy share of DBS (6%) based on clinical adoption estimates</li>
+                  <li>Raw calculations adjusted to align with market size data</li>
+                  <li>Small changes in assumptions create significant estimation variations</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Raw Estimation Data Table -->
+      <div class="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl sm:text-2xl font-semibold">Raw Estimation Data (2018-2024)</h2>
+          <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full">Detailed Calculations</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white dark:bg-gray-800 text-sm">
+            <thead class="bg-gray-100 dark:bg-gray-700">
+              <tr>
+                <th class="py-2 px-3 text-left">Year</th>
+                <th class="py-2 px-3 text-left">Neuromod. Revenue</th>
+                <th class="py-2 px-3 text-left">DBS Revenue (22%)</th>
+                <th class="py-2 px-3 text-left">Raw Epilepsy Est. (6%)</th>
+                <th class="py-2 px-3 text-left">Adjusted Epilepsy Revenue</th>
+                <th class="py-2 px-3 text-left">Adjustment Factor</th>
+                <th class="py-2 px-3 text-left">Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t border-gray-200 dark:border-gray-700">
+                <td class="py-2 px-3">2018</td>
+                <td class="py-2 px-3">$2.1B</td>
+                <td class="py-2 px-3">$462M</td>
+                <td class="py-2 px-3">$27.7M</td>
+                <td class="py-2 px-3">$8.1M</td>
+                <td class="py-2 px-3">0.29x</td>
+                <td class="py-2 px-3"><a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">Annual Report</a></td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-700">
+                <td class="py-2 px-3">2019</td>
+                <td class="py-2 px-3">$2.15B</td>
+                <td class="py-2 px-3">$473M</td>
+                <td class="py-2 px-3">$28.4M</td>
+                <td class="py-2 px-3">$9.0M</td>
+                <td class="py-2 px-3">0.32x</td>
+                <td class="py-2 px-3"><a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">Annual Report</a></td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-700">
+                <td class="py-2 px-3">2020</td>
+                <td class="py-2 px-3">$2.0B</td>
+                <td class="py-2 px-3">$440M</td>
+                <td class="py-2 px-3">$26.4M</td>
+                <td class="py-2 px-3">$9.5M</td>
+                <td class="py-2 px-3">0.36x</td>
+                <td class="py-2 px-3"><a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">Annual Report</a></td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-700">
+                <td class="py-2 px-3">2021</td>
+                <td class="py-2 px-3">$2.1B</td>
+                <td class="py-2 px-3">$462M</td>
+                <td class="py-2 px-3">$27.7M</td>
+                <td class="py-2 px-3">$9.7M</td>
+                <td class="py-2 px-3">0.35x</td>
+                <td class="py-2 px-3"><a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">Annual Report</a></td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-700">
+                <td class="py-2 px-3">2022</td>
+                <td class="py-2 px-3">$2.2B</td>
+                <td class="py-2 px-3">$484M</td>
+                <td class="py-2 px-3">$29.0M</td>
+                <td class="py-2 px-3">$9.9M</td>
+                <td class="py-2 px-3">0.34x</td>
+                <td class="py-2 px-3"><a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">Annual Report</a></td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-700">
+                <td class="py-2 px-3">2023</td>
+                <td class="py-2 px-3">$2.25B</td>
+                <td class="py-2 px-3">$495M</td>
+                <td class="py-2 px-3">$29.7M</td>
+                <td class="py-2 px-3">$10.1M</td>
+                <td class="py-2 px-3">0.34x</td>
+                <td class="py-2 px-3"><a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">Annual Report</a></td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-700">
+                <td class="py-2 px-3">2024</td>
+                <td class="py-2 px-3">$2.3B</td>
+                <td class="py-2 px-3">$506M</td>
+                <td class="py-2 px-3">$30.4M</td>
+                <td class="py-2 px-3">$10.3M</td>
+                <td class="py-2 px-3">0.34x</td>
+                <td class="py-2 px-3"><a href="https://news.medtronic.com/2024-05-23-Medtronic-reports-full-year-and-fourth-quarter-fiscal-2024-financial-results-announces-dividend-increase" class="text-blue-500 hover:underline">Q4 Earnings</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="mt-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-md text-xs text-gray-700 dark:text-gray-300">
+          <strong>Adjustment Factor Explanation:</strong> The raw epilepsy revenue estimates are adjusted downward to account for:
+          <ul class="list-disc list-inside mt-1 space-y-1">
+            <li>Competitive marketplace factors where Medtronic is not the dominant player</li>
+            <li>Market size constraints based on combined revenues of major players</li>
+            <li>Procedure volume data from clinical databases suggesting lower adoption of epilepsy DBS</li>
+            <li>Cross-referencing with industry market research reports</li>
+          </ul>
+          <p class="mt-2">
+            <strong>Source for Adjustment Methodology:</strong> <a href="https://www.neurotechreports.com" class="text-blue-500 hover:underline">Neurotech Reports</a>, 
+            <a href="https://www.marketresearchfuture.com/reports/epilepsy-devices-market-10427" class="text-blue-500 hover:underline">Market Research Future</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Data Source Links -->
+      <div class="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+        <h2 class="text-xl sm:text-2xl font-semibold mb-4">Data Sources & Links</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div>
+            <h3 class="font-medium text-gray-800 dark:text-gray-200 mb-2">Annual Reports</h3>
+            <ul class="space-y-1">
+              <li><a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline text-sm">Medtronic 2018 Annual Report</a></li>
+              <li><a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline text-sm">Medtronic 2019 Annual Report</a></li>
+              <li><a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline text-sm">Medtronic 2020 Annual Report</a></li>
+              <li><a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline text-sm">Medtronic 2021 Annual Report</a></li>
+              <li><a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline text-sm">Medtronic 2022 Annual Report</a></li>
+              <li><a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline text-sm">Medtronic 2023 Annual Report</a></li>
+              <li><a href="https://news.medtronic.com/2024-05-23-Medtronic-reports-full-year-and-fourth-quarter-fiscal-2024-financial-results-announces-dividend-increase" class="text-blue-500 hover:underline text-sm">Medtronic Q4 2024 Earnings</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-800 dark:text-gray-200 mb-2">Clinical & Regulatory</h3>
+            <ul class="space-y-1">
+              <li><a href="https://newsroom.medtronic.com/news-releases/news-release-details/fda-approves-next-generation-medtronic-deep-brain-stimulation" class="text-blue-500 hover:underline text-sm">Percept PC DBS Approval 2020</a></li>
+              <li><a href="https://newsroom.medtronic.com/" class="text-blue-500 hover:underline text-sm">Percept RC DBS Approval 2024</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-800 dark:text-gray-200 mb-2">Market Research</h3>
+            <ul class="space-y-1">
+              <li><a href="https://www.marketresearchfuture.com/reports/epilepsy-devices-market-10427" class="text-blue-500 hover:underline text-sm">Market Research Future Reports</a></li>
+              <li><a href="https://www.neurotechreports.com" class="text-blue-500 hover:underline text-sm">Neurotech Reports</a></li>
+              <li><a href="https://www.ihealthcareanalyst.com/report/neurostimulation-devices-market/" class="text-blue-500 hover:underline text-sm">iHealthcareAnalyst Reports</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer with last updated info -->
+      <footer class="mt-8 text-center text-sm text-gray-600 dark:text-gray-400 pb-8">
+        <p>
+          Last updated: April 24, 2025 | Data estimated as of Q4 2024 reports
+          <br>
+          <span class="text-xs">Dashboard generated for analytical purposes only. All Medtronic epilepsy data are estimates based on public financial reports.</span>
+        </p>
+      </footer>
+    </div>
 
       <!-- Sources and Citations -->
       <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
@@ -6238,7 +6874,7 @@ function xgenerateMedtronicDashboard(data) {
  * 
  * @returns {string} HTML string for the Medtronic dashboard
  */
-function ygenerateMedtronicDashboard() {
+function oldgenerateMedtronicDashboard() {
   return `
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-4 max-w-7xl mx-auto">
       <!-- Dashboard Header -->
@@ -6550,7 +7186,7 @@ function ygenerateMedtronicDashboard() {
     </div>
   `;
 }
-function yinitMedtronicCharts() {
+function oldinitMedtronicCharts() {
   // Data for charts (2018-2024)
   const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024];
   const marketShareData = [2.0, 2.0, 2.1, 2.2, 2.2, 2.3, 2.3]; // Medtronic market share (%)
@@ -6946,23 +7582,11 @@ function yinitMedtronicCharts() {
   }
 }
 
-function generateMedtronicDashboard() {
+function cgenerateMedtronicDashboard() {
   return `
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-4 max-w-7xl mx-auto">
       <!-- Dashboard Header -->
       <header class="mb-8">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
-          <div>
-            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold">Medtronic Epilepsy Neuromodulation Dashboard</h1>
-            <p class="text-gray-600 dark:text-gray-400 mt-1 text-sm sm:text-base">Comprehensive analysis of estimated market data (2018-2024)</p>
-          </div>
-          <div class="mt-4 md:mt-0">
-            <button id="darkModeToggle" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
-              <span class="dark:hidden">🌙 Dark Mode</span>
-              <span class="hidden dark:inline">☀️ Light Mode</span>
-            </button>
-          </div>
-        </div>
         <!-- Data Disclaimer Banner -->
         <div class="mt-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-md p-4">
           <h2 class="font-semibold text-yellow-800 dark:text-yellow-200">⚠️ Important Data Disclaimer</h2>
@@ -6978,145 +7602,156 @@ function generateMedtronicDashboard() {
 
       <!-- Methodology Modal -->
       <div id="methodologyModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 max-w-4xl max-h-[90vh] overflow-auto">
-          <div class="flex justify-between items-start mb-4">
-            <h2 class="text-xl sm:text-2xl font-bold">Estimation Methodology & Limitations</h2>
-            <button id="closeMethodologyModal" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          
-          <div class="space-y-6">
-            <div>
-              <h3 class="font-semibold text-lg mb-2">Estimation Methodology</h3>
-              <ol class="list-decimal pl-5 space-y-2 text-sm">
-                <li><strong>Step 1:</strong> Extract total Neuromodulation revenue from Medtronic annual reports (e.g., $2.3B for 2024)</li>
-                <li><strong>Step 2:</strong> Calculate DBS (Deep Brain Stimulation) revenue allocation (~22% of Neuromodulation)</li>
-                <li><strong>Step 3:</strong> Calculate Epilepsy-specific allocation (~6% of DBS revenue)</li>
-                <li><strong>Step 4:</strong> Cross-reference with total market size and adjust for consistency</li>
-              </ol>
-              
-              <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-md mt-3 overflow-x-auto">
-                <h4 class="font-medium mb-2 text-sm">Calculation Example (2024)</h4>
-                <code class="text-xs">
-                  Neuromodulation Revenue: $2.3B (from annual report)<br>
-                  DBS Revenue: $2.3B × 22% = $506M<br>
-                  Raw Epilepsy Estimate: $506M × 6% = $30.4M<br>
-                  Adjusted Estimate: $10.3M (adjusted for market size consistency)<br>
-                  Market Share: ($10.3M / $450.6M) × 100 = 2.2%
-                </code>
-              </div>
-            </div>
-            
-            <div>
-              <h3 class="font-semibold text-lg mb-2">Key Limitations</h3>
-              <ul class="list-disc pl-5 space-y-2 text-sm">
-                <li><strong>Non-Disclosed Data:</strong> Medtronic does not publicly disclose epilepsy-specific revenue or procedure volumes</li>
-                <li><strong>Estimation Assumptions:</strong> The 22% DBS and 6% epilepsy allocation are based on industry reports and analyst estimates, not primary data</li>
-                <li><strong>Market Size Variability:</strong> Total market calculations may exclude smaller players or unreported sales</li>
-                <li><strong>Estimation Sensitivity:</strong> Small changes in assumptions significantly alter revenue estimates</li>
-                <li><strong>Dynamic Market Factors:</strong> Adoption rates, reimbursement policies, and competition impact epilepsy DBS revenue but are not precisely quantifiable</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 class="font-semibold text-lg mb-2">Raw Data (2018-2024)</h3>
-              <div class="overflow-x-auto">
-                <table class="min-w-full bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs">
-                  <thead>
-                    <tr class="bg-gray-100 dark:bg-gray-800">
-                      <th class="py-2 px-3 text-left">Year</th>
-                      <th class="py-2 px-3 text-left">Neuromodulation ($B)</th>
-                      <th class="py-2 px-3 text-left">DBS Revenue ($M)</th>
-                      <th class="py-2 px-3 text-left">Raw Epilepsy Estimate ($M)</th>
-                      <th class="py-2 px-3 text-left">Adjusted Epilepsy Revenue ($M)</th>
-                      <th class="py-2 px-3 text-left">Market Size ($M)</th>
-                      <th class="py-2 px-3 text-left">Market Share (%)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr class="border-t border-gray-200 dark:border-gray-600">
-                      <td class="py-2 px-3">2018</td>
-                      <td class="py-2 px-3">2.1</td>
-                      <td class="py-2 px-3">462</td>
-                      <td class="py-2 px-3">27.7</td>
-                      <td class="py-2 px-3">8.1</td>
-                      <td class="py-2 px-3">301.5</td>
-                      <td class="py-2 px-3">2.7</td>
-                    </tr>
-                    <tr class="border-t border-gray-200 dark:border-gray-600">
-                      <td class="py-2 px-3">2019</td>
-                      <td class="py-2 px-3">2.15</td>
-                      <td class="py-2 px-3">473</td>
-                      <td class="py-2 px-3">28.4</td>
-                      <td class="py-2 px-3">9.0</td>
-                      <td class="py-2 px-3">320.9</td>
-                      <td class="py-2 px-3">2.8</td>
-                    </tr>
-                    <tr class="border-t border-gray-200 dark:border-gray-600">
-                      <td class="py-2 px-3">2020</td>
-                      <td class="py-2 px-3">2.0</td>
-                      <td class="py-2 px-3">440</td>
-                      <td class="py-2 px-3">26.4</td>
-                      <td class="py-2 px-3">9.5</td>
-                      <td class="py-2 px-3">315.3</td>
-                      <td class="py-2 px-3">3.0</td>
-                    </tr>
-                    <tr class="border-t border-gray-200 dark:border-gray-600">
-                      <td class="py-2 px-3">2021</td>
-                      <td class="py-2 px-3">2.1</td>
-                      <td class="py-2 px-3">462</td>
-                      <td class="py-2 px-3">27.7</td>
-                      <td class="py-2 px-3">9.7</td>
-                      <td class="py-2 px-3">334.1</td>
-                      <td class="py-2 px-3">2.9</td>
-                    </tr>
-                    <tr class="border-t border-gray-200 dark:border-gray-600">
-                      <td class="py-2 px-3">2022</td>
-                      <td class="py-2 px-3">2.2</td>
-                      <td class="py-2 px-3">484</td>
-                      <td class="py-2 px-3">29.0</td>
-                      <td class="py-2 px-3">9.9</td>
-                      <td class="py-2 px-3">365.4</td>
-                      <td class="py-2 px-3">2.7</td>
-                    </tr>
-                    <tr class="border-t border-gray-200 dark:border-gray-600">
-                      <td class="py-2 px-3">2023</td>
-                      <td class="py-2 px-3">2.25</td>
-                      <td class="py-2 px-3">495</td>
-                      <td class="py-2 px-3">29.7</td>
-                      <td class="py-2 px-3">10.1</td>
-                      <td class="py-2 px-3">407.6</td>
-                      <td class="py-2 px-3">2.5</td>
-                    </tr>
-                    <tr class="border-t border-gray-200 dark:border-gray-600">
-                      <td class="py-2 px-3">2024</td>
-                      <td class="py-2 px-3">2.3</td>
-                      <td class="py-2 px-3">506</td>
-                      <td class="py-2 px-3">30.4</td>
-                      <td class="py-2 px-3">10.3</td>
-                      <td class="py-2 px-3">450.6</td>
-                      <td class="py-2 px-3">2.2</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            
-            <div>
-              <h3 class="font-semibold text-lg mb-2">Data Sources</h3>
-              <ul class="list-disc pl-5 space-y-1 text-sm">
-                <li>Neuromodulation Revenue: <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">Medtronic Annual Reports (2018-2024)</a></li>
-                <li>Market Size Validation: <a href="https://www.marketresearchfuture.com/reports/epilepsy-devices-market-10427" class="text-blue-500 hover:underline">Market Research Future</a></li>
-                <li>Growth Data: <a href="https://news.medtronic.com/2024-05-23-Medtronic-reports-full-year-and-fourth-quarter-fiscal-2024-financial-results-announces-dividend-increase" class="text-blue-500 hover:underline">Medtronic Q4 2024 Earnings</a></li>
-                <li>DBS Procedure Estimates: <a href="https://www.neurotechreports.com" class="text-blue-500 hover:underline">Neurotech Reports</a></li>
-              </ul>
-            </div>
-          </div>
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 max-w-4xl max-h-[90vh] overflow-auto">
+    <div class="flex justify-between items-start mb-4">
+      <h2 class="text-xl sm:text-2xl font-bold">Estimation Methodology & Limitations</h2>
+      <button id="closeMethodologyModal" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    
+    <div class="space-y-6">
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Estimation Methodology</h3>
+        <ol class="list-decimal pl-5 space-y-2 text-sm">
+          <li><strong>Step 1:</strong> Extract total Neuromodulation revenue from Medtronic annual reports (e.g., $2.3B for 2024) 
+            <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">[Source: Medtronic Annual Report]</a></li>
+          <li><strong>Step 2:</strong> Calculate DBS (Deep Brain Stimulation) revenue allocation (~22% of Neuromodulation) 
+            <a href="https://www.neurotechreports.com/pages/neurostimulationreport.html" class="text-blue-500 hover:underline">[Source: Neurotech Reports]</a></li>
+          <li><strong>Step 3:</strong> Calculate Epilepsy-specific allocation (~6% of DBS revenue) 
+            <a href="https://www.marketresearchfuture.com/reports/epilepsy-devices-market-10427" class="text-blue-500 hover:underline">[Source: Market Research Future]</a></li>
+          <li><strong>Step 4:</strong> Cross-reference with total market size and adjust for consistency 
+            <a href="https://www.ihealthcareanalyst.com/report/neurostimulation-devices-market/" class="text-blue-500 hover:underline">[Source: iHealthcareAnalyst]</a></li>
+        </ol>
+        
+        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-md mt-3 overflow-x-auto">
+          <h4 class="font-medium mb-2 text-sm">Calculation Example (2024)</h4>
+          <code class="text-xs">
+            Neuromodulation Revenue: $2.3B (from annual report) <a href="https://news.medtronic.com/2024-05-23-Medtronic-reports-full-year-and-fourth-quarter-fiscal-2024-financial-results-announces-dividend-increase" class="text-blue-500 hover:underline">[Source]</a><br>
+            DBS Revenue: $2.3B × 22% = $506M <a href="https://www.neurotechreports.com/pages/neurostimulationreport.html" class="text-blue-500 hover:underline">[22% Source]</a><br>
+            Raw Epilepsy Estimate: $506M × 6% = $30.4M <a href="https://www.marketresearchfuture.com/reports/epilepsy-devices-market-10427" class="text-blue-500 hover:underline">[6% Source]</a><br>
+            Adjusted Estimate: $10.3M (adjusted for market size consistency)<br>
+            Market Share: ($10.3M / $450.6M) × 100 = 2.2%
+          </code>
         </div>
       </div>
+      
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Key Limitations</h3>
+        <ul class="list-disc pl-5 space-y-2 text-sm">
+          <li><strong>Non-Disclosed Data:</strong> Medtronic does not publicly disclose epilepsy-specific revenue or procedure volumes 
+            <a href="https://investorrelations.medtronic.com/financial-information/sec-filings" class="text-blue-500 hover:underline">[Source: SEC Filings]</a></li>
+          <li><strong>Estimation Assumptions:</strong> The 22% DBS allocation 
+            <a href="https://www.neurotechreports.com/pages/neurostimulationreport.html" class="text-blue-500 hover:underline">[Source]</a> 
+            and 6% epilepsy allocation 
+            <a href="https://www.marketresearchfuture.com/reports/epilepsy-devices-market-10427" class="text-blue-500 hover:underline">[Source]</a> 
+            are based on industry reports and analyst estimates, not primary data</li>
+          <li><strong>Market Size Variability:</strong> Total market calculations may exclude smaller players or unreported sales 
+            <a href="https://www.ihealthcareanalyst.com/report/neurostimulation-devices-market/" class="text-blue-500 hover:underline">[Source]</a></li>
+          <li><strong>Estimation Sensitivity:</strong> Small changes in assumptions significantly alter revenue estimates</li>
+          <li><strong>Dynamic Market Factors:</strong> Adoption rates, reimbursement policies, and competition impact epilepsy DBS revenue but are not precisely quantifiable</li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Raw Data (2018-2024)</h3>
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs">
+            <thead>
+              <tr class="bg-gray-100 dark:bg-gray-800">
+                <th class="py-2 px-3 text-left">Year</th>
+                <th class="py-2 px-3 text-left">Neuromodulation ($B)</th>
+                <th class="py-2 px-3 text-left">DBS Revenue ($M)</th>
+                <th class="py-2 px-3 text-left">Raw Epilepsy Estimate ($M)</th>
+                <th class="py-2 px-3 text-left">Adjusted Epilepsy Revenue ($M)</th>
+                <th class="py-2 px-3 text-left">Market Size ($M)</th>
+                <th class="py-2 px-3 text-left">Market Share (%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t border-gray-200 dark:border-gray-600">
+                <td class="py-2 px-3">2018</td>
+                <td class="py-2 px-3">2.1 <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">[Source]</a></td>
+                <td class="py-2 px-3">462</td>
+                <td class="py-2 px-3">27.7</td>
+                <td class="py-2 px-3">8.1</td>
+                <td class="py-2 px-3">301.5</td>
+                <td class="py-2 px-3">2.7</td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-600">
+                <td class="py-2 px-3">2019</td>
+                <td class="py-2 px-3">2.15 <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">[Source]</a></td>
+                <td class="py-2 px-3">473</td>
+                <td class="py-2 px-3">28.4</td>
+                <td class="py-2 px-3">9.0</td>
+                <td class="py-2 px-3">320.9</td>
+                <td class="py-2 px-3">2.8</td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-600">
+                <td class="py-2 px-3">2020</td>
+                <td class="py-2 px-3">2.0 <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">[Source]</a></td>
+                <td class="py-2 px-3">440</td>
+                <td class="py-2 px-3">26.4</td>
+                <td class="py-2 px-3">9.5</td>
+                <td class="py-2 px-3">315.3</td>
+                <td class="py-2 px-3">3.0</td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-600">
+                <td class="py-2 px-3">2021</td>
+                <td class="py-2 px-3">2.1 <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">[Source]</a></td>
+                <td class="py-2 px-3">462</td>
+                <td class="py-2 px-3">27.7</td>
+                <td class="py-2 px-3">9.7</td>
+                <td class="py-2 px-3">334.1</td>
+                <td class="py-2 px-3">2.9</td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-600">
+                <td class="py-2 px-3">2022</td>
+                <td class="py-2 px-3">2.2 <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">[Source]</a></td>
+                <td class="py-2 px-3">484</td>
+                <td class="py-2 px-3">29.0</td>
+                <td class="py-2 px-3">9.9</td>
+                <td class="py-2 px-3">365.4</td>
+                <td class="py-2 px-3">2.7</td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-600">
+                <td class="py-2 px-3">2023</td>
+                <td class="py-2 px-3">2.25 <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">[Source]</a></td>
+                <td class="py-2 px-3">495</td>
+                <td class="py-2 px-3">29.7</td>
+                <td class="py-2 px-3">10.1</td>
+                <td class="py-2 px-3">407.6</td>
+                <td class="py-2 px-3">2.5</td>
+              </tr>
+              <tr class="border-t border-gray-200 dark:border-gray-600">
+                <td class="py-2 px-3">2024</td>
+                <td class="py-2 px-3">2.3 <a href="https://news.medtronic.com/2024-05-23-Medtronic-reports-full-year-and-fourth-quarter-fiscal-2024-financial-results-announces-dividend-increase" class="text-blue-500 hover:underline">[Source]</a></td>
+                <td class="py-2 px-3">506</td>
+                <td class="py-2 px-3">30.4</td>
+                <td class="py-2 px-3">10.3</td>
+                <td class="py-2 px-3">450.6</td>
+                <td class="py-2 px-3">2.2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Data Sources</h3>
+        <ul class="list-disc pl-5 space-y-1 text-sm">
+          <li>Neuromodulation Revenue: <a href="https://investorrelations.medtronic.com/#quarterly-results" class="text-blue-500 hover:underline">Medtronic Annual Reports (2018-2024)</a></li>
+          <li>22% DBS allocation of Neuromodulation: <a href="https://www.neurotechreports.com/pages/neurostimulationreport.html" class="text-blue-500 hover:underline">Neurotech Reports Neurostimulation Market 2024</a></li>
+          <li>6% Epilepsy allocation of DBS: <a href="https://www.marketresearchfuture.com/reports/epilepsy-devices-market-10427" class="text-blue-500 hover:underline">Market Research Future Epilepsy Devices Market Report</a></li>
+          <li>Growth Data: <a href="https://news.medtronic.com/2024-05-23-Medtronic-reports-full-year-and-fourth-quarter-fiscal-2024-financial-results-announces-dividend-increase" class="text-blue-500 hover:underline">Medtronic Q4 2024 Earnings</a></li>
+          <li>Market Size Validation: <a href="https://www.ihealthcareanalyst.com/report/neurostimulation-devices-market/" class="text-blue-500 hover:underline">iHealthcareAnalyst Neurostimulation Devices Market Report</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
       <!-- Main Dashboard Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -7584,7 +8219,7 @@ function generateMedtronicDashboard() {
   `;
 }
 
-function initMedtronicCharts() {
+function cinitMedtronicCharts() {
   // Updated Data for charts (2018-2024)
   const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024];
   const marketShareData = [2.7, 2.8, 3.0, 2.9, 2.7, 2.5, 2.2]; // Medtronic market share (%)
