@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precisis AG: EASEE Competitive Intelligence</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+ 
+ 
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .chart-container {
+      position: relative;
+      height: 300px;
+      width: 100%;
+      padding: 16px;
+    }
+    .dark .chart-container canvas {
+      background-color: #1f2937;
+    }
+    .metric-card {
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .metric-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+    .expand {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    .expand.show {
+      max-height: 400px;
+    }
+    .theme-toggle {
+      transition: background-color 0.3s;
+      position: relative;
+    }
+    .theme-toggle:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+    .tooltip {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.2s;
+      position: absolute;
+      top: -2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #1f2937;
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+      z-index: 10;
+    }
+    @media (max-width: 640px) {
+      .table-responsive thead {
+        display: none;
+      }
+      .table-responsive tr {
+        display: block;
+        margin-bottom: 1rem;
+      }
+      .table-responsive td {
+        display: block;
+        text-align: left;
+        padding: 0.5rem;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      .table-responsive td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 40%;
+        min-width: 120px;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+  <script>
+    // Theme persistence with localStorage
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('theme-toggle');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const savedTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
+      
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          document.documentElement.classList.toggle('dark');
+          const newTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+          localStorage.setItem('theme', newTheme);
+        });
+
+        // Keyboard accessibility
+        themeToggle.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            themeToggle.click();
+          }
+        });
+      }
+    });
+
+    function generatePrecisisDashboard(data) {
+      // Validate input data
+      if (!data || typeof data !== 'object') {
+        console.error('Invalid or missing data for dashboard generation');
+        return '<div class="container mx-auto px-4 py-8 text-red-600">Error: Invalid data provided</div>';
+      }
+
+      return `
+        <div class="container mx-auto px-4 py-8 min-h-screen">
+          <!-- Theme Toggle -->
+          <div class="fixed top-4 right-4 z-50">
+            <button id="theme-toggle" class="theme-toggle bg-gray-200 dark:bg-gray-700 p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Toggle dark mode" tabindex="0">
+              <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+              <span class="tooltip">Toggle Dark Mode</span>
+            </button>
+          </div>
+
+          <!-- Header -->
+          <header class="bg-gradient-to-r from-indigo-600 to-blue-500 rounded-3xl shadow-xl p-8 mb-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="text-center md:text-left">
+              <h1 class="text-4xl font-bold flex items-center">
+                <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+                </svg>
+                Precisis AG: EASEE Competitive Intelligence
+              </h1>
+              <p class="text-lg text-gray-100 mt-2">Epilepsy Treatment Devices - April 2025</p>
+            </div>
+            <div class="text-center md:text-right mt-4 md:mt-0">
+              <p class="text-sm text-gray-200">Updated: ${new Date().toLocaleString('en-GB', { timeZone: 'BST' })}</p>
+              <button onclick="window.print()" class="mt-3 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500" tabindex="0">Download PDF</button>
+            </div>
+          </header>
+
+          <!-- Key Metrics -->
+          <section id="metrics" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div class="metric-card bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 cursor-pointer" role="button" aria-expanded="false" tabindex="0" onclick="this.querySelector('.expand').classList.toggle('show'); this.setAttribute('aria-expanded', this.querySelector('.expand').classList.contains('show'))" onkeydown="if(event.key === 'Enter' || event.key === ' ') { this.click(); }">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Market Size (2024)</h3>
+              <p class="mt-2 text-3xl font-bold">$548.4M</p>
+              <div class="expand mt-4 text-xs text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                <p><strong>Definition:</strong> Global value of epilepsy treatment devices market.</p>
+                <p><strong>Data:</strong> 2023: $526.8M; 2024: $548.4M</p>
+                <p><strong>Calculation:</strong> $526.8M × (1 + 0.041) = $548.4M</p>
+                <p><strong>Source:</strong> <a href="https://www.custommarketinsights.com/report/epilepsy-treatment-devices-market/" class="text-blue-500 hover:underline" target="_blank">Custom Market Insights, Nov 2024</a>.</p>
+                <p><strong>Insight:</strong> Precisis targets Europe’s $167.5M share (30.5% of global market), competing with LivaNova and NeuroPace.</p>
+              </div>
+            </div>
+            <div class="metric-card bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 cursor-pointer" role="button" aria-expanded="false" tabindex="0" onclick="this.querySelector('.expand').classList.toggle('show'); this.setAttribute('aria-expanded', this.querySelector('.expand').classList.contains('show'))" onkeydown="if(event.key === 'Enter' || event.key === ' ') { this.click(); }">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Market Growth (CAGR)</h3>
+              <p class="mt-2 text-3xl font-bold">4.1%</p>
+              <div class="expand mt-4 text-xs text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                <p><strong>Definition:</strong> Annual growth rate of market value (2024–2033).</p>
+                <p><strong>Data:</strong> 2024: $548.4M; 2033: $787.3M</p>
+                <p><strong>Calculation:</strong> [($787.3M / $548.4M)^(1/9) - 1] ≈ 4.1%</p>
+                <p><strong>Source:</strong> <a href="https://www.custommarketinsights.com/report/epilepsy-treatment-devices-market/" class="text-blue-500 hover:underline" target="_blank">Custom Market Insights, Nov 2024</a>.</p>
+                <p><strong>Insight:</strong> Driven by AI and minimally invasive devices; EASEE’s lack of AI may limit competitiveness.</p>
+              </div>
+            </div>
+            <div class="metric-card bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 cursor-pointer" role="button" aria-expanded="false" tabindex="0" onclick="this.querySelector('.expand').classList.toggle('show'); this.setAttribute('aria-expanded', this.querySelector('.expand').classList.contains('show'))" onkeydown="if(event.key === 'Enter' || event.key === ' ') { this.click(); }">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Funding (2021)</h3>
+              <p class="mt-2 text-3xl font-bold">€20M ($23.2M)</p>
+              <div class="expand mt-4 text-xs text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                <p><strong>Definition:</strong> Capital raised for EASEE development.</p>
+                <p><strong>Data:</strong> 2021: €20M; Others: €0M</p>
+                <p><strong>Calculation:</strong> €20M × 1.16 = $23.2M; YoY 2021: ∞%</p>
+                <p><strong>Source:</strong> <a href="https://www.precisis.de/news/20-million-euro-investment-by-cochlear-for-precisis" class="text-blue-500 hover:underline" target="_blank">Precisis, Oct 2021</a>.</p>
+                <p><strong>Insight:</strong> NeuroPace’s $74M IPO (2021) overshadows Precisis, limiting scale.</p>
+              </div>
+            </div>
+            <div class="metric-card bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 cursor-pointer" role="button" aria-expanded="false" tabindex="0" onclick="this.querySelector('.expand').classList.toggle('show'); this.setAttribute('aria-expanded', this.querySelector('.expand').classList.contains('show'))" onkeydown="if(event.key === 'Enter' || event.key === ' ') { this.click(); }">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Patient Reach</h3>
+              <p class="mt-2 text-3xl font-bold">10.1M / 50M</p>
+              <div class="expand mt-4 text-xs text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                <p><strong>Definition:</strong> Drug-resistant patients eligible for EASEE vs. total epilepsy patients.</p>
+                <p><strong>Data:</strong> Eligible: 10.1M; Total: 50M</p>
+                <p><strong>Calculation:</strong> 50M - 10.1M = 39.9M</p>
+                <p><strong>Source:</strong> <a href="https://www.towardshealthcare.com/insights/epilepsy-drugs-market" class="text-blue-500 hover:underline" target="_blank">Towards Healthcare, Mar 2025</a>.</p>
+                <p><strong>Insight:</strong> EASEE targets focal epilepsy (~6–9M drug-resistant); narrower than NeuroPace.</p>
+              </div>
+            </div>
+            <div class="metric-card bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 cursor-pointer" role="button" aria-expanded="false" tabindex="0" onclick="this.querySelector('.expand').classList.toggle('show'); this.setAttribute('aria-expanded', this.querySelector('.expand').classList.contains('show'))" onkeydown="if(event.key === 'Enter' || event.key === ' ') { this.click(); }">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Clinical Outcomes</h3>
+              <p class="mt-2 text-3xl font-bold">52% Reduction</p>
+              <div class="expand mt-4 text-xs text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                <p><strong>Definition:</strong> Median seizure reduction in EASEE trials.</p>
+                <p><strong>Data:</strong> 50% of patients ≥50% reduction; 12.9% seizure-free</p>
+                <p><strong>Calculation:</strong> Median: 52%; Seizure-free: 4/31 ≈ 12.9%</p>
+                <p><strong>Source:</strong> <a href="https://www.fiercebiotech.com/medtech/precisis-lines-eu-approval-brain-pacemaker-treat-epilepsy" class="text-blue-500 hover:underline" target="_blank">Fierce Biotech, Sep 2022</a>.</p>
+                <p><strong>Insight:</strong> Comparable to NeuroPace (50–70%) but limited trial size (31 patients).</p>
+              </div>
+            </div>
+            <div class="metric-card bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 cursor-pointer" role="button" aria-expanded="false" tabindex="0" onclick="this.querySelector('.expand').classList.toggle('show'); this.setAttribute('aria-expanded', this.querySelector('.expand').classList.contains('show'))" onkeydown="if(event.key === 'Enter' || event.key === ' ') { this.click(); }">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Market Share (Europe)</h3>
+              <p class="mt-2 text-3xl font-bold">~1–2%</p>
+              <div class="expand mt-4 text-xs text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                <p><strong>Definition:</strong> Precisis’ share of Europe’s $167.5M market.</p>
+                <p><strong>Data:</strong> Revenue: $1.5M–$3M (100–200 implants)</p>
+                <p><strong>Calculation:</strong> $1.5M / $167.5M ≈ 0.9%; $3M / $167.5M ≈ 1.8%</p>
+                <p><strong>Source:</strong> <a href="https://www.custommarketinsights.com/report/epilepsy-treatment-devices-market/" class="text-blue-500 hover:underline" target="_blank">Custom Market Insights, Nov 2024</a>.</p>
+                <p><strong>Insight:</strong> LivaNova (~30% globally) dominates; Precisis’ niche focus limits share.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Charts -->
+          <section id="charts" class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
+              <h2 class="text-xl font-semibold mb-4">Market Growth</h2>
+              <p class="text-xs text-gray-500 mb-3">Source: <a href="https://www.custommarketinsights.com/report/epilepsy-treatment-devices-market/" class="text-blue-500 hover:underline" target="_blank">Custom Market Insights, Nov 2024</a>.</p>
+              <div class="chart-container"><canvas id="precisis-market-growth" aria-label="Market growth chart"></canvas></div>
+            </div>
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
+              <h2 class="text-xl font-semibold mb-4">Patient Reach</h2>
+              <p class="text-xs text-gray-500 mb-3">Source: <a href="https://www.towardshealthcare.com/insights/epilepsy-drugs-market" class="text-blue-500 hover:underline" target="_blank">Towards Healthcare, Mar 2025</a>.</p>
+              <div class="chart-container"><canvas id="precisis-patient-reach" aria-label="Patient reach chart"></canvas></div>
+            </div>
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
+              <h2 class="text-xl font-semibold mb-4">Funding History</h2>
+              <p class="text-xs text-gray-500 mb-3">Source: <a href="https://www.precisis.de/news/20-million-euro-investment-by-cochlear-for-precisis" class="text-blue-500 hover:underline" target="_blank">Precisis, Oct 2021</a>.</p>
+              <div class="chart-container"><canvas id="precisis-funding-history" aria-label="Funding history chart"></canvas></div>
+            </div>
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
+              <h2 class="text-xl font-semibold mb-4">Clinical Outcomes</h2>
+              <p class="text-xs text-gray-500 mb-3">Source: <a href="https://www.fiercebiotech.com/medtech/precisis-lines-eu-approval-brain-pacemaker-treat-epilepsy" class="text-blue-500 hover:underline" target="_blank">Fierce Biotech, Sep 2022</a>.</p>
+              <div class="chart-container"><canvas id="precisis-clinical-outcomes" aria-label="Clinical outcomes chart"></canvas></div>
+            </div>
+          </section>
+
+          <!-- Regulatory Milestones -->
+          <section id="regulatory" class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4">Regulatory Milestones</h2>
+            <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-3">
+              <li><strong>CE Certification (Sep 28, 2022):</strong> Enables European market entry. <a href="https://www.precisis.de/news/ce-certification-for-precisis-easee" class="text-blue-500 hover:underline" target="_blank">Source: Precisis, Sep 2022</a>; <a href="https://www.nsmedicaldevices.com/news/precisis-ce-mark-easee-epilepsy/" class="text-blue-500 hover:underline" target="_blank">NS Medical Devices, Sep 2022</a>.</li>
+              <li><strong>FDA Breakthrough Designation (Feb 19, 2022):</strong> Accelerates U.S. review; approval pending. <a href="https://www.mpo-mag.com/contents/view_breaking-news/2022-02-22/precisis-easee-epilepsy-neurostim-earns-breakthrough-status/" class="text-blue-500 hover:underline" target="_blank">Source: MPO, Feb 2022</a>.</li>
+              <li><strong>Note:</strong> No 2024–2025 FDA approval or adoption data; monitor Precisis announcements.</li>
+            </ul>
+          </section>
+
+          <!-- Competitor Analysis -->
+          <section id="intel" class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4">Competitor Analysis</h2>
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm text-left text-gray-600 dark:text-gray-300 table-responsive">
+                <thead class="bg-gray-50 dark:bg-gray-700">
+                  <tr>
+                    <th class="p-4" scope="col">Company</th>
+                    <th class="p-4" scope="col">Device</th>
+                    <th class="p-4" scope="col">Market Share</th>
+                    <th class="p-4" scope="col">Strengths</th>
+                    <th class="p-4" scope="col">Weaknesses</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b dark:border-gray-700">
+                    <td class="p-4" data-label="Company">Precisis AG</td>
+                    <td class="p-4" data-label="Device">EASEE</td>
+                    <td class="p-4" data-label="Market Share">~1–2% (Europe)</td>
+                    <td class="p-4" data-label="Strengths">Minimally invasive, CE Mark, competitive efficacy</td>
+                    <td class="p-4" data-label="Weaknesses">No FDA approval, limited scale, small trial size</td>
+                  </tr>
+                  <tr class="border-b dark:border-gray-700">
+                    <td class="p-4" data-label="Company">NeuroPace</td>
+                    <td class="p-4" data-label="Device">RNS System</td>
+                    <td class="p-4" data-label="Market Share">~20–25% (Global)</td>
+                    <td class="p-4" data-label="Strengths">AI-driven, FDA MRI approval, broader indications</td>
+                    <td class="p-4" data-label="Weaknesses">Invasive, high cost</td>
+                  </tr>
+                  <tr>
+                    <td class="p-4" data-label="Company">LivaNova</td>
+                    <td class="p-4" data-label="Device">VNS Therapy</td>
+                    <td class="p-4" data-label="Market Share">~30–35% (Global)</td>
+                    <td class="p-4" data-label="Strengths">Established brand, broad use, global reach</td>
+                    <td class="p-4" data-label="Weaknesses">Invasive, side effects, older technology</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-xs text-gray-500 mt-3">Source: <a href="https://www.custommarketinsights.com/report/epilepsy-treatment-devices-market/" class="text-blue-500 hover:underline" target="_blank">Custom Market Insights, Nov 2024</a>.</p>
+          </section>
+
+          <!-- Threat Assessment -->
+          <section id="threat" class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4">Threat Assessment: Precisis AG in the Epilepsy Market</h2>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+              Precisis AG’s EASEE system, a minimally invasive epicranial stimulation device, poses a niche but growing threat to the $548.4M epilepsy treatment devices market in 2024. With CE Mark approval (2022) and a 52% median seizure reduction, it targets Europe’s $167.5M market, focusing on drug-resistant focal epilepsy patients (~6–9M globally). Its small market share (1–2%) and limited funding (€20M vs. NeuroPace’s $74M IPO) restrict its immediate impact compared to LivaNova (~30% global share) and NeuroPace (~20–25%).
+            </p>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+              EASEE’s non-invasive approach could disrupt the market by appealing to patients avoiding invasive procedures like NeuroPace’s RNS or LivaNova’s VNS. However, its lack of AI integration, small trial size (31 patients), and pending FDA approval limit physician adoption. Reimbursement challenges in Europe, where healthcare systems prioritize cost-effectiveness, and high device costs (~$15,000–$30,000 per implant) may hinder growth. If Precisis secures FDA approval by 2026, its market share could rise to 5–10% in Europe and 2–3% globally by 2030, assuming expanded indications and AI enhancements.
+            </p>
+            <p class="text-sm text-gray-600 dark:text-gray-300">
+              To maximize its threat, Precisis must invest in larger trials, integrate AI for real-time seizure prediction, and navigate complex reimbursement landscapes. Partnerships with insurers and hospitals could accelerate adoption. Without these, it risks remaining a niche player in a market driven by technological innovation and scale.
+            </p>
+            <p class="text-xs text-gray-500 mt-3">Sources: <a href="https://www.custommarketinsights.com/report/epilepsy-treatment-devices-market/" class="text-blue-500 hover:underline" target="_blank">Custom Market Insights, Nov 2024</a>; <a href="https://www.fiercebiotech.com/medtech/precisis-lines-eu-approval-brain-pacemaker-treat-epilepsy" class="text-blue-500 hover:underline" target="_blank">Fierce Biotech, Sep 2022</a>; <a href="https://www.towardshealthcare.com/insights/epilepsy-drugs-market" class="text-blue-500 hover:underline" target="_blank">Towards Healthcare, Mar 2025</a>.</p>
+          </section>
+
+          <!-- Citations -->
+          <section id="citations" class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
+            <h2 class="text-xl font-semibold mb-4">Sources</h2>
+            <ul class="text-xs text-gray-600 dark:text-gray-300 space-y-2">
+              <li><a href="https://www.custommarketinsights.com/report/epilepsy-treatment-devices-market/" class="text-blue-500 hover:underline" target="_blank">Custom Market Insights, Market Size & CAGR, Nov 2024</a>.</li>
+              <li><a href="https://www.precisis.de/news/20-million-euro-investment-by-cochlear-for-precisis" class="text-blue-500 hover:underline" target="_blank">Precisis, €20M Funding, Oct 2021</a>.</li>
+              <li><a href="https://www.fiercebiotech.com/medtech/precisis-lines-eu-approval-brain-pacemaker-treat-epilepsy" class="text-blue-500 hover:underline" target="_blank">Fierce Biotech, Clinical Outcomes, Sep 2022</a>.</li>
+              <li><a href="https://www.precisis.de/news/ce-certification-for-precisis-easee" class="text-blue-500 hover:underline" target="_blank">Precisis, CE Certification, Sep 2022</a>.</li>
+              <li><a href="https://www.nsmedicaldevices.com/news/precisis-ce-mark-easee-epilepsy/" class="text-blue-500 hover:underline" target="_blank">NS Medical Devices, CE Certification, Sep 2022</a>.</li>
+              <li><a href="https://www.mpo-mag.com/contents/view_breaking-news/2022-02-22/precisis-easee-epilepsy-neurostim-earns-breakthrough-status/" class="text-blue-500 hover:underline" target="_blank">MPO, FDA Designation, Feb 2022</a>.</li>
+              <li><a href="https://www.towardshealthcare.com/insights/epilepsy-drugs-market" class="text-blue-500 hover:underline" target="_blank">Towards Healthcare, Patient Reach, Mar 2025</a>.</li>
+            </ul>
+          </section>
+        </div>
+      `;
+    }
+
+    function initializePrecisisCharts(data) {
+      // Validate input data
+      if (!data || typeof data !== 'object') {
+        console.error('Invalid or missing data for chart initialization');
+        return;
+      }
+
+      // Check if Chart.js is loaded
+      if (typeof Chart === 'undefined') {
+        console.error('Chart.js not loaded');
+        return;
+      }
+
+      // Ensure DOM is ready before initializing charts
+      const canvasIds = ['precisis-market-growth', 'precisis-patient-reach', 'precisis-funding-history', 'precisis-clinical-outcomes'];
+      for (const id of canvasIds) {
+        if (!document.getElementById(id)) {
+          console.error(`Canvas element ${id} not found`);
+          return;
+        }
+      }
+
+      const isDarkMode = document.documentElement.classList.contains('dark');
+      const textColor = isDarkMode ? '#e5e7eb' : '#4b5563';
+      const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
+      const chartBgColor = isDarkMode ? '#1f2937' : '#ffffff';
+
+      // Market Growth Chart
+      const marketGrowthCanvas = document.getElementById('precisis-market-growth');
+      if (marketGrowthCanvas) {
+        try {
+          new Chart(marketGrowthCanvas.getContext('2d'), {
+            type: 'line',
+            data: {
+              labels: ['2024', '2033'],
+              datasets: [{
+                label: 'Market Size ($M)',
+                data: [548.4, 787.3],
+                borderColor: '#3b82f6',
+                backgroundColor: 'rgba(59, 130, 246, 0.3)',
+                fill: true,
+                tension: 0.4,
+                pointRadius: 5,
+                pointHoverRadius: 8
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { labels: { color: textColor, font: { size: 14 } } },
+                tooltip: {
+                  backgroundColor: isDarkMode ? '#1f2937' : '#ffffff',
+                  titleColor: textColor,
+                  bodyColor: textColor
+                }
+              },
+              scales: {
+                x: { ticks: { color: textColor, font: { size: 12 } }, grid: { color: gridColor } },
+                y: {
+                  ticks: { color: textColor, font: { size: 12 }, callback: value => `$${value}M` },
+                  grid: { color: gridColor },
+                  beginAtZero: false
+                }
+              }
+            }
+          });
+        } catch (error) {
+          console.error('Failed to initialize Market Growth chart:', error);
+        }
+      }
+
+      // Patient Reach Chart
+      const patientReachCanvas = document.getElementById('precisis-patient-reach');
+      if (patientReachCanvas) {
+        try {
+          new Chart(patientReachCanvas.getContext('2d'), {
+            type: 'doughnut',
+            data: {
+              labels: ['Eligible Patients', 'Other Patients'],
+              datasets: [{
+                data: [10.1, 39.9],
+                backgroundColor: ['#10b981', '#d1d5db'],
+                borderColor: chartBgColor,
+                borderWidth: 2
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { position: 'top', labels: { color: textColor, font: { size: 14 } } },
+                tooltip: {
+                  backgroundColor: isDarkMode ? '#1f2937' : '#ffffff',
+                  titleColor: textColor,
+                  bodyColor: textColor,
+                  callbacks: { label: context => `${context.label}: ${context.raw}M` }
+                }
+              }
+            }
+          });
+        } catch (error) {
+          console.error('Failed to initialize Patient Reach chart:', error);
+        }
+      }
+
+      // Funding History Chart
+      const fundingHistoryCanvas = document.getElementById('precisis-funding-history');
+      if (fundingHistoryCanvas) {
+        try {
+          new Chart(fundingHistoryCanvas.getContext('2d'), {
+            type: 'bar',
+            data: {
+              labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+              datasets: [{
+                label: 'Funding (€M)',
+                data: [0, 0, 0, 20, 0, 0, 0],
+                backgroundColor: 'rgba(236, 72, 153, 0.7)',
+                borderColor: 'rgba(236, 72, 153, 1)',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { labels: { color: textColor, font: { size: 14 } } },
+                tooltip: {
+                  backgroundColor: isDarkMode ? '#1f2937' : '#ffffff',
+                  titleColor: textColor,
+                  bodyColor: textColor,
+                  callbacks: { 
+                    label: context => `€${context.raw}M (YoY: ${context.label === '2021' ? '∞%' : context.label === '2022' ? '-100%' : '0%'})` 
+                  }
+                }
+              },
+              scales: {
+                x: { ticks: { color: textColor, font: { size: 12 } }, grid: { color: gridColor } },
+                y: {
+                  ticks: { color: textColor, font: { size: 12 }, callback: value => `€${value}M` },
+                  grid: { color: gridColor },
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        } catch (error) {
+          console.error('Failed to initialize Funding History chart:', error);
+        }
+      }
+
+      // Clinical Outcomes Chart
+      const clinicalOutcomesCanvas = document.getElementById('precisis-clinical-outcomes');
+      if (clinicalOutcomesCanvas) {
+        try {
+          new Chart(clinicalOutcomesCanvas.getContext('2d'), {
+            type: 'bar',
+            data: {
+              labels: ['≥50% Reduction', 'Seizure-Free'],
+              datasets: [{
+                label: 'Patients (%)',
+                data: [50, 12.9],
+                backgroundColor: 'rgba(79, 70, 229, 0.7)',
+                borderColor: 'rgba(79, 70, 229, 1)',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { labels: { color: textColor, font: { size: 14 } } },
+                tooltip: {
+                  backgroundColor: isDarkMode ? '#1f2937' : '#ffffff',
+                  titleColor: textColor,
+                  bodyColor: textColor,
+                  callbacks: { label: context => `${context.label}: ${context.raw}%` }
+                }
+              },
+              scales: {
+                x: { ticks: { color: textColor, font: { size: 12 } }, grid: { color: gridColor } },
+                y: {
+                  ticks: { color: textColor, font: { size: 12 }, callback: value => `${value}%` },
+                  grid: { color: gridColor },
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        } catch (error) {
+          console.error('Failed to initialize Clinical Outcomes chart:', error);
+        }
+      }
+    }
+  
+  
+  </script>
+</body>
+</html>

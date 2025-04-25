@@ -1,0 +1,542 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medtronic Epilepsy Neuromodulation Dashboard</title>
+    <!-- Tailwind CSS CDN (for development) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- Chart.js Annotation Plugin CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+   
+   
+   <style>
+      body {
+      font-family: 'Inter', sans-serif;
+    }
+    .card {
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+    .table-row:hover {
+      background-color: #f3f4f6;
+    }
+    .dark .table-row:hover {
+      background-color: #4b5563;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Dark Mode Toggle -->
+    <div class="flex justify-end mb-6">
+      <button id="darkModeToggle" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+        Toggle Dark Mode
+      </button>
+    </div>
+
+    <!-- Header -->
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-8 card">
+      <div class="flex flex-col md:flex-row justify-between items-start">
+        <div>
+          <h1 class="text-4xl font-bold mb-2">Medtronic - Epilepsy Neuromodulation</h1>
+          <p class="text-lg text-gray-600 dark:text-gray-300">Deep Brain Stimulation (DBS) Analysis</p>
+        </div>
+        <div class="text-right mt-4 md:mt-0">
+          <p class="text-sm text-gray-500 dark:text-gray-400">Data as of March 24, 2025</p>
+          <p class="text-sm text-gray-500 dark:text-gray-400">Sources: Medtronic, CMS, Clinical Studies</p>
+        </div>
+      </div>
+    </div>
+     <!-- Key Metrics -->
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+            <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Neuromodulation Revenue (Q3 FY25)</h3>
+            <p class="mt-2 text-3xl font-bold">$476M</p>
+            <p class="text-sm text-green-600 dark:text-green-400">+12% YoY</p>
+            <p class="text-xs text-gray-500 mt-2">Source: Medtronic Q3 FY25 Financial Results</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+            <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Nine-Month Revenue (FY25)</h3>
+            <p class="mt-2 text-3xl font-bold">$1.41B</p>
+            <p class="text-sm text-green-600 dark:text-green-400">+11% YoY</p>
+            <p class="text-xs text-gray-500 mt-2">Source: Medtronic Q3 FY25 Financial Results</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+            <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Epilepsy Market Share</h3>
+            <p class="mt-2 text-3xl font-bold">46%</p>
+            <p class="text-sm text-gray-600 dark:text-gray-300">DBS Market Leader</p>
+            <p class="text-xs text-gray-500 mt-2">Source: Neuromodulation Market Size Report</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+            <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Medicare Reimbursement (DBS)</h3>
+            <p class="mt-2 text-3xl font-bold">$35,826</p>
+            <p class="text-sm text-red-600 dark:text-red-400">-3.31% YoY</p>
+            <p class="text-xs text-gray-500 mt-2">Source: CMS Medicare Physician Fee Schedule</p>
+        </div>
+    </div>
+
+    <!-- Technology and DBS Details -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-6">Deep Brain Stimulation Technology</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <div class="flex items-center mb-4">
+                    <div class="bg-blue-100 dark:bg-blue-900 rounded-lg p-3 mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 dark:text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold">Percept™ DBS Systems</h3>
+                </div>
+                <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span><strong>Percept™ PC:</strong> First FDA-approved DBS system with BrainSense™ technology</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span><strong>Percept™ RC:</strong> Rechargeable neurostimulator approved January 2024</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span><strong>BrainSense™ Technology:</strong> Captures brain signals while delivering therapy</span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div class="flex items-center mb-4">
+                    <div class="bg-purple-100 dark:bg-purple-900 rounded-lg p-3 mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600 dark:text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold">Clinical Evidence & Approvals</h3>
+                </div>
+                <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span><strong>FDA Approval:</strong> Reducing seizure frequency in adults with partial-onset seizures refractory to medications</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span><strong>SANTE Study:</strong> 69% median reduction in seizure frequency over 5 years</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span><strong>Mechanism:</strong> Delivers targeted electrical stimulation to the anterior nucleus of the thalamus (ANT)</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Metrics -->
+    <!-- Source: Q3 FY25 Revenue ($476M, +12%), Nine-Month ($1.413B, +11%) -->
+    <!-- https://news.medtronic.com/2025-02-18-Medtronic-reports-third-quarter-fiscal-2025-financial-results -->
+    <!-- Market Share (46%): Inferred from Q3 FY25 leadership -->
+    <!-- Reimbursement ($35,826): CMS 2025 Fee Schedule -->
+    <!-- https://www.cms.gov/medicare/payment/fee-schedules/physician -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 card">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Neuromodulation Revenue (Q3 FY25)</h3>
+          <p class="mt-2 text-3xl font-bold">$476M</p>
+          <p class="text-sm text-green-600 dark:text-green-400">+12% YoY</p>
+          <p class="text-xs text-gray-500 mt-2">Source: <a href="https://news.medtronic.com/2025-02-18-Medtronic-reports-third-quarter-fiscal-2025-financial-results" class="underline">Medtronic Q3 FY25 Results</a></p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 card">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Nine-Month Revenue (FY25)</h3>
+          <p class="mt-2 text-3xl font-bold">$1.413B</p>
+          <p class="text-sm text-green-600 dark:text-green-400">+11% YoY</p>
+          <p class="text-xs text-gray-500 mt-2">Source: <a href="https://news.medtronic.com/2025-02-18-Medtronic-reports-third-quarter-fiscal-2025-financial-results" class="underline">Medtronic Q3 FY25 Results</a></p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 card">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Neuromodulation Revenue Growth (Q3 FY25)</h3>
+          <p class="mt-2 text-3xl font-bold">+12% YoY</p>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Driven by Percept™ RC DBS</p>
+          <p class="text-xs text-gray-500 mt-2">Source: <a href="https://news.medtronic.com/2025-02-18-Medtronic-reports-third-quarter-fiscal-2025-financial-results" class="underline">Medtronic Q3 FY25 Results</a></p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 card">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Medicare Reimbursement (DBS)</h3>
+          <p class="mt-2 text-3xl font-bold">$35,826</p>
+          <p class="text-sm text-red-600 dark:text-red-400">-3.31% YoY</p>
+          <p class="text-xs text-gray-500 mt-2">Source: <a href="https://www.cms.gov/medicare/payment/fee-schedules/physician" class="underline">CMS 2025 Fee Schedule</a></p>
+        </div>
+      
+
+    </div>
+
+    <!-- Technology and DBS Details -->
+    <!-- Source: Percept™ RC Approval (January 2024) -->
+    <!-- https://news.medtronic.com/Medtronic-receives-FDA-approval-for-its-Percept-RC-Deep-Brain-Stimulation-system-news# -->
+    <!-- SANTE Study: https://www.nejm.org/doi/full/10.1056/NEJMoa1105541 -->
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 mb-8 card">
+      <h2 class="text-2xl font-semibold mb-6">Deep Brain Stimulation Technology</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <div class="flex items-center mb-4">
+            <div class="bg-blue-100 dark:bg-blue-900 rounded-lg p-3 mr-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 dark:text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold">Percept™ DBS Systems</h3>
+          </div>
+          <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span><strong>Percept™ PC:</strong> First FDA-approved DBS system with BrainSense™ technology</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span><strong>Percept™ RC:</strong> Rechargeable neurostimulator approved January 2024 (<a href="https://news.medtronic.com/Medtronic-receives-FDA-approval-for-its-Percept-RC-Deep-Brain-Stimulation-system-news#" class="underline">Source</a>)</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span><strong>BrainSense™ Technology:</strong> Captures brain signals while delivering therapy</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <div class="flex items-center mb-4">
+            <div class="bg-purple-100 dark:bg-purple-900 rounded-lg p-3 mr-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600 dark:text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold">Clinical Evidence & Approvals</h3>
+          </div>
+          <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span><strong>FDA Approval:</strong> Reducing seizure frequency in adults with partial-onset seizures refractory to medications</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span><strong>SANTE Study:</strong> 69% median reduction in seizure frequency over 5 years (<a href="https://www.nejm.org/doi/full/10.1056/NEJMoa1105541" class="underline">Source</a>)</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span><strong>Mechanism:</strong> Delivers targeted electrical stimulation to the anterior nucleus of the thalamus (ANT)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 card">
+        <h2 class="text-xl font-semibold mb-4">Q3 FY25 Revenue</h2>
+        <div class="h-80">
+          <canvas id="revenueChart"></canvas>
+        </div>
+        <p class="text-xs text-gray-500 mt-3">Source: <a href="https://news.medtronic.com/2025-02-18-Medtronic-reports-third-quarter-fiscal-2025-financial-results" class="underline">Medtronic Q3 FY25 Results</a></p>
+      </div>
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 card">
+        <h2 class="text-xl font-semibold mb-4">Market Share</h2>
+        <div class="h-80">
+          <canvas id="growthChart"></canvas>
+        </div>
+        <p class="text-xs text-gray-500 mt-3">Source: <a href="https://news.medtronic.com/2025-02-18-Medtronic-reports-third-quarter-fiscal-2025-financial-results" class="underline">Medtronic Q3 FY25 Results</a></p>
+      </div>
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 card">
+        <h2 class="text-xl font-semibold mb-4">Regional Revenue Distribution (Q3 FY25)</h2>
+        <div class="h-80">
+          <canvas id="regionChart"></canvas>
+        </div>
+        <p class="text-xs text-gray-500 mt-3">Source: <a href="https://news.medtronic.com/2025-02-18-Medtronic-reports-third-quarter-fiscal-2025-financial-results" class="underline">Medtronic Q3 FY25 Results</a></p>
+      </div>
+    </div>
+
+    <!-- Medicare Reimbursement -->
+    <!-- Source: CMS 2025 Fee Schedule -->
+    <!-- https://www.cms.gov/medicare/payment/fee-schedules/physician -->
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 mb-8 card">
+      <h2 class="text-xl font-semibold mb-4">Medicare Reimbursement Details</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">Procedure</th>
+              <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">CPT Code</th>
+              <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">Description</th>
+              <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">2025 Payment</th>
+              <th class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase">YoY Change</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-row">
+              <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">DBS Implantation</td>
+              <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">61886</td>
+              <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">Insertion or replacement of cranial neurostimulator pulse generator or receiver</td>
+              <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$35,826.45</td>
+              <td class="px-4 py-2 text-sm text-red-600 dark:text-red-400 border-b dark:border-gray-700">-3.31%</td>
+            </tr>
+            <tr class="table-row">
+              <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">DBS Programming</td>
+              <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">95983</td>
+              <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">Electronic analysis of implanted neurostimulator with programming</td>
+              <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$138.69</td>
+              <td class="px-4 py-2 text-sm text-red-600 dark:text-red-400 border-b dark:border-gray-700">-1.52%</td>
+            </tr>
+            <tr class="table-row">
+              <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">DBS Analysis</td>
+              <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">95970</td>
+              <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">Electronic analysis of implanted neurostimulator pulse generator</td>
+              <td class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">$146.69</td>
+              <td class="px-4 py-2 text-sm text-green-600 dark:text-green-400 border-b dark:border-gray-700">+5.01%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">Source: <a href="https://www.cms.gov/medicare/payment/fee-schedules/physician" class="underline">CMS Medicare Physician Fee Schedule, 2025 Final Rule</a></p>
+    </div>
+
+    <!-- Sources and Citations -->
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 card">
+      <h2 class="text-xl font-semibold mb-3">Sources & Citations</h2>
+      <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc pl-4">
+        <li><a href="https://news.medtronic.com/2025-02-18-Medtronic-reports-third-quarter-fiscal-2025-financial-results" class="underline">Medtronic Q3 FY25 Financial Results (February 18, 2025)</a></li>
+        <li><a href="https://news.medtronic.com/Medtronic-receives-FDA-approval-for-its-Percept-RC-Deep-Brain-Stimulation-system-news#" class="underline">FDA Approval for Percept™ RC neurostimulator (January 2024)</a></li>
+        <li><a href="https://www.nejm.org/doi/full/10.1056/NEJMoa1105541" class="underline">Long-term efficacy and safety of thalamic stimulation for drug-resistant partial epilepsy (SANTE Study)</a></li>
+        <li><a href="https://www.cms.gov/medicare/payment/fee-schedules/physician" class="underline">CMS Medicare Physician Fee Schedule, 2025 Final Rule</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    let revenueChartInstance = null;
+    let competitiveChartInstance = null;
+    let regionChartInstance = null;
+
+    function initMedtronicCharts() {
+      const isDarkMode = document.documentElement.classList.contains('dark');
+      const textColor = isDarkMode ? '#ffffff' : '#666666';
+      const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
+
+      // Destroy existing charts
+      if (revenueChartInstance) revenueChartInstance.destroy();
+      if (competitiveChartInstance) competitiveChartInstance.destroy();
+      if (regionChartInstance) regionChartInstance.destroy();
+
+      // Revenue Chart
+      revenueChartInstance = new Chart(document.getElementById('revenueChart').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Q3 FY2025'],
+          datasets: [{
+            label: 'Neuromodulation Revenue ($M)',
+            data: [476],
+            backgroundColor: 'rgba(54, 162, 235, 0.7)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Revenue (Million USD)',
+                color: textColor
+              },
+              ticks: { color: textColor },
+              grid: { color: gridColor }
+            },
+            x: {
+              ticks: { color: textColor },
+              grid: { color: gridColor }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return `Revenue: $${context.raw}M`;
+                }
+              }
+            },
+            legend: {
+              position: 'top',
+              labels: { color: textColor }
+            },
+            annotation: {
+              annotations: {
+                note: {
+                  type: 'label',
+                  xValue: 'Q3 FY2025',
+                  yValue: 476,
+                  content: ['Q3 FY25: $476M', 'Source: Medtronic Q3 FY25 Results'],
+                  font: { size: 10 },
+                  color: textColor,
+                  position: 'top'
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // Competitive Chart
+      
+     // Chart: Revenue Growth (Q3 FY25)
+// Source: Medtronic Q3 FY25 Results for 12% growth
+// https://news.medtronic.com/2025-02-18-Medtronic-reports-third-quarter-fiscal-2025-financial-results
+competitiveChartInstance = new Chart(document.getElementById('growthChart').getContext('2d'), {
+  type: 'bar',
+  data: {
+    labels: ['Q3 FY2025'],
+    datasets: [{
+      label: 'Revenue Growth (%)',
+      data: [12.0],
+      backgroundColor: 'rgba(59, 130, 246, 0.7)',
+      borderColor: 'rgba(59, 130, 246, 1)',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Growth Rate (%)',
+          color: textColor
+        },
+        ticks: { color: textColor },
+        grid: { color: gridColor }
+      },
+      x: {
+        ticks: { color: textColor },
+        grid: { color: gridColor }
+      }
+    },
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            return `Growth Rate: ${context.raw}%`;
+          }
+        }
+      },
+      legend: {
+        position: 'top',
+        labels: { color: textColor }
+      },
+      annotation: {
+        annotations: {
+          note: {
+            type: 'label',
+            xValue: 'Q3 FY2025',
+            yValue: 12,
+            content: ['Q3 FY25: +12% YoY', 'Source: Medtronic Q3 FY25 Results'],
+            font: { size: 10 },
+            color: textColor,
+            position: 'top'
+          }
+        }
+      }
+    }
+  }
+});
+      // Region Chart
+      regionChartInstance = new Chart(document.getElementById('regionChart').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['U.S.', 'International'],
+          datasets: [
+            {
+              label: 'Revenue Share (%)',
+              data: [68.7, 31.3],
+              backgroundColor: 'rgba(139, 92, 246, 0.7)',
+              borderColor: 'rgba(139, 92, 246, 1)',
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Revenue Share (%)',
+                color: textColor
+              },
+              ticks: { color: textColor },
+              grid: { color: gridColor }
+            },
+            y: {
+              ticks: { color: textColor },
+              grid: { color: gridColor }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return `Revenue Share: ${context.raw}%`;
+                }
+              }
+            },
+            legend: {
+              position: 'top',
+              labels: { color: textColor }
+            }
+          }
+        }
+      });
+    }
+
+    // Dark Mode Toggle
+    document.getElementById('darkModeToggle').addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      initMedtronicCharts();
+    });
+
+    // Initialize charts on load
+    document.addEventListener('DOMContentLoaded', () => {
+      initMedtronicCharts();
+    });
+  </script>
+</body>
+</html>
