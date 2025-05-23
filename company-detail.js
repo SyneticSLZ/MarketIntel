@@ -2890,6 +2890,230 @@ function generateNeuroPaceDashboard() {
       </div>
     </div>
 
+    <style>
+        .contract-type-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        .contract-type-supply { background-color: #dbeafe; color: #1e40af; }
+        .contract-type-distribution { background-color: #d1fae5; color: #065f46; }
+        .contract-type-collaboration { background-color: #ede9fe; color: #5b21b6; }
+        .contract-type-other { background-color: #fed7aa; color: #9a3412; }
+        
+        .ai-insight-card {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            border-left: 4px solid #3b82f6;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .slide-in { animation: slideIn 0.5s ease-out; }
+    </style>
+
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+        <!-- Header -->
+        <header class="text-left mb-10">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-4 text-gray-800 dark:text-white">Contract Analysis</h3>
+            <p class="text-xl text-gray-600">Comprehensive Analysis of Global Contracts & Strategic Implications</p>
+            <div class="mt-4 flex justify-left gap-4">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                    9 Total Contracts
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                    $79.9M 2024 Revenue
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
+                    24% YoY Growth
+                </span>
+            </div>
+        </header>
+
+        <!-- Contract Timeline Section -->
+    <section class="bg-white shadow-xl rounded-2xl p-8 mb-8">
+        <div class="flex justify-between items-start mb-6">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Contract Timeline</h2>
+                <p class="text-gray-600">Static overview of NeuroPace's key contracts with detailed insights</p>
+            </div>
+            <div class="text-right">
+                <p class="text-sm text-gray-500">Data current as of</p>
+                <p class="text-lg font-semibold text-gray-700">May 23, 2025</p>
+            </div>
+        </div>
+        
+        <!-- Hardcoded Contract List with Expanded Details and Live Links -->
+        <div class="space-y-8 mb-8">
+
+            <div class="border-l-4 border-blue-500 pl-4">
+                <h3 class="text-lg font-semibold text-gray-800">Supply Agreement with Micro Systems Technologies Management AG</h3>
+                <p class="text-sm text-gray-500">November 16, 2015 • <span class="contract-type-badge contract-type-supply">Supply</span></p>
+                <p class="text-gray-700 mt-2">Exclusive supply of printed circuit assemblies and microelectronics critical for RNS System neurostimulator production. Single-source supplier relationship with Swiss precision manufacturing expertise.</p>
+                <div class="mt-2 space-y-2 text-sm text-gray-600">
+                    <p><strong>Location:</strong> Switzerland (Baar) - European medical device manufacturing hub</p>
+                    <p><strong>Duration:</strong> Ongoing as of 2021, auto-renewing annually</p>
+                    <p><strong>Financial Impact:</strong> Enables 100% of RNS manufacturing; supports $79.9M 2024 revenue through reliable component supply</p>
+                    <p><strong>Strategic Analysis:</strong> High-risk single-source dependency mitigated by Swiss manufacturing quality standards and multi-month inventory buffers. Critical for maintaining FDA-compliant production standards.</p>
+                    <p><a href="https://contracts.justia.com/companies/neuropace-inc-12563/contract/172848/" target="_blank" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                        View Contract Details
+                    </a></p>
+                </div>
+            </div>
+            <div class="border-l-4 border-orange-500 pl-4">
+                <h3 class="text-lg font-semibold text-gray-800">Strategic Funding Round</h3>
+                <p class="text-sm text-gray-500">August 31, 2020 • <span class="contract-type-badge contract-type-other">Other</span></p>
+                <p class="text-gray-700 mt-2">$67M total funding package: $33M equity raise from institutional investors and $34M convertible debt facility. Funds allocated to commercial expansion, Project CARE community access initiative, and NAUTILUS clinical trial.</p>
+                <div class="mt-2 space-y-2 text-sm text-gray-600">
+                    <p><strong>Location:</strong> USA - Major healthcare investors</p>
+                    <p><strong>Duration:</strong> Funding deployed 2020-2023</p>
+                    <p><strong>Financial Impact:</strong> Catalyzed revenue growth from $35M (2021) to $45.5M (2022), a 30% increase</p>
+                    <p><strong>Strategic Analysis:</strong> Strategic inflection point enabling transition from early commercialization to scaled growth. Funding directly correlated with epilepsy center expansion from 150 to 200+ sites.</p>
+                    <p><a href="https://investors.neuropace.com/news-releases/news-release-details/neuropace-raises-67-million-financing-support-commercial" target="_blank" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                        View Press Release
+                    </a></p>
+                </div>
+            </div>
+            <div class="border-l-4 border-blue-500 pl-4">
+                <h3 class="text-lg font-semibold text-gray-800">Amendment to Micro Systems Engineering Agreement</h3>
+                <p class="text-sm text-gray-500">December 21, 2020 • <span class="contract-type-badge contract-type-supply">Supply</span></p>
+                <p class="text-gray-700 mt-2">Technical amendment to Swiss parent company agreement, adjusting specifications for US-based operations. Includes updated quality standards and delivery terms for enhanced supply chain flexibility.</p>
+                <div class="mt-2 space-y-2 text-sm text-gray-600">
+                    <p><strong>Location:</strong> USA - Domestic operations alignment</p>
+                    <p><strong>Duration:</strong> Coterminous with parent agreement</p>
+                    <p><strong>Financial Impact:</strong> Operational efficiency improvements; supports manufacturing cost optimization</p>
+                    <p><strong>Strategic Analysis:</strong> Demonstrates proactive supply chain management and adaptation to US regulatory requirements. Reduces potential customs and logistics complexities.</p>
+                    <p><a href="https://contracts.justia.com/companies/neuropace-inc-12563/contract/114317/" target="_blank" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                        View Contract Details
+                    </a></p>
+                </div>
+            </div>
+            <div class="border-l-4 border-blue-500 pl-4">
+                <h3 class="text-lg font-semibold text-gray-800">Battery Supply Agreement with Greatbatch Ltd</h3>
+                <p class="text-sm text-gray-500">January 1, 2021 • <span class="contract-type-badge contract-type-supply">Supply</span></p>
+                <p class="text-gray-700 mt-2">Exclusive manufacture and supply of specialized lithium-ion batteries for RNS System. Greatbatch (now Integer Holdings) provides medical-grade power solutions with 11-year longevity specifications.</p>
+                <div class="mt-2 space-y-2 text-sm text-gray-600">
+                    <p><strong>Location:</strong> UK (New Barnet, Hertfordshire) - European operations</p>
+                    <p><strong>Duration:</strong> Multi-year agreement, ongoing</p>
+                    <p><strong>Financial Impact:</strong> Critical component enabling $79.9M 2024 sales; extended battery life reduces replacement revenue to 4%</p>
+                    <p><strong>Strategic Analysis:</strong> Strategic trade-off: longer battery life enhances patient satisfaction and reduces healthcare costs but limits lucrative replacement revenue. Positions NeuroPace as patient-centric leader.</p>
+                    <p><a href="https://contracts.justia.com/companies/neuropace-inc-12563/contract/114316/" target="_blank" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                        View Contract Details
+                    </a></p>
+                </div>
+            </div>
+            <div class="border-l-4 border-orange-500 pl-4">
+                <h3 class="text-lg font-semibold text-gray-800">IPO Underwriting Agreement</h3>
+                <p class="text-sm text-gray-500">April 14, 2021 • <span class="contract-type-badge contract-type-other">Other</span></p>
+                <p class="text-gray-700 mt-2">Lead underwriters J.P. Morgan and Morgan Stanley managed IPO of 7.5M shares at $17/share. Successful NASDAQ listing (NPCE) raised $127.5M gross proceeds, with $102M net after fees and expenses.</p>
+                <div class="mt-2 space-y-2 text-sm text-gray-600">
+                    <p><strong>Location:</strong> USA - Wall Street financial markets</p>
+                    <p><strong>Duration:</strong> Transaction completed April 2021</p>
+                    <p><strong>Financial Impact:</strong> IPO proceeds enabled 76% revenue growth from 2021-2024; strengthened balance sheet for M&A optionality</p>
+                    <p><strong>Strategic Analysis:</strong> Transformational capital event providing 5+ years of operational runway. IPO at $1.5B valuation validated neuromodulation market opportunity and attracted institutional ownership.</p>
+                    <p><a href="https://www.globenewswire.com/news-release/2025/02/18/3028307/0/en/NeuroPace-Announces-Completion-of-Public-Offering-of-Common-Stock-and-Exercise-in-Full-of-Underwriters-Option-to-Purchase-Additional-Shares.html" target="_blank" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                        View SEC Filing
+                    </a></p>
+                </div>
+            </div>
+            <div class="border-l-4 border-orange-500 pl-4">
+                <h3 class="text-lg font-semibold text-gray-800">NIH BRAIN Initiative Grant</h3>
+                <p class="text-sm text-gray-500">May 1, 2021 • <span class="contract-type-badge contract-type-other">Other</span></p>
+                <p class="text-gray-700 mt-2">$9.3M grant for thalamocortical neurostimulation research under NAUTILUS trial. Exploring RNS System efficacy for generalized epilepsy, potentially doubling addressable market.</p>
+                <div class="mt-2 space-y-2 text-sm text-gray-600">
+                    <p><strong>Location:</strong> USA - National Institutes of Health</p>
+                    <p><strong>Duration:</strong> Multi-year study through 2026</p>
+                    <p><strong>Financial Impact:</strong> Non-dilutive R&D funding; potential to expand TAM from 150K to 300K patients if successful</p>
+                    <p><strong>Strategic Analysis:</strong> Government validation of NeuroPace's scientific approach. Success could enable label expansion beyond focal epilepsy, representing $500M+ market opportunity.</p>
+                    <p><a href="https://investors.neuropace.com/static-files/aa4cb3df-a3b2-4273-a652-c848c0ae59da" target="_blank" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                        View Press Release
+                    </a></p>
+                </div>
+            </div>
+            <div class="border-l-4 border-green-500 pl-4">
+                <h3 class="text-lg font-semibold text-gray-800">DIXI Medical SEEG Electrode Distribution</h3>
+                <p class="text-sm text-gray-500">October 1, 2022 • <span class="contract-type-badge contract-type-distribution">Distribution</span></p>
+                <p class="text-gray-700 mt-2">Exclusive US distribution rights for DIXI's stereoEEG depth electrodes. Minimum purchase commitments: $2.4M (Y1), $2.64M (Y2), $2.904M (Y3) with 10% annual escalation. Complements RNS System in epilepsy surgery workflow.</p>
+                <div class="mt-2 space-y-2 text-sm text-gray-600">
+                    <p><strong>Location:</strong> USA - Nationwide distribution network</p>
+                    <p><strong>Duration:</strong> Through Q4 2025 with Q1 2026 wind-down</p>
+                    <p><strong>Financial Impact:</strong> Generated $1.6M Q4 2022, currently 4% of quarterly revenue (~$3.6M annually)</p>
+                    <p><strong>Strategic Analysis:</strong> Smart portfolio expansion leveraging existing epilepsy center relationships. Low-margin distribution business but strengthens NeuroPace as comprehensive epilepsy partner. Contract expiration requires succession planning.</p>
+                    <p><a href="https://investors.neuropace.com/news-releases/news-release-details/neuropace-announces-distribution-agreement-dixi-medical-usa" target="_blank" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                        View Press Release
+                    </a></p>
+                </div>
+            </div>
+            <div class="border-l-4 border-purple-500 pl-4">
+                <h3 class="text-lg font-semibold text-gray-800">Rapport Therapeutics Data Partnership</h3>
+                <p class="text-sm text-gray-500">November 28, 2023 • <span class="contract-type-badge contract-type-collaboration">Collaboration</span></p>
+                <p class="text-gray-700 mt-2">Master Services Agreement providing RNS System biomarker data for RAP-219 Phase 2a precision medicine trial. Milestone-based payments totaling $3.7M through Q4 2025. NeuroPace provides data only, no trial operations.</p>
+                <div class="mt-2 space-y-2 text-sm text-gray-600">
+                    <p><strong>Location:</strong> USA - Boston biotech collaboration</p>
+                    <p><strong>Duration:</strong> Through Q4 2025 trial completion</p>
+                    <p><strong>Financial Impact:</strong> $2.5M received by Q4 2024, remaining $1.2M expected Q4 2025; high-margin service revenue</p>
+                    <p><strong>Strategic Analysis:</strong> Validates RNS System as precision medicine platform beyond therapy delivery. Opens new revenue stream from pharma partnerships without diluting core business focus. Potential for multiple similar deals.</p>
+                    <p><a href="https://contracts.justia.com/companies/rapport-therapeutics-inc-102825/contract/1284648/" target="_blank" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                        View Contract Details
+                    </a></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chart Container -->
+        <div class="bg-gray-50 rounded-xl p-4">
+            <canvas id="neuropaceContractTimeline" class="w-full h-[400px]"></canvas>
+        </div>
+        
+        <!-- Legend -->
+        <div class="mt-6 flex justify-center gap-6 text-sm">
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 rounded-full bg-blue-500"></div>
+                <span>Supply Agreements</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 rounded-full bg-green-500"></div>
+                <span>Distribution</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 rounded-full bg-purple-500"></div>
+                <span>Collaboration</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 rounded-full bg-orange-500"></div>
+                <span>Financial/Other</span>
+            </div>
+        </div>
+    </section>
+    </div>
     <!-- Business Details -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
       <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
@@ -3007,7 +3231,62 @@ function initializeNeuroPaceCharts() {
     years: ['Q4 2021', 'Q4 2022', 'Q4 2023', 'Q4 2024'],
     revenue: [11.0, 12.8, 18.0, 21.5]
   };
-
+const neuropaceContracts = [
+    {
+        date: '2003-05-12',
+        type: 'Other',
+        title: 'Later Stage VC with Epicor Medical',
+        color: 'rgba(249, 115, 22, 0.8)'
+    },
+    {
+        date: '2015-11-16',
+        type: 'Supply',
+        title: 'Supply Agreement with Micro Systems Technologies Management AG',
+        color: 'rgba(59, 130, 246, 0.8)'
+    },
+    {
+        date: '2020-08-31',
+        type: 'Other',
+        title: 'Strategic Funding Round',
+        color: 'rgba(249, 115, 22, 0.8)'
+    },
+    {
+        date: '2020-12-21',
+        type: 'Supply',
+        title: 'Amendment to Micro Systems Engineering Agreement',
+        color: 'rgba(59, 130, 246, 0.8)'
+    },
+    {
+        date: '2021-01-01',
+        type: 'Supply',
+        title: 'Battery Supply Agreement with Greatbatch Ltd',
+        color: 'rgba(59, 130, 246, 0.8)'
+    },
+    {
+        date: '2021-04-14',
+        type: 'Other',
+        title: 'IPO Underwriting Agreement',
+        color: 'rgba(249, 115, 22, 0.8)'
+    },
+    {
+        date: '2021-05-01',
+        type: 'Other',
+        title: 'NIH BRAIN Initiative Grant',
+        color: 'rgba(249, 115, 22, 0.8)'
+    },
+    {
+        date: '2022-10-01',
+        type: 'Distribution',
+        title: 'DIXI Medical SEEG Electrode Distribution',
+        color: 'rgba(34, 197, 94, 0.8)'
+    },
+    {
+        date: '2023-11-28',
+        type: 'Collaboration',
+        title: 'Rapport Therapeutics Data Partnership',
+        color: 'rgba(168, 85, 247, 0.8)'
+    }
+];
   // Color palette (Tailwind CSS compatible)
   const colors = {
     light: {
@@ -3675,6 +3954,80 @@ function initializeNeuroPaceCharts() {
     updateChart();
   }
 
+  
+function initNeuropaceChart() {
+    const neuropaceChartCtx = document.getElementById('neuropaceContractTimeline').getContext('2d');
+    new Chart(neuropaceChartCtx, {
+        type: 'scatter',
+        data: {
+            datasets: [{
+                label: 'NeuroPace Contracts',
+                data: neuropaceContracts.map(contract => ({
+                    x: new Date(contract.date),
+                    y: Math.random() * 0.8 + 0.1,
+                    contractData: contract
+                })),
+                backgroundColor: neuropaceContracts.map(contract => contract.color),
+                borderColor: neuropaceContracts.map(contract => contract.color.replace('0.8', '1')),
+                borderWidth: 3,
+                pointRadius: 12,
+                pointHoverRadius: 16,
+                pointStyle: 'circle'
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'year',
+                        displayFormats: { year: 'yyyy' }
+                    },
+                    title: { 
+                        display: true, 
+                        text: 'Contract Timeline', 
+                        font: { size: 16, weight: 'bold' },
+                        color: '#1f2937'
+                    },
+                    min: new Date('2000-01-01'),
+                    max: new Date('2026-01-01'),
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.05)'
+                    }
+                },
+                y: { 
+                    display: false,
+                    min: 0,
+                    max: 1
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: context => context[0].raw.contractData.title,
+                        label: context => [
+                            `Type: ${context.raw.contractData.type}`,
+                            `Date: ${new Date(context.raw.contractData.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`
+                        ]
+                    },
+                    backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                    titleFont: { size: 14, weight: 'bold' },
+                    bodyFont: { size: 12 },
+                    padding: 12,
+                    cornerRadius: 8
+                },
+                legend: { display: false }
+            },
+            responsive: true,
+            maintainAspectRatio: true,
+            interaction: {
+                intersect: false,
+                mode: 'point'
+            }
+        }
+    });
+}
+
   // Dark Mode Toggle - FIXED
   function initDarkModeToggle() {
     const toggleButton = document.getElementById('darkModeToggle');
@@ -3834,6 +4187,7 @@ function initializeNeuroPaceCharts() {
   initRevenueMiniChart();
   initDetailedChart();
   initDarkModeToggle();
+  initNeuropaceChart();
 }
 
 // Initialize NeuroPace Charts
